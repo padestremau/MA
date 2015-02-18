@@ -429,7 +429,7 @@ hr {
 	position: absolute;
 	top: 45px;
 	left: 11%;
-	z-index: 99999;
+	z-index: 999;
 	background-color: rgba(44,106,221,1);
 	width: 7%;
 	border-radius: 50%;
@@ -564,7 +564,7 @@ hr {
 	box-shadow: 0 0 10px rgba(0,0,0,0.38);
 	width:12%;
 	padding:4px;
-	z-index:9999;
+	z-index:999;
 
 	text-align: center;
 }
@@ -626,7 +626,7 @@ hr {
 	right: 50px;
 	width: 50px;
 	height: 50px;
-	z-index: 9999;
+	z-index: 999;
 }
 #button_to_top button {
 	width: 50px;

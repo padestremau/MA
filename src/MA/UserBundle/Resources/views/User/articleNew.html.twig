@@ -78,22 +78,12 @@
 				                {% endif %}
 								<div class="input-icon">
 						        	<i class="fa fa-user"></i>
-						        	{% set opt_content = {'attr': {'class': 'ckeditor',
-						        		'type':'textarea', 'placeholder':"L'arrivée majestueuse d'un contenu d'article, à propos d'un sujet en particulier", 'id':'_content', 
+						        	{% set opt_content = {'attr': { 'class': 'ckeditor',
+						        		'placeholder':"L'arrivée majestueuse d'un contenu d'article, à propos d'un sujet en particulier", 'id':'_content', 
 						        		'name':'_content'}} %}
 						        	{{ form_widget(formNewArticle.content, opt_content) }}
 						        </div>
-						        <script type="text/javascript">
-						            var editor = CKEDITOR.replace( '_content', {
-						                filebrowserBrowseUrl : '../../../../../../web/ckfinder/ckfinder.html',
-						                filebrowserImageBrowseUrl : '../../../../../../web/ckfinder/ckfinder.html?type=Images',
-						                filebrowserFlashBrowseUrl : '../../../../../../web/ckfinder/ckfinder.html?type=Flash',
-						                filebrowserUploadUrl : '../../../../../../web/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-						                filebrowserImageUploadUrl : '../../../../../../web/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-						                filebrowserFlashUploadUrl : '../../../../../../web/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-						            });
-						            CKFinder.setupCKEditor( editor, '../../../../../../web/' );
-						        </script>
+
 							</div>
 
 							<div>
