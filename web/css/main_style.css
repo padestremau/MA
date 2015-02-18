@@ -10,12 +10,15 @@ body
 {	
 	width: 100%;
 	background-color: black;/*rgba(22,53,110,1);*/
-	background-image: url("../img/system/defaults/background_photos.png");
-	background-size: 100%;
 
 	font-family: '';  /*sakkal_majallaregular*/
 	font-weight: 100;
 	color: black !important;
+}
+
+.main_background {
+	background-image: url("../img/system/defaults/background_photos.png");
+	background-size: 100%;
 }
 
 
@@ -102,7 +105,7 @@ body
     }
 }
 
-body {
+.main_background {
 	-webkit-animation: mov 500s infinite;
 	-moz-animation: mov 500s infinite;
 	-ms-animation: mov 500s infinite;
@@ -148,6 +151,7 @@ h1
 	margin-top: 0 !important;
 	text-align: center;
 	font-weight: 500;
+	color: #001234;
 }
 @media (min-width: 1201px) {
 	h1 {
@@ -417,17 +421,21 @@ hr {
           	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 
-#li_logo {
+/*#li_logo {
 	padding: 0px;
-}
+	background-color: rgba(22,53,110,0.88) !important;
+}*/
 .Logo {
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 45px;
+	left: 11%;
 	z-index: 99999;
 	background-color: rgba(44,106,221,1);
-	width: 100%;
-	border-radius: 0 0 50% 0;
+	width: 7%;
+	border-radius: 50%;
+
+	border: 3px solid rgba(50,50,50,0.8);
+	box-shadow: 0 10px 12px 3px rgba(150,150,150,0.7)
 }
 .border_right_li {
 	border-right : 1px solid white;
@@ -549,22 +557,24 @@ hr {
 #social_media {	
 	position:fixed;
 	background: rgba(250,250,250,0.96);
-	top: 40%;
-	left:0;
+	bottom: 0;
+	left:44%;
 	border: 1px solid rgba(50,50,50,0.2);
-	border-radius: 0 10px 10px 0;
+	border-radius: 0 ;
 	box-shadow: 0 0 10px rgba(0,0,0,0.38);
-	width:30px;
+	width:12%;
 	padding:4px;
 	z-index:9999;
+
+	text-align: center;
 }
 .social
 {	
 	margin-top: 5px;
-	width : 18px;
-	height: 18px;
-	margin-right: 2px;
-	margin-left: 2px;
+	width : 20px;
+	height: 20px;
+	margin-right: 4px;
+	margin-left: 4px;
 	display: inline-block;
 }
 .social_fb {
@@ -652,9 +662,13 @@ hr {
 
 /* -----------------------------------------------    Content   -------------------------------------------------- */
 
+.page-admin {
+	width: 100%;
+	background-color: #f1f1f1;
+}
 .page-container {
 	margin: auto;
-	max-width: 72%;
+	max-width: 80%;
 	background-color: #f1f1f1;
 	color: black !important;
 
@@ -687,10 +701,17 @@ hr {
 	padding: 30px;
 	border-radius: 50%;
 	background-color: rgba(44,106,221,0.88);
+	border: 3px solid rgba(50,50,50,0.8);
+	box-shadow: 0 10px 12px 3px rgba(150,150,150,0.7)
 }
 
 .Logo_welcome {
 	width: 100%;
+}
+
+.text_accueil {
+	padding-left: 100px;
+	padding-right: 100px;
 }
 
 .div-btn-accueil {
@@ -805,8 +826,89 @@ hr {
 	margin-left: 4%;
 }
 
+.list_articles {
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+}
+.list_articles li {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	padding: 5px;
+}
+.li_article_active {
+	border: 1px solid #f11a26;
+}
+.date_article {
+	font-size: 0.8em;
+	color: rgba(150,150,150,0.8);
+	font-style: italic;
+}
+
+.modal-dialog {
+	width: 90%;
+	height: 700px;
+	margin-left: 5%;
+	position: absolute;
+	z-index: 99999;
+
+	overflow: scroll;
+}
+.modal-body {
+	height: 300px;
+	overflow: scroll;
+}
+.modal-backdrop {
+  z-index: -1;
+  /*background-color: rgba(250,250,250,1);*/
+}
 
 
+
+
+/* ------------------------------------------------------ Admin ------------------------------------------------------ */
+
+.border_black_left {
+	border-left: 2px dotted black;
+}
+
+.nav_tabs_user {
+	text-align: center;
+}
+.nav_tabs_user li {
+	margin-bottom: 10px;
+	display: inline-block;
+	width: 12%;
+}
+.btn-choice-admin {
+	border-radius: 0;
+	width: 100%;
+	background-color: transparent;
+	border: 1px solid #001234;
+	padding: 2px 5px ;
+}
+.btn-choice-admin:hover {
+	background-color: rgba(150,150,150,0.6);
+}
+.nav_tabs_user li.active {
+	background-color: rgba(150,150,150,0.6);
+}
+.logout-btn-admin:hover {
+	background-color: rgba(200,79,86,0.6) !important;
+}
+
+.btn-action-admin {
+	border-radius: 0;
+	width: 100px;
+	background-color: transparent;
+	border: 1px solid rgba(150,150,150,0.8);
+	color: rgba(150,150,150,0.8);
+	padding: 2px 5px ;
+	margin-right: 10px;
+}
+.btn-action-admin:hover {
+	background-color: rgba(150,150,150,0.6);
+}
 
 /* ------------------------------------------------------ Footer ------------------------------------------------------ */
 .footer

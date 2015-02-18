@@ -1,0 +1,57 @@
+<div class="row">
+
+	{# For clearer view #}
+	{% set route = app.request.attributes.get( '_route' ) %}
+
+  	<!-- Nav tabs Admin -->
+  	<div class="row">
+	  <ul class="nav_tabs_user list_no_style_li" role="tablist">
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_articles')
+	    		or (route == 'ma_user_article_new') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="{{ path('ma_user_articles') }}" class="no_style_a">
+		    	Articles
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_photos') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="{{ path('ma_user_photos') }}" class="no_style_a">
+		    	Photos
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_videos') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="{{ path('ma_user_videos') }}" class="no_style_a">
+		    	Vidéos
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_content') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="{{ path('ma_user_content') }}" class="no_style_a">
+		    	Contenu du site
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin logout-btn-admin">
+	    	<a href="{{ path('fos_user_security_logout') }}" class="no_style_a">
+	    		Logout
+	    	</a>
+	    </li>
+	  </ul>
+  	</div>
+
+  	<hr class="black_hr"/>
+  	<br/><br/>
+
+</div>

@@ -1,0 +1,41 @@
+ma_user_homepage:
+    path:     /
+    defaults: { _controller: MAUserBundle:User:index }
+
+ma_user_articles:
+    path:     /articles
+    defaults: { _controller: MAUserBundle:User:articles }
+
+ma_user_articles_spe:
+    path:     /articles/{articleId}
+    defaults: { _controller: MAUserBundle:User:articles }
+    requirements:
+        routesId: \d+
+
+ma_user_article_edit:
+    path:     /article/edit/{articleId}
+    defaults: { _controller: MAUserBundle:User:articleEdit }
+    requirements:
+        routesId: \d+
+
+ma_user_article_delete:
+    path:     /article/delete/{articleId}
+    defaults: { _controller: MAUserBundle:User:articleDelete }
+    requirements:
+        routesId: \d+
+
+ma_user_article_new:
+    path:     /article/nouveau
+    defaults: { _controller: MAUserBundle:User:articleNew }
+
+ma_user_photos:
+    path:     /photos
+    defaults: { _controller: MAUserBundle:User:photos }
+
+ma_user_videos:
+    path:     /videos
+    defaults: { _controller: MAUserBundle:User:videos }
+
+ma_user_content:
+    path:     /content
+    defaults: { _controller: MAUserBundle:User:content }

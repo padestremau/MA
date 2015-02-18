@@ -2,13 +2,7 @@
 {% set route = app.request.attributes.get( '_route' ) %}
 
 <div id="header" class="row">
-
 	<ul class="nav nav-tabs nav-justified uppercase" id="menu">
-		<li role="presentation" id="li_logo" > 
-			<a href="#">
-				<img src="{{ asset('img/system/logo/logo_min.png') }}" alt="Logo" class="Logo"/>
-			</a>
-		</li>
 		<li  role="presentation" class="active border_right_li" data-menuanchor="accueil">
 			<a href="#accueil">
 				<span class="glyphicon glyphicon-home white" aria-hidden="true"></span>
@@ -64,13 +58,13 @@
 				Actualités 
 			</a>
 		</li>
-		<li  role="presentation" data-menuanchor="footerSection">
+		<li  role="presentation" data-menuanchor="footerSection" class="border_right_li">
 			<a href="#footerSection">
 				Contact
 			</a>
 		</li>
-		<li class="divider "></li>
-		<li  role="presentation" class="right">
+
+		<li  role="presentation">
 			<a href="#">
 				Donation
 			</a>

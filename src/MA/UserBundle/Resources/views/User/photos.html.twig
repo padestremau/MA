@@ -1,0 +1,39 @@
+{# src/MA/UserBundle/Resources/User/photos.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Photos
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section" id="section6">
+
+				<h1 class="margin_bottom_10">
+					Administration du site
+				</h1>
+				<br/>
+				
+				<!-- BEGIN social -->
+		            {% include 'includes/nav_admin.html.twig' %}
+		        <!-- END social -->
+				
+				<div class="row">
+					
+				</div>
+				
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

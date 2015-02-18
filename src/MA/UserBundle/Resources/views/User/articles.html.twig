@@ -1,0 +1,120 @@
+{# src/MA/UserBundle/Resources/User/articles.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Articles
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section" id="section6">
+
+				<h1 class="margin_bottom_10">
+					Administration du site
+				</h1>
+				<br/>
+				
+				<!-- BEGIN social -->
+		            {% include 'includes/nav_admin.html.twig' %}
+		        <!-- END social -->
+				
+				<div class="row92">
+	    			<div class="col-md-3 col-xs-3">
+						<br/><br/>
+						<strong>
+							Articles :
+						</strong>
+						{% if articles|length > 0 %}
+							<ul class="list_no_style_li list_articles">
+								{% for single_article in articles %}
+									<li class="
+										{% if single_article == articleAsked %}
+											li_article_active
+										{% endif %}
+										">
+										<a href="{{ path('ma_user_articles_spe', {'articleId':single_article.id}) }}">
+											{{ single_article.title }}
+										</a>
+										<span class="float-right date_article">
+											{% if single_article.createdAt|length > 0 %}
+												{{ single_article.createdAt|date('d/M/Y') }}
+											{% else %}
+												(Vide)
+											{% endif %}
+										</span>
+									</li>
+								{% endfor %}
+							</ul>
+						{% else %}
+							Aucun article
+						{% endif %}
+					</div>
+
+					<div class="col-md-9 col-xs-9 border_black_left">
+						<div class="row">
+		    				<a class="btn btn-action-admin float-left" href="{{ path('ma_user_article_new') }}">
+		    					Nouveau
+		    				</a>
+		    				<a class="btn btn-action-admin float-right logout-btn-admin"  href="javascript:areYouSure('{{ path('ma_user_article_delete', {'articleId':articleAsked.id}) }}')">
+		    					Supprimer
+		    				</a>
+		    				<script type="text/javascript">
+		    					function areYouSure(path) {
+		    						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+		    							window.location = path;
+		    						}
+		    					}
+		    				</script>
+		    				<a class="btn btn-action-admin float-right"  href="{{ path('ma_user_article_edit', {'articleId':articleAsked.id}) }}">
+		    					Modifier
+		    				</a>
+		    			</div>
+		    			<br/><br/>
+						<div class="row">
+							<div class="inline_div">
+								<h2>
+									{% if articleAsked.title|length > 0 %}
+										{{ articleAsked.title }}
+									{% else %}
+										(Vide)
+									{% endif %}
+								</h2>
+							</div>
+							<div class="inline_div float-right italic">
+								{% if articleAsked.place|length > 0 %}
+									{{ articleAsked.place }},
+								{% else %}
+									(Vide)
+								{% endif %}
+								{% if articleAsked.createdAt|length > 0 %}
+									le {{ articleAsked.createdAt|date('d/M/Y') }} à {{ articleAsked.createdAt|date('H:i') }}
+								{% else %}
+									(Vide)
+								{% endif %}
+							</div>
+						</div>
+						<div class="row">
+							{% if articleAsked.content|length > 0 %}
+								{{ articleAsked.content|raw }}
+							{% else %}
+								(Vide)
+							{% endif %}
+						</div>
+					</div>
+    			</div>
+				
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

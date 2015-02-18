@@ -24,7 +24,7 @@
 						Bienvenue !
 						<hr class="black_hr" />
 					</h1>
-					<div class="row padding50">
+					<div class="row text_accueil">
 						<p>
 							L’association est fondée sur la conception chrétienne de l’Homme. Son idée est de construire un monde où tout homme, sans exception de race, de religion, de nationalité, puisse vivre une vie pleinement humaine.
 						</p>
@@ -52,7 +52,7 @@
 							Cet épanouissement est possible grâce à la responsabilisation et à l’autonomie financière de la personne aidée.
 						</p>
 					</div>
-					<div class="row div-btn-accueil">
+					<div class="row80 div-btn-accueil">
 						<div class="col-md-4 col-xs-4">
 							<button data-menuanchor="ecoliers">
 								<a href="#ecoliers" class="btn btn-accueil btn_ecoliers no_style_a">
@@ -674,67 +674,77 @@
 							Toute l'information à jour
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-3 col-xs-3">
+					<div class="row92">
+		    			<div class="col-md-3 col-xs-3">
+							<br/><br/>
 							<strong>
 								Articles :
 							</strong>
-							<ol class="">
-								<li>
-									<a href="#">
-										Retour ici
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Départ la bas
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Ensemble et partout
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Et pourquoi pas nous ?
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Coucou c'est moi
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										Toto est en arabie
-									</a>
-								</li>
-							</ol>
+							{% if articles|length > 0 %}
+								<ul class="list_no_style_li list_articles">
+									{% for single_article in articles %}
+										<li class="
+											{% if single_article == articleAsked %}
+												li_article_active
+											{% endif %}
+											">
+											<a href="{{ path('ma_user_articles_spe', {'articleId':single_article.id}) }}">
+												{{ single_article.title }}
+											</a>
+											<span class="float-right date_article">
+												{% if single_article.createdAt|length > 0 %}
+													{{ single_article.createdAt|date('d/M/Y') }}
+												{% else %}
+													(Vide)
+												{% endif %}
+											</span>
+										</li>
+									{% endfor %}
+								</ul>
+							{% else %}
+								Aucun article
+							{% endif %}
 						</div>
 
-						<div class="col-md-9 col-xs-9">
+						<div class="col-md-9 col-xs-9 border_black_left">
+			    			<br/><br/>
 							<div class="row">
 								<div class="inline_div">
 									<h3>
-										Titre de l'article
+										{% if articleAsked.title|length > 0 %}
+											{{ articleAsked.title }}
+										{% else %}
+											(Vide)
+										{% endif %}
 									</h3>
 								</div>
 								<div class="inline_div float-right italic">
-									Paris, le 02/09/2014 à 20:25 
+									{% if articleAsked.place|length > 0 %}
+										{{ articleAsked.place }},
+									{% else %}
+										(Vide)
+									{% endif %}
+									{% if articleAsked.createdAt|length > 0 %}
+										le {{ articleAsked.createdAt|date('d/M/Y') }} à {{ articleAsked.createdAt|date('H:i') }}
+									{% else %}
+										(Vide)
+									{% endif %}
 								</div>
 							</div>
 							<div class="row">
-								Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla 
-							</div>
-							<br/><br/>
-							<div class="row right font16">
-								<strong>
-									- John McCaflhqslkfhskqgh
-								</strong>
+								{% if articleAsked.content|length > 0 %}
+									{{ articleAsked.content|raw }} <!-- nl2br -->
+								{% else %}
+									(Vide)
+								{% endif %}
 							</div>
 						</div>
-					</div>
+	    			</div>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn float-right" data-toggle="modal" data-target="#myModal">
+						Suite de l'article
+					</button>
+
 				</div>
 
 			</div>

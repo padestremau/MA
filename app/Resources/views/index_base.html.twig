@@ -24,7 +24,6 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
-
     {% stylesheets
       'css/bootstrap.css'
       'css/bootstrap.min.css'
@@ -57,21 +56,44 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+
+    <!-- CKEditor -->
+    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+
 </head>
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
-  <body onLoad="onLoadData()">
-        <!-- BEGIN header -->
-          {% include 'includes/header.html.twig' %}
-        <!-- END header -->
+  <body 
+    {% if (route == 'ma_main_homepage') %}
+      onLoad="onLoadData()" class="main_background"
+    {% endif %} 
+    >
 
-        <!-- BEGIN header -->
-          {% include 'includes/button_to_top.html.twig' %}
-        <!-- END header -->
+        {% set route = app.request.attributes.get( '_route' ) %}
+
+        {% if (route == 'ma_main_homepage') %}
+          <!-- BEGIN header -->
+            {% include 'includes/header.html.twig' %}
+          <!-- END header -->
+
+          <!-- BEGIN button -->
+            {% include 'includes/button_to_top.html.twig' %}
+          <!-- END button -->
+
+          <!-- BEGIN social -->
+            {% include 'includes/social.html.twig' %}
+          <!-- END social -->
+        {% endif %}
 
         <!-- BEGIN CONTAINER -->
-        <div id="page_container_gen" class="page-container row margin0">
+        <div id="page_container_gen" class="
+          {% if (route == 'ma_main_homepage') %}
+            page-container 
+          {% else %}
+            page-admin
+          {% endif %} 
+            row margin0">
             {% block body %}
             {% endblock body %} 
             <script type="text/javascript">
@@ -92,7 +114,11 @@
                   navigationPosition: 'right',
                   responsive: 700,
                   verticalCentered: false,
-                  paddingTop: '80px',
+                  {% if (route == 'ma_main_homepage') %}
+                    paddingTop: '80px',
+                  {% else %}
+                    paddingTop: '20px',
+                  {% endif %} 
                   // sectionSelector: '.section',
                   // slideSelector: '.slide',
                   afterLoad: function(anchorLink, index){
@@ -102,6 +128,14 @@
                     }
                     else {
                       document.getElementById("button_to_top").className = "opacity0";
+                    }
+
+                    // Logo each page
+                    if (anchorLink == 'ecoliers' || anchorLink == 'etudiants' || anchorLink == 'jeunesPro' || anchorLink == 'actu') {
+                      document.getElementById("logo_each_page").className = "opacity1";
+                    }
+                    else {
+                      document.getElementById("logo_each_page").className = "opacity0";
                     }
                   }
 
@@ -192,6 +226,7 @@
               function onLoadData() {
                 // Top button
                 document.getElementById("button_to_top").className = "opacity0";
+                document.getElementById("logo_each_page").className = "opacity0";
               }
 
             </script>
@@ -216,6 +251,9 @@
           'js/jquery.slimscroll.min.js'
 
           'js/jquery-cookie/jquery.cookie.js'
+
+          'ckeditor/ckeditor.js'
+          'ckfinder/ckfinder.js'
           %}
           <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
