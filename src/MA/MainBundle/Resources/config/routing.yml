@@ -1,0 +1,7 @@
+ma_main_homepage:
+    path:     /
+    defaults: { _controller: MAMainBundle:Main:index }
+
+ma_main_donation:
+    path:     /donation
+    defaults: { _controller: MAMainBundle:Main:donation }

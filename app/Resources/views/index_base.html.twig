@@ -1,0 +1,227 @@
+{# app/Resources/views/index_base.html.twig #}
+
+{# For clearer view #}
+{% set route = app.request.attributes.get( '_route' ) %}
+
+<!DOCTYPE html>
+
+<!-- BEGIN HEAD -->
+<head id="website_head">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+      {% block title %}
+        Mission Andina
+      {% endblock %}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+
+    {% stylesheets
+      'css/bootstrap.css'
+      'css/bootstrap.min.css'
+      'css/bootstrap-responsive.css'
+      'css/bootstrap-responsive.min.css'
+      'css/bootstrap-theme.css.map'
+      'css/bootstrap.css.map'
+
+      'bootstrap/css/bootstrap-theme.css'
+      'bootstrap/css/bootstrap-theme.min.css'
+      'bootstrap/css/bootstrap.min.css'
+      'bootstrap/css/bootstrap.css'
+
+      'css/font.css'
+      'css/main_style.css'
+
+      'css/jquery.fullPage.css'
+
+      filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
+    {% endstylesheets %}
+        
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" />
+    <link rel="icon" type="image/ico" href="{{ asset('favicon.ico') }}" />
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+  <body onLoad="onLoadData()">
+        <!-- BEGIN header -->
+          {% include 'includes/header.html.twig' %}
+        <!-- END header -->
+
+        <!-- BEGIN header -->
+          {% include 'includes/button_to_top.html.twig' %}
+        <!-- END header -->
+
+        <!-- BEGIN CONTAINER -->
+        <div id="page_container_gen" class="page-container row margin0">
+            {% block body %}
+            {% endblock body %} 
+            <script type="text/javascript">
+              $(document).ready(function() {
+                $('#fullpage').fullpage({
+                  anchors: ['accueil', 'ecoliers', 'etudiants', 'jeunesPro', 'actu', 'footerSection'],
+                  menu: '#menu',
+                  scrollingSpeed: 800,  // Other
+                  scrollOverflow: true,
+                  allowScrolling: true,
+                  // autoScrolling: false,
+                  css3: true,
+                  slidesNavigation: false,
+                  navigationTooltips: ['Accueil', 'Ecoliers', 'Etudiants', 'Jeunes pro', 'Actu', 'Footer'],
+                  controlArrows: false,
+                  // loopHorizontal: false,
+                  navigation: true,
+                  navigationPosition: 'right',
+                  responsive: 700,
+                  verticalCentered: false,
+                  paddingTop: '80px',
+                  // sectionSelector: '.section',
+                  // slideSelector: '.slide',
+                  afterLoad: function(anchorLink, index){
+                    // Top button
+                    if (anchorLink == 'ecoliers' || anchorLink == 'etudiants' || anchorLink == 'jeunesPro' || anchorLink == 'actu' || anchorLink == 'footerSection') {
+                      document.getElementById("button_to_top").className = "opacity1";
+                    }
+                    else {
+                      document.getElementById("button_to_top").className = "opacity0";
+                    }
+                  }
+
+                });
+
+                $('#goToPhotosFromInfosEcoliers').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+                $('#goToInfosFromPhotosEcoliers').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideLeft();
+                });
+
+                $('#goToVideosFromPhotosEcoliers').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+                $('#goToPhotosFromVideosEcoliers').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideLeft();
+                });
+
+                $('#goToInfosFromVideosEcoliers').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+
+                $('#goToPhotosFromInfosEtudiants').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+                $('#goToInfosFromPhotosEtudiants').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideLeft();
+                });
+
+                $('#goToVideosFromPhotosEtudiants').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+                $('#goToPhotosFromVideosEtudiants').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideLeft();
+                });
+
+                $('#goToInfosFromVideosEtudiants').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+
+                $('#goToPhotosFromInfosJeunesPro').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+                $('#goToInfosFromPhotosJeunesPro').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideLeft();
+                });
+
+                $('#goToVideosFromPhotosJeunesPro').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+                $('#goToPhotosFromVideosJeunesPro').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideLeft();
+                });
+
+                $('#goToInfosFromVideosJeunesPro').click(function(e){
+                  e.preventDefault();
+                  $.fn.fullpage.moveSlideRight();
+                });
+
+                
+
+              });
+
+
+              function onLoadData() {
+                // Top button
+                document.getElementById("button_to_top").className = "opacity0";
+              }
+
+            </script>
+        </div>
+        <!-- END CONTAINER -->
+
+
+        <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+        {% javascripts 
+          'js/jquery-1.10.2.min.js'
+          'js/jquery-ui-1.9.1.min.js'
+          
+          'bootstrap/js/bootstrap.js'
+          'bootstrap/js/bootstrap.min.js'
+          'js/bootstrap.js'
+          'js/bootstrap.min.js'
+
+          'js/ajax_load.js'          
+
+          'js/jquery.fullPage.js'
+          'js/jquery.slimscroll.min.js'
+
+          'js/jquery-cookie/jquery.cookie.js'
+          %}
+          <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+
+        <!-- END JAVASCRIPTS -->
+  </body>
+  <!-- END BODY -->
+</html>

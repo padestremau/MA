@@ -1,0 +1,81 @@
+{# For clearer view #}
+{% set route = app.request.attributes.get( '_route' ) %}
+
+<div id="header" class="row">
+
+	<ul class="nav nav-tabs nav-justified uppercase" id="menu">
+		<li role="presentation" id="li_logo" > 
+			<a href="#">
+				<img src="{{ asset('img/system/logo/logo_min.png') }}" alt="Logo" class="Logo"/>
+			</a>
+		</li>
+		<li  role="presentation" class="active border_right_li" data-menuanchor="accueil">
+			<a href="#accueil">
+				<span class="glyphicon glyphicon-home white" aria-hidden="true"></span>
+			</a>
+		</li>
+	    <li role="presentation" class="dropdown border_right_li" data-menuanchor="ecoliers">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#ecoliers" role="button" aria-expanded="false">
+	          Ecoliers  <span class="caret"></span>
+	        </a>
+	        <ul class="dropdown-menu" role="menu">
+	          	<li data-menuanchor="ecoliers">
+	          		<a href="#ecoliers">
+	          			Infos
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li><a href="#">Photos</a></li>
+	          	<li><a href="#">Vidéos</a></li>
+	        </ul>
+	    </li>
+	    <li role="presentation" class="dropdown border_right_li" data-menuanchor="etudiants">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#etudiants" role="button" aria-expanded="false">
+	          Etudiants  <span class="caret"></span>
+	        </a>
+	        <ul class="dropdown-menu" role="menu">
+	          	<li data-menuanchor="etudiants">
+	          		<a href="#etudiants">
+	          			Infos
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li><a href="#">Photos</a></li>
+	          	<li><a href="#">Vidéos</a></li>
+	        </ul>
+	    </li>
+	    <li role="presentation" class="dropdown border_right_li" data-menuanchor="jeunesPro">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#jeunesPro" role="button" aria-expanded="false">
+	          Jeunes pro <span class="caret"></span>
+	        </a>
+	        <ul class="dropdown-menu" role="menu">
+	          	<li data-menuanchor="jeunesPro">
+	          		<a href="#jeunesPro">
+	          			Infos
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li><a href="#">Photos</a></li>
+	          	<li><a href="#">Vidéos</a></li>
+	        </ul>
+	    </li>
+		<li  role="presentation" class="border_right_li" data-menuanchor="actu">
+			<a href="#actu">
+				Actualités 
+			</a>
+		</li>
+		<li  role="presentation" data-menuanchor="footerSection">
+			<a href="#footerSection">
+				Contact
+			</a>
+		</li>
+		<li class="divider "></li>
+		<li  role="presentation" class="right">
+			<a href="#">
+				Donation
+			</a>
+		</li>
+	</ul>
+
+
+</div>
