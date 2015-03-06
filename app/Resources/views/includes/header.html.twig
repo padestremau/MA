@@ -1,19 +1,48 @@
 {# For clearer view #}
 {% set route = app.request.attributes.get( '_route' ) %}
 
-<div id="header" class="row">
+<div id="header" class="row" style="display:none;">
 	<ul class="nav nav-tabs nav-justified uppercase" id="menu">
-		<li  role="presentation" class="active border_right_li" data-menuanchor="accueil">
-			<a href="#accueil">
+		<li  class="active border_right_li">
+			<a href="#accueil" id="btn_section0">
 				<span class="glyphicon glyphicon-home white" aria-hidden="true"></span>
 			</a>
 		</li>
-	    <li role="presentation" class="dropdown border_right_li" data-menuanchor="ecoliers">
+		<li  class="border_right_li">
+			<a href="#assoc" id="btn_section1">
+				L'association
+			</a>
+		</li>
+		<li class="dropdown border_right_li">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+		      Notre action <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu" role="menu">
+		    	<li>
+	          		<a href="#ecoliers" id="btn_section2">
+	          			Ecoliers
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li>
+	          		<a href="#etudiants" id="btn_section3">
+	          			Etudiants
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li>
+	          		<a href="#jeunesPro" id="btn_section4">
+	          			Jeunes pro
+	          		</a>
+	          	</li>
+		    </ul>
+		</li>
+	    <!-- <li class="dropdown border_right_li">
 	        <a class="dropdown-toggle" data-toggle="dropdown" href="#ecoliers" role="button" aria-expanded="false">
 	          Ecoliers  <span class="caret"></span>
 	        </a>
 	        <ul class="dropdown-menu" role="menu">
-	          	<li data-menuanchor="ecoliers">
+	          	<li>
 	          		<a href="#ecoliers">
 	          			Infos
 	          		</a>
@@ -23,12 +52,12 @@
 	          	<li><a href="#">Vidéos</a></li>
 	        </ul>
 	    </li>
-	    <li role="presentation" class="dropdown border_right_li" data-menuanchor="etudiants">
+	    <li class="dropdown border_right_li">
 	        <a class="dropdown-toggle" data-toggle="dropdown" href="#etudiants" role="button" aria-expanded="false">
 	          Etudiants  <span class="caret"></span>
 	        </a>
 	        <ul class="dropdown-menu" role="menu">
-	          	<li data-menuanchor="etudiants">
+	          	<li>
 	          		<a href="#etudiants">
 	          			Infos
 	          		</a>
@@ -38,12 +67,12 @@
 	          	<li><a href="#">Vidéos</a></li>
 	        </ul>
 	    </li>
-	    <li role="presentation" class="dropdown border_right_li" data-menuanchor="jeunesPro">
+	    <li class="dropdown border_right_li">
 	        <a class="dropdown-toggle" data-toggle="dropdown" href="#jeunesPro" role="button" aria-expanded="false">
 	          Jeunes pro <span class="caret"></span>
 	        </a>
 	        <ul class="dropdown-menu" role="menu">
-	          	<li data-menuanchor="jeunesPro">
+	          	<li>
 	          		<a href="#jeunesPro">
 	          			Infos
 	          		</a>
@@ -52,24 +81,25 @@
 	          	<li><a href="#">Photos</a></li>
 	          	<li><a href="#">Vidéos</a></li>
 	        </ul>
-	    </li>
-		<li  role="presentation" class="border_right_li" data-menuanchor="actu">
-			<a href="#actu">
-				Actualités 
+	    </li> -->
+		<li  class="border_right_li">
+			<a href="#actu" id="btn_section5">
+				L'actualité
 			</a>
 		</li>
-		<li  role="presentation" data-menuanchor="footerSection" class="border_right_li">
-			<a href="#footerSection">
+		<li  class="border_right_li">
+			<a href="#footer" id="btn_section6">
 				Contact
 			</a>
 		</li>
 
-		<li  role="presentation">
+		<li  class="header_help_li">
 			<a href="#">
-				Donation
+				Nous aider
 			</a>
 		</li>
 	</ul>
+
 
 
 </div>

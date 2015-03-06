@@ -1,5 +1,5 @@
 <!-- BEGIN FOOTER -->
-<div class="footer center section" id="section5">
+<div class="footer center section" id="footer">
 	<br/><br/>
 
 	<div class="row80">
@@ -7,42 +7,58 @@
 			CONTACT
 		</h2>
 
-		<form id="" method="post">
-	        <div id="" class="">
-	            <div class="clearfix " id="">
-	            	<label class="" for="objet-button">Email</label>
-					<input type="email" name="emailContact" id="emailContact" placeholder="p.a.destremau@gmail.com"/>
+		<form id="contact_form" method="post" action="">
+	        <div id="" class="row">
+				<div class="form-group row">
+					<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<input type="text" name="senderContact" id="senderContact" placeholder="{{ 'footer.contact.senderName' | trans }}" class="form-control placeholder-no-fix"/>
+			        </div>
+					<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<input type="email" name="emailContact" id="emailContact" placeholder="{{ 'footer.contact.senderEmail' | trans }}" class="form-control placeholder-no-fix"/>
+			        </div>
 				</div>
-				<!--	<div class="clearfix ">
-	                <label class="" for="objet" style="vertical-align:middle">Objet</label>
-	                <input type="text" name="sujetMail" id="objet" maxlength="512" /><span class="ico icoValidation"></span>
-	           		</div> -->
-
-	            <div class="clearfix ">
-	                <label class="" for="objet-button" style="vertical-align:middle">Objet</label>
-	                <select name="sujetMail" id="objet">
-	                    <option value="" selected="selected">Sélectionner l'objet de votre demande</option>
-	                    <option value="SM0">Changer mes coordonnées bancaires</option>
-						<option value="SM1">Changer mon adresse de facturation</option>
-						<option value="SM2">Résilier mon offre</option>
-						<option value="SM3">Activer votre nouvelle carte sim</option>
-						<option value="SM4">Paramétrer ou résoudre une panne de mon mobile</option>
-						<option value="SM5">Résoudre une panne de ma Bbox</option>
-						<option value="SM6">Comprendre ma facture</option>
-						<option value="SM7">Comprendre mes paiements</option>
-						<option value="SM8">Les forfaits B&amp;You</option>
-						<option value="SM9">Autre demande</option>
-					</select>
+				<br/>
+	            <div class="form-group row">
+	            	<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		                <select name="sujetMail" id="objet" class="form-control placeholder-no-fix" onClick="showOrderNumber()">
+		                    <option value="" selected>
+		                    	{{ 'footer.contact.selectObject' | trans }}
+		                    </option>
+		                    <option value="OBJ1: {{ 'footer.contact.object1' | trans }}">
+		                    	{{ 'footer.contact.object1' | trans }}
+		                    </option>
+							<option value="OBJ2: {{ 'footer.contact.object2' | trans }}">
+								{{ 'footer.contact.object2' | trans }}
+							</option>
+							<option value="OBJ3: {{ 'footer.contact.object3' | trans }}">
+								{{ 'footer.contact.object3' | trans }}
+							</option>
+							<option value="OBJ4: {{ 'footer.contact.object4' | trans }}">
+								{{ 'footer.contact.object4' | trans }}
+							</option>
+							<option value="OBJ5: {{ 'footer.contact.object5' | trans }}">
+								{{ 'footer.contact.object5' | trans }}
+							</option>
+							<option value="OBJ6: {{ 'footer.contact.object6' | trans }}">
+								{{ 'footer.contact.object6' | trans }}
+							</option>
+							<option value="OBJ7: {{ 'footer.contact.object7' | trans }}">
+								{{ 'footer.contact.object7' | trans }}
+							</option>
+						</select>
+	            	</div>
+	                <div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12"  style="display:none;" id="corpsOrder_input">
+	                	<input type="integer" name="orderNumber" id="orderNumber" placeholder="{{ 'footer.contact.orderNumber' | trans }}" class="form-control placeholder-no-fix"/>
+	                </div>
 	          	</div> 	
-					
-	            <div class="clearfix ">
-	                <label class="" for="demande">Demande</label>
-	                <textarea name="corpsMail" id="demande" rows="8" cols="50" maxlength="2000" placeholder="Texte limité à 2000 caractères"></textarea><span class="ico icoValidation"></span>
+				<br/>
+	            <div class="form-group row">
+	                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'footer.contact.message' | trans }}"></textarea>
+	                </div>
 	            </div>
-
 	        </div>
-
-	         <input type="submit" value="Envoyer" class="btn btn-perso-white" title="Envoyer">
+	        <input type="submit" value="{{ 'footer.contact.send' | trans }}" class="btn btn-footer submit_send_footer">
 	    </form>
 
 	    <br/><br/>
@@ -96,7 +112,7 @@
 			</div>
 		</div>
 		<br/><br/><br/><br/>
-		<div class="row center margin_top_10 margin_right_30 font10">
+		<div class="row right margin_top_10 margin_right_30 font10">
 			<br/><br/>
 			Mission Andina - <a href="{{ path('ma_user_homepage') }}" class="no_style_a">TOUS DROITS RESERVES</a> © 2015
 		</div>

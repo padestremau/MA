@@ -1,0 +1,61 @@
+<!-- Button on side -->
+
+{% set route = app.request.attributes.get( '_route' ) %}
+
+<div class="
+	{% if route == "ma_main_homepage" %}
+		hidden-xs
+	{% else %}
+		hidden-lg hidden-md hidden-sm hidden-xs
+	{% endif %}
+	"  id="side_buttons"> 
+	<a href="#accueil" style="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_0">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.accueil'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#assoc" style="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_1">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.assoc'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#ecoliers" style="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_2">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.ecoliers'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#etudiants" style="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_3">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.etudiants'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#jeunesPro" style="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_4">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.jeunesPro'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#actu" style="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_5">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.actu'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#footer" style="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_6">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.footer'|trans }}
+			</div>
+		</button>
+	</a>
+</div>

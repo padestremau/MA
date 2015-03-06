@@ -1,0 +1,769 @@
+{# src/MA/MainBundle/Resources/Main/indexMain.html.twig #}
+
+{% extends "MAMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block MA_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<!-- Accueil -->
+			<div class="section" id="section0">
+
+				<div class="col-md-9 col-xs-9">
+					<br/>
+					<h1 class="row">
+						<strong>Mission Andina</strong>
+						<br/>
+						<span>
+							Des projets économiques au service du développement humain.
+						</span>
+					</h1>
+					<div class="row text_accueil">
+						<p>
+							L’association est fondée sur la conception chrétienne de l’Homme. Son idée est de construire un monde où tout homme, sans exception de race, de religion, de nationalité, puisse vivre une vie pleinement humaine.
+						</p>
+						<p>
+							Les membres de l’association ont en commun la conviction que chacun à sa manière peut aider au développement des nations. Ce développement ne se réduit pas à la simple dimension économique. Pour être authentique, il doit être intégral, c'est-à-dire promouvoir tout homme et tout l’homme.
+						</p>
+						<p>
+							Vécu en commun, dans l’espoir, la souffrance, l’ambition et la joie partagée, le travail unit les volontés, rapproche les esprits et soude les cœurs. En l’accomplissant, les hommes se découvrent frères.
+						</p>
+						<p>
+							L’objet de l’association est de permettre l’épanouissement économique de la personne aidée pour que celle-ci puisse :
+							<ul>
+								<li>
+									assumer financièrement sa famille,
+								</li>
+								<li>
+									aider à son tour d’autres jeunes en difficulté,
+								</li>
+								<li>
+									et donc coopérer à sa manière au développement de son pays.
+								</li>
+							</ul>
+						</p>
+						<p>
+							Cet épanouissement est possible grâce à la responsabilisation et à l’autonomie financière de la personne aidée.
+						</p>
+					</div>
+					<div class="row80 div-btn-accueil">
+						<div class="col-md-4 col-xs-4">
+							<button data-menuanchor="ecoliers">
+								<a href="#ecoliers" class="btn btn-accueil btn_ecoliers no_style_a">
+									Ecoliers
+								</a>
+							</button>
+						</div>
+						<div class="col-md-4 col-xs-4">
+							<button data-menuanchor="etudiants">
+								<a href="#etudiants" class="btn btn-accueil btn_etudiants no_style_a">
+									Etudiants
+								</a>
+							</button>
+						</div>
+						<div class="col-md-4 col-xs-4">
+							<button data-menuanchor="jeunesPro">
+								<a href="#jeunesPro" class="btn btn-accueil btn_jeunesPro no_style_a">
+									Jeunes pro
+								</a>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-xs-3">
+					<div class="div_logo_welcome">
+						<img src="{{ asset('img/system/logo/logo.png') }}" alt="Logo" class="Logo_welcome"/>
+						<script type="text/javascript">
+							var cw = $('.Logo_welcome').width();
+							$('.Logo_welcome').css({'height':cw+'px'});
+						</script>
+					</div>
+
+					<br/><br/><br/>
+
+					<h3>
+						Média et entreprises
+					</h3>
+					<hr class="dark_hr" />
+
+					<ol>
+						<li>
+							qsflqshfqsfh
+						</li>
+						<li>
+							qsdfmsqhflkqsjhdf
+						</li>
+						<li>
+							qsldkfhqslkfhqlskhdf
+						</li>
+						<li>
+							qsfluhqslfh
+						</li>
+						<li>
+							qsflkqhsfl
+						</li>
+					</ol>
+				</div>
+
+			</div>
+
+			<div class="section" id="section1">
+
+				(vide)
+
+			</div>
+
+			<div class="section" id="section2">
+
+				<h1>
+					Ecoliers
+				</h1>
+
+				<div class="slide">
+					<div class="intro">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Infos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToPhotosFromInfosEcoliers">
+									Photos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+
+						<div class="row80">
+							<h3>
+								Aide aux écoles des villages reculés
+							</h3>
+
+							<p>
+								Aide aux institutions éducatives des villages reculés du Pérou (jardins d’enfants, écoles, collèges ou internats). 
+							</p>
+
+							<p>
+								Mission Andina coordonne ces aides qui peuvent prendre différentes formes : partenariat, jumelage, parrainage, vente d’artisanat local, exposition photo, événement caritatif, échanges scolaires, appui financier aux élèves et parents d’élèves en difficulté. 
+							</p>
+
+							<p>
+								Le but est de permettre la scolarisation de l’enfant dans de bonnes conditions ; c’est-à-dire subvenir autant à ses besoins de première nécessité qu’à ses besoins matériels.
+							</p>
+						</div>
+
+					</div>
+				</div>
+			    <div class="slide">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-left float-left" id="goToInfosFromPhotosEcoliers">
+									<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+									Infos
+								</button>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Photos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToVideosFromPhotosEcoliers">
+									Vidéos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+						<div class="row80">
+							<br/><br/>
+							<div class="row">
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+							</div>
+							<br/><br/>
+							<div class="row">
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+							</div>
+							<br/><br/>
+							<div class="row">
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+							</div>
+							<br/><br/>
+							<div class="row">
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+								<div class="col-md-2 col-xs-2">
+									<img src="{{ asset('img/system/defaults/default_profile.png') }}" alt="" class="photo_default"/>
+									<script type="text/javascript">
+										var cw = $('.photo_default').width();
+										$('.photo_default').css({'height':cw+'px'});
+									</script>
+								</div>
+							</div>
+						</div>
+				</div>
+			    <div class="slide">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-left float-left" id="goToPhotosFromVideosEcoliers">
+									<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+									Photos
+								</button>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Vidéos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToInfosFromVideosEcoliers">
+									Back to Infos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+						<br/><br/>
+						<div class="row row92">
+							<div class="row">
+								<div class="col-md-3">
+									<br/>
+									<div class="row">
+										<a href="/watch?v=CfCmoEixxro">
+											<div class="inline_div col-md-6">
+												<span dir="ltr" class="title" aria-describedby="description-id-699476">
+											    	Video suivante
+											  	</span>
+											  	<br/>
+											    <span class="accessible-description" id="description-id-699476">
+											       Durée&nbsp;: 23:07.
+											    </span>
+											    <br/>
+											    <span class="stat view-count">3&nbsp;657&nbsp;vues</span><br/>
+											    <span class="video-time">
+											      23:07
+											    </span>
+										  	</div>
+										  	<div class="inline_div col-md-6">
+											    
+											    	<span class="yt-uix-simple-thumb-wrap yt-uix-simple-thumb-related" tabindex="0" data-vid="CfCmoEixxro"><img aria-hidden="true" alt="" src="//i.ytimg.com/vi/CfCmoEixxro/default.jpg" width="120" height="90">
+											    	</span>
+										  	</div>
+										</a>
+									</div>
+									<br/>
+									<div class="row">
+										<a href="/watch?v=CfCmoEixxro">
+											<div class="inline_div col-md-6">
+												<span dir="ltr" class="title" aria-describedby="description-id-699476">
+											    	Video suivante
+											  	</span>
+											  	<br/>
+											    <span class="accessible-description" id="description-id-699476">
+											       Durée&nbsp;: 23:07.
+											    </span>
+											    <br/>
+											    <span class="stat view-count">3&nbsp;657&nbsp;vues</span><br/>
+											    <span class="video-time">
+											      23:07
+											    </span>
+										  	</div>
+										  	<div class="inline_div col-md-6">
+											    
+											    	<span class="yt-uix-simple-thumb-wrap yt-uix-simple-thumb-related" tabindex="0" data-vid="CfCmoEixxro"><img aria-hidden="true" alt="" src="//i.ytimg.com/vi/CfCmoEixxro/default.jpg" width="120" height="90">
+											    	</span>
+										  	</div>
+										</a>
+									</div>
+									<br/>
+									<div class="row">
+										<a href="/watch?v=CfCmoEixxro">
+											<div class="inline_div col-md-6">
+												<span dir="ltr" class="title" aria-describedby="description-id-699476">
+											    	Video suivante
+											  	</span>
+											  	<br/>
+											    <span class="accessible-description" id="description-id-699476">
+											       Durée&nbsp;: 23:07.
+											    </span>
+											    <br/>
+											    <span class="stat view-count">3&nbsp;657&nbsp;vues</span><br/>
+											    <span class="video-time">
+											      23:07
+											    </span>
+										  	</div>
+										  	<div class="inline_div col-md-6">
+											    
+											    	<span class="yt-uix-simple-thumb-wrap yt-uix-simple-thumb-related" tabindex="0" data-vid="CfCmoEixxro"><img aria-hidden="true" alt="" src="//i.ytimg.com/vi/CfCmoEixxro/default.jpg" width="120" height="90">
+											    	</span>
+										  	</div>
+										</a>
+									</div>
+									<br/>
+									<div class="row">
+										<a href="/watch?v=CfCmoEixxro">
+											<div class="inline_div col-md-6">
+												<span dir="ltr" class="title" aria-describedby="description-id-699476">
+											    	Video suivante
+											  	</span>
+											  	<br/>
+											    <span class="accessible-description" id="description-id-699476">
+											       Durée&nbsp;: 23:07.
+											    </span>
+											    <br/>
+											    <span class="stat view-count">3&nbsp;657&nbsp;vues</span><br/>
+											    <span class="video-time">
+											      23:07
+											    </span>
+										  	</div>
+										  	<div class="inline_div col-md-6">
+											    
+											    	<span class="yt-uix-simple-thumb-wrap yt-uix-simple-thumb-related" tabindex="0" data-vid="CfCmoEixxro"><img aria-hidden="true" alt="" src="//i.ytimg.com/vi/CfCmoEixxro/default.jpg" width="120" height="90">
+											    	</span>
+										  	</div>
+										</a>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<iframe width="100%" max-height="500" min-height="200" height="400" src="https://www.youtube.com/embed/pT40_00AGQU" frameborder="0" allowfullscreen>
+										
+									</iframe>
+								</div>
+							</div>
+						</div>
+				</div>
+
+			</div>
+
+			<div class="section" id="section3">
+
+				<h1>
+					Etudiants
+				</h1>
+
+				<div class="slide">
+					<div class="intro">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Infos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToPhotosFromInfosEtudiants">
+									Photos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+
+						<div class="row80">
+							<h3>
+								Aide aux étudiants
+							</h3>
+
+							<p>
+								Aide aux étudiants. A l’âge de 16 ans, les jeunes des villages rejoignent la ville pour étudier avec très peu, voire aucun moyen financier et matériel. Il se retrouve en décalage aussi bien au niveau social que scolaire. L’association peut selon les besoins leur assurer un cadre familial, un logement, une aide financière et morale.
+							</p>
+						</div>
+
+					</div>
+				</div>
+			    <div class="slide">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-left float-left" id="goToInfosFromPhotosEtudiants">
+									<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+									Infos
+								</button>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Photos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToVideosFromPhotosEtudiants">
+									Vidéos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+						<p>Easy to use. Configurable and customizable.</p>
+				</div>
+			    <div class="slide">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-left float-left" id="goToPhotosFromVideosEtudiants">
+									<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+									Photos
+								</button>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Vidéos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToInfosFromVideosEtudiants">
+									Back to Infos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+						<p>It just looks cool. Impress everybody with a simple and modern web design!</p>
+				</div>
+				
+			</div>
+
+			<div class="section" id="section4">
+
+				<h1>
+					Jeunes pro
+				</h1>
+
+				<div class="slide">
+					<div class="intro">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Infos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToPhotosFromInfosJeunesPro">
+									Photos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+
+						<div class="row80">
+							<h3>
+								Insertion professionnelle des jeunes
+							</h3>
+
+							<p>
+								Aide aux jeunes travailleurs. Après ou pendant leurs études, les jeunes sont confrontés à la réalité de la vie. Il leur faut financer leur logement, leurs études et leurs besoins quotidiens. L’association peut leur fournir une aide personnelle. L’association appuie également la création et le développement d’entreprises solidaires sous forme de conseils, d’aide à la création de postes et de soutien financier. Nous entendons par entreprises solidaires, une entreprise cherchant à concilier activité économique et utilité sociale et favorisant l’Homme plutôt que la recherche de profits.
+							</p>
+						</div>
+
+					</div>
+				</div>
+			    <div class="slide">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-left float-left" id="goToInfosFromPhotosJeunesPro">
+									<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+									Infos
+								</button>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Photos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToVideosFromPhotosJeunesPro">
+									Vidéos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+						<p>Easy to use. Configurable and customizable.</p>
+				</div>
+			    <div class="slide">
+						<div class="row">
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-left float-left" id="goToPhotosFromVideosJeunesPro">
+									<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+									Photos
+								</button>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<h2>
+									Vidéos
+								</h2>
+							</div>
+							<div class="col-md-4 col-xs-4">
+								<button class="btn btn-perso btn-perso-right float-right" id="goToInfosFromVideosJeunesPro">
+									Back to Infos
+									<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+								</button>
+							</div>
+						</div>
+						<p>It just looks cool. Impress everybody with a simple and modern web design!</p>
+				</div>
+
+			</div>
+
+			<div class="section" id="section5">
+
+
+				<div class="row actu">
+					<div class="row">
+						<h1>
+							Actu
+						</h1>
+						<div class="center italic">
+							Toute l'information à jour
+						</div>
+					</div>
+					<div class="row92">
+		    			<div class="col-md-3 col-xs-3">
+							<br/><br/>
+							<strong>
+								Articles :
+							</strong>
+							{% if articles|length > 0 %}
+								<ul class="list_no_style_li list_articles">
+									{% for single_article in articles %}
+										<li class="
+											{% if single_article == articleAsked %}
+												li_article_active
+											{% endif %}
+											">
+											<a href="{{ path('ma_user_articles_spe', {'articleId':single_article.id}) }}">
+												{{ single_article.title }}
+											</a>
+											<span class="float-right date_article">
+												{% if single_article.createdAt|length > 0 %}
+													{{ single_article.createdAt|date('d/M/Y') }}
+												{% else %}
+													(Vide)
+												{% endif %}
+											</span>
+										</li>
+									{% endfor %}
+								</ul>
+							{% else %}
+								Aucun article
+							{% endif %}
+						</div>
+
+						<div class="col-md-9 col-xs-9 border_black_left">
+			    			<br/><br/>
+							<div class="row">
+								<div class="inline_div">
+									<h3>
+										{% if articleAsked.title|length > 0 %}
+											{{ articleAsked.title }}
+										{% else %}
+											(Vide)
+										{% endif %}
+									</h3>
+								</div>
+								<div class="inline_div float-right italic">
+									{% if articleAsked.place|length > 0 %}
+										{{ articleAsked.place }},
+									{% else %}
+										(Vide)
+									{% endif %}
+									{% if articleAsked.createdAt|length > 0 %}
+										le {{ articleAsked.createdAt|date('d/M/Y') }} à {{ articleAsked.createdAt|date('H:i') }}
+									{% else %}
+										(Vide)
+									{% endif %}
+								</div>
+							</div>
+							<div class="row">
+								{% if articleAsked.content|length > 0 %}
+									{{ articleAsked.content|raw }} <!-- nl2br -->
+								{% else %}
+									(Vide)
+								{% endif %}
+							</div>
+						</div>
+	    			</div>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn float-right" data-toggle="modal" data-target="#myModal">
+						Suite de l'article
+					</button>
+
+				</div>
+
+			</div>
+
+			<!-- BEGIN FOOTER -->
+	          {% include 'includes/footer.html.twig' %}
+	        <!-- END FOOTER -->
+		</div>
+
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_Main_body %}

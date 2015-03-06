@@ -15,110 +15,242 @@
 		</div>
 
 		<div id="fullpage">
+
+			<div class="photo_background">
+
+				<div class="photo_background_fame">
+					{% for id_n in 1..34 %}
+						<div class="photo_background_sq">
+							<div class="photo_background_sq_content" id="photo_background_sq_{{ id_n }}">
+								<div class="front" style="width: 100%;  background-size: cover; background-position: 50%;" id="photo_background_sq_{{ id_n }}_f">
+								</div>
+								<div class="back" style="width: 100%;  background-size: cover; background-position: 50%;" id="photo_background_sq_{{ id_n }}_b">
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+
+				<script>
+					// Images available
+					var listImages = [];
+				</script>
+				{% for inc in 1..37 %}
+					{% set photoLink = 'img/photos/' ~ inc ~ '.jpg' %}
+					<script>
+                  		var imgLink = "{{ asset(photoLink)}}";
+                  		listImages['{{ inc }}'] = imgLink;
+					</script>
+				{% endfor %}
+				
+				<script type="text/javascript">
+                  	$(function(){
+                  		// Set photobackground to window size
+                  		var window_height = window.innerHeight;
+					    var window_width = window.innerWidth;
+					    $('.photo_background').css({'height':window_height+'px', 'width':window_width+'px'});
+
+					    // Set photos square
+                  		var bg_photo_height = $('.photo_background_sq').width();
+	                  	var bg_photo_height = $('.photo_background_sq').width();
+	                  	$('.photo_background_sq').css({'height':bg_photo_height+'px'});
+	                  	var bg_photo_content_height = $('.photo_background_sq_content').width();
+	                  	$('.photo_background_sq_content').css({'height':bg_photo_content_height+'px'});
+
+	                  	
+	                  	// Div ids
+	                  	var listIds = [];
+	                  	var listActive = [];
+	                  	for (var i = 0; i < 34; i++) {
+	                  		var el = '#photo_background_sq_'+i;
+	                  		var face = '#photo_background_sq_'+i+'_f';
+	                  		listIds[i] = el;
+		                  	$(el).flip();
+	                  		listActive[i] = true;
+	                  		// Images displayed
+	                  		var imgToDisplay = listImages[Math.floor(Math.random()*listImages.length)];
+	                  		$(face).css({'background-image':'url('+imgToDisplay+')'});
+	                  	}
+
+	                  	// Axis
+	                  	var axisList = ['x', 'y'];
+
+	                  	// Set flip random
+	                  	setInterval(function () {
+	                  		var rank = Math.floor(Math.random()*listIds.length);
+	                  		var idToFlip = listIds[rank];
+	                  		var isActive = listActive[rank];
+	                  		if (isActive == true) {
+	                  			// Change back
+	                  			var face = idToFlip+'_b';
+	                  			var imgToDisplay = listImages[Math.floor(Math.random()*listImages.length)];
+	                  			$(face).css({'background-image':'url('+imgToDisplay+')'});
+	                  			listActive[rank] = false;
+	                  		}
+	                  		else {
+	                  			// Change front
+	                  			var face = idToFlip+'_f';
+	                  			var imgToDisplay = listImages[Math.floor(Math.random()*listImages.length)];
+	                  			$(face).css({'background-image':'url('+imgToDisplay+')'});	
+	                  			listActive[rank] = true;
+	                  		}
+	                  		var axisSelect = axisList[Math.floor(Math.random()*axisList.length)];
+	                  		$(idToFlip).flip(isActive);
+	                  		// {
+	                  		// 	reverse: isActive,
+		                  	// 	axis: axisSelect,
+		                  	// 	speed: 1000
+	                  		// });
+	                  	}, 1000);
+				    });
+                </script>
+			</div>
+
 			<!-- Accueil -->
-			<div class="section" id="section0">
+			<div class="section section_home" id="accueil">
+				<div class="uppercase" id="menu_top">
+					<div class="dropdown">
+					    <a class="dropdown-toggle no_style_a" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+					      L'association <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu dropdown-menu-spe" role="menu">
+					    	<li>
+				          		<a href="#assoc">
+				          			Info
+				          		</a>
+				          	</li>
+				          	<li>
+				          		<a href="#assoc">
+				          			Détails
+				          		</a>
+				          	</li>
+				          	<li>
+				          		<a href="#assoc">
+				          			Autres
+				          		</a>
+				          	</li>
+					    </ul>
+					</div>
+					<div class="dropdown">
+					    <a class="dropdown-toggle no_style_a" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+					      Notre action <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu dropdown-menu-spe" role="menu">
+					    	<li>
+				          		<a href="#ecoliers">
+				          			Ecoliers
+				          		</a>
+				          	</li>
+				          	<li>
+				          		<a href="#etudiants">
+				          			Etudiants
+				          		</a>
+				          	</li>
+				          	<li>
+				          		<a href="#jeunesPro">
+				          			Jeunes pro
+				          		</a>
+				          	</li>
+					    </ul>
+					</div>
+					<div class="">
+						<a href="#actu" class="no_style_a">
+							L'actualité
+						</a>
+					</div>
+					<div class="">
+						<a href="#footer" class="no_style_a">
+							Contact
+						</a>
+					</div>
 
-				<div class="col-md-9 col-xs-9">
+					<div class="header_help_a">
+						<a href="#" class="no_style_a">
+							Nous aider
+						</a>
+					</div>
+				</div>
+				<div class="div_logo_welcome">
+					<img src="{{ asset('img/system/logo/logo.png') }}" alt="Logo" class="Logo_welcome"/>
+					<script type="text/javascript">
+						var cw = $('.Logo_welcome').width();
+						$('.Logo_welcome').css({'height':cw+'px'});
+					</script>
+				</div>
+				<h1>
+					<strong>Mission Andina</strong>
 					<br/>
-					<h1 class="row60">
-						Bienvenue !
-						<hr class="black_hr" />
-					</h1>
-					<div class="row text_accueil">
-						<p>
-							L’association est fondée sur la conception chrétienne de l’Homme. Son idée est de construire un monde où tout homme, sans exception de race, de religion, de nationalité, puisse vivre une vie pleinement humaine.
-						</p>
-						<p>
-							Les membres de l’association ont en commun la conviction que chacun à sa manière peut aider au développement des nations. Ce développement ne se réduit pas à la simple dimension économique. Pour être authentique, il doit être intégral, c'est-à-dire promouvoir tout homme et tout l’homme.
-						</p>
-						<p>
-							Vécu en commun, dans l’espoir, la souffrance, l’ambition et la joie partagée, le travail unit les volontés, rapproche les esprits et soude les cœurs. En l’accomplissant, les hommes se découvrent frères.
-						</p>
-						<p>
-							L’objet de l’association est de permettre l’épanouissement économique de la personne aidée pour que celle-ci puisse :
-							<ul>
-								<li>
-									assumer financièrement sa famille,
-								</li>
-								<li>
-									aider à son tour d’autres jeunes en difficulté,
-								</li>
-								<li>
-									et donc coopérer à sa manière au développement de son pays.
-								</li>
-							</ul>
-						</p>
-						<p>
-							Cet épanouissement est possible grâce à la responsabilisation et à l’autonomie financière de la personne aidée.
-						</p>
-					</div>
-					<div class="row80 div-btn-accueil">
-						<div class="col-md-4 col-xs-4">
-							<button data-menuanchor="ecoliers">
-								<a href="#ecoliers" class="btn btn-accueil btn_ecoliers no_style_a">
-									Ecoliers
-								</a>
-							</button>
-						</div>
-						<div class="col-md-4 col-xs-4">
-							<button data-menuanchor="etudiants">
-								<a href="#etudiants" class="btn btn-accueil btn_etudiants no_style_a">
-									Etudiants
-								</a>
-							</button>
-						</div>
-						<div class="col-md-4 col-xs-4">
-							<button data-menuanchor="jeunesPro">
-								<a href="#jeunesPro" class="btn btn-accueil btn_jeunesPro no_style_a">
-									Jeunes pro
-								</a>
-							</button>
-						</div>
-					</div>
+					<span>
+						Des projets économiques au service du développement humain
+					</span>
+				</h1>
+
+				<div class="row80 center home_quote">
+					Issus des villages reculés de l’Apurimac, région pauvre de la Cordillère des Andes, les jeunes péruviens se heurtent aux décalages scolaire et social. Ils arrivent à Abancay, Cusco ou Lima pour étudier et souvent ils échouent faute de moyens et d’accompagnement. Mission Andina leur offre ces moyens pour étudier dans de bonnes conditions, se nourrir et se loger.
 				</div>
 
-				<div class="col-md-3 col-xs-3">
-					<div class="div_logo_welcome">
-						<img src="{{ asset('img/system/logo/logo.png') }}" alt="Logo" class="Logo_welcome"/>
-						<script type="text/javascript">
-							var cw = $('.Logo_welcome').width();
-							$('.Logo_welcome').css({'height':cw+'px'});
-						</script>
+				<div class="row  div-btn-btm-accueil">
+					<div class="btn-accueil">
+						<a href="#ecoliers" class="btn btn_ecoliers no_style_a uppercase">
+							Ecoliers
+						</a>
 					</div>
-
-					<br/><br/><br/>
-
-					<h3>
-						Média et entreprises
-					</h3>
-					<hr class="black_hr" />
-
-					<ol>
-						<li>
-							qsflqshfqsfh
-						</li>
-						<li>
-							qsdfmsqhflkqsjhdf
-						</li>
-						<li>
-							qsldkfhqslkfhqlskhdf
-						</li>
-						<li>
-							qsfluhqslfh
-						</li>
-						<li>
-							qsflkqhsfl
-						</li>
-					</ol>
+					<div class="btn-accueil">
+						<a href="#etudiants" class="btn btn_etudiants no_style_a uppercase">
+							Etudiants
+						</a>
+					</div>
+					<div class="btn-accueil">
+						<a href="#jeunesPro" class="btn btn_jeunesPro no_style_a uppercase">
+							Jeunes pro
+						</a>
+					</div>
 				</div>
+			</div>
+
+
+			<!-- L'association -->
+			<div class="section" id="assoc">
+
+				<h2>
+					L'association
+				</h2>
+
+				<p>
+					L’association est fondée sur la conception chrétienne de l’Homme. Son idée est de construire un monde où tout homme, sans exception de race, de religion, de nationalité, puisse vivre une vie pleinement humaine.
+				</p>
+				<p>
+					Les membres de l’association ont en commun la conviction que chacun à sa manière peut aider au développement des nations. Ce développement ne se réduit pas à la simple dimension économique. Pour être authentique, il doit être intégral, c'est-à-dire promouvoir tout homme et tout l’homme.
+				</p>
+				<p>
+					Vécu en commun, dans l’espoir, la souffrance, l’ambition et la joie partagée, le travail unit les volontés, rapproche les esprits et soude les cœurs. En l’accomplissant, les hommes se découvrent frères.
+				</p>
+				<p>
+					L’objet de l’association est de permettre l’épanouissement économique de la personne aidée pour que celle-ci puisse :
+					<ul>
+						<li>
+							assumer financièrement sa famille,
+						</li>
+						<li>
+							aider à son tour d’autres jeunes en difficulté,
+						</li>
+						<li>
+							et donc coopérer à sa manière au développement de son pays.
+						</li>
+					</ul>
+				</p>
+				<p>
+					Cet épanouissement est possible grâce à la responsabilisation et à l’autonomie financière de la personne aidée.
+				</p>
 
 			</div>
 
-			<div class="section" id="section1">
+			<!-- Les écoliers -->
+			<div class="section" id="ecoliers">
 
-				<h1>
+				<h2>
 					Ecoliers
-				</h1>
+				</h2>
 
 				<div class="slide">
 					<div class="intro">
@@ -494,11 +626,12 @@
 
 			</div>
 
-			<div class="section" id="section2">
+			<!-- Les étudiants -->
+			<div class="section" id="etudiants">
 
-				<h1>
+				<h2>
 					Etudiants
-				</h1>
+				</h2>
 
 				<div class="slide">
 					<div class="intro">
@@ -578,11 +711,12 @@
 				
 			</div>
 
-			<div class="section" id="section3">
+			<!-- Les jeunes pro -->
+			<div class="section" id="jeunesPro">
 
-				<h1>
+				<h2>
 					Jeunes pro
-				</h1>
+				</h2>
 
 				<div class="slide">
 					<div class="intro">
@@ -662,14 +796,15 @@
 
 			</div>
 
-			<div class="section" id="section4">
+			<!-- L'actu -->
+			<div class="section" id="actu">
 
 
 				<div class="row actu">
 					<div class="row">
-						<h1>
+						<h2>
 							Actu
-						</h1>
+						</h2>
 						<div class="center italic">
 							Toute l'information à jour
 						</div>
@@ -752,6 +887,7 @@
 			<!-- BEGIN FOOTER -->
 	          {% include 'includes/footer.html.twig' %}
 	        <!-- END FOOTER -->
+
 		</div>
 
 	</div>
