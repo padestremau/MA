@@ -38,8 +38,11 @@
 
   // Anchors
   var myAnchors = ['#accueil', '#assoc', '#ecoliers', '#etudiants', '#jeunesPro', '#actu', '#footer'];
-  var myAnchorsLinksId = ['#btn_section0', '#btn_section1', '#btn_section2', '#btn_section3', '#btn_section4', '#btn_section5', '#btn_section6'];
+  var myAnchorsLinksIds = ['#btn_section0', '#btn_section1', '#btn_section2', '#btn_section3', '#btn_section4', '#btn_section5', '#btn_section6'];
+  var myAnchorsHeaderIds = ['btn_header0', 'btn_header1', 'btn_header2', 'btn_header2', 'btn_header2', 'btn_header5', 'btn_header6'];
   var side_buttons = ['btn_side_0', 'btn_side_1', 'btn_side_2', 'btn_side_3', 'btn_side_4', 'btn_side_5', 'btn_side_6'];
+  var slider_containers = ['', '', '#slide_container_content_ecoliers', '#slide_container_content_etudiants', '#slide_container_content_jeunesPro', '', ''];
+  var slider_pos = ['', '', 1, 1, 1, '', ''];
   var currentAnchor = 0;
   if (document.location.hash) {
     var the_hash = document.location.hash;
@@ -98,7 +101,7 @@
         getCurrentAnchor();
         if (currentAnchor > 0) {
           currentAnchor --;
-          var idAgoToAnchor = myAnchorsLinksId[currentAnchor];
+          var idAgoToAnchor = myAnchorsLinksIds[currentAnchor];
           // alert(idAgoToAnchor);
           $(idAgoToAnchor).trigger('click');
         }
@@ -110,31 +113,41 @@
         getCurrentAnchor();
         if (currentAnchor < myAnchors.length - 1) {
           currentAnchor ++;
-          var idAgoToAnchor = myAnchorsLinksId[currentAnchor];
+          var idAgoToAnchor = myAnchorsLinksIds[currentAnchor];
           // alert(idAgoToAnchor);
           $(idAgoToAnchor).trigger('click');
         }
         break;
 
-      // //Home
-      // case 36:
-      //   moveTo(1);
-      //   break;
+      //left
+      case 37:
+        getCurrentAnchor();
+        if (currentAnchor == 2 || currentAnchor == 3 || currentAnchor == 4) {
+          var slider_container = slider_containers[currentAnchor];
+          var goToSlideInPos = slider_pos[currentAnchor];
+          if (goToSlideInPos > 0) {
+            goToSlideInPos --;
+            slider_pos[currentAnchor] = goToSlideInPos;
+          }
+          // alert('left');
+          slideToAnchor(slider_container, goToSlideInPos);
+        }
+        break;
 
-      // //End
-      // case 35:
-      //   moveTo( myAnchors.length );
-      //   break;
-
-      // //left
-      // case 37:
-      //   moveSlideLeft();
-      //   break;
-
-      // //right
-      // case 39:
-      //   moveSlideRight();
-      //   break;
+      //right
+      case 39:
+        getCurrentAnchor();
+        if (currentAnchor == 2 || currentAnchor == 3 || currentAnchor == 4) {
+          var slider_container = slider_containers[currentAnchor];
+          var goToSlideInPos = slider_pos[currentAnchor];
+          if (goToSlideInPos < 2) {
+            goToSlideInPos ++;
+            slider_pos[currentAnchor] = goToSlideInPos;
+          }
+          // alert('right');
+          slideToAnchor(slider_container, goToSlideInPos);
+        }
+        break;
 
       default:
         return; // exit this handler for other keys
@@ -158,6 +171,21 @@
       // Full page customized
       $('.section').css({'min-height':window_height+'px'});
     }
+
+    var window_height_slide = window.innerHeight * 0.8;
+    var window_width_slide = window.innerWidth;
+    var window_width_slide_container = window_width_slide * 3.1;
+    $('.slide').css({'height':window_height_slide+'px', 'width':window_width_slide+'px'});
+    $('.slide_container').css({'height':window_height_slide+'px', 'width':window_width_slide+'px'});
+    $('.slide_container_content').css({'height':window_height_slide+'px', 'width':window_width_slide_container+'px'});
+
+    // Initiate the website in the middle
+    for (var i = 2; i < 5; i++) {
+      var slide_init = window.innerWidth + 4;
+      $(slider_containers[i]).animate({
+          scrollLeft: slider_pos[i] * slide_init
+      }, 600);
+    };
 
     // Modal height and scroll
     var window_height_modal = Math.round(window.innerHeight * 0.72);
@@ -257,19 +285,18 @@
     else {
       document.getElementById("button_to_top").className = "opacity0";
     }
-    // // Active buttons
-    // if (goToAnchor == '#aboutUs') {
-    //   document.getElementById("btn_section2").className = "btn btn-log";
-    //   document.getElementById("btn_section1").className += " btn-log-active";
-    // }
-    // else if (goToAnchor == '#ourProducts') {
-    //   document.getElementById("btn_section1").className = "btn btn-log";
-    //   document.getElementById("btn_section2").className += " btn-log-active";
-    // }
-    // else {
-    //   document.getElementById("btn_section1").className = "btn btn-log";
-    //   document.getElementById("btn_section2").className = "btn btn-log";
-    // }
+
+    // For menu
+    var anchorHeader = '';
+    for (var i = 0; i < myAnchorsHeaderIds.length; i++) {
+      if (myAnchorsHeaderIds[i] != anchorHeader) {
+        anchorHeader = myAnchorsHeaderIds[i];
+        document.getElementById(myAnchorsHeaderIds[i]).className = "border_right_li";
+      }
+      if (i == current) {
+        document.getElementById(myAnchorsHeaderIds[i]).className = "border_right_li active";
+      }
+    }
   }
 
   /**
@@ -302,11 +329,29 @@
     var window_height = window.innerHeight * 0.95;
     var top_offset = $(window).scrollTop();
     if (top_offset > window_height) {
-      $('#header').fadeIn('fast');
+      $('#header').fadeIn('normal');
     }
     else {
-      $('#header').fadeOut('fast');
+      $('#header').fadeOut('normal');
     }
+    if (top_offset > 3) {
+      $('#btn-accueil').fadeOut('fast');
+    }
+    else {
+      $('#btn-accueil').fadeIn('fast');
+    }
+  }
+
+  /**
+   * Slide functions
+   */
+  function slideToAnchor(id_slider_content, toGoPos) {
+    var widthToSlide = window.innerWidth + 4;
+    var coef = eval(toGoPos);
+    // alert('pos cur'+currentPos+ 'togopos ' + toGoPos+' move '+ widthToSlide * coef);
+    $(id_slider_content).animate({
+        scrollLeft: widthToSlide * coef
+    }, 600);
   }
 
   // END SMOOTH SCROLLING

@@ -3,17 +3,30 @@
 
 <div id="header" class="row" style="display:none;">
 	<ul class="nav nav-tabs nav-justified uppercase" id="menu">
-		<li  class="active border_right_li">
+		<li  class="border_right_li" id="btn_header0">
 			<a href="#accueil" id="btn_section0">
 				<span class="glyphicon glyphicon-home white" aria-hidden="true"></span>
 			</a>
 		</li>
-		<li  class="border_right_li">
-			<a href="#assoc" id="btn_section1">
-				L'association
-			</a>
+		<li class="dropdown border_right_li" id="btn_header1">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+		      L'association <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu" role="menu">
+	          	<li>
+	          		<a href="#assoc">
+	          			La charte
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li>
+	          		<a href="#assoc" id="btn_section1">
+	          			Petite histoire
+	          		</a>
+	          	</li>
+		    </ul>
 		</li>
-		<li class="dropdown border_right_li">
+		<li class="dropdown border_right_li" id="btn_header2">
 		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 		      Notre action <span class="caret"></span>
 		    </a>
@@ -82,12 +95,12 @@
 	          	<li><a href="#">Vidéos</a></li>
 	        </ul>
 	    </li> -->
-		<li  class="border_right_li">
+		<li  class="border_right_li" id="btn_header5">
 			<a href="#actu" id="btn_section5">
 				L'actualité
 			</a>
 		</li>
-		<li  class="border_right_li">
+		<li  class="border_right_li" id="btn_header6">
 			<a href="#footer" id="btn_section6">
 				Contact
 			</a>
