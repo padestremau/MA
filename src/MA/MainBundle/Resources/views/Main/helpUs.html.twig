@@ -1,0 +1,387 @@
+{# src/MA/MainBundle/Resources/Main/indexMain.html.twig #}
+
+{% extends "MAMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block MA_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+
+			<div class="section section_helpUs" id="helpUs">
+				<div class="row">
+					<h2>
+						Nous aider
+					</h2>
+					<!-- <hr class="dark_hr"/> -->
+				</div>
+
+				<div class="row">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					    <div class="thumbnail">
+					      <div class="caption">
+					        <h3>Contributions</h3>
+								Les fonds que Mission Andina reverse sont récoltés de diverses manières :
+					        	<ul>
+					        		<li>
+					        			Jumelage entre écoles françaises et péruviennes,
+					        			<ul>
+					        				<li>
+					        					A détailler
+					        				</li>
+					        			</ul>
+					        		</li>
+					        		<li>
+					        			Partenariats entre l’association et des entreprises s’inscrivant dans la démarche RSE (Responsabilité Sociale des Entreprises),
+					        			<ul>
+					        				<li>
+					        					A détailler
+					        				</li>
+					        			</ul>
+					        		</li>
+					        		<li>
+					        			Parrainages pour participer à l’action de Mission Andina,
+					        			<ul>
+					        				<li>
+					        					A détailler
+					        				</li>
+					        			</ul>
+					        		</li>
+					        		<li>
+					        			Vente d’artisanat péruvien
+					        			<ul>
+					        				<li>
+					        					A détailler (préciser la marge effectuée et la partie reversée)
+					        				</li>
+					        			</ul>
+					        		</li>
+					        		<li>
+					        			Donations (prochainement avec reçu fiscal)
+					        		</li>
+					        	</ul>
+					      </div>
+					    </div>
+
+					    <br/>
+
+					    <div class="thumbnail">
+					      <div class="caption">
+					        <h3>Partenaires</h3>
+								Les entités suivantes sont partenaires avec Mission Andina et leurs bénéfices sont en partie reversés à l'association:
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 photo_partner_container">
+										<a href="www.lama-demoiselle.com" class="no_style_a">
+											<div class="row photo_partner_content">
+												<div class="row80">
+													<div class="photo_partner" style="width: 100%; min-height:100px; background-image: url('{{ asset( 'img/system/partners/lama-demoiselle.png') }}'); background-size: cover; background-position: 50%;" alt="Lama Demoiselle">
+								                    </div>
+												</div>
+												<div class="center">
+													<strong>
+									        			Lama Demoiselle
+													</strong>
+													<br/>
+													<span class="partner_link italic">
+														www.lama-demoiselle.com
+													</span>
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+					      </div>
+					    </div>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					    <h4 class="left">
+					    	Je préfère :
+					    </h4>
+					    <div class="row">
+					    	<h5>
+					    		1. Faire un don directement
+					    	</h5>
+					    	<hr class="medium_hr"/>
+					    	<div class="row">
+						    	<form action="">
+						    		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+						    			<div class="message_warning">
+							    			-- En construction. -- 
+							    			<br/>
+							    			Disponible très prochainement avec déduction fiscale des impôts.
+						    			</div>
+										<!-- Pour cela, je décide de combien je donne :
+										<ul class="list_no_style_li inline_li">
+										    <li>
+										    	<label>
+										    		<input name="amount-once" type="radio" value="20" id="amount_20">
+										    		<span id="amount_20">20 €</span> 
+										    	</label>
+										    </li>
+										    <li>
+										    	<label>
+										    		<input name="amount-once" type="radio" value="50" id="amount_50">
+										    		<span id="amount_50">50 €</span> 
+										    	</label>
+										    </li>
+										    <li>
+										    	<label>
+										    		<input name="amount-once" type="radio" value="100" id="amount_100">
+										    		<span id="amount_100">100 €</span> 
+										    	</label>
+										    </li>
+										    <li>
+										    	<label>
+										    		<input name="amount-once" type="radio" value="200" id="amount_200">
+										    		<span id="amount_200">200 €</span> 
+										    	</label>
+										    </li>
+										</ul>
+										<label>Montant libre		
+											<input name="famount-once" type="text" size="6" id="famount-once"><span>€</span>
+										</label> -->
+						    		</div>
+						    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right">
+										<button class="btn btn-helpUs disabled">
+											Donner
+										</button>
+						    		</div>
+						    	</form>
+					    	</div>
+					    	
+
+					    	<br/>
+					    	<h5>
+					    		2. Acheter de l'artisanat péruvien
+					    	</h5>
+					    	<hr class="medium_hr"/>
+					    	<div class="row">
+					    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+									<div class="photo_helpUs" style="width: 100%; min-height:100px; background-image: url('{{ asset( 'img/system/helpUs/lama.png') }}'); background-size: cover; background-position: 50%;" alt="Artisanat">
+				                    </div>
+					    		</div>
+					    		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+					    			<strong>
+					    				Petite statuette de Lama en porte-clés
+					    			</strong>
+					    			<br/>
+					    			Cousue à la main par une jeune fille de 10 ans.
+					    			<br/>
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right">
+									<button class="btn btn-helpUs" value="Commander" onClick="showArtisanatForm()" id="buttonShowArtisanatForm">
+										Commander
+									</button>
+					    		</div>
+					    	</div>
+					    	<div class="row" id="artisanat" style="display:none;">
+					    		<br/>
+			    				<form action="">
+			    					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				    					Veuillez entrez votre nom et votre email, ainsi que la quantité que vous désirez commandez :
+			    					</div>
+				    				<div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
+										<div class="input-icon">
+											<input type="text" name="senderContact" id="senderContact" placeholder="{{ 'footer.contact.senderName' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+								    </div>
+								    <div class="form-group  col-lg-5 col-md-5 col-sm-5 col-xs-12">
+										<div class="input-icon">
+											<input type="email" name="emailContact" id="emailContact" placeholder="{{ 'footer.contact.senderEmail' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+									</div>
+									<div class="form-group  col-lg-2 col-md-2 col-sm-2 col-xs-12">
+										<div class="input-icon">
+											<input type="text" name="emailContact" id="emailContact" placeholder="{{ 'footer.contact.senderQuantity' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+									</div>
+									<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						                <div class="input-icon">
+						                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'footer.contact.message' | trans }}"></textarea>
+						                </div>
+						            </div>
+									<div class="row center">
+										<input type="submit" class="btn btn-perso" value="Envoyer"/>	
+									</div>
+			    				</form>
+			    			</div>
+
+					    	<br/>
+					    	<h5>
+					    		3. Acheter une turbulette à motif péruvien
+					    	</h5>
+					    	<hr class="medium_hr"/>
+					    	<div class="row">
+					    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+									<div class="photo_helpUs" style="width: 100%; min-height:100px; background-image: url('{{ asset( 'img/system/helpUs/turbulette.png') }}'); background-size: cover; background-position: 50%;" alt="Turbulette">
+				                    </div>
+					    		</div>
+					    		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+					    			<strong>
+					    				Turbulette aux couleurs traditionnelles
+					    			</strong>
+					    			<br/>
+					    			Fait à la main
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right">
+									<button class="btn btn-helpUs" onClick="showTurbuletteForm()" id="buttonShowTurbuletteForm">
+										Commander
+									</button>
+					    		</div>
+					    	</div>
+					    	<div class="row" id="turbulette" style="display:none;">
+					    		<br/>
+			    				<form action="">
+			    					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				    					Veuillez entrez votre nom et votre email, ainsi que la quantité que vous désirez commandez :
+			    					</div>
+				    				<div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
+										<div class="input-icon">
+											<input type="text" name="senderContact" id="senderContact" placeholder="{{ 'footer.contact.senderName' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+								    </div>
+								    <div class="form-group  col-lg-5 col-md-5 col-sm-5 col-xs-12">
+										<div class="input-icon">
+											<input type="email" name="emailContact" id="emailContact" placeholder="{{ 'footer.contact.senderEmail' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+									</div>
+									<div class="form-group  col-lg-2 col-md-2 col-sm-2 col-xs-12">
+										<div class="input-icon">
+											<input type="text" name="emailContact" id="emailContact" placeholder="{{ 'footer.contact.senderQuantity' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+									</div>
+									<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						                <div class="input-icon">
+						                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'footer.contact.message' | trans }}"></textarea>
+						                </div>
+						            </div>
+									<div class="row center">
+										<input type="submit" class="btn btn-perso" value="Envoyer"/>	
+									</div>
+			    				</form>
+			    			</div>
+
+					    	<br/>
+					    	<h5>
+					    		4. Acheter un CD chanté en Quechua par des filles d'un des foyers
+					    	</h5>
+					    	<hr class="medium_hr"/>
+					    	<div class="row">
+					    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+									<div class="photo_helpUs" style="width: 100%; min-height:100px; background-image: url('{{ asset( 'img/system/helpUs/cd.png') }}'); background-size: cover; background-position: 50%;" alt="cd">
+				                    </div>
+					    		</div>
+					    		<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+					    			<strong>
+					    				CD de chants Quechua
+					    			</strong>
+					    			<br/>
+					    			Chanté par les filles logées dans un foyer tenu par des soeurs de la Divine Providence, en partenariat avec <strong>Mission Andina</strong>.
+					    		</div>
+					    		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 right">
+									<button class="btn btn-helpUs" onClick="showCDForm()" id="buttonShowCDForm">
+										Commander
+									</button>
+					    		</div>
+					    	</div>
+					    	<div class="row" id="CD" style="display:none;">
+					    		<br/>
+			    				<form action="">
+			    					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				    					Veuillez entrez votre nom et votre email, ainsi que la quantité que vous désirez commandez :
+			    					</div>
+				    				<div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
+										<div class="input-icon">
+											<input type="text" name="senderContact" id="senderContact" placeholder="{{ 'footer.contact.senderName' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+								    </div>
+								    <div class="form-group  col-lg-5 col-md-5 col-sm-5 col-xs-12">
+										<div class="input-icon">
+											<input type="email" name="emailContact" id="emailContact" placeholder="{{ 'footer.contact.senderEmail' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+									</div>
+									<div class="form-group  col-lg-2 col-md-2 col-sm-2 col-xs-12">
+										<div class="input-icon">
+											<input type="text" name="emailContact" id="emailContact" placeholder="{{ 'footer.contact.senderQuantity' | trans }}" class="form-control placeholder-no-fix"/>
+								        </div>
+									</div>
+									<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						                <div class="input-icon">
+						                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'footer.contact.message' | trans }}"></textarea>
+						                </div>
+						            </div>
+									<div class="row center">
+										<input type="submit" class="btn btn-perso" value="Envoyer"/>	
+									</div>
+			    				</form>
+			    			</div>
+					    	
+					    </div>
+
+					    <script type="text/javascript">
+							var cw = $('.photo_helpUs').width();
+							$('.photo_helpUs').css({'height':cw+'px'});
+
+							var cw = $('.photo_partner').width();
+							$('.photo_partner').css({'height':cw+'px'});
+
+							var artisanatFormIsShown = false;
+							function showArtisanatForm() {
+								if (artisanatFormIsShown == false) {
+		                        	$('#artisanat').fadeIn('normal');
+		                        	$('#buttonShowArtisanatForm').html("Annuler");
+		                        	artisanatFormIsShown = true;
+								} 
+								else {
+									$('#artisanat').fadeOut('normal');
+									$('#buttonShowArtisanatForm').html("Commander");
+									artisanatFormIsShown = false;
+								}
+	                        }
+
+	                        var turbuletteFormIsShown = false;
+							function showTurbuletteForm() {
+								if (turbuletteFormIsShown == false) {
+		                        	$('#turbulette').fadeIn('normal');
+		                        	$('#buttonShowTurbuletteForm').html("Annuler");
+		                        	turbuletteFormIsShown = true;
+								} 
+								else {
+									$('#turbulette').fadeOut('normal');
+									$('#buttonShowTurbuletteForm').html("Commander");
+									turbuletteFormIsShown = false;
+								}
+	                        }
+
+	                        var CDFormIsShown = false;
+							function showCDForm() {
+								if (CDFormIsShown == false) {
+		                        	$('#CD').fadeIn('normal');
+		                        	$('#buttonShowCDForm').html("Annuler");
+		                        	CDFormIsShown = true;
+								} 
+								else {
+									$('#CD').fadeOut('normal');
+									$('#buttonShowCDForm').html("Commander");
+									CDFormIsShown = false;
+								}
+	                        }
+						</script>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_Main_body %}

@@ -65,7 +65,7 @@ class Photos
 
     public function __construct()
     {
-        // $this->createdAt        = new \Datetime;
+        $this->createdAt        = new \Datetime;
     }
 
 

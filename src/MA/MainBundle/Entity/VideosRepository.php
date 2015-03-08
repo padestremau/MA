@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class VideosRepository extends EntityRepository
 {
+	public function findLatestOne() {
+		return $this->createQueryBuilder('v')
+					->orderBy('v.createdAt', 'DESC')
+					->setMaxResults(1)
+					->getQuery()
+					->getResult();
+	}
+
+	public function findAllByDate() {
+		return $this->createQueryBuilder('v')
+					->orderBy('v.createdAt', 'DESC')
+					->getQuery()
+					->getResult();
+	}
 }

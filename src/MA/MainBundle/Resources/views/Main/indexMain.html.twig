@@ -16,10 +16,10 @@
 
 		<div id="fullpage">
 
-			<div class="photo_background">
+			<div id="photo_background">
 
-				<div class="photo_background_fame">
-					{% for id_n in 1..34 %}
+				<div id="photo_background_frame">
+					{% for id_n in 1..60 %}
 						<div class="photo_background_sq">
 							<div class="photo_background_sq_content" id="photo_background_sq_{{ id_n }}">
 								<div class="front" style="width: 100%;  background-size: cover; background-position: 50%;" id="photo_background_sq_{{ id_n }}_f">
@@ -35,8 +35,8 @@
 					// Images available
 					var listImages = [];
 				</script>
-				{% for inc in 1..37 %}
-					{% set photoLink = 'img/photos/' ~ inc ~ '.jpg' %}
+				{% for inc in 1..73 %}
+					{% set photoLink = 'img/homePhotos/' ~ inc ~ '.jpg' %}
 					<script>
                   		var imgLink = "{{ asset(photoLink)}}";
                   		listImages['{{ inc }}'] = imgLink;
@@ -44,24 +44,50 @@
 				{% endfor %}
 				
 				<script type="text/javascript">
+					function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+              		var window_height = window.innerHeight;
+				    var window_width = window.innerWidth;
                   	$(function(){
                   		// Set photobackground to window size
-                  		var window_height = window.innerHeight;
-					    var window_width = window.innerWidth;
-					    $('.photo_background').css({'height':window_height+'px', 'width':window_width+'px'});
+					    changeCSSsheet('#photo_background', 'width', window_width+'px !important');
+					    changeCSSsheet('#photo_background', 'height', window_height+'px !important');
+					    $('#photo_background').css({'height':window_height+'px', 'width':window_width+'px'});
+	                  	
+	                  	// Measure how many squares needed
+	                  	// alert('Window height '+window_height);
+	                  	var band_future_height = window_height * 0.55 ;
+	                  	// alert('Band height '+band_future_height);
+	                  	var cell_future_height = Math.ceil((band_future_height / 3)) - 8;
+	                  	// alert('Cell height '+cell_future_height);
+	                  	band_future_height = (cell_future_height + 8) * 3;
+	                  	// alert('NEW Band height '+band_future_height);
+	                  	var inOneRow = Math.floor((window_width - (window_width % (cell_future_height + 8) )) / (cell_future_height + 8));
+	                  	// alert('Number in row '+inOneRow);
+	                  	var totalSquares = inOneRow * 5;
+	                  	// alert('Number total '+totalSquares);
 
-					    // Set photos square
-                  		var bg_photo_height = $('.photo_background_sq').width();
-	                  	var bg_photo_height = $('.photo_background_sq').width();
-	                  	$('.photo_background_sq').css({'height':bg_photo_height+'px'});
+					    // Set photos square and band to 3 rows
+					    changeCSSsheet('.photo_background_sq', 'width', cell_future_height+'px !important');
+					    changeCSSsheet('.photo_background_sq', 'height', cell_future_height+'px !important');
+					    $('.photo_background_sq').css({'height':cell_future_height+'px', 'width':cell_future_height+'px'});
+					    changeCSSsheet('#photo_background_frame', 'height', band_future_height+'px');
+					    // alert('NEW Band height '+band_future_height+' when Window height '+window_height);
+					    $('#photo_background_frame').css({'height':band_future_height+'px'});
 	                  	var bg_photo_content_height = $('.photo_background_sq_content').width();
 	                  	$('.photo_background_sq_content').css({'height':bg_photo_content_height+'px'});
 
-	                  	
+
 	                  	// Div ids
 	                  	var listIds = [];
 	                  	var listActive = [];
-	                  	for (var i = 0; i < 34; i++) {
+	                  	for (var i = 0; i < totalSquares + 1; i++) {
 	                  		var el = '#photo_background_sq_'+i;
 	                  		var face = '#photo_background_sq_'+i+'_f';
 	                  		listIds[i] = el;
@@ -106,8 +132,8 @@
                 </script>
 			</div>
 
-			<!-- Buttons accuei -->
-			<div class="row center">
+			<!-- Buttons accueil -->
+			<div class="row center hidden-xs">
 				<div class="div-btn-btm-accueil" id="btn-accueil">
 					<div class="btn-accueil" id="btn-accueil-l">
 						<a href="#ecoliers" class="btn btn_ecoliers no_style_a uppercase">
@@ -127,9 +153,28 @@
 				</div>
 			</div>
 
+			<!-- Diapo -->
+			<div class="section section_diapo" id="diapo" style="display:none;">
+				<button class="btn btn-diapo-close" onClick="closeDiapo()">
+					Fermer
+				</button>
+			</div>
+
+
 			<!-- Accueil -->
 			<div class="section section_home" id="accueil">
-				<div class="uppercase" id="menu_top">
+				<div class="row" id="buttonToDiapo">
+					<button class="btn btn-diapo" onClick="goToDiapo()">
+						<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+						 DIAPORAMA 
+						<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+					</button>
+				</div>
+
+				<div class="uppercase hidden-xs" id="menu_top">
+					<div id="div_logo_welcome">
+						<img src="{{ asset('img/system/logo/logo.png') }}" alt="Logo" id="logo_welcome"/>
+					</div>
 					<div class="dropdown">
 					    <a class="dropdown-toggle no_style_a" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 					      L'association <span class="caret"></span>
@@ -181,18 +226,49 @@
 					</div>
 
 					<div class="header_help_a">
-						<a href="#" class="no_style_a">
+						<a href="{{ path('ma_main_helpUs') }}" class="no_style_a">
 							Nous aider
 						</a>
 					</div>
 				</div>
-				<div class="div_logo_welcome">
-					<img src="{{ asset('img/system/logo/logo.png') }}" alt="Logo" class="Logo_welcome"/>
-					<script type="text/javascript">
-						var cw = $('.Logo_welcome').width();
-						$('.Logo_welcome').css({'height':cw+'px'});
-					</script>
-				</div>
+
+				<script>
+					var band_height_original ;
+					function goToDiapo() {
+						$('#photo_background_frame').animate({'margin-top':'0px'}, 1000, function() {
+	                        // changeCSSsheet('#photo_background', 'position', 'fixed');
+	                        $('#photo_background').animate({'opacity':'1'});
+	                        band_height_original = $('#photo_background_frame').height() + 8;
+	                        var window_height = window.innerHeight;
+	                        $('#photo_background_frame').animate({'height':window_height+'px'});
+	                        $("body").css("overflow", "hidden");
+	                        $('#diapo').fadeIn('slow');
+	                        $('#buttonToDiapo').animate({'opacity':'0'});
+	                        $('#nav_clavier').animate({'opacity':'0'});
+	                        $('#home_quote').animate({'opacity':'0'});
+	                        $('#btn-accueil').animate({'opacity':'0'});
+	                        $('#social_media').animate({'opacity':'0'});
+	                        $('#div_logo_welcome').animate({'opacity':'0'});
+						});
+					}
+					function closeDiapo() {
+						$('#photo_background_frame').animate({'margin-top':'100px'}, 1000, function() {
+	                        // changeCSSsheet('#photo_background', 'position', 'absolute');
+	                        $('#photo_background_frame').animate({'height':band_height_original+'px'});
+	                        $('#photo_background').animate({'opacity':'0.3'});
+	                        $("body").css("overflow", "scroll");
+	                        $('#diapo').fadeOut('slow');
+	                        $('#buttonToDiapo').animate({'opacity':'1'});
+	                        $('#nav_clavier').animate({'opacity':'1'});
+	                        $('#home_quote').animate({'opacity':'1'});
+	                        $('#btn-accueil').animate({'opacity':'1'});
+	                        $('#social_media').animate({'opacity':'1'});
+	                        $('#div_logo_welcome').animate({'opacity':'1'});
+	                    });
+					}
+				</script>
+
+
 				<h1>
 					<strong>Mission Andina</strong>
 					<br/>
@@ -201,7 +277,17 @@
 					</span>
 				</h1>
 
-				<div class="row80 center home_quote">
+
+				<div class="row center home_message hidden-xs" id="nav_clavier">
+					<strong>NOUVEAU!</strong> Voyagez dans notre univers avec vos flêches de clavier : 
+					<img src="{{ asset('img/system/scroll-icons/left-key.png') }}" alt="left" class="scroll-icons scroll-icons-left"/>
+					<img src="{{ asset('img/system/scroll-icons/up-key.png') }}" alt="up" class="scroll-icons scroll-icons-up"/>
+					<img src="{{ asset('img/system/scroll-icons/right-key.png') }}" alt="right" class="scroll-icons scroll-icons-right"/>
+					<img src="{{ asset('img/system/scroll-icons/down-key.png') }}" alt="down" class="scroll-icons scroll-icons-down"/>
+				</div>		
+		
+
+				<div class="row home_quote" id="home_quote">
 					Issus des villages reculés de l’Apurimac, région pauvre de la Cordillère des Andes, les jeunes péruviens se heurtent aux décalages scolaire et social. Ils arrivent à Abancay, Cusco ou Lima pour étudier et souvent ils échouent faute de moyens et d’accompagnement. Mission Andina leur offre ces moyens pour étudier dans de bonnes conditions, se nourrir et se loger.
 				</div>
 			</div>
@@ -218,7 +304,31 @@
 				</div>
 
 				<div class="row">
-					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					    <div class="thumbnail">
+					      <div class="caption">
+					        <h3>Petite histoire</h3>
+					        <ul>
+								<li>
+									Après quelques années en France, <strong>Aude</strong> <span class="italic">(Présidente de l’association)</span>, Antoine et leurs deux enfants décident de s’expatrier au Pérou à Cusco. Ils se lancent dans la création d’une entreprise de photo et d’un atelier de charcuterie. Afin de donner du sens à leurs projets, ils créent l’association Mission Andina avec Bénédicte. Dans leur maison, une chambre est réservée à un jeune sans ressource venu étudier à Cusco.
+								</li>
+								<li>
+									<strong>Bénédicte</strong> <span class="italic">(secrétaire de l’association)</span> est la sœur d’Antoine, elle travaille en France et gère les différents partenariats entre la France et le Pérou.
+								</li>
+								<li>
+									<strong>Adolfo</strong> <span class="italic">(trésorier de l’association)</span> est un jeune péruvien de Cusco. Il est orphelin depuis très jeune. Il travaille pour le circuit touristique religieux de Cusco et son expérience est un atout pour Mission Andina qui, grâce à lui, peut cibler ses aides de manière plus précise.
+								</li>
+								<li>
+									Le <strong>Père Christian</strong> est missionnaire dans l’Apurimac. Il nous aide à orienter les fonds récoltés pour les écoles et nous conseille quant aux jeunes à soutenir en priorité.
+								</li>
+								<li>
+									<strong>Pierre-Arnaud</strong> participe au développement de l’association grâce à ses talents pour la communication et en particulier pour ce qui est du site internet.
+								</li>
+					        </ul>
+					      </div>
+					    </div>
+					</div>
+					<div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
 					    <div class="thumbnail">
 					      <div class="caption">
 					        <h3>La charte</h3>
@@ -270,10 +380,10 @@
 					      </div>
 					    </div>
 					</div>
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
 					    <div class="thumbnail">
 					      <div class="caption">
-					        <h3>Petite histoire</h3>
+					        <h3>Point info</h3>
 								<p>
 									Clenmary, John, Ademir, Marcos, Eduardo, Flor ou Alex ont tous comme point commun la volonté de réussir et d’offrir à leurs enfants une meilleure vie que celle qu’ils ont connue. 
 								</p>
@@ -320,13 +430,12 @@
 					</div>
 				</div>
 
-
 			</div>
 
 			<!-- Les écoliers -->
-			<div class="section" id="ecoliers">
+			<div class="section section_ecoliers white" id="ecoliers">
 
-				<h2>
+				<h2 class="white">
 					Ecoliers
 				</h2>
 
@@ -335,85 +444,136 @@
 						
 						<div class="slide" id="videosEcoliers">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<h3>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<h3 class="white">
 										Vidéos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_ecoliers','1')" class="btn btn-perso btn-perso-right float-right">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_ecoliers','1')" class="btn btn-perso btn-perso-white float-right">
 										Back to Infos
-										<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+										<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
 							</div>
 
-							<div class="row slide_content">
-								
+							<div class="slide_content">
+								{% if videosEcoliers|length > 0 %}
+									<div class="col-md-3">
+										{% for video in videosEcoliers %}
+											<div class="row">
+												<a href="#" class="btn btn-video">
+													{{ video.title }}
+												</a>
+											</div>
+										{% endfor %}
+									</div>
+									<div class="col-md-9">
+										{% if videoEcoliersSelect %}
+											<!-- 16:9 aspect ratio -->
+											<div class="embed-responsive embed-responsive-16by9">
+											  <iframe class="embed-responsive-item" src="{{ videoEcoliers.link }}" allowfullscreen></iframe>
+											</div>
+										{% else %}
+											<p class="center">
+												Aucune vidéo n'a été sélectionnée. Choisissez celle que vous désirez voir sur votre gauche.
+											</p>
+										{% endif %}
+									</div>
+								{% else %}
+									<p class="center">
+										Aucune vidéos pour l'instant
+									</p>
+								{% endif %}
 							</div>
 						</div>
 
 						<div class="slide" id="infosEcoliers">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_ecoliers','0')" class="btn btn-perso btn-perso-left float-left">
-										<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_ecoliers','0')" class="btn btn-perso btn-perso-white float-left">
+										<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
 										Videos
 									</button>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<h3>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<h3 class="white">
 										Infos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-									<button onClick="slideToAnchor('#slide_container_content_ecoliers','2')" class="btn btn-perso btn-perso-right float-right">
+									<button onClick="slideToAnchor('#slide_container_content_ecoliers','2')" class="btn btn-perso btn-perso-white float-right">
 										Photos
-										<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
+										<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
 							</div>
 
-							<div class="row slide_content">
-								<!-- <h4>
+							<div class="slide_content">
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="well italic">
+										« Il est 5h30, le jour se lève doucement sur le village de Huayllati (3.200 m d’altitude). Cristian, 9 ans part le ventre vide pour emmener ses 4 vaches paitre dans la vallée de l’Apurimac à 1h30 de marche. Cristian est l’ainé de 3 frères. Son père est parti quand il avait 4 ans. Sa mère fait de son mieux pour éduquer seule ses enfants. Après avoir laissé ses vaches le jeune garçon prend le chemin de l’école. Après 2 heures de marche il s’installe en classe pour y suivre le cours. 14h sonne. Enfin un bol de riz et quelques pommes de terre viennent calmer sa faim. Après l’école il retourne au village pour jouer avec ses amis. Cristian a le sourire en permanence. Il ne se plaint jamais. Même quand il s’agit d’aller chercher les vaches et de rentrer avant la nuit. »
+									</div>
+								</div>
+
+								<br/><br/>
+
+								<h4>
 									Aide aux écoles des villages reculés
 								</h4>
-
-								<p>
-									Aide aux institutions éducatives des villages reculés du Pérou (jardins d’enfants, écoles, collèges ou internats). 
-								</p>
-
-								<p>
-									Mission Andina coordonne ces aides qui peuvent prendre différentes formes : partenariat, jumelage, parrainage, vente d’artisanat local, exposition photo, événement caritatif, échanges scolaires, appui financier aux élèves et parents d’élèves en difficulté. 
-								</p>
-
-								<p>
-									Le but est de permettre la scolarisation de l’enfant dans de bonnes conditions ; c’est-à-dire subvenir autant à ses besoins de première nécessité qu’à ses besoins matériels.
-								</p> -->
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<p class="center">
+										Mission Andina vient en aide aux écoliers par le biais d’institutions scolaires, d’orphelinats ou d’internats. L’idée de l’association est de permettre aux enfants d’étudier dans des conditions décentes. Ainsi, ceux qui font plusieurs heures de marche pour arriver à l’école peuvent se nourrir avant d’étudier, ceux qui sont trop loin d’une école peuvent loger en internat, ceux qui ont perdu leurs parents peuvent retrouver une famille auprès des orphelinats.
+									</p>
+									<p class="center">
+										Découvrez aux travers des <a href="javascript:slideToAnchor('#slide_container_content_ecoliers','2')"><strong>photos</strong></a> et des <a href="javascript:slideToAnchor('#slide_container_content_ecoliers','0')"><strong>vidéos</strong></a>, les concrétisations de ces différents jumelages, partenariats et parrainages.
+										
+									</p>
+								</div>
+								
 							</div>
 						</div>
 					    <div class="slide" id="photosEcoliers">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_ecoliers','1')" class="btn btn-perso btn-perso-left float-left">
-										<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_ecoliers','1')" class="btn btn-perso btn-perso-white float-left">
+										<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
 										Infos
 									</button>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<h3>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<h3 class="white">
 										Photos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 								</div>
 							</div>
 
-							<div class="row slide_content">
-								
+							<div class="slide_content">
+								{% if photosEcoliers|length > 0 %}
+									{% for photo in photosEcoliers %}
+										<div class="col-md-2 col-xs-2">
+											<div class="article_photo_container">
+												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+							                    </div>
+											</div>
+											<script type="text/javascript">
+												var cw = $('.photo_default').width();
+												$('.photo_default').css({'height':cw+'px'});
+											</script>
+											{{ photo.title }}
+										</div>
+									{% endfor %}
+								{% else %}
+									<p class="center">
+										Aucune photos pour l'instant
+									</p>
+								{% endif %}
 							</div>
 						</div>
 
@@ -424,7 +584,7 @@
 
 
 			<!-- Les étudiants -->
-			<div class="section" id="etudiants">
+			<div class="section section_etudiants" id="etudiants">
 
 				<h2>
 					Etudiants
@@ -435,71 +595,144 @@
 						
 						<div class="slide" id="videosEtudiants">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<h3>
 										Vidéos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_etudiants','1')" class="btn btn-perso btn-perso-right float-right">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_etudiants','1')" class="btn btn-perso float-right">
 										Back to Infos
 										<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
 							</div>
 
-							<div class="row slide_content">
-								
+							<div class="slide_content">
+								{% if videosEtudiants|length > 0 %}
+									<div class="col-md-3">
+										{% for video in videosEtudiants %}
+											<div class="row">
+												<a href="#" class="btn btn-video">
+													{{ video.title }}
+												</a>
+											</div>
+										{% endfor %}
+									</div>
+									<div class="col-md-9">
+										{% if videoEtudiantsSelect %}
+											<!-- 16:9 aspect ratio -->
+											<div class="embed-responsive embed-responsive-16by9">
+											  <iframe class="embed-responsive-item" src="{{ videoEtudiants.link }}" allowfullscreen></iframe>
+											</div>
+										{% else %}
+											<p class="center">
+												Aucune vidéo n'a été sélectionnée. Choisissez celle que vous désirez voir sur votre gauche.
+											</p>
+										{% endif %}
+									</div>
+								{% else %}
+									<p class="center">
+										Aucune vidéos pour l'instant
+									</p>
+								{% endif %}
 							</div>
 						</div>
 
 						<div class="slide" id="infosEtudiants">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_etudiants','0')" class="btn btn-perso btn-perso-left float-left">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_etudiants','0')" class="btn btn-perso float-left">
 										<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
 										Videos
 									</button>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<h3>
 										Infos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-									<button onClick="slideToAnchor('#slide_container_content_etudiants','2')" class="btn btn-perso btn-perso-right float-right">
+									<button onClick="slideToAnchor('#slide_container_content_etudiants','2')" class="btn btn-perso float-right">
 										Photos
 										<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
 							</div>
 
-							<div class="row slide_content">
+							<div class="slide_content">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="well italic">
+										« Noël approche dans le petit village minier de Progreso perché à 4.100 m d’altitude et pourtant Clenmary a la tête ailleurs. Cette jeune bergère de 16 ans doit rejoindre Cusco pour étudier. C’est la peur au ventre qu’elle quitte ses moutons pour le bruit et l’agitation d’une ville qu’elle ne connait pas. La force de son rêve l’emporte et domine son appréhension. Elle rêve de devenir psychologue mais le chemin est long et compliqué. » 
+									</div>
+								</div>
+
+								<br/><br/>
 								
+								<h4>
+									Aide aux étudiants
+								</h4>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<p class="left">
+										Mission Andina œuvre pour amortir au maximum l’atterrissage de ses jeunes qui gagnent les villes pour étudier.
+										<br/>
+										L’aide de l’association est principalement liée :
+
+										<ul class="slide_ul">
+											<li>
+												aux frais d’étude : un cursus complet coûte environ 600 euros, 
+											</li>
+											<li>
+												au logement : une chambre décente, un lit, un bureau et une chaise à moins de 1 heure de transport de l’université coûte en moyenne 40 euros par mois,
+											</li>
+											<li>
+												aux frais quotidiens qui s’élèvent à environ 20 euros par semaine.
+											</li>
+										</ul>
+									</p>
+								</div>
 							</div>
 						</div>
 					    <div class="slide" id="photosEtudiants">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_etudiants','1')" class="btn btn-perso btn-perso-left float-left">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_etudiants','1')" class="btn btn-perso float-left">
 										<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
 										Infos
 									</button>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<h3>
 										Photos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 								</div>
 							</div>
 
-							<div class="row slide_content">
-								
+							<div class="slide_content">
+								{% if photosEtudiants|length > 0 %}
+									{% for photo in photosEtudiants %}
+										<div class="col-md-2 col-xs-2">
+											<div class="article_photo_container">
+												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+							                    </div>
+											</div>
+											<script type="text/javascript">
+												var cw = $('.photo_default').width();
+												$('.photo_default').css({'height':cw+'px'});
+											</script>
+											{{ photo.title }}
+										</div>
+									{% endfor %}
+								{% else %}
+									<p class="center">
+										Aucune photos pour l'instant
+									</p>
+								{% endif %}
 							</div>
 						</div>
 
@@ -510,7 +743,7 @@
 
 
 			<!-- Les jeunes pro -->
-			<div class="section" id="jeunesPro">
+			<div class="section section_jeunesPro" id="jeunesPro">
 
 				<h2>
 					Jeunes pro
@@ -521,71 +754,144 @@
 						
 						<div class="slide" id="videosJeunesPro">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<h3>
 										Vidéos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','1')" class="btn btn-perso btn-perso-right float-right">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','1')" class="btn btn-perso float-right">
 										Back to Infos
 										<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
 							</div>
 
-							<div class="row slide_content">
-								
+							<div class="slide_content">
+								{% if videosJeunesPro|length > 0 %}
+									<div class="col-md-3">
+										{% for video in videosJeunesPro %}
+											<div class="row">
+												<a href="#" class="btn btn-video">
+													{{ video.title }}
+												</a>
+											</div>
+										{% endfor %}
+									</div>
+									<div class="col-md-9">
+										{% if videoJeunesProSelect %}
+											<!-- 16:9 aspect ratio -->
+											<div class="embed-responsive embed-responsive-16by9">
+											  <iframe class="embed-responsive-item" src="{{ videoJeunesPro.link }}" allowfullscreen></iframe>
+											</div>
+										{% else %}
+											<p class="center">
+												Aucune vidéo n'a été sélectionnée. Choisissez celle que vous désirez voir sur votre gauche.
+											</p>
+										{% endif %}
+									</div>
+								{% else %}
+									<p class="center">
+										Aucune vidéos pour l'instant
+									</p>
+								{% endif %}
 							</div>
 						</div>
 
 						<div class="slide" id="infosJeunesPro">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','0')" class="btn btn-perso btn-perso-left float-left">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','0')" class="btn btn-perso float-left">
 										<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
 										Videos
 									</button>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<h3>
 										Infos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','2')" class="btn btn-perso btn-perso-right float-right">
+									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','2')" class="btn btn-perso float-right">
 										Photos
 										<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
 							</div>
 
-							<div class="row slide_content">
+							<div class="slide_content">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="well italic">
+										« Alex a 21 ans, il étudie le tourisme. Il lui reste à financer sa dernière année. 3 soirs par semaine, il danse dans les restaurants de la place d’Armes de Cusco pour mettre de l’argent de côté. Il lui manque également quelques économies pour passer son permis et décrocher un petit boulot, des livraisons pour la municipalité, ce qui lui permettra de payer sa dernière année d’étude. Alex habite dans les hauts de Cusco dans une maison où résonne le quechua entre les murs de terre. Il a 5 frères et sœurs, le désir d’avancer dans la vie et le rêve de devenir footballeur professionnel ! »
+									</div>
+								</div>
+
+								<br/><br/>
 								
+								<h4>
+									Insertion professionnelle des jeunes
+								</h4>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<p class="left">
+										Mission Andina soutient les projets professionnels des jeunes qui ont fini ou qui sont sur le point de finir leurs études. Ces aides peuvent prendre plusieurs formes et ont pour but de responsabiliser le jeune aidé :
+										<ul class="slide_ul">
+											<li>
+												Financement du permis de conduire,
+											</li>
+											<li>
+												Aide à la création d’entreprise,l’université coûte en moyenne 40 euros par mois,
+											</li>
+											<li>
+												Soutien pour le développement d’un négoce,
+											</li>
+											<li>
+												Embauche et formation au sein d’une entreprise péruvienne membre du réseau Mission Andina.
+											</li>
+										</ul>
+									</p>
+								</div>
 							</div>
 						</div>
 					    <div class="slide" id="photosJeunesPro">
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','1')" class="btn btn-perso btn-perso-left float-left">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','1')" class="btn btn-perso float-left">
 										<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
 										Infos
 									</button>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<h3>
 										Photos
 									</h3>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 								</div>
 							</div>
 
-							<div class="row slide_content">
-								
+							<div class="slide_content">
+								{% if photosJeunesPro|length > 0 %}
+									{% for photo in photosJeunesPro %}
+										<div class="col-md-2 col-xs-2">
+											<div class="article_photo_container">
+												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+							                    </div>
+											</div>
+											<script type="text/javascript">
+												var cw = $('.photo_default').width();
+												$('.photo_default').css({'height':cw+'px'});
+											</script>
+											{{ photo.title }}
+										</div>
+									{% endfor %}
+								{% else %}
+									<p class="center">
+										Aucune photos pour l'instant
+									</p>
+								{% endif %}
 							</div>
 						</div>
 
@@ -608,27 +914,28 @@
 						<div class="center italic">
 							Toute l'information à jour
 						</div>
+
+						<hr class="dark_hr"/>
 					</div>
-					<div class="row92">
-		    			<div class="col-md-3 col-xs-3">
-							<br/><br/>
-							<strong>
+					<div class="row">
+		    			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+		    				<h3 class="left">
 								Articles :
-							</strong>
+		    				</h3>
+
 							{% if articles|length > 0 %}
 								<ul class="list_no_style_li list_articles">
 									{% for single_article in articles %}
-										<li class="
-											{% if single_article == articleAsked %}
-												li_article_active
-											{% endif %}
-											">
-											<a href="{{ path('ma_user_articles_spe', {'articleId':single_article.id}) }}">
+										<li class="article_link {% if single_article == articleAsked %}li_article_active{% endif %}" id="article_n_{{ single_article.id }}">
+											<a href="javascript:displaySelectedArticle('{{ path('ma_main_homepage_elementAjax', {'elementType':'article', 'elementId':single_article.id}) }}', 'article_n_{{ single_article.id }}')" class="no_style_a">
 												{{ single_article.title }}
 											</a>
+											<span class="float-right arrow_article">
+												<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
+											</span>
 											<span class="float-right date_article">
 												{% if single_article.createdAt|length > 0 %}
-													{{ single_article.createdAt|date('d/M/Y') }}
+													{{ single_article.createdAt|date('d M Y') }}
 												{% else %}
 													(Vide)
 												{% endif %}
@@ -641,44 +948,102 @@
 							{% endif %}
 						</div>
 
-						<div class="col-md-9 col-xs-9 border_black_left">
-			    			<br/><br/>
-							<div class="row">
-								<div class="inline_div">
-									<h3>
-										{% if articleAsked.title|length > 0 %}
-											{{ articleAsked.title }}
-										{% else %}
-											(Vide)
-										{% endif %}
-									</h3>
-								</div>
-								<div class="inline_div float-right italic">
-									{% if articleAsked.place|length > 0 %}
-										{{ articleAsked.place }},
-									{% else %}
-										(Vide)
-									{% endif %}
-									{% if articleAsked.createdAt|length > 0 %}
-										le {{ articleAsked.createdAt|date('d/M/Y') }} à {{ articleAsked.createdAt|date('H:i') }}
-									{% else %}
-										(Vide)
-									{% endif %}
+						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+							<div class="row" id="article_content">
+								
+								<div class="thumbnail">
+									<div>
+										{% if articleAsked.alt|length > 0  and articleAsked.url|length > 0 %}
+											<div class="article_photo_container">
+												<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+							                    </div>
+											</div>
+					                   {% else %}
+											<div class="article_photo_container">
+						                   		<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
+							                    </div>
+											</div>
+					                   {% endif %}
+									</div>
+									<div class="caption">
+										<div class="row">
+											<div class="inline_div">
+												<h4>
+													{% if articleAsked.title|length > 0 %}
+														{{ articleAsked.title|raw }}
+													{% else %}
+														(Vide)
+													{% endif %}
+												</h4>
+											</div>
+											<div class="inline_div float-right italic">
+												{% if articleAsked.place|length > 0 %}
+													{{ articleAsked.place }},
+												{% else %}
+													(Vide)
+												{% endif %}
+												{% if articleAsked.createdAt|length > 0 %}
+													le {{ articleAsked.createdAt|date('d M Y') }} à {{ articleAsked.createdAt|date('H:i') }}
+												{% else %}
+													(Vide)
+												{% endif %}
+											</div>
+										</div>
+										
+										<div class="row hidden-lg hidden-md hidden-sm">
+											{% if articleAsked.content|length > 0 %}
+												{{ articleAsked.content|raw|truncate(100, false, '...') }}
+											{% else %}
+												(Vide)
+											{% endif %}
+										</div>
+										<div class="row hidden-xs">
+											{% if articleAsked.content|length > 0 %}
+												{{ articleAsked.content|raw|truncate(600, false, '...') }}
+											{% else %}
+												(Vide)
+											{% endif %}
+										</div>
+
+						    			<div class="row center">
+											<!-- Button trigger modal -->
+											<button type="button" class="btn btn-perso" onClick="showFullArticle('{{ articleAsked.title }}', '{{ articleAsked.content }}', '{{ articleAsked.place }}', '{{ articleAsked.updatedAt|date('d M Y') }}', '{{ articleAsked.updatedAt|date('H:i') }}')">
+												Suite de l'article
+											</button>
+						    			</div>
+									</div>
 								</div>
 							</div>
-							<div class="row">
-								{% if articleAsked.content|length > 0 %}
-									{{ articleAsked.content|raw }} <!-- nl2br -->
-								{% else %}
-									(Vide)
-								{% endif %}
+							<div id="article_photo_script">
+								<script type="text/javascript">
+			                        function showFullArticle(title, content, place, updatedAt_date, updatedAt_time) {
+										document.getElementById('modal_articleTitle').innerHTML = title;
+										document.getElementById('modal_articleContent').innerHTML = content;
+										document.getElementById('modal_articlePlace').innerHTML = place;
+										document.getElementById('modal_articleDate').innerHTML = updatedAt_date;
+										document.getElementById('modal_articleTime').innerHTML = updatedAt_time;
+										$('#modal_article').modal('toggle');
+									}
+
+									function changeCSSsheet(selector, property, value) {
+									    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+									        //Try add rule
+									        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+									        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+									    }
+									}
+
+									var cw = $('.article_photo').width() * 0.5625;  // 16:9e
+			                        changeCSSsheet('.article_photo', 'height', cw+'px');
+			                        $(window).resize(function() {
+			                          var cw = $('.article_photo').width() * 0.5625;  // 16:9e
+			                          changeCSSsheet('.article_photo', 'height', cw+'px');
+			                        });
+								</script>
 							</div>
+
 						</div>
 	    			</div>
-					<!-- Button trigger modal -->
-					<button type="button" class="btn float-right" data-toggle="modal" data-target="#myModal">
-						Suite de l'article
-					</button>
 
 				</div>
 

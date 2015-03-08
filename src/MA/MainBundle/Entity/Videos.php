@@ -58,6 +58,9 @@ class Videos
     }
 
 
+    /*   *********      getters and setters    *************  */
+
+
     /**
      * Get id
      *

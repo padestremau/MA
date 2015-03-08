@@ -149,6 +149,12 @@
         }
         break;
 
+      // ESC -- to quit DIAPO
+      case 27:
+        closeDiapo();
+        break;
+
+
       default:
         return; // exit this handler for other keys
     }
@@ -164,20 +170,24 @@
    */
   $(document).ready(function(){ 
 
-
+    // Initiate section size
     var window_height = window.innerHeight;
     var window_width = window.innerWidth;
-    if (window_width > (window_height * 1.2)) {
-      // Full page customized
-      $('.section').css({'min-height':window_height+'px'});
-    }
+    // if (window_width > (window_height * 1.2)) {
+    //   // Full page customized
+    // }
+    $('.section').css({'min-height':window_height+'px'});
 
+    // Initiate slide size
     var window_height_slide = window.innerHeight * 0.8;
     var window_width_slide = window.innerWidth;
     var window_width_slide_container = window_width_slide * 3.1;
     $('.slide').css({'height':window_height_slide+'px', 'width':window_width_slide+'px'});
     $('.slide_container').css({'height':window_height_slide+'px', 'width':window_width_slide+'px'});
     $('.slide_container_content').css({'height':window_height_slide+'px', 'width':window_width_slide_container+'px'});
+
+    // Initiate side buttons display none
+    $('.pop_hover_side').css({'display':'none'});
 
     // Initiate the website in the middle
     for (var i = 2; i < 5; i++) {
@@ -191,9 +201,8 @@
     var window_height_modal = Math.round(window.innerHeight * 0.72);
     $(".modal-body").css({'max-height':window_height_modal+'px'});
 
-    // alert(window_height+' and '+window_height_modal+' and '+$('.modal-body').css('max-height'));
 
-
+    // SMOOTH SCROLL FUNCTION
     (function($) {
       $.fn.juizScrollTo = function( speed ) { 
         if ( !speed ) var speed = 'slow';  
@@ -312,7 +321,7 @@
       }
     }
     // For white
-    if (current == (side_buttons.length - 1) || current == 0) {
+    if (current == (side_buttons.length - 1) || current == 0 || current == 2) {
       for (var i = 0; i < side_buttons.length; i++) {
         document.getElementById(side_buttons[i]).className = "btn-side-invert";
         if (i == current) {
@@ -352,6 +361,12 @@
     $(id_slider_content).animate({
         scrollLeft: widthToSlide * coef
     }, 600);
+
+    // Save slide position
+    getCurrentAnchor();
+    if (currentAnchor == 2 || currentAnchor == 3 || currentAnchor == 4) {
+      slider_pos[currentAnchor] = toGoPos;
+    }
   }
 
   // END SMOOTH SCROLLING

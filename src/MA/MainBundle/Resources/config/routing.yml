@@ -2,12 +2,12 @@ ma_main_homepage:
     path:     /
     defaults: { _controller: MAMainBundle:Main:index }
 
-ma_main_homepage_article:
-    path:     /articles/{articleId}
-    defaults: { _controller: MAMainBundle:User:index }
+ma_main_homepage_elementAjax:
+    path:     /{elementType}/{elementId}
+    defaults: { _controller: MAMainBundle:Main:index }
     requirements:
-        routesId: \d+
+        elementId: \d+
 
-ma_main_donation:
-    path:     /donation
-    defaults: { _controller: MAMainBundle:Main:donation }
+ma_main_helpUs:
+    path:     /helpUs
+    defaults: { _controller: MAMainBundle:Main:helpUs }

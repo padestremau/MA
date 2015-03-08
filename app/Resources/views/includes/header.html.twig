@@ -1,10 +1,11 @@
 {# For clearer view #}
 {% set route = app.request.attributes.get( '_route' ) %}
 
-<div id="header" class="row" style="display:none;">
+
+<div id="header" class="row hidden-xs" style="{% if route != 'ma_main_helpUs' %}display:none;{% endif %}" >
 	<ul class="nav nav-tabs nav-justified uppercase" id="menu">
-		<li  class="border_right_li" id="btn_header0">
-			<a href="#accueil" id="btn_section0">
+		<li class="border_right_li" id="btn_header0">
+			<a href="{{ path('ma_main_homepage') }}#accueil" id="btn_section0">
 				<span class="glyphicon glyphicon-home white" aria-hidden="true"></span>
 			</a>
 		</li>
@@ -14,13 +15,13 @@
 		    </a>
 		    <ul class="dropdown-menu" role="menu">
 	          	<li>
-	          		<a href="#assoc">
+	          		<a href="{{ path('ma_main_homepage') }}#assoc">
 	          			La charte
 	          		</a>
 	          	</li>
 	          	<hr/>
 	          	<li>
-	          		<a href="#assoc" id="btn_section1">
+	          		<a href="{{ path('ma_main_homepage') }}#assoc" id="btn_section1">
 	          			Petite histoire
 	          		</a>
 	          	</li>
@@ -32,87 +33,125 @@
 		    </a>
 		    <ul class="dropdown-menu" role="menu">
 		    	<li>
-	          		<a href="#ecoliers" id="btn_section2">
+	          		<a href="{{ path('ma_main_homepage') }}#ecoliers" id="btn_section2">
 	          			Ecoliers
 	          		</a>
 	          	</li>
 	          	<hr/>
 	          	<li>
-	          		<a href="#etudiants" id="btn_section3">
+	          		<a href="{{ path('ma_main_homepage') }}#etudiants" id="btn_section3">
 	          			Etudiants
 	          		</a>
 	          	</li>
 	          	<hr/>
 	          	<li>
-	          		<a href="#jeunesPro" id="btn_section4">
+	          		<a href="{{ path('ma_main_homepage') }}#jeunesPro" id="btn_section4">
 	          			Jeunes pro
 	          		</a>
 	          	</li>
 		    </ul>
 		</li>
-	    <!-- <li class="dropdown border_right_li">
-	        <a class="dropdown-toggle" data-toggle="dropdown" href="#ecoliers" role="button" aria-expanded="false">
-	          Ecoliers  <span class="caret"></span>
-	        </a>
-	        <ul class="dropdown-menu" role="menu">
-	          	<li>
-	          		<a href="#ecoliers">
-	          			Infos
-	          		</a>
-	          	</li>
-	          	<hr/>
-	          	<li><a href="#">Photos</a></li>
-	          	<li><a href="#">Vidéos</a></li>
-	        </ul>
-	    </li>
-	    <li class="dropdown border_right_li">
-	        <a class="dropdown-toggle" data-toggle="dropdown" href="#etudiants" role="button" aria-expanded="false">
-	          Etudiants  <span class="caret"></span>
-	        </a>
-	        <ul class="dropdown-menu" role="menu">
-	          	<li>
-	          		<a href="#etudiants">
-	          			Infos
-	          		</a>
-	          	</li>
-	          	<hr/>
-	          	<li><a href="#">Photos</a></li>
-	          	<li><a href="#">Vidéos</a></li>
-	        </ul>
-	    </li>
-	    <li class="dropdown border_right_li">
-	        <a class="dropdown-toggle" data-toggle="dropdown" href="#jeunesPro" role="button" aria-expanded="false">
-	          Jeunes pro <span class="caret"></span>
-	        </a>
-	        <ul class="dropdown-menu" role="menu">
-	          	<li>
-	          		<a href="#jeunesPro">
-	          			Infos
-	          		</a>
-	          	</li>
-	          	<hr/>
-	          	<li><a href="#">Photos</a></li>
-	          	<li><a href="#">Vidéos</a></li>
-	        </ul>
-	    </li> -->
 		<li  class="border_right_li" id="btn_header5">
-			<a href="#actu" id="btn_section5">
+			<a href="{{ path('ma_main_homepage') }}#actu" id="btn_section5">
 				L'actualité
 			</a>
 		</li>
 		<li  class="border_right_li" id="btn_header6">
-			<a href="#footer" id="btn_section6">
+			<a href="{{ path('ma_main_homepage') }}#footer" id="btn_section6">
 				Contact
 			</a>
 		</li>
 
-		<li  class="header_help_li">
-			<a href="#">
+		<li class="header_help_li {% if route == 'ma_main_helpUs' %}active{% endif %}">
+			<a href="{{ path('ma_main_helpUs') }}">
 				Nous aider
 			</a>
 		</li>
 	</ul>
-
-
-
 </div>
+
+
+
+
+<!-- FOR MOBILE -->
+
+<nav id="header" class="row hidden-lg hidden-md hidden-sm navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top_menu_dropdown">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar white"></span>
+        <span class="icon-bar white"></span>
+        <span class="icon-bar white"></span>
+      </button>
+      <a class="navbar-brand hidden-lg hidden-md hidden-sm" href="{{ path('ma_main_homepage') }}#accueil" id="btn_section0">
+      	<div id="div_logo_welcome_xs">
+			<img src="{{ asset('img/system/logo/logo.png') }}" alt="Logo" id="logo_welcome_xs"/>
+		</div>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="top_menu_dropdown">
+      <ul class="nav navbar-nav">
+		<li class="dropdown li_mobile border_bottom_white" id="btn_header1">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+		      L'association <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu" role="menu">
+	          	<li>
+	          		<a href="{{ path('ma_main_homepage') }}#assoc">
+	          			La charte
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li>
+	          		<a href="{{ path('ma_main_homepage') }}#assoc" id="btn_section1">
+	          			Petite histoire
+	          		</a>
+	          	</li>
+		    </ul>
+		</li>
+		<li class="dropdown li_mobile border_bottom_white" id="btn_header2">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+		      Notre action <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu" role="menu">
+		    	<li>
+	          		<a href="{{ path('ma_main_homepage') }}#ecoliers" id="btn_section2">
+	          			Ecoliers
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li>
+	          		<a href="{{ path('ma_main_homepage') }}#etudiants" id="btn_section3">
+	          			Etudiants
+	          		</a>
+	          	</li>
+	          	<hr/>
+	          	<li>
+	          		<a href="{{ path('ma_main_homepage') }}#jeunesPro" id="btn_section4">
+	          			Jeunes pro
+	          		</a>
+	          	</li>
+		    </ul>
+		</li>
+		<li  class="li_mobile border_bottom_white" id="btn_header5">
+			<a href="{{ path('ma_main_homepage') }}#actu" id="btn_section5">
+				L'actualité
+			</a>
+		</li>
+		<li  class="li_mobile border_bottom_white" id="btn_header6">
+			<a href="{{ path('ma_main_homepage') }}#footer" id="btn_section6">
+				Contact
+			</a>
+		</li>
+
+		<li class="li_mobile li_mobile_help {% if route == 'ma_main_helpUs' %}active{% endif %}">
+			<a href="{{ path('ma_main_helpUs') }}">
+				Nous aider
+			</a>
+		</li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>

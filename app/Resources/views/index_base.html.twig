@@ -55,17 +55,28 @@
 
 <!-- BEGIN BODY -->
   <body 
-    {% if (route == 'ma_main_homepage') %}
-      onLoad="onLoadData()" class="main_background"
+    {% if (route != 'ma_main_helpUs') %}
+      class="main_background"
+    {% endif %} 
+    {% if (route == 'ma_main_homepage') 
+        or (route == 'ma_main_homepage_elementAjax')
+        or (route == 'ma_main_helpUs') %}
+      onLoad="onLoadData()"
     {% endif %} 
     >
 
         {% set route = app.request.attributes.get( '_route' ) %}
 
-        {% if (route == 'ma_main_homepage') %}
+        {% if (route == 'ma_main_homepage') 
+            or (route == 'ma_main_homepage_elementAjax')
+            or (route == 'ma_main_helpUs') %}
           <!-- BEGIN header -->
             {% include 'includes/header.html.twig' %}
           <!-- END header -->
+          
+          <!-- BEGIN social -->
+            {% include 'includes/social.html.twig' %}
+          <!-- END social -->
 
           <!-- BEGIN button -->
             {% include 'includes/button_on_side.html.twig' %}
@@ -76,13 +87,16 @@
           <!-- END button -->
 
           <!-- BEGIN social -->
-            {% include 'includes/social.html.twig' %}
+            {% include 'includes/modal_article.html.twig' %}
           <!-- END social -->
+
         {% endif %}
 
         <!-- BEGIN CONTAINER -->
         <div id="page_container_gen" class="
-          {% if (route == 'ma_main_homepage') %}
+          {% if (route == 'ma_main_homepage') 
+            or (route == 'ma_main_homepage_elementAjax')
+            or (route == 'ma_main_helpUs') %}
             page-container
           {% else %}
             page-admin
@@ -102,6 +116,7 @@
           <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
         <!-- END JAVASCRIPTS -->
+
   </body>
   <!-- END BODY -->
 </html>

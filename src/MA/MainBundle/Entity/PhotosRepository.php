@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class PhotosRepository extends EntityRepository
 {
+	public function findAllByDate() {
+		return $this->createQueryBuilder('p')
+					->orderBy('p.createdAt', 'DESC')
+					->getQuery()
+					->getResult();
+	}
 }
