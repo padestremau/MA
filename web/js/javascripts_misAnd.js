@@ -59,18 +59,14 @@
   var currentPosition = $(window).scrollTop();
 
   // For mobile
-  $('a').click(function() {
-    $('#toggle_menu_button').attr("aria-expanded","false");
-    $('#toggle_menu_button').attr("class","navbar-toggle collapsed");
-    document.find('.dropdown-menu').attr('aria-expanded', false);
-  });
-
   $("#top_menu_dropdown a").click(function() {
     $('#toggle_menu_button').attr("aria-expanded","false");
     $('#toggle_menu_button').attr("class","navbar-toggle collapsed");
-    alert('done');
-      // $(this).closest(".dropdown-menu").prev().dropdown("toggle");
+    $(this).closest(".dropdown-menu").prev().dropdown("toggle");
   });
+
+  // Initiate scroll allowed
+  var allowedToScrollWithKeys = true;
 
 
   /**
@@ -188,8 +184,14 @@
    */
   $(document).ready(function(){ 
 
-    // Initiate scroll allowed
-    var allowedToScrollWithKeys = true;
+    // Initiate slide size
+    var window_height_slide = window.innerHeight * 0.8;
+    var window_width_slide = window.innerWidth;
+    var window_width_slide_container = window_width_slide * 3.1;
+    $('.slide').css({'height':window_height_slide+'px', 'width':window_width_slide+'px'});
+    $('.slide_container').css({'height':window_height_slide+'px', 'width':window_width_slide+'px'});
+    $('.slide_container_content').css({'height':window_height_slide+'px', 'width':window_width_slide_container+'px'});
+    $('.slide_content').css({'min-height':window_height_slide+'px'});
 
     // Initiate section size
     var window_height = window.innerHeight;
@@ -199,15 +201,6 @@
     // }
     $('.section').css({'min-height':window_height+'px'});
 
-    // Initiate slide size
-    var window_height_slide_full = window.innerHeight;
-    var window_height_slide = window.innerHeight * 0.8;
-    var window_width_slide = window.innerWidth;
-    var window_width_slide_container = window_width_slide * 3.1;
-    $('.slide').css({'min-height':window_height_slide+'px', 'min-width':window_width_slide+'px'});
-    $('.slide_container').css({'min-height':window_height_slide+'px', 'min-width':window_width_slide+'px'});
-    $('.slide_container_content').css({'min-height':window_height_slide+'px', 'min-width':window_width_slide_container+'px'});
-    $('.slide_content').css({'min-height':window_height_slide_full+'px'});
 
     // Initiate side buttons display none
     $('.pop_hover_side').css({'display':'none'});

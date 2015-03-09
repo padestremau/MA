@@ -910,12 +910,13 @@ hr {
 }
 
 .slide_container {
+	overflow: hidden;
 	position:absolute;
     left:0px;
 }
-/*.slide_container_content {
+.slide_container_content {
 	height: 100%;
-}*/
+}
 .slide {
 	padding-top: 0 !important;
     margin: 0 !important;
@@ -923,7 +924,10 @@ hr {
     vertical-align: top;
 }
 .slide_content {
+	height: 100%;
 	padding-top: 0 !important;
+	overflow-x: hidden;
+	overflow-y: scroll;
 	vertical-align: top;
 }
 @media (min-width: 1400px) {
