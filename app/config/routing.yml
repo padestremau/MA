@@ -1,14 +1,16 @@
 ma_main:
     resource: "@MAMainBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}
-    requirements:
-        _locale: es|en|fr|   # needs to be null in case no /language is provided
+    prefix:   /
+    # prefix:   /{_locale}
+    # requirements:
+    #     _locale: es|en|fr|   # needs to be null in case no /language is provided
 
 ma_user:
     resource: "@MAUserBundle/Resources/config/routing.yml"
-    prefix:   /{_locale}/admin
-    requirements:
-        _locale: es|en|fr|   # needs to be null in case no /language is provided
+    prefix:   /admin
+    # prefix:   /{_locale}/admin
+    # requirements:
+    #     _locale: es|en|fr|   # needs to be null in case no /language is provided
 
 # USERs
 
@@ -17,24 +19,28 @@ fos_user_security:
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix:     /{_locale}/profile
-    requirements:
-        _locale: es|en|fr
+    prefix:     /profile
+    # prefix:     /{_locale}/profile
+    # requirements:
+    #     _locale: es|en|fr
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix:     /{_locale}/register
-    requirements:
-        _locale: es|en|fr
+    prefix:     /register
+    # prefix:     /{_locale}/register
+    # requirements:
+    #     _locale: es|en|fr
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix:     /{_locale}/resetting
-    requirements:
-        _locale: es|en|fr
+    prefix:     /resetting
+    # prefix:     /{_locale}/resetting
+    # requirements:
+    #     _locale: es|en|fr
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix:     /{_locale}/changePassword
-    requirements:
-        _locale: es|en|fr
+    prefix:     /changePassword
+    # prefix:     /{_locale}/changePassword
+    # requirements:
+    #     _locale: es|en|fr
