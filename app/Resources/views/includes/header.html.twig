@@ -2,7 +2,7 @@
 {% set route = app.request.attributes.get( '_route' ) %}
 
 
-<div id="header" class="row hidden-xs" style="{% if route != 'ma_main_helpUs' %}display:none;{% endif %}" >
+<div id="header" class="header row hidden-xs" style="{% if route != 'ma_main_helpUs' %}display:none;{% endif %}" >
 	<ul class="nav nav-tabs nav-justified uppercase" id="menu">
 		<li class="border_right_li" id="btn_header0">
 			<a href="{{ path('ma_main_homepage') }}#accueil" id="btn_section0">
@@ -75,10 +75,10 @@
 
 <!-- FOR MOBILE -->
 
-<nav id="header" class="row hidden-lg hidden-md hidden-sm navbar navbar-default">
+<nav id="header" class="header row hidden-lg hidden-md hidden-sm navbar navbar-default">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top_menu_dropdown">
+      <button id="toggle_menu_button" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top_menu_dropdown">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar white"></span>
         <span class="icon-bar white"></span>
@@ -100,13 +100,13 @@
 		    </a>
 		    <ul class="dropdown-menu" role="menu">
 	          	<li>
-	          		<a href="{{ path('ma_main_homepage') }}#assoc">
+	          		<a href="{{ path('ma_main_homepage') }}#assoc" class="link_in_dropdown">
 	          			La charte
 	          		</a>
 	          	</li>
 	          	<hr/>
 	          	<li>
-	          		<a href="{{ path('ma_main_homepage') }}#assoc" id="btn_section1">
+	          		<a href="{{ path('ma_main_homepage') }}#assoc" id="btn_section1"  class="link_in_dropdown">
 	          			Petite histoire
 	          		</a>
 	          	</li>
@@ -118,31 +118,31 @@
 		    </a>
 		    <ul class="dropdown-menu" role="menu">
 		    	<li>
-	          		<a href="{{ path('ma_main_homepage') }}#ecoliers" id="btn_section2">
+	          		<a href="{{ path('ma_main_homepage') }}#ecoliers" id="btn_section2" class="link_in_dropdown">
 	          			Ecoliers
 	          		</a>
 	          	</li>
 	          	<hr/>
 	          	<li>
-	          		<a href="{{ path('ma_main_homepage') }}#etudiants" id="btn_section3">
+	          		<a href="{{ path('ma_main_homepage') }}#etudiants" id="btn_section3" class="link_in_dropdown">
 	          			Etudiants
 	          		</a>
 	          	</li>
 	          	<hr/>
 	          	<li>
-	          		<a href="{{ path('ma_main_homepage') }}#jeunesPro" id="btn_section4">
+	          		<a href="{{ path('ma_main_homepage') }}#jeunesPro" id="btn_section4" class="link_in_dropdown">
 	          			Jeunes pro
 	          		</a>
 	          	</li>
 		    </ul>
 		</li>
 		<li  class="li_mobile border_bottom_white" id="btn_header5">
-			<a href="{{ path('ma_main_homepage') }}#actu" id="btn_section5">
+			<a href="{{ path('ma_main_homepage') }}#actu" id="btn_section5" class="link_in_dropdown">
 				L'actualité
 			</a>
 		</li>
 		<li  class="li_mobile border_bottom_white" id="btn_header6">
-			<a href="{{ path('ma_main_homepage') }}#footer" id="btn_section6">
+			<a href="{{ path('ma_main_homepage') }}#footer" id="btn_section6" class="link_in_dropdown">
 				Contact
 			</a>
 		</li>

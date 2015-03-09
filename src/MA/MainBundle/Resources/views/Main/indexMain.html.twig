@@ -35,7 +35,7 @@
 					// Images available
 					var listImages = [];
 				</script>
-				{% for inc in 1..73 %}
+				{% for inc in 1..72 %}
 					{% set photoLink = 'img/homePhotos/' ~ inc ~ '.jpg' %}
 					<script>
                   		var imgLink = "{{ asset(photoLink)}}";
@@ -244,11 +244,14 @@
 	                        $("body").css("overflow", "hidden");
 	                        $('#diapo').fadeIn('slow');
 	                        $('#buttonToDiapo').animate({'opacity':'0'});
+	                        $('#side_buttons').animate({'opacity':'0'});
+	                        $('.header').animate({'opacity':'0'});
 	                        $('#nav_clavier').animate({'opacity':'0'});
 	                        $('#home_quote').animate({'opacity':'0'});
 	                        $('#btn-accueil').animate({'opacity':'0'});
 	                        $('#social_media').animate({'opacity':'0'});
 	                        $('#div_logo_welcome').animate({'opacity':'0'});
+	                        allowedToScrollWithKeys = false;
 						});
 					}
 					function closeDiapo() {
@@ -259,11 +262,14 @@
 	                        $("body").css("overflow", "scroll");
 	                        $('#diapo').fadeOut('slow');
 	                        $('#buttonToDiapo').animate({'opacity':'1'});
+	                        $('#side_buttons').animate({'opacity':'1'});
+	                        $('.header').animate({'opacity':'1'});
 	                        $('#nav_clavier').animate({'opacity':'1'});
 	                        $('#home_quote').animate({'opacity':'1'});
 	                        $('#btn-accueil').animate({'opacity':'1'});
 	                        $('#social_media').animate({'opacity':'1'});
 	                        $('#div_logo_welcome').animate({'opacity':'1'});
+	                        allowedToScrollWithKeys = true;
 	                    });
 					}
 				</script>
@@ -453,7 +459,7 @@
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<button onClick="slideToAnchor('#slide_container_content_ecoliers','1')" class="btn btn-perso btn-perso-white float-right">
-										Back to Infos
+										Infos
 										<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
@@ -604,7 +610,7 @@
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<button onClick="slideToAnchor('#slide_container_content_etudiants','1')" class="btn btn-perso float-right">
-										Back to Infos
+										Infos
 										<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
@@ -763,7 +769,7 @@
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 									<button onClick="slideToAnchor('#slide_container_content_jeunesPro','1')" class="btn btn-perso float-right">
-										Back to Infos
+										Infos
 										<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/>
 									</button>
 								</div>
