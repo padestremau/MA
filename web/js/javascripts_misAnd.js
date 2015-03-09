@@ -58,13 +58,6 @@
   changeSideButton(currentAnchor);
   var currentPosition = $(window).scrollTop();
 
-  // For mobile
-  $("#top_menu_dropdown a").click(function() {
-    $('#toggle_menu_button').attr("aria-expanded","false");
-    $('#toggle_menu_button').attr("class","navbar-toggle collapsed");
-    $(this).closest(".dropdown-menu").prev().dropdown("toggle");
-  });
-
   // Initiate scroll allowed
   var allowedToScrollWithKeys = true;
 
@@ -193,14 +186,38 @@
     $('.slide_container_content').css({'height':window_height_slide+'px', 'width':window_width_slide_container+'px'});
     $('.slide_content').css({'min-height':window_height_slide+'px'});
 
-    // Initiate section size
+    // Initiate section size -- Full page customized
     var window_height = window.innerHeight;
     var window_width = window.innerWidth;
-    // if (window_width > (window_height * 1.2)) {
-    //   // Full page customized
-    // }
-    $('.section').css({'min-height':window_height+'px'});
+    if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
+      if (window_width > window_height) {
+        $('.section').css({'min-height':window_width+'px'});
+      }
+      else {
+        $('.section').css({'min-height':window_height+'px'});
+      }
+    }
+    else {
+      $('.section').css({'min-height':window_height+'px'});
+    }
 
+    // To reload page on browser size change !!
+    $(window).resize(function() {
+      if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {}
+      else {
+        var window_height = window.innerHeight;
+        var window_width = window.innerWidth;
+        if (window_width > (window_height * 1.2) && window_width < (window_height * 2)) {
+          window.location.reload();
+        }
+      }
+    });
+
+    // For mobile
+    $("#top_menu_dropdown a.link_in_dropdown").click(function() {
+      $('#top_menu_dropdown').collapse('hide');
+      $(this).closest(".dropdown-menu").prev().dropdown("toggle");
+    });
 
     // Initiate side buttons display none
     $('.pop_hover_side').css({'display':'none'});
