@@ -1,0 +1,203 @@
+{# src/MA/UserBundle/Resources/User/videoNew.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Videos
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_admin" id="section6">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+				  		<div class="row92">
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'ecoliers'}) }}')" class="btn-accueil btn-category-admin btn_ecoliers
+				  				{% if type == 'ecoliers' %} btn_ecoliers_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Ecoliers
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'etudiants'}) }}')" class="btn-accueil btn-category-admin btn_etudiants
+				  				{% if type == 'etudiants' %} btn_etudiants_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Etudiants
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'jeunesPro'}) }}')" class="btn-accueil btn-category-admin btn_jeunesPro
+				  				{% if type == 'jeunesPro' %} btn_jeunesPro_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Jeunes pro
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  		</div>
+						<div class="row92">
+							<div class="row">
+			    				<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':type}) }}')">
+			    					<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+			    					Retour
+			    				</a>
+			    			</div>
+
+			    			<div class="row left">
+			    				<form method="post" {{ form_enctype(formNewVideo) }}>
+				        		{% if form_errors(formNewVideo) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewVideo) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+									<div class="form-group">
+								        {{ form_label(formNewVideo.title, 'Titre', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewVideo.title) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewVideo.title) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_title = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Titre de la vidéo", 'id':'_title', 
+								        		'name':'_title'}} %}
+								        	{{ form_widget(formNewVideo.title, opt_title) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewVideo.link, 'Lien de la vidéo', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewVideo.link) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewVideo.link) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_link = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':'Lien "EMBED" de la vidéo (ex: https://www.youtube.com/embed/mMfxI3r_LyA ), attention c\'est important', 'id':'_link', 
+								        		'name':'_link'}} %}
+								        	{{ form_widget(formNewVideo.link, opt_link) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewVideo.category, "Catégorie", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewVideo.category) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewVideo.category) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_category = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'id':'category', 'name':'_category' }} %}
+								        	{{ form_widget(formNewVideo.category, opt_category) }}
+								        </div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewVideo) }}
+									<div class="center">
+										<input type="submit" class="btn btn-log" value="Enregistrer"/>
+									</div>
+								</div>
+							</form>
+			    			</div>
+		    			</div>
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+	        	<script>
+              		function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    $(window).resize(function() {
+                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    });
+
+                    var cw = $('.photo_default').width();
+                    $('.photo_default').css({'height':cw+'px'});
+
+              		function areYouSureDeleteArticle(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePhoto(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteVideo(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
+							window.location = path;
+						}
+					}
+              	</script>
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

@@ -1,0 +1,59 @@
+{# src/MA/MainBundle/Resources/Main/indexMain.html.twig #}
+
+{% extends "MAMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block MA_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+
+			<!-- Thank you -->
+			<div class="section center" id="thankYou">
+				<div class="row center">
+		        		<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"></div>
+		        		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+							<h2>
+								{{ 'contact.titles.thankYou' | trans }}
+							</h2>
+		        		</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs"></div>
+					</div>
+					<br/>
+					<div class="row80 center">
+						<br/>
+						<br/>
+						{{ 'contact.content.thankYou' | trans }}
+						<br/>
+						<br/>
+						{{ 'contact.content.regards' | trans }}
+						<br/>
+						<strong>
+							Mission Andina
+						</strong>
+					</div>
+					<div class="row80">
+						<br/><br/>
+				        <a href="{{ path('ma_main_homepage') }}" class="no_style_a btn btn-perso float-right">
+	                		{{ 'sideButtons.titles.accueil' | trans }}
+	                		<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt="" class="btn_arrow"/> 
+				        </a>
+					</div>
+			</div>
+
+
+
+		</div>
+
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_Main_body %}

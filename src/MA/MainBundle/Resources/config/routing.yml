@@ -9,5 +9,21 @@ ma_main_homepage_elementAjax:
         elementId: \d+
 
 ma_main_helpUs:
-    path:     /helpUs
+    path:     /nousAider
     defaults: { _controller: MAMainBundle:Main:helpUs }
+
+ma_main_footer_contact:
+    path:     /contact
+    defaults: { _controller: MAMainBundle:Main:footerContact }
+
+ma_main_footer_contact_thankYou:
+    path:     /contact/thankYou
+    defaults: { _controller: MAMainBundle:Main:footerContactThankYou }
+
+ma_main_helpUs_contact:
+    path:     /nousAider/contact
+    defaults: { _controller: MAMainBundle:Main:helpUsContact }
+
+ma_main_helpUs_contact_thankYou:
+    path:     /nousAider/contact/merciBeaucoup
+    defaults: { _controller: MAMainBundle:Main:helpUsContactThankYou }

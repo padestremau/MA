@@ -15,21 +15,126 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section6">
+			<div class="section section_admin" id="section6">
 
-				<h1 class="margin_bottom_10">
-					Administration du site
-				</h1>
-				<br/>
-				
-				<!-- BEGIN social -->
-		            {% include 'includes/nav_admin.html.twig' %}
-		        <!-- END social -->
-				
-				<div class="row">
-					
-				</div>
-				
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+				  		<div class="row92">
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_photos_spe', {'type':'ecoliers'}) }}')" class="btn-accueil btn-category-admin btn_ecoliers
+				  				{% if type == 'ecoliers' %} btn_ecoliers_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Ecoliers
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_photos_spe', {'type':'etudiants'}) }}')" class="btn-accueil btn-category-admin btn_etudiants
+				  				{% if type == 'etudiants' %} btn_etudiants_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Etudiants
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_photos_spe', {'type':'jeunesPro'}) }}')" class="btn-accueil btn-category-admin btn_jeunesPro
+				  				{% if type == 'jeunesPro' %} btn_jeunesPro_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Jeunes pro
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  		</div>
+						<div class="row92">
+							<div class="row">
+								{% if type == 'ecoliers' %}
+				    				<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_photo_new', {'type':'ecoliers'}) }}')">
+				    					Ajouter
+				    				</a>
+								{% elseif type == 'etudiants' %}
+									<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_photo_new', {'type':'etudiants'}) }}')">
+				    					Ajouter
+				    				</a>
+								{% elseif type == 'jeunesPro' %}
+									<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_photo_new', {'type':'jeunesPro'}) }}')">
+				    					Ajouter
+				    				</a>
+								{% endif %}
+			    			</div>
+
+			    			<div class="row">
+			    				{% if photos|length > 0 %}
+									{% for photo in photos %}
+										<div class="col-md-2 col-xs-2 photo_admin">
+											<div class="article_photo_container">
+												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}">
+							                    </div>
+											</div>
+											<strong>
+												{{ photo.title }}
+											</strong>
+											<a href="javascript:areYouSureDeletePhoto('{{ path('ma_user_photo_delete', {'type':type, 'photoId':photo.id}) }}')">
+			                              		<button class="btn btn-delete-admin">
+				                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
+			                              		</button>
+			                              	</a>
+										</div>
+									{% endfor %}
+								{% else %}
+									<p class="center">
+										<br/><br/><br/>
+										Aucune photo pour l'instant
+									</p>
+								{% endif %}
+			    			</div>
+		    			</div>
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+	        	<script>
+              		function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    $(window).resize(function() {
+                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    });
+
+                    var cw = $('.photo_default').width();
+                    $('.photo_default').css({'height':cw+'px'});
+
+              		function areYouSureDeleteArticle(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePhoto(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteVideo(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
+							window.location = path;
+						}
+					}
+              	</script>
 
 			</div>
 		</div>

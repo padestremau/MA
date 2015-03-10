@@ -74,7 +74,7 @@ class MainController extends Controller
             else if ($photo->getCategory() == 'etudiants') {
                 $photosEtudiants[] = $photo;
             }
-            else if ($photo->getCategory() == 'etudiants') {
+            else if ($photo->getCategory() == 'jeunesPro') {
                 $photosJeunesPro[] = $photo;
             }
             
@@ -96,7 +96,7 @@ class MainController extends Controller
             else if ($video->getCategory() == 'etudiants') {
                 $videosEtudiants[] = $video;
             }
-            else if ($video->getCategory() == 'etudiants') {
+            else if ($video->getCategory() == 'jeunesPro') {
                 $videosJeunesPro[] = $video;
             }
             
@@ -120,5 +120,112 @@ class MainController extends Controller
     public function helpUsAction()
     {
         return $this->render('MAMainBundle:Main:helpUs.html.twig');
+    }
+
+    public function footerContactAction() 
+    {
+        $senderName = $_POST['senderContact'];
+        $senderEmail = $_POST['emailContact'];
+        $senderContent = $_POST['corpsMail'];
+
+        // Message for client
+        $message = \Swift_Message::newInstance()
+            ->setContentType('text/html')
+            ->setSubject('[Mission Andina]')
+            ->setFrom(array('contact@missionandina.org' => 'Mission Andina'))
+            ->setTo($senderEmail)
+            ->setBody(
+                $this->renderView('MAMainBundle:Main:emailClient.html.twig',
+                    array(  'senderName' => $senderName,
+                            'senderEmail' => $senderEmail,
+                            'senderContent' => $senderContent
+                            )
+                )
+            )
+        ;
+
+        // Message for manager/admin
+        $messageAdmin = \Swift_Message::newInstance()
+            ->setContentType('text/html')
+            ->setSubject('[Mission Andina] Nouveau message.')
+            ->setFrom(array('contact@missionandina.org' => 'Mission Andina'))
+            ->setTo('contact@missionandina.org')
+            ->setBody(
+                $this->renderView('MAMainBundle:Main:emailAdmin.html.twig',
+                    array(  'senderName' => $senderName,
+                            'senderEmail' => $senderEmail,
+                            'senderContent' => $senderContent
+                            )
+                )
+            )
+        ;
+
+        $this->get('mailer')->send($message);
+        $this->get('mailer')->send($messageAdmin);        
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_main_footer_contact_thankYou'));
+    }
+
+    public function footerContactThankYouAction() 
+    {
+        
+        return $this->render('MAMainBundle:Main:contactThankYou.html.twig');
+    }
+
+    public function helpUsContactAction() 
+    {
+        $senderName = $_POST['senderContact'];
+        $senderEmail = $_POST['emailContact'];
+        $senderQuantity = $_POST['quantityContact'];
+        $senderType = $_POST['orderContentType'];
+        $senderContent = $_POST['corpsMail'];
+
+        // Message for client
+        $message = \Swift_Message::newInstance()
+            ->setContentType('text/html')
+            ->setSubject('[Mission Andina]')
+            ->setFrom(array('contact@missionandina.org' => 'Mission Andina'))
+            ->setTo($senderEmail)
+            ->setBody(
+                $this->renderView('MAMainBundle:Main:emailHelpUsClient.html.twig',
+                    array(  'senderName' => $senderName,
+                            'senderEmail' => $senderEmail,
+                            'senderQuantity' => $senderQuantity,
+                            'senderType' => $senderType,
+                            'senderContent' => $senderContent
+                            )
+                )
+            )
+        ;
+
+        // Message for manager/admin
+        $messageAdmin = \Swift_Message::newInstance()
+            ->setContentType('text/html')
+            ->setSubject('[Mission Andina] Nouveau message.')
+            ->setFrom(array('contact@missionandina.org' => 'Mission Andina'))
+            ->setTo('contact@missionandina.org')
+            ->setBody(
+                $this->renderView('MAMainBundle:Main:emailHelpUsAdmin.html.twig',
+                    array(  'senderName' => $senderName,
+                            'senderEmail' => $senderEmail,
+                            'senderQuantity' => $senderQuantity,
+                            'senderType' => $senderType,
+                            'senderContent' => $senderContent
+                            )
+                )
+            )
+        ;
+
+        $this->get('mailer')->send($message);
+        $this->get('mailer')->send($messageAdmin);        
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_main_helpUs_contact_thankYou'));
+    }
+
+    public function helpUsContactThankYouAction() 
+    {
+        return $this->render('MAMainBundle:Main:contactThankYou.html.twig');
     }
 }

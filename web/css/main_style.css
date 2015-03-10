@@ -25,7 +25,7 @@ body
 	left : 0;
 	right : 0;
 	overflow: hidden;
-	background-color: black;
+	background-color: rgba(12,28,57,1);
 	opacity: 0.3;
 	z-index: -100 !important;
 }
@@ -52,6 +52,59 @@ body
 	background-color: red;
 }
 
+
+#in_construction {
+	position: fixed;
+	left: 30px;
+	bottom: 30px;
+	background-color: white;
+	border: 3px solid rgba(12,28,57,1) !important;
+	font-size: 1.2em;
+	width: 450px;
+	padding: 10px;
+	z-index: 9999;
+
+	box-shadow: 0 0 10px 4px white;
+}
+
+@-webkit-keyframes shine_frame {
+	from {	background-color: white	}
+    50%  {	background-color: yellow}
+    to   {	background-color: white	}
+} 
+@-moz-keyframes shine_frame {
+	from {	background-color: white	}
+    50%  {	background-color: yellow}
+    to   {	background-color: white	}
+} 
+@-ms-keyframes shine_frame {
+	from {	background-color: white	}
+    50%  {	background-color: yellow}
+    to   {	background-color: white	}
+} 
+@-o-keyframes shine_frame {
+	from {	background-color: white	}
+    50%  {	background-color: yellow}
+    to   {	background-color: white	}
+}
+@keyframes shine_frame {
+    from {	background-color: white	}
+    50%  {	background-color: yellow}
+    to   {	background-color: white	}
+}
+#in_construction {
+	-webkit-animation: shine_frame 1s ease infinite;
+	-moz-animation: shine_frame 1s ease infinite;
+	-ms-animation: shine_frame 1s ease infinite;
+	-o-animation: shine_frame 1s ease infinite;
+    animation: shine_frame 1s ease infinite;
+
+    -webkit-animation-iteration-count: 10;
+    -moz-animation-iteration-count: 10;
+    -ms-animation-iteration-count: 10;
+    -o-animation-iteration-count: 10;
+    animation-iteration-count: 10;
+}
 
 
 
@@ -783,7 +836,7 @@ hr {
 	border: 2px solid transparent;
 }
 .btn-to-top:hover {
-	color: black;
+	color: rgba(12,28,57,1);
 	border: 2px solid white;
 }
 
@@ -988,7 +1041,7 @@ hr {
 	padding: 4px 10px;
 	padding-right: 30px;
 
-	border: 1px solid black;
+	border: 1px solid rgba(12,28,57,1);
 }
 
 #div_logo_welcome {
@@ -1444,17 +1497,20 @@ hr {
 .btn_jeunesPro {
 	background-color: rgba(100,200,220,0.58);
 }
-.btn_ecoliers:hover {
-	background-color: rgba(124,18,48,1);
+.btn_ecoliers:hover, .btn_ecoliers_active {
+	background-color: rgba(124,18,48,1) !important;
 	color: white;
 }
-.btn_etudiants:hover {
-	background-color: rgba(126,200,145,1);
+.btn_etudiants:hover, .btn_etudiants_active {
+	background-color: rgba(126,200,145,1) !important;
 	color: white;
 }
-.btn_jeunesPro:hover {
-	background-color: rgba(100,200,220,1);
+.btn_jeunesPro:hover, .btn_jeunesPro_active {
+	background-color: rgba(100,200,220,1) !important;
 	color: white;
+}
+.btn_ecoliers_active .btn_arrow, .btn_etudiants_active .btn_arrow, .btn_jeunesPro_active .btn_arrow {
+	opacity: 1 !important;
 }
 
 .btn-perso{
@@ -1510,7 +1566,7 @@ hr {
 
 .photo_default {
 	width: 100%;
-	border: 4px double rgba(12,28,57,0.88);
+	border: 4px solid rgba(12,28,57,0.88);
 	border-radius: 0px;
 }
 
@@ -1551,6 +1607,44 @@ hr {
 .arrow_article img {
 	width: 20px;
 	opacity: 0;
+}
+
+.list_videos {
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+}
+.list_videos li {
+	color: rgba(12,28,57,1) !important;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	padding: 5px;
+}
+.li_video_active {
+	border: 1px solid rgba(22,54,110,0.5);
+	background-color: rgba(22,54,110,0.1);
+}
+.li_video_active a {
+	font-weight: 900 !important;
+}
+.li_video_active .arrow_video img {
+	opacity: 1;
+}
+.date_video {
+	font-size: 0.8em;
+	color: rgba(150,150,150,0.8);
+	font-style: italic;
+}
+.arrow_video {
+	margin-left: 5px;
+}
+.arrow_video img {
+	width: 20px;
+	opacity: 0;
+}
+.list_videos_white .li_video_active {
+	border: 1px solid rgba(250,250,250,0.5) !important;
+	background-color: rgba(250,250,250,0.1) !important;
 }
 
 .modal-content {
@@ -1613,7 +1707,7 @@ body.modal-open {
 	border: 3px solid rgba(22,54,110,0.88);
 }
 .article_photo_container {
-	padding: 30px;
+	padding: 10px;
 }
 
 .message_warning {
@@ -1663,9 +1757,33 @@ body.modal-open {
 
 
 /* ------------------------------------------------------ Admin ------------------------------------------------------ */
+.section_admin {
+	padding: 10px !important;
+}
+
+.remember_me_box {
+	margin-left: 42%;
+}
+
+.btn-log {
+	background-color: transparent;
+	border-radius: 0px !important;
+	border-bottom: 1.5px solid transparent;
+	border-top: 1.5px solid transparent;
+	color: rgba(12,28,57,1) !important;
+	box-shadow: none;
+	text-decoration: none;
+}
+.btn-log:hover, .btn-log:focus, .btn-log:active {
+	box-shadow: none;
+	text-decoration: none;
+	outline: none;
+	border-bottom: 1.5px solid rgba(12,28,57,1);
+	border-top: 1.5px solid rgba(12,28,57,1);
+}
 
 .border_black_left {
-	border-left: 2px dotted black;
+	border-left: 2px dotted rgba(12,28,57,1);
 }
 
 .nav_tabs_user {
@@ -1705,6 +1823,56 @@ body.modal-open {
 .btn-action-admin:hover {
 	background-color: rgba(150,150,150,0.6);
 }
+.btn-action-admin .btn_arrow {
+	opacity: 0.4;
+}
+.btn-action-admin:hover .btn_arrow {
+	opacity: 1 !important;
+}
+
+.btn-delete-admin {
+	border-radius: 0;
+	background-color: transparent;
+	border: none;
+	padding: 5px ;
+	margin-left: 10px;	
+	opacity: 0;
+}
+.photo_admin:hover .btn-delete-admin {
+	opacity: 0.5;
+}
+.btn-delete-admin:hover {
+	opacity: 1 !important;
+}
+
+.list_articles_admin {
+	margin: 0;
+	margin-left: 0px;
+	padding: 0;
+}
+.list_articles_admin li {
+	color: rgba(12,28,57,1) !important;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	padding: 5px !important;
+	text-align: left !important;
+}
+.article_photo_admin {
+	border: 3px solid rgba(22,54,110,0.88);
+}
+
+.btn-category-admin {
+	padding: 3px 6px;
+}
+.btn-category-admin:hover, .btn-category-admin:focus, .btn-category-admin:active {
+	text-decoration: none;
+}
+.btn-category-admin:hover .btn_arrow, .btn-category-admin:focus .btn_arrow, .btn-category-admin:active .btn_arrow {
+	opacity: 0.5;
+}
+.btn-category-admin .btn_arrow {
+	opacity: 0;
+}
 
 /* ------------------------------------------------------ Footer ------------------------------------------------------ */
 .footer
@@ -1727,11 +1895,17 @@ body.modal-open {
 .border_white_top {
 	border-top: 1px solid white;
 }
-.multiple_lists div {
-	padding-left: 7%;
-}
 .footer_bottom {
 	text-transform : uppercase;
+}
+.footer_bottom ul {
+	list-style: none;
+}
+.footer_bottom ul li {
+	display: inline-block;
+}
+.red {
+	color: red !important;
 }
 .btn-footer{
 	color: white;

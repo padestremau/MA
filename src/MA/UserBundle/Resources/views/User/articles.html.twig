@@ -15,102 +15,160 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section6">
+			<div class="section section_admin" id="section6">
+				
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
 
-				<h1 class="margin_bottom_10">
-					Administration du site
-				</h1>
-				<br/>
-				
-				<!-- BEGIN social -->
-		            {% include 'includes/nav_admin.html.twig' %}
-		        <!-- END social -->
-				
-				<div class="row92">
-	    			<div class="col-md-3 col-xs-3">
-						<br/><br/>
-						<strong>
-							Articles :
-						</strong>
-						{% if articles|length > 0 %}
-							<ul class="list_no_style_li list_articles">
-								{% for single_article in articles %}
-									<li class="
-										{% if single_article == articleAsked %}
-											li_article_active
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row92">
+			    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+								<br/><br/>
+								<strong>
+									Articles :
+								</strong>
+								{% if articles|length > 0 %}
+									<ul class="list_no_style_li list_articles_admin">
+										{% for single_article in articles %}
+											<li class="article_link {% if single_article == articleAsked %}li_article_active{% endif %}" id="article_n_{{ single_article.id }}">
+												<a href="javascript:displaySelectedArticle('{{ path('ma_user_article_spe', {'articleId':single_article.id}) }}', 'article_n_{{ single_article.id }}')" class="no_style_a">
+													{{ single_article.title|truncate(40, false, '...') }}
+												</a>
+												<span class="float-right arrow_article">
+													<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
+												</span>
+												<span class="float-right date_article">
+													{% if single_article.createdAt|length > 0 %}
+														{{ single_article.createdAt|date('d M Y') }}
+													{% else %}
+														(Vide)
+													{% endif %}
+												</span>
+											</li>
+										{% endfor %}
+									</ul>
+								{% else %}
+									Aucun article
+								{% endif %}
+							</div>
+
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 border_black_left">
+								<div id="article_content">
+									<div class="row">
+					    				<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_article_new') }}')">
+					    					Nouveau
+					    				</a>
+					    				{% if articles|length > 0 %}
+					    				<a class="btn btn-action-admin float-right logout-btn-admin"  href="javascript:areYouSureDeleteArticle('{{ path('ma_user_article_delete', {'articleId':articleAsked.id}) }}')">
+					    					Supprimer
+					    				</a>
+					    				<a class="btn btn-action-admin float-right"  href="javascript:loadContentAdmin('{{ path('ma_user_article_edit', {'articleId':articleAsked.id}) }}')">
+					    					Modifier
+					    				</a>
+					    				{% endif %}
+					    			</div>
+					    			<br/><br/>
+					    			<div class="row left">
+					    				
+										{% if articleAsked %}
+										<div class="thumbnail">
+											<div>
+												{% if articleAsked.alt|length > 0  and articleAsked.url|length > 0 %}
+													<div class="article_photo_container">
+														<div class="article_photo_admin" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+									                    </div>
+													</div>
+							                   {% else %}
+													<div class="article_photo_container">
+								                   		<div class="article_photo_admin" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
+									                    </div>
+													</div>
+							                   {% endif %}
+											</div>
+											<div class="caption">
+												<div class="row">
+													<div class="inline_div">
+														<h4>
+															{% if articleAsked.title|length > 0 %}
+																{{ articleAsked.title|raw }}
+															{% else %}
+																(Titre vide)
+															{% endif %}
+														</h4>
+													</div>
+													<div class="inline_div float-right italic">
+														{% if articleAsked.place|length > 0 %}
+															{{ articleAsked.place }},
+														{% endif %}
+														{% if articleAsked.createdAt|length > 0 %}
+															le {{ articleAsked.createdAt|date('d M Y') }} à {{ articleAsked.createdAt|date('H:i') }}
+														{% endif %}
+													</div>
+												</div>
+												
+												<div class="row">
+													{% if articleAsked.content|length > 0 %}
+														{{ articleAsked.content|raw }}
+													{% else %}
+														(Article vide)
+													{% endif %}
+												</div>
+											</div>
+										</div>
 										{% endif %}
-										">
-										<a href="{{ path('ma_user_articles_spe', {'articleId':single_article.id}) }}">
-											{{ single_article.title }}
-										</a>
-										<span class="float-right date_article">
-											{% if single_article.createdAt|length > 0 %}
-												{{ single_article.createdAt|date('d/M/Y') }}
-											{% else %}
-												(Vide)
-											{% endif %}
-										</span>
-									</li>
-								{% endfor %}
-							</ul>
-						{% else %}
-							Aucun article
-						{% endif %}
-					</div>
-
-					<div class="col-md-9 col-xs-9 border_black_left">
-						<div class="row">
-		    				<a class="btn btn-action-admin float-left" href="{{ path('ma_user_article_new') }}">
-		    					Nouveau
-		    				</a>
-		    				<a class="btn btn-action-admin float-right logout-btn-admin"  href="javascript:areYouSure('{{ path('ma_user_article_delete', {'articleId':articleAsked.id}) }}')">
-		    					Supprimer
-		    				</a>
-		    				<script type="text/javascript">
-		    					function areYouSure(path) {
-		    						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
-		    							window.location = path;
-		    						}
-		    					}
-		    				</script>
-		    				<a class="btn btn-action-admin float-right"  href="{{ path('ma_user_article_edit', {'articleId':articleAsked.id}) }}">
-		    					Modifier
-		    				</a>
+					    			</div>
+								</div>
+							</div>
 		    			</div>
-		    			<br/><br/>
-						<div class="row">
-							<div class="inline_div">
-								<h2>
-									{% if articleAsked.title|length > 0 %}
-										{{ articleAsked.title }}
-									{% else %}
-										(Vide)
-									{% endif %}
-								</h2>
-							</div>
-							<div class="inline_div float-right italic">
-								{% if articleAsked.place|length > 0 %}
-									{{ articleAsked.place }},
-								{% else %}
-									(Vide)
-								{% endif %}
-								{% if articleAsked.createdAt|length > 0 %}
-									le {{ articleAsked.createdAt|date('d/M/Y') }} à {{ articleAsked.createdAt|date('H:i') }}
-								{% else %}
-									(Vide)
-								{% endif %}
-							</div>
-						</div>
-						<div class="row">
-							{% if articleAsked.content|length > 0 %}
-								{{ articleAsked.content|raw }}
-							{% else %}
-								(Vide)
-							{% endif %}
-						</div>
-					</div>
-    			</div>
-				
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+
+	        	<script>
+              		function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    $(window).resize(function() {
+                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    });
+
+                    var cw = $('.photo_default').width();
+                    $('.photo_default').css({'height':cw+'px'});
+
+              		function areYouSureDeleteArticle(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePhoto(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteVideo(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
+							window.location = path;
+						}
+					}
+              	</script>
 
 			</div>
 		</div>

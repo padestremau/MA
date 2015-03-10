@@ -68,30 +68,29 @@
 
         {% set route = app.request.attributes.get( '_route' ) %}
 
-        {% if (route == 'ma_main_homepage') 
-            or (route == 'ma_main_homepage_elementAjax')
-            or (route == 'ma_main_helpUs') %}
-          <!-- BEGIN header -->
-            {% include 'includes/header.html.twig' %}
-          <!-- END header -->
-          
-          <!-- BEGIN social -->
-            {% include 'includes/social.html.twig' %}
-          <!-- END social -->
+        <!-- BEGIN header -->
+          {% include 'includes/header.html.twig' %}
+        <!-- END header -->
+        
+        <!-- BEGIN social -->
+          {% include 'includes/social.html.twig' %}
+        <!-- END social -->
 
-          <!-- BEGIN button -->
-            {% include 'includes/button_on_side.html.twig' %}
-          <!-- END button -->
+        <!-- BEGIN in_construction -->
+          {% include 'includes/in_construction.html.twig' %}
+        <!-- END in_construction -->
 
-          <!-- BEGIN button -->
-            {% include 'includes/button_to_top.html.twig' %}
-          <!-- END button -->
+        <!-- BEGIN button -->
+          {% include 'includes/button_on_side.html.twig' %}
+        <!-- END button -->
 
-          <!-- BEGIN social -->
-            {% include 'includes/modal_article.html.twig' %}
-          <!-- END social -->
+        <!-- BEGIN button -->
+          {% include 'includes/button_to_top.html.twig' %}
+        <!-- END button -->
 
-        {% endif %}
+        <!-- BEGIN social -->
+          {% include 'includes/modal_article.html.twig' %}
+        <!-- END social -->
 
         <!-- BEGIN CONTAINER -->
         <div id="page_container_gen" class="
@@ -115,7 +114,7 @@
           'js/ajax_load.js'
           %}
           <script type="text/javascript" src="{{ asset_url }}"> </script>
-          
+
         {% endjavascripts %}
         <!-- END JAVASCRIPTS -->
 

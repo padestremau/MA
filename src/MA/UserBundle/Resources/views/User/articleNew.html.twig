@@ -3,7 +3,7 @@
 {% extends "MAUserBundle::user_general.html.twig" %}
 
 {% block title %}
-  {{ parent() }} - Admin - Articles - Nouveau
+  {{ parent() }} - Admin - Articles
 {% endblock %}
 
 {% block MA_User_body %}
@@ -15,89 +15,186 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section6">
+			<div class="section section_admin" id="section6">
 
-				<h1 class="margin_bottom_10">
-					Administration du site
-				</h1>
-				<br/>
-				
-				<!-- BEGIN social -->
-		            {% include 'includes/nav_admin.html.twig' %}
-		        <!-- END social -->
-				
-				<div class="row">
-	    			<form method="post" {{ form_enctype(formNewArticle) }}>
-		        		{% if form_errors(formNewArticle) %}
-		                    <div class="error_message">
-		                      <span class="warning_word">
-		                        {{ 'user.warning.warning'|trans }}
-		                      </span>
-		                      <span class="warning_message">
-		                        {{ form_errors(formNewArticle) }}
-		                      </span>
-		                    </div>
-		                    <br/>
-		                  {% endif %}
-						<div class="row80">
-							<div class="form-group">
-						        {{ form_label(formNewArticle.title, 'Titre', 
-						        	{'label_attr': {'class': 'control-label'}}) }}
-						        {% if form_errors(formNewArticle.title) %}
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row left">
+				  		<div class="row80">
+				  			<a class="btn btn-action-admin" href="javascript:loadContentAdmin('{{ path('ma_user_articles') }}')">
+				  				<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+		    					Retour
+		    				</a>
+				  		</div>
+				  		<br/>
+						<div class="row">
+			    			<form method="post" {{ form_enctype(formNewArticle) }}>
+				        		{% if form_errors(formNewArticle) %}
 				                    <div class="error_message">
-				                      	<span class="warning_word">
-				                        	{{ 'user.warning.warning'|trans }}
-				                      	</span>
-				                      	<span class="warning_message">
-				                        	{{ form_errors(formNewArticle.title) }}
-				                      	</span>
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewArticle) }}
+				                      </span>
 				                    </div>
 				                    <br/>
-				                {% endif %}
-								<div class="input-icon">
-						        	<i class="fa fa-user"></i>
-						        	{% set opt_title = {'attr': {'class': 'form-control placeholder-no-fix',
-						        		'type':'text', 'placeholder':"L'arrivée majestueuse d'un article à propos d'un sujet en particulier", 'id':'_title', 
-						        		'name':'_title'}} %}
-						        	{{ form_widget(formNewArticle.title, opt_title) }}
-						        </div>
-							</div>
-							<div class="form-group">
-						        {{ form_label(formNewArticle.content, 'Contenu', 
-						        	{'label_attr': {'class': 'control-label'}}) }}
-						        {% if form_errors(formNewArticle.content) %}
-				                    <div class="error_message">
-				                      	<span class="warning_word">
-				                        	{{ 'user.warning.warning'|trans }}
-				                      	</span>
-				                      	<span class="warning_message">
-				                        	{{ form_errors(formNewArticle.content) }}
-				                      	</span>
-				                    </div>
-				                    <br/>
-				                {% endif %}
-								<div class="input-icon">
-						        	<i class="fa fa-user"></i>
-						        	{% set opt_content = {'attr': { 'class': 'ckeditor',
-						        		'placeholder':"L'arrivée majestueuse d'un contenu d'article, à propos d'un sujet en particulier", 'id':'_content', 
-						        		'name':'_content'}} %}
-						        	{{ form_widget(formNewArticle.content, opt_content) }}
-						        </div>
+				                  {% endif %}
+								<div class="row80">
+									<div class="form-group">
+								        {{ form_label(formNewArticle.title, 'Titre', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewArticle.title) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewArticle.title) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_title = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"L'arrivée majestueuse d'un article à propos d'un sujet en particulier", 'id':'_title', 
+								        		'name':'_title'}} %}
+								        	{{ form_widget(formNewArticle.title, opt_title) }}
+								        </div>
+									</div>
+									<div class="form-group">
+								        {{ form_label(formNewArticle.content, 'Contenu', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewArticle.content) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewArticle.content) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_content = {'attr': { 'class': 'form-control placeholder-no-fix',
+								        		'placeholder':"L'arrivée majestueuse d'un contenu d'article, à propos d'un sujet en particulier", 'id':'_content', 
+								        		'name':'_content'}} %}
+								        	{{ form_widget(formNewArticle.content, opt_content) }}
+								        </div>
 
-							</div>
+									</div>
+									<div class="form-group">
+										{{ form_label(formNewArticle.createdAt, 'Date de création', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewArticle.createdAt) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewArticle.createdAt) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_createdAt = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'datetime', 'id':'createdAt', 'name':'_createdAt'}} %}
+								        		<div class="inline_div">
+										        	{{ form_widget(formNewArticle.createdAt.time, opt_createdAt) }}
+								        		</div>
+								        		<div class="inline_div">
+										        	{{ form_widget(formNewArticle.createdAt.date, opt_createdAt) }}
+								        		</div>
+								        </div>
+									</div>
 
-							<div>
-								<br/><br/>
-							</div>
+									<div class="form-group">
+										{{ form_label(formNewArticle.file, "Photo de couverture de l'article", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewArticle.file) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewArticle.file) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_file = {'attr': {'type':'file', 'id':'file', 'name':'_file'}} %}
+								        	{{ form_widget(formNewArticle.file, opt_file) }}
+								        </div>
+									</div>
 
-							<!-- Et pour le reste du formulaire ... ;) -->
-							{{ form_widget(formNewArticle) }}
-							<input type="submit" class="btn float-right"
-								value="Enregistrer"/>
-						</div>
-					</form>
-    			</div>
-				
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewArticle) }}
+									<div class="center">
+										<input type="submit" class="btn btn-log" value="Enregistrer"/>
+									</div>
+								</div>
+							</form>
+		    			</div>
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+	        	<script>
+              		function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    $(window).resize(function() {
+                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    });
+
+                    var cw = $('.photo_default').width();
+                    $('.photo_default').css({'height':cw+'px'});
+
+              		function areYouSureDeleteArticle(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePhoto(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteVideo(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
+							window.location = path;
+						}
+					}
+              	</script>		
 
 			</div>
 		</div>

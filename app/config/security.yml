@@ -37,10 +37,10 @@ security:
                 login_path: fos_user_security_login
                 check_path: fos_user_security_check
                 always_use_default_target_path: true
-                default_target_path: /%locale%/admin
+                default_target_path: /admin #/%locale%/admin
             logout:
                 path:       fos_user_security_logout
-                target:     /%locale%/
+                target:     / #/%locale%/
             remember_me:
                 key:        %secret% # %secret% est un paramètre de parameters.yml
 
@@ -59,9 +59,6 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/fr/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/en/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/user/, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/fr/user/, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/en/user/, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/user/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
-        - { path: ^/fr/user/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
-        - { path: ^/en/user/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
+        - { path: ^/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
+        - { path: ^/fr/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }
+        - { path: ^/en/admin, role: [IS_AUTHENTICATED_REMEMBERED,ROLE_ADMIN] }

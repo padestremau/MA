@@ -1,6 +1,10 @@
 <!-- Language selection  -->
 
+{% if (route == 'ma_main_homepage') 
+or (route == 'ma_main_homepage_elementAjax')
+or (route == 'ma_main_helpUs') %}
 <div id="social_media" class="hidden-xs">
+
     <a href="https://www.facebook.com/" target="_blank">
       <div class="social social_fb"></div>
     </a>
@@ -10,4 +14,6 @@
     <a href="#">
       <div class="social social_mail"></div>
     </a>
+
 </div>
+{% endif %}

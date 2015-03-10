@@ -1,0 +1,117 @@
+# Profile
+user:
+    actions:
+        editInfo:           Modifier mes infos :
+        changeAvatar:       Sélectionner une nouvelle photo :
+        changeCompanyLogo:  Sélectionner un nouveau logo :
+        back:               Retour
+        save:               Enregistrer
+        cancel:             Annuler
+        changePassword:     Changer de mot de passe
+        toChangePassword:   "Pour changer de mot de passe, veuillez clickez ici :"
+        home:               Accueil
+        remove:             Retirer
+        logout:             Déconnexion
+        editYourInfos:      "Pour modifier vos informations personnelles, veuillez replir les champs suivants :"
+    warning:
+        warning:            Attention !
+
+# Register and forgotten password
+registerUser:
+    titles:
+        signUp:             Inscription
+        enterDetails:       Saisissez vos informations :
+        username:           "Nom d'utilisateur"
+        password:           Mot de passe
+        rePassword:         Saisissez à nouveau votre mot de passe
+        email:              Email
+        company:            "Entreprise"
+        companyName:        "Nom de l'entreprise"
+        RUC:                Numéro RUC
+        address:            "Adresse de l'entreprise"
+        addressNumber:      Numéro
+        addressStreet:      Rue
+        addressCity:        Ville
+        addressPostCode:    Code postal
+        addressCountry:     Pays
+        iAgreeToThe:        J'accepte les 
+        TermsOfService:     "Conditions d'utilisation"
+        and:                et les
+        PrivacyPolicy:      Mentions légales
+    content:
+        youAre:             "Vous êtes:"
+        user:               Personne
+        company:            Compagnie
+    actions: 
+        back:               Retour
+        signUp:             INSCRIPTION
+forgotPassword:
+    titles:
+        forgotPassword:     Mot de passe oublié ?
+        enterEmail:         "Saisissez votre e-mail ci-dessous pour réinitialiser votre mot de passe."
+        email:              Email
+    actions:
+        back:               Retour
+        submit:             Envoyer
+resetPassword:
+    titles:
+        resetPassword:      Changer de mot de passe ?
+        enterOld:           Mot de passe actuel
+        enterNew:           Nouveau mot de passe
+        reEnterNew:         Entrer à nouveau votre nouveau mot de passe
+    actions:
+        back:               Retour
+        changePassword:     Changer le mot de passe
+check:
+    registration: 
+        checkEmail:         "Vérification de l'email"
+        checkEmailFirst:    "Merci et bienvenu(e) parmi nous. Pouvez-vous vérifier votre email avant d'accéder au restant du site web s'il vous plaît ?"
+        thankYou:           "Merci pour votre inscription !"
+        allGood:            "Parfait! Votre inscription est maintenant terminée. Merci !"
+        access:             "Vous pouvez à présent accéder à votre profil pour remplir les quelques éléments manquants."
+        confirm:            "Pouvez-vous confirmer s'il vous plaît ?"
+        canYou:             "Pouvez-vous confirmer s'il vous plaît ?"
+    passwordNew: 
+        checkEmail:         "Vérification de l'email"
+        checkEmailFirst:    "Comprobe sus emails por favor para confirmar su email antes de renovar su contraseña."
+    actions:
+        home:               Accueil
+        order:              Commander
+    general:
+        thankYou:           Parfait! Merci
+        allGood:            "Parfait! Merci."
+    problem: 
+        ifAny:              "Si vous rencontrez un quelconque problème, contactez l'adiminstration."
+        contact:            Contacter l'administration
+
+
+# Login
+login:
+    titles:
+        loginTitle:     Connexion
+        enterUsernameAndPassword:   Enter a username and a password. 
+        email:          Email
+        username:       "Nom d'utilisateur"
+        password:       Mot de passe
+        forgetPassword: Mot de passe oublié ?
+    actions:
+        login:          CONNEXION
+        remember_me:    Se souvenir de moi
+        back:           Retour
+    connected:
+        titleAlreadyConnected:  Vous êtes déjà connecté
+        accessAccount:  Accédez rapidement à votre compte
+
+
+
+
+
+
+
+
+# Administration du site
+admin:
+    titles:
+        adminOfSite:    Administration du site
+
+

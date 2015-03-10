@@ -15,21 +15,168 @@
 		</div>
 
 		<div id="fullpage">
-			<div class="section" id="section6">
+			<div class="section section_admin" id="section6">
 
-				<h1 class="margin_bottom_10">
-					Administration du site
-				</h1>
-				<br/>
-				
-				<!-- BEGIN social -->
-		            {% include 'includes/nav_admin.html.twig' %}
-		        <!-- END social -->
-				
-				<div class="row">
-	    			
-    			</div>
-				
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row92">
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'ecoliers'}) }}')" class="btn-accueil btn-category-admin btn_ecoliers
+				  				{% if type == 'ecoliers' %} btn_ecoliers_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Ecoliers
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'etudiants'}) }}')" class="btn-accueil btn-category-admin btn_etudiants
+				  				{% if type == 'etudiants' %} btn_etudiants_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Etudiants
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'jeunesPro'}) }}')" class="btn-accueil btn-category-admin btn_jeunesPro
+				  				{% if type == 'jeunesPro' %} btn_jeunesPro_active {% endif %}
+				  				">
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				Jeunes pro
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  			</a>
+				  		</div>
+						<div class="row92">
+							<div class="row">
+								{% if type == 'ecoliers' %}
+				    				<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_video_new', {'type':'ecoliers'}) }}')">
+				    					Nouveau
+				    				</a>
+								{% elseif type == 'etudiants' %}
+									<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_video_new', {'type':'etudiants'}) }}')">
+				    					Nouveau
+				    				</a>
+								{% elseif type == 'jeunesPro' %}
+									<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_video_new', {'type':'jeunesPro'}) }}')">
+				    					Nouveau
+				    				</a>
+								{% endif %}
+			    			</div>
+
+			    			<div class="row">
+			    				{% if videos|length > 0 %}
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 left">
+										<br/><br/>
+										<strong>
+											Vidéos :
+										</strong>
+										{% if videos|length > 0 %}
+											<ul class="list_no_style_li list_articles_admin">
+												{% for video in videos %}
+													<li class="video_link {% if video == videoSelect %}li_video_active{% endif %}" id="video_n_{{ video.id }}">
+														<a href="javascript:displaySelectedVideo('{{ path('ma_user_videos_spe_video', {'type':type, 'videoId':video.id}) }}', '#video_content', 'video_n_{{ video.id }}')" class="no_style_a">
+															{{ video.title|truncate(40, false, '...') }}
+														</a>
+														<span class="float-right arrow_article">
+															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
+														</span>
+														<span class="float-right date_article">
+															{% if video.createdAt|length > 0 %}
+																{{ video.createdAt|date('d M Y') }}
+															{% else %}
+																(Vide)
+															{% endif %}
+														</span>
+													</li>
+												{% endfor %}
+											</ul>
+										{% else %}
+											Aucune vidéo
+										{% endif %}
+									</div>
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 border_black_left">
+										<div id="video_content">
+											{% if videoSelect.title|length > 0 and videoSelect.link|length > 0 %}
+												<div class="row right">
+													<a href="javascript:areYouSureDeleteVideo('{{ path('ma_user_video_delete', {'type':type, 'videoId':videoSelect.id}) }}')" class="btn btn-action-admin logout-btn-admin float-right">
+														Supprimer
+					                              	</a>
+					                              	<a class="btn btn-action-admin float-right"  href="javascript:loadContentAdmin('{{ path('ma_user_video_edit', {'type':type, 'videoId':videoSelect.id}) }}')">
+								    					Modifier
+								    				</a>	
+												</div>
+												<br/>
+
+												<!-- 16:9 aspect ratio -->
+												<div class="embed-responsive embed-responsive-16by9">
+												  <iframe class="embed-responsive-item" src="{{ videoSelect.link }}"></iframe>
+												</div>
+												<br/>
+												<div class="center">
+													<strong>
+														{{ videoSelect.title }}
+													</strong>
+												</div>
+											{% else %}
+												<p class="center">
+													Aucune vidéo n'a été sélectionnée. Choisissez celle que vous désirez voir sur votre gauche.
+												</p>
+											{% endif %}
+										</div>
+									</div>
+								{% else %}
+									<p class="center">
+										Aucune vidéos pour l'instant
+									</p>
+								{% endif %}
+			    			</div>
+		    			</div>
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+	        	<script>
+              		function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    $(window).resize(function() {
+                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    });
+
+                    var cw = $('.photo_default').width();
+                    $('.photo_default').css({'height':cw+'px'});
+
+              		function areYouSureDeleteArticle(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePhoto(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteVideo(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
+							window.location = path;
+						}
+					}
+              	</script>
 
 			</div>
 		</div>

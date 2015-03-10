@@ -3,12 +3,17 @@
 namespace MA\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Photos
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\PhotosRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Photos
 {

@@ -17,6 +17,13 @@ class ArticleType extends AbstractType
         $builder
             ->add('title', 'text', array('label' => 'Titre'))
             ->add('content', 'textarea', array('label' => 'Contenu'))
+            ->add('createdAt', 'datetime', array(
+                                            'input'  => 'datetime',
+                                            'widget' => 'choice',
+                                            'years' => range(2010,2050,1),
+                                            'data' => new \Datetime
+                                        ))
+            ->add('file', 'file')
         ;
     }
     

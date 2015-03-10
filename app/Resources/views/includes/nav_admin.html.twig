@@ -1,4 +1,11 @@
 <div class="row">
+	<h2 class="margin_bottom_10">
+		{{ 'admin.titles.adminOfSite' | trans }}
+	</h2>
+	<br/>
+</div>
+
+<div id="nav_admin" class="row">
 
 	{# For clearer view #}
 	{% set route = app.request.attributes.get( '_route' ) %}
@@ -8,29 +15,37 @@
 	  <ul class="nav_tabs_user list_no_style_li" role="tablist">
 	    <li role="user_tabs" class="btn btn-choice-admin
 	    	{% if (route == 'ma_user_articles')
-	    		or (route == 'ma_user_article_new') %}
+	    		or (route == 'ma_user_article_edit')
+	    		or (route == 'ma_user_article_new')
+	    		or (route == 'ma_user_article_spe') %}
 	    		active
 	    	{% endif %}
 	    	">
-	    	<a href="{{ path('ma_user_articles') }}" class="no_style_a">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_articles') }}')" class="no_style_a">
 		    	Articles
 	    	</a>
 	    </li>
 	    <li role="user_tabs" class="btn btn-choice-admin
-	    	{% if (route == 'ma_user_photos') %}
+	    	{% if (route == 'ma_user_photos') 
+	    		or (route == 'ma_user_photos_spe') 
+	    		or (route == 'ma_user_photos_new') %}
 	    		active
 	    	{% endif %}
 	    	">
-	    	<a href="{{ path('ma_user_photos') }}" class="no_style_a">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_photos') }}')" class="no_style_a">
 		    	Photos
 	    	</a>
 	    </li>
 	    <li role="user_tabs" class="btn btn-choice-admin
-	    	{% if (route == 'ma_user_videos') %}
+	    	{% if (route == 'ma_user_videos') 
+	    		or (route == 'ma_user_videos_spe')
+	    		or (route == 'ma_user_videos_spe_video') 
+	    		or (route == 'ma_user_video_edit')
+	    		or (route == 'ma_user_video_new') %}
 	    		active
 	    	{% endif %}
 	    	">
-	    	<a href="{{ path('ma_user_videos') }}" class="no_style_a">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_videos') }}')" class="no_style_a">
 		    	Vidéos
 	    	</a>
 	    </li>
@@ -39,19 +54,18 @@
 	    		active
 	    	{% endif %}
 	    	">
-	    	<a href="{{ path('ma_user_content') }}" class="no_style_a">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_content') }}')" class="no_style_a">
 		    	Contenu du site
 	    	</a>
 	    </li>
 	    <li role="user_tabs" class="btn btn-choice-admin logout-btn-admin">
 	    	<a href="{{ path('fos_user_security_logout') }}" class="no_style_a">
-	    		Logout
+	    		Déconnexion
 	    	</a>
 	    </li>
 	  </ul>
+  	<hr class="dark_hr"/>
   	</div>
 
-  	<hr class="black_hr"/>
-  	<br/><br/>
 
 </div>

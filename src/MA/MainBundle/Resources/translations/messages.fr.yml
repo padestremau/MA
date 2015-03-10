@@ -1,0 +1,142 @@
+# Header
+
+header:
+    titles:
+        login:                  CONNEXION
+        reset:                  RESET
+        request:                REQUÊTE
+        changePassword:         MOT DE PASSE
+        register:               INSCRIPTION
+        aboutUs:                A PROPOS
+        ourProducts:            PRODUITS
+        myCart:                 MON PANIER
+    special:
+        buttonToTop:            HAUT
+
+# Side buttons
+
+sideButtons:
+    titles:
+        accueil:                Accueil
+        assoc:                  "L'association"
+        ecoliers:               Les écoliers
+        etudiants:              Les étudiants
+        jeunesPro:              Les jeunes pro
+        actu:                   "L'actualité"
+        footer:                 Bas de page
+
+# Main
+
+main:
+
+# Alerts
+alert:
+    title:
+        congratulations:        "Félicitations !"
+        careful:                "Attention !"
+    content: 
+
+# Footer
+
+footer:
+    titles:
+    content:
+        thanks:                 Remerciements
+        legalMentions:          Mentions légales/ CGV
+        moreInfo:               Tout comprendre
+        questions:              FAQ
+        news:                   Nouvelles
+    contact:
+        senderName:             Expéditeur
+        senderEmail:            Email
+        message:                Message
+        send:                   "ENVOYER"
+    actions: 
+        send:                   OK
+        enterEmail:             Entrez votre email
+    bottom: 
+        allRightsReserved:      TOUS DROITS RESERVES
+
+# Help us
+
+helpUs:
+    titles:
+    contact:
+        senderName:             Expéditeur
+        senderEmail:            Email
+        senderQuantity:         Quantité
+        message:                Message
+        send:                   "ENVOYER"
+    actions: 
+        send:                   OK
+        enterEmail:             Entrez votre email
+
+# Contact
+contact:
+    titles: 
+        thankYou:               Merci beaucoup !
+    content:
+        thankYou:               "Merci pour votre message. Nous devrions y répondre très prochainement."
+        regards:                "Bien cordialement,"
+
+
+# Email contact
+emailContact:
+    notes: 
+        topSentence:            "Ceci est un message de "
+    titles:
+        general:                MESSAGE ENVOYÉ
+        messageWritten:         CONTENU DU MESSAGE
+    content:
+        youWrote:               "Vous nous avez envoyé un message depuis notre site web et pour cela nous vous remercions. Nous devrions répondre très prochainement quand nous aurons résolu votre dilemne ou trouvé une réponse adaptée à votre question."
+        thankYou:               Encore merci
+        forMessage:             pour votre message. 
+        mailContent:            "Rappel du contenu du message :"
+    errors:
+        nothingHere:            Votre message est vide.
+        please:                 Veuillez contacter
+        contactAdministration:  "l'administration"
+    footer:
+        anecdote:               "est une association basée entre Paris et Cusco, qui vient en aide aux jeunes démunis des plus pauvres, vivant dans la rue. Le but est simple : remettre les élèves à l'école, les étudiants à la fac et les jeunes pro au travail."
+        keepInTouch:            "Se tenir au courant : "
+        ifWantToJoin:           "Si quelqu'un vous a envoyé cette email et vous voudriez vous joindre au listing des newsletter, vous pouvez ajouter votre email "
+        here:                   "ici"
+        quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
+        clickHere:              cliquer ici
+
+# Email helpUs
+emailHelpUs:
+    notes: 
+        topSentence:            "Ceci est un message de "
+    titles:
+        general:                COMMANDE ENVOYÉ
+        order:         CONTENU DE LA COMMANDE
+    content:
+        youWrote:               "Vous avez passé commande depuis notre site web et pour cela nous vous remercions. Nous devrions répondre très prochainement une fois votre commande préparée pour les détails de paiement."
+        thankYou:               Encore merci
+        forMessage:             pour votre message. 
+        mailContent:            "Rappel du contenu de la commande :"
+        askedFor:               Demande :
+        artisanat:              "pièce(s) d'artisanat"
+        turbulette:             turbulette(s)
+        CDchant:                CD de chants en Quechua
+    errors:
+        nothingHere:            Votre message est vide.
+        please:                 Veuillez contacter
+        contactAdministration:  "l'administration"
+    footer:
+        anecdote:               "est une association basée entre Paris et Cusco, qui vient en aide aux jeunes démunis des plus pauvres, vivant dans la rue. Le but est simple : remettre les élèves à l'école, les étudiants à la fac et les jeunes pro au travail."
+        keepInTouch:            "Se tenir au courant : "
+        ifWantToJoin:           "Si quelqu'un vous a envoyé cette email et vous voudriez vous joindre au listing des newsletter, vous pouvez ajouter votre email "
+        here:                   "ici"
+        quitSubscription:       "Vous recevez cet email, soit suite à une commande sur notre site, soit votre abonnement à notre newsletter. Pour vous désabonner de la newsletter, veuillez "
+        clickHere:              cliquer ici
+
+
+
+
+
+
+
+
+
