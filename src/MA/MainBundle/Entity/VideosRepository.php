@@ -20,6 +20,16 @@ class VideosRepository extends EntityRepository
 					->getResult();
 	}
 
+	public function findLatestOneByType($type) {
+		return $this->createQueryBuilder('v')
+					->where ('v.category = :type')
+					->setParameter('type', $type)
+					->orderBy('v.createdAt', 'DESC')
+					->setMaxResults(1)
+					->getQuery()
+					->getResult();
+	}
+
 	public function findAllByDate() {
 		return $this->createQueryBuilder('v')
 					->orderBy('v.createdAt', 'DESC')

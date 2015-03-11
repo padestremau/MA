@@ -26,11 +26,11 @@
 
 				  	<div id="section_admin" class="row center">
 						<div class="row92">
-			    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+			    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 left">
 								<br/><br/>
-								<strong>
+								<h3 class="left">
 									Articles :
-								</strong>
+								</h3>
 								{% if articles|length > 0 %}
 									<ul class="list_no_style_li list_articles_admin">
 										{% for single_article in articles %}
@@ -59,14 +59,14 @@
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 border_black_left">
 								<div id="article_content">
 									<div class="row">
-					    				<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_article_new') }}')">
+					    				<a class="btn btn-action-admin float-left" href="{{ path('ma_user_article_new') }}">
 					    					Nouveau
 					    				</a>
 					    				{% if articles|length > 0 %}
 					    				<a class="btn btn-action-admin float-right logout-btn-admin"  href="javascript:areYouSureDeleteArticle('{{ path('ma_user_article_delete', {'articleId':articleAsked.id}) }}')">
 					    					Supprimer
 					    				</a>
-					    				<a class="btn btn-action-admin float-right"  href="javascript:loadContentAdmin('{{ path('ma_user_article_edit', {'articleId':articleAsked.id}) }}')">
+					    				<a class="btn btn-action-admin float-right"  href="{{ path('ma_user_article_edit', {'articleId':articleAsked.id}) }}">
 					    					Modifier
 					    				</a>
 					    				{% endif %}
@@ -79,12 +79,12 @@
 											<div>
 												{% if articleAsked.alt|length > 0  and articleAsked.url|length > 0 %}
 													<div class="article_photo_container">
-														<div class="article_photo_admin" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+														<div class="article_photo_admin" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}" onClick="showPhotoCarousel('{{ asset(articleAsked.webPath) }}')">
 									                    </div>
 													</div>
 							                   {% else %}
 													<div class="article_photo_container">
-								                   		<div class="article_photo_admin" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
+								                   		<div class="article_photo_admin" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_article_photo.png') }}')">
 									                    </div>
 													</div>
 							                   {% endif %}
@@ -100,7 +100,7 @@
 															{% endif %}
 														</h4>
 													</div>
-													<div class="inline_div float-right italic">
+													<div class="inline_div float-right date_article_lg">
 														{% if articleAsked.place|length > 0 %}
 															{{ articleAsked.place }},
 														{% endif %}

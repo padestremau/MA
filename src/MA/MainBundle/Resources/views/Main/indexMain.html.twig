@@ -605,16 +605,18 @@
 									{% for photo in photosEcoliers %}
 										<div class="col-md-2 col-xs-2">
 											<div class="article_photo_container">
-												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+												<div class="photo_default_white" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
 							                    </div>
 											</div>
 											<script type="text/javascript">
-												var cw = $('.photo_default').width();
-												$('.photo_default').css({'height':cw+'px'});
+												var cw = $('.photo_default_white').width();
+												$('.photo_default_white').css({'height':cw+'px'});
 											</script>
-											<strong>
-												{{ photo.title }}
-											</strong>
+											<div class="center">
+												<strong>
+													{{ photo.title }}
+												</strong>
+											</div>
 										</div>
 									{% endfor %}
 								{% else %}
@@ -813,9 +815,11 @@
 												var cw = $('.photo_default').width();
 												$('.photo_default').css({'height':cw+'px'});
 											</script>
-											<strong>
-												{{ photo.title }}
-											</strong>
+											<div class="center">
+												<strong>
+													{{ photo.title }}
+												</strong>
+											</div>
 										</div>
 									{% endfor %}
 								{% else %}
@@ -1014,9 +1018,11 @@
 												var cw = $('.photo_default').width();
 												$('.photo_default').css({'height':cw+'px'});
 											</script>
-											<strong>
-												{{ photo.title }}
-											</strong>
+											<div class="center">
+												<strong>
+													{{ photo.title }}
+												</strong>
+											</div>
 										</div>
 									{% endfor %}
 								{% else %}
@@ -1036,6 +1042,10 @@
 
 			<!-- L'actu -->
 			<div class="section" id="actu">
+
+				<script>
+					var articlesContent;
+				</script>
 
 
 				<div class="row actu">
@@ -1073,6 +1083,45 @@
 												{% endif %}
 											</span>
 										</li>
+
+										<!-- Modal article -->
+										<div class="modal fade" id="modal_article_art_{{ single_article.id }}" tabindex="-1" role="dialog" aria-labelledby="modal_articleLabel" aria-hidden="true">
+										  <div class="modal-dialog modal-lg">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h3 class="modal-title">
+										        	{{ single_article.title }}
+										        </h3>
+										      </div>
+										      <div class="modal-body">
+										        <div class="row">
+										          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+										          <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 left top_info_modal_article">
+										          	{{ single_article.place }}
+										          </div>
+										          <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 right top_info_modal_article">
+										            Dernière modification le <span id="modal_articleDate">
+										            	{{ single_article.updatedAt|date('d M Y') }}
+										            </span> à <span id="modal_articleTime">
+										            	{{ single_article.updatedAt|date('H:i') }}
+										            </span>
+										          </div>
+										          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+										        </div>
+										        <div class="row modal_content" id="modal_articleContent">
+										          {{ single_article.content|raw }}
+										        </div>
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-modal" data-dismiss="modal">
+										          Fermer
+										        </button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
+										
 									{% endfor %}
 								</ul>
 							{% else %}
@@ -1087,12 +1136,12 @@
 									<div>
 										{% if articleAsked.alt|length > 0  and articleAsked.url|length > 0 %}
 											<div class="article_photo_container">
-												<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+												<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}" onClick="showPhotoCarousel('{{ asset(articleAsked.webPath) }}')">
 							                    </div>
 											</div>
 					                   {% else %}
 											<div class="article_photo_container">
-						                   		<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
+						                   		<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_article_photo.png') }}')">
 							                    </div>
 											</div>
 					                   {% endif %}
@@ -1108,7 +1157,7 @@
 													{% endif %}
 												</h4>
 											</div>
-											<div class="inline_div float-right italic">
+											<div class="inline_div float-right date_article_lg">
 												{% if articleAsked.place|length > 0 %}
 													{{ articleAsked.place }},
 												{% endif %}
@@ -1118,38 +1167,24 @@
 											</div>
 										</div>
 										
-										<div class="row hidden-lg hidden-md hidden-sm">
+										<div class="row center">
 											{% if articleAsked.content|length > 0 %}
-												{{ articleAsked.content|raw|truncate(100, false, '...') }}
-											{% endif %}
-										</div>
-										<div class="row hidden-xs">
-											{% if articleAsked.content|length > 0 %}
-												{{ articleAsked.content|raw|truncate(600, false, '...') }}
+												<!-- Button trigger modal -->
+												<button type="button" class="btn btn-perso" onClick="showFullArticle('#modal_article_art_{{ articleAsked.id }}')">
+													Lire l'article
+												</button>
 											{% else %}
 												(Article vide)
 											{% endif %}
 										</div>
-
-						    			<div class="row center">
-											<!-- Button trigger modal -->
-											<button type="button" class="btn btn-perso" onClick="showFullArticle('{{ articleAsked.title }}', '{{ articleAsked.content }}', '{{ articleAsked.place }}', '{{ articleAsked.updatedAt|date('d M Y') }}', '{{ articleAsked.updatedAt|date('H:i') }}')">
-												Suite de l'article
-											</button>
-						    			</div>
 									</div>
 								</div>
 								{% endif %}
 							</div>
 							<div id="article_photo_script">
 								<script type="text/javascript">
-			                        function showFullArticle(title, content, place, updatedAt_date, updatedAt_time) {
-										document.getElementById('modal_articleTitle').innerHTML = title;
-										document.getElementById('modal_articleContent').innerHTML = content;
-										document.getElementById('modal_articlePlace').innerHTML = place;
-										document.getElementById('modal_articleDate').innerHTML = updatedAt_date;
-										document.getElementById('modal_articleTime').innerHTML = updatedAt_time;
-										$('#modal_article').modal('toggle');
+			                        function showFullArticle(modalID) {
+										$(modalID).modal('toggle');
 									}
 
 									function changeCSSsheet(selector, property, value) {

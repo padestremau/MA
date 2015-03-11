@@ -29,6 +29,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'MARedactorBundle:Redactor:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -79,3 +82,90 @@ fos_user:
     user_class:    MA\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
     service:
         mailer: fos_user.mailer.twig_swift
+
+# Redactor bundle
+ma_redactor:
+    admin_article:
+        upload_file:
+            dir: /../web/uploads/files
+            web_dir : /uploads/files/
+            maxSize: 20M
+            mimeTypes:
+                - image/png
+                - image/jpeg
+                - image/jpg
+                - application/pdf
+                - application/msword
+                - text/csv
+                - text/plain
+            folders: false
+        upload_image:
+            dir: /../web/uploads/images
+            web_dir : /uploads/images/
+            maxSize: 5M
+            # minWidth:               100
+            # maxWidth:               1000
+            # minHeight:              100
+            # maxHeight:              1000
+            folders: false
+        settings:
+            lang:                   fr
+            minHeight:              200
+            plugins:                ['fullscreen']
+            tabindex : 0
+            buttons:                ['html', 'formatting', 'bold', 'italic', 'underline', 'deleted', 'link', 'alignment', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'image', 'video', 'file', 'table', 'horizontalrule']
+            formattingTags:         ['p', 'blockquote', 'pre']
+            imageEditable:          true
+            imageResizable:         true
+            imageLink:              true
+            imagePosition:          true
+            imageFloatMargin:       '20px'
+            imageUpload :           '/redactor/imageUpload/default'
+            fileUpload:             '/redactor/fileUpload/default'
+            clipboardUpload:        true
+            clipboardUploadUrl:     '/redactor/clipboardUpload/default'
+        role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
+
+
+# stp_redactor:
+#     admin:
+#         upload_file:
+#             dir:                  %kernel.root_dir%/../web/uploads/content/files
+#             maxSize:              5M
+#             mimeTypes:            ['image/png', 'image/jpeg', 'image/jpg']
+#             folders:              true
+#         upload_image:
+#             dir:                  %kernel.root_dir%/../web/uploads/content/images
+#             maxSize:              5M
+#             minWidth:             100
+#             maxWidth:             1000
+#             minHeight:            100
+#             maxHeight:            1000
+#             # Allow to store file in date-bases folders (like "2012-10-23/image.png
+#             folders:              true
+#         # Redactor settings, see http://imperavi.com/redactor/docs/settings/
+#         settings:
+#             lang:                 fr
+#             source:               false
+#             autoresize:           false
+#             cleanup:              false
+#             convertLinks:         false
+#             convertDivs:          false
+#             overlay:              false
+#             observeImages:        false
+#             shortcuts:            false
+#             air:                  false
+#             mobile:               false
+#             tabindex:             1
+#             imageGetJson:         /load/imagelist
+#             protocol:             https://
+#             minHeight:            300
+#             fileUploadErrorCallback:    redactorErrorUploadFile
+#             fileUploadCallback:         redactorUploadFile
+#             imageUploadErrorCallback:   redactorErrorUploadFile
+#             imageUploadCallback:        redactorUploadFile
+#             buttons:              ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted']
+#             formattingTags:       ['p', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4']
+#             airButtons:           ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted']
+#         # User roles who have access to this redactor view
+        # role:                 [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]

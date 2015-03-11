@@ -404,3 +404,13 @@
   }
 
   // END SMOOTH SCROLLING
+
+  /**
+   * Show photos
+   */
+  function showPhotoCarousel(photoPath) {
+    $('#photo_in_carousel_toReplace').attr({'src':photoPath});
+    var modal_height = $('.modal-body').height();
+    $('#photo_in_carousel_toReplace').css({'max-height':modal_height+'px'});
+    $('#modal_photos').modal('show');
+  }

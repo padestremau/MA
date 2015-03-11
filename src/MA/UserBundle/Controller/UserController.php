@@ -261,17 +261,37 @@ class UserController extends Controller
         }
 
         if ($videoId != null) {
-                $videoSelect = $this ->getDoctrine()
+            $videoSelect = $this ->getDoctrine()
                                 ->getManager()
                                 ->getRepository('MAMainBundle:Videos')
                                 ->find($videoId);
         }
         else {
-            $videoSelect = $this ->getDoctrine()
-                            ->getManager()
-                            ->getRepository('MAMainBundle:Videos')
-                            ->findLatestOne();
+            if ($type == 'ecoliers') {
+                $videoSelect = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Videos')
+                                ->findLatestOneByType('ecoliers');
+            }
+            else if ($type == 'etudiants') {
+                $videoSelect = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Videos')
+                                ->findLatestOneByType('etudiants');
+            }
+            else if ($type == 'jeunesPro') {
+                $videoSelect = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Videos')
+                                ->findLatestOneByType('jeunesPro');
+            }
+            else {
+                $videoSelect = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Videos')
+                                ->findLatestOne();
 
+            }
             if (sizeof($videoSelect) > 0) {
                 $videoSelect = $videoSelect[0];
             }

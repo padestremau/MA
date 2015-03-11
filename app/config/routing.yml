@@ -44,3 +44,10 @@ fos_user_change_password:
     # prefix:     /{_locale}/changePassword
     # requirements:
     #     _locale: es|en|fr
+
+
+# Redactor 
+ma_redactor:
+    resource: "@MARedactorBundle/Controller/"
+    type:     annotation
+    prefix:   /redactor/

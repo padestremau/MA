@@ -41,6 +41,26 @@
       <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
     {% endstylesheets %}
 
+    {% if (route == 'ma_user_article_edit') 
+        or (route == 'ma_user_article_new') %}
+      {% stylesheets
+      'redactor/redactor.css'
+      'bundles/stpredactor/css/sonata.css'
+      filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
+      {% endstylesheets %}
+      {% javascripts 
+      'redactor/redactor.js'
+      'redactor/fullscreen.js'
+      'redactor/fr.js'
+      'bundles/stpredactor/js/script.js'
+      %}
+      <!-- 'jquery.autoSave.js'
+      'jquery.validate.min.js' -->
+      <script type="text/javascript" src="{{ asset_url }}"> </script>
+      {% endjavascripts %}
+    {% endif %}
+
     <!-- FLIP -->
     {% javascripts 
       'js/jquery.flip.js'
@@ -89,7 +109,7 @@
         <!-- END button -->
 
         <!-- BEGIN social -->
-          {% include 'includes/modal_article.html.twig' %}
+          {% include 'includes/modals.html.twig' %}
         <!-- END social -->
 
         <!-- BEGIN CONTAINER -->

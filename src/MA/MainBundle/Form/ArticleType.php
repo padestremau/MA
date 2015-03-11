@@ -2,6 +2,7 @@
 
 namespace MA\MainBundle\Form;
 
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -16,7 +17,10 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title', 'text', array('label' => 'Titre'))
-            ->add('content', 'textarea', array('label' => 'Contenu'))
+            ->add('content','redactor', array( 
+                                            "redactor"=>"admin_article",
+                                            'label' => 'Contenu'
+                                            ))
             ->add('createdAt', 'datetime', array(
                                             'input'  => 'datetime',
                                             'widget' => 'choice',
