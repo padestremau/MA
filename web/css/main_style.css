@@ -156,7 +156,7 @@ h1 span {
 @media (min-width: 1400px) {
 	h1 {
 		font-size: 6.6em;
-		margin-top: 210px !important;
+		margin-top: 200px !important;
 	}
 }
 @media (min-width: 992px) and (max-width: 1399px) {
@@ -906,6 +906,7 @@ hr {
 	width: 20px;
 	position: relative;
 	top: -2px;
+	z-index: 5;
 }
 
 
@@ -1139,7 +1140,7 @@ hr {
 	color: white !important;
 	background-color: rgba(196,1,1,0.7);
 	border-radius: 0;
-	position: absolute;
+	
 }
 .btn-diapo:hover {
 	color: white;
@@ -1150,30 +1151,36 @@ hr {
 }
 @media (min-width: 1400px) {
 	.btn-diapo {
-		left: 45%;
-		top: 150px;
+		/*left: 45%;
+		top: 150px;*/
+		margin-right: 80px;
 	}
 }
 @media (min-width: 992px) and (max-width: 1399px) {
 	.btn-diapo {
-		left: 43.5%;
-		top: 130px;
+		/*left: 43.5%;
+		top: 130px;*/
+		margin-right: 0px;
+		font-size: 0.85em;
 	}
 }
 @media (min-width: 768px) and (max-width: 991px) {
 	.btn-diapo {
+		position: absolute;
 		left: 42%;
 		top: 100px;
 	}
 }
 @media (min-width: 478px) and (max-width: 767px) {
 	.btn-diapo {
+		position: absolute;
 		left: 35%;
 		top: 100px;
 	}
 }
 @media (max-width: 477px) {
 	.btn-diapo {
+		position: absolute;
 		left: 30%;
 		top: 60px;
 	}
