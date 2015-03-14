@@ -13,6 +13,12 @@ use MA\MainBundle\Form\PhotosType;
 use MA\MainBundle\Entity\Videos;
 use MA\MainBundle\Form\VideosType;
 
+use MA\MainBundle\Entity\Person;
+use MA\MainBundle\Form\PersonType;
+
+use MA\MainBundle\Entity\Project;
+use MA\MainBundle\Form\ProjectType;
+
 class UserController extends Controller
 {
     public function indexAction()
@@ -381,6 +387,92 @@ class UserController extends Controller
 
         // On redirige vers la page de visualisation de le document nouvellement créé
         return $this->redirect($this->generateUrl('ma_user_videos_spe', array('type' => $type)));
+    }
+
+    public function nosBesoinsAction($elementType = null, $elementId = null)
+    {
+        $persons = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Person')
+                            ->findAll();
+
+        $projects = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Project')
+                            ->findAll();
+
+        if ($elementType == 'beneficiaires' and $elementId != null) {
+                $elementAsked = $this ->getDoctrine()
+                                        ->getManager()
+                                        ->getRepository('MAMainBundle:Person')
+                                        ->find($elementId);
+        }
+        else if ($elementType == 'projets' and $elementId != null) {
+                $elementAsked = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Project')
+                                ->find($elementId);
+        }
+        else {
+            $elementAsked = '';
+        }
+
+        return $this->render('MAUserBundle:User:nosBesoins.html.twig', array(
+            'elementAsked' => $elementAsked,
+            'elementType' => $elementType,
+            'persons' => $persons,
+            'projects' => $projects
+            ));
+    }
+
+    public function personNewAction()
+    {
+        $person = new Person;
+
+        // On utiliser le OrdersType
+        $formNewPerson = $this->createForm(new PersonType(), $person);
+
+        // On récupère la requête
+        $formNewPerson->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewPerson->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($person);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_nosBesoins'));
+        }
+
+        return $this->render('MAUserBundle:User:personNew.html.twig', array(
+            'formNewPerson' => $formNewPerson->createView()
+        ));
+    }
+
+    public function projectNewAction()
+    {
+        $project = new Project;
+
+        // On utiliser le OrdersType
+        $formNewProject = $this->createForm(new ProjectType(), $project);
+
+        // On récupère la requête
+        $formNewProject->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewProject->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($project);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_nosBesoins'));
+        }
+
+        return $this->render('MAUserBundle:User:projectNew.html.twig', array(
+            'formNewProject' => $formNewProject->createView()
+        ));
     }
 
     public function contentAction()

@@ -42,7 +42,11 @@
     {% endstylesheets %}
 
     {% if (route == 'ma_user_article_edit') 
-        or (route == 'ma_user_article_new') %}
+        or (route == 'ma_user_article_new')
+        or (route == 'ma_user_project_new')
+        or (route == 'ma_user_project_edit')
+        or (route == 'ma_user_person_edit')
+        or (route == 'ma_user_person_new') %}
       {% stylesheets
       'redactor/redactor.css'
       'bundles/stpredactor/css/sonata.css'
@@ -53,6 +57,7 @@
       'redactor/redactor.js'
       'redactor/fullscreen.js'
       'redactor/fr.js'
+      'jscolor/jscolor.js'
       'bundles/stpredactor/js/script.js'
       %}
       <!-- 'jquery.autoSave.js'

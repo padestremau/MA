@@ -13,6 +13,7 @@ body
 	color: rgba(12,28,57,1) !important;
 }
 .main_background {
+	z-index: 0 !important;
 	background-color: rgba(22,54,110,0.8);
 }
 
@@ -133,8 +134,14 @@ body
 .padding0 {
 	padding: 0;
 }
+.padding5 {
+	padding: 5px;
+}
+.padding10 {
+	padding: 10px;
+}
 .padding50 {
-	padding: 50;
+	padding: 50px;
 }
 img {
 	width: 100%;
@@ -624,7 +631,7 @@ hr {
 .dropdown-menu {
 	font-size: 0.8em !important;
 	color: white !important;
-  	left: 20% !important;
+  	left: 10% !important;
   	min-width: 100px;
   	list-style: none;
   	background-color: rgba(22,54,110,0.88);
@@ -649,6 +656,9 @@ hr {
 .dropdown-menu > .disabled > a:hover,
 .dropdown-menu > .disabled > a:focus {
   	color: #777;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 .nav-tabs {
@@ -920,6 +930,7 @@ hr {
 	width: 100%;
 	background-color:  transparent !important;/*#f1f1f1;*/
 	color: black !important;
+	z-index: 0 !important;
 }
 
 .section_diapo {
@@ -1581,6 +1592,39 @@ hr {
 	border: 4px solid white;
 	border-radius: 0px;	
 }
+.photo_default:hover, .photo_default_white:hover {
+	cursor: pointer;
+}
+
+.button_besoin_info {
+	margin-left: 20px;
+	font-size: 0.5em;
+	border-bottom: 1px solid transparent !important;
+}
+.button_besoin_info:hover {
+	border-bottom: 1px solid rgba(12,28,57,1) !important;
+}
+.prix_subvention {
+	float: right;
+	color: white !important;
+	background-color: rgba(22,54,110,0.95);
+	margin: 0;
+	margin-top: -5px !important;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+.prix_recolte_danger {
+	color: rgba(215,84,82,0.95) !important;
+}
+.prix_recolte_warning {
+	color: rgba(238,172,87,0.95) !important;
+}
+.prix_recolte_info {
+	color: rgba(96,192,220,0.95) !important;
+}
+.prix_recolte_success {
+	color: rgba(95,183,96,0.95) !important;
+}
 
 .actu {
 	width: 92%;
@@ -1683,20 +1727,22 @@ hr {
 	background-color: rgba(250,250,250,0.1) !important;
 }
 
-.modal-content {
-	padding: 0px !important
-}
-.modal_content {
-	font-size: 1.3em;
-	padding: 20px 10px !important
-}
 .modal-dialog {
+	opacity: 1 !important;
+	z-index: 9999 !important;
 	/*background-color: rgba(41,41,41,0.95);*/
 	background-color: rgba(250,250,250,0.99); /*rgba(120,30,20,0.99) ;*/
 	/*background-image: url('../img/system/defaults/background_default_medium.png');*/
 	border: 1px solid white;
 	border-radius: 0;
 	color: rgba(22,54,110,0.95);
+}
+.modal-content {
+	padding: 0px !important;
+}
+.modal_content {
+	font-size: 1.3em;
+	padding: 20px 10px !important;
 }
 .modal-title {
 	padding: 0 !important;
@@ -1756,6 +1802,18 @@ body.modal-open {
 	padding: 30px;
 }
 
+.besoin_photo {
+	border: 3px solid rgba(22,54,110,0.88);
+	width: 100% !important;
+	border-radius: 50%;
+}
+.besoin_photo:hover {
+	cursor: pointer;
+}
+.besoin_photo_container {
+	padding: 5px;
+}
+
 .message_warning {
 	font-style: italic;
 	font-weight: 400;
@@ -1767,7 +1825,7 @@ body.modal-open {
 	color: white;
 	font-size: 1em;
 	box-shadow: none;
-	border-radius: 10px;
+	border-radius: 0px;
 	border:1px solid rgba(22,54,110,1); 
 	padding: 3px 6px ; 
  	background-color: rgba(22,54,110,0.7);
@@ -1784,6 +1842,9 @@ body.modal-open {
 
 .photo_helpUs {
 	border: 3px solid rgba(22,54,110,0.88);
+}
+.photo_helpUs:hover {
+	cursor: pointer;
 }
 .photo_partner {
 	border: 1px solid rgba(22,54,110,0.4);
@@ -1924,6 +1985,48 @@ body.modal-open {
 .btn-category-admin .btn_arrow {
 	opacity: 0;
 }
+
+.list_elements_admin {
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+}
+.list_elements_admin li {
+	color: rgba(12,28,57,1) !important;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	padding: 5px;
+}
+.li_element_active {
+	border: 1px solid rgba(22,54,110,0.5);
+	background-color: rgba(22,54,110,0.1);
+}
+.li_element_active a {
+	font-weight: 900 !important;
+}
+.li_element_active .arrow_element img, .li_element_active .arrow_element_opp img {
+	opacity: 1;
+}
+.date_element, .date_element_opp {
+	font-size: 0.8em;
+	color: rgba(150,150,150,0.8);
+	font-style: italic;
+}
+.arrow_element {
+	margin-left: 5px;
+}
+.arrow_element img {
+	width: 20px;
+	opacity: 0;
+}
+.arrow_element_opp {
+	margin-right: 5px;
+}
+.arrow_element_opp img {
+	width: 20px;
+	opacity: 0;
+}
+
 
 /* ------------------------------------------------------ Footer ------------------------------------------------------ */
 .footer

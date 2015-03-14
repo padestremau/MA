@@ -126,46 +126,23 @@ ma_redactor:
             clipboardUploadUrl:     '/redactor/clipboardUpload/default'
         role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
 
+    admin_person:
+        settings:
+            lang:                   fr
+            minHeight:              200
+            plugins:                ['fullscreen']
+            tabindex : 0
+            buttons:                ['html', 'formatting', 'bold', 'italic', 'underline', 'deleted', 'link', 'alignment', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'horizontalrule']
+            formattingTags:         ['p', 'blockquote', 'pre']
+        role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
 
-# stp_redactor:
-#     admin:
-#         upload_file:
-#             dir:                  %kernel.root_dir%/../web/uploads/content/files
-#             maxSize:              5M
-#             mimeTypes:            ['image/png', 'image/jpeg', 'image/jpg']
-#             folders:              true
-#         upload_image:
-#             dir:                  %kernel.root_dir%/../web/uploads/content/images
-#             maxSize:              5M
-#             minWidth:             100
-#             maxWidth:             1000
-#             minHeight:            100
-#             maxHeight:            1000
-#             # Allow to store file in date-bases folders (like "2012-10-23/image.png
-#             folders:              true
-#         # Redactor settings, see http://imperavi.com/redactor/docs/settings/
-#         settings:
-#             lang:                 fr
-#             source:               false
-#             autoresize:           false
-#             cleanup:              false
-#             convertLinks:         false
-#             convertDivs:          false
-#             overlay:              false
-#             observeImages:        false
-#             shortcuts:            false
-#             air:                  false
-#             mobile:               false
-#             tabindex:             1
-#             imageGetJson:         /load/imagelist
-#             protocol:             https://
-#             minHeight:            300
-#             fileUploadErrorCallback:    redactorErrorUploadFile
-#             fileUploadCallback:         redactorUploadFile
-#             imageUploadErrorCallback:   redactorErrorUploadFile
-#             imageUploadCallback:        redactorUploadFile
-#             buttons:              ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted']
-#             formattingTags:       ['p', 'blockquote', 'pre', 'h1', 'h2', 'h3', 'h4']
-#             airButtons:           ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted']
-#         # User roles who have access to this redactor view
-        # role:                 [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
+    admin_project:
+        settings:
+            lang:                   fr
+            minHeight:              200
+            plugins:                ['fullscreen']
+            tabindex : 0
+            buttons:                ['html', 'formatting', 'bold', 'italic', 'underline', 'deleted', 'link', 'alignment', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'horizontalrule']
+            formattingTags:         ['p', 'blockquote', 'pre']
+        role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
+

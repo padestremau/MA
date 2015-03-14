@@ -80,6 +80,49 @@ ma_user_video_delete:
         videoId: \d+
 
 
+# Pour les projets "nos besoins"
+ma_user_nosBesoins:
+    path:     /nosBesoins
+    defaults: { _controller: MAUserBundle:User:nosBesoins }
+
+ma_user_nosBesoins_elementAjax:
+    path:     /nosBesoins/{elementType}/{elementId}
+    defaults: { _controller: MAUserBundle:User:nosBesoins }
+    requirements:
+        elementId: \d+
+
+ma_user_person_new:
+    path:     /nosBesoins/beneficiaires/nouveau
+    defaults: { _controller: MAUserBundle:User:personNew }
+
+ma_user_project_new:
+    path:     /nosBesoins/projects/nouveau
+    defaults: { _controller: MAUserBundle:User:projectNew }
+
+ma_user_person_edit:
+    path:     /nosBesoins/beneficiaires/modifier/{personId}
+    defaults: { _controller: MAUserBundle:User:personNew }
+    requirements:
+        personId: \d+
+
+ma_user_project_edit:
+    path:     /nosBesoins/projects/modifier/{projectId}
+    defaults: { _controller: MAUserBundle:User:projectNew }
+    requirements:
+        projectId: \d+
+
+ma_user_person_delete:
+    path:     /nosBesoins/beneficiaires/supprimer/{personId}
+    defaults: { _controller: MAUserBundle:User:personDelete }
+    requirements:
+        personId: \d+
+
+ma_user_project_delete:
+    path:     /nosBesoins/projets/supprimer/{projectId}
+    defaults: { _controller: MAUserBundle:User:projectDelete }
+    requirements:
+        projectId: \d+
+
 # Pour contenu du site
 ma_user_content:
     path:     /content

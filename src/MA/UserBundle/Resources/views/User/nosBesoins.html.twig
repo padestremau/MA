@@ -1,0 +1,389 @@
+{# src/MA/UserBundle/Resources/User/nosBesoins.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Nos besoins
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_admin" id="section6">
+
+				<script>
+					function convertHex(hex,opacity){
+					    hex = hex.replace('#','');
+					    r = parseInt(hex.substring(0,2), 16);
+					    g = parseInt(hex.substring(2,4), 16);
+					    b = parseInt(hex.substring(4,6), 16);
+
+					    result = 'rgba('+r+','+g+','+b+','+opacity/100+')';
+					    return result;
+					}
+				</script>
+				
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+				  		<div class="row92">
+			    			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left">
+								<br/>
+								<h4 class="left">
+									Bénéficiaires :
+								</h4>
+								<div class="row">
+									<a class="btn btn-action-admin float-right" href="{{ path('ma_user_person_new') }}">
+				    					Nouveau
+				    				</a>
+								</div>
+								<br/>
+								{% if persons|length > 0 %}
+									<ul class="list_no_style_li list_elements_admin">
+										{% for single_person in persons %}
+											<li class="element_link {% if single_person == elementAsked %}li_element_active{% endif %}" id="person_n_{{ single_person.id }}">
+												<a href="javascript:displaySelectedElement('{{ path('ma_user_nosBesoins_elementAjax', {'elementType':'beneficiaires', 'elementId':single_person.id}) }}', 'person_n_{{ single_person.id }}')" class="no_style_a">
+													{{ single_person.name|truncate(40, false, '...') }}
+												</a>
+												<span class="float-right arrow_element">
+													<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
+												</span>
+												<span class="float-right date_element">
+													{% if single_person.createdAt|length > 0 %}
+														{{ single_person.createdAt|date('d M Y') }}
+													{% endif %}
+												</span>
+											</li>
+
+											<script>
+												var bgColor = convertHex('#{{ single_person.bgColor }}', 20);
+												$('#person_n_{{ single_person.id }}').css({'background-color':bgColor});
+											</script>
+										{% endfor %}
+									</ul>
+								{% else %}
+									Aucun bénéficiaire
+								{% endif %}
+							</div>
+
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 border_black_left">
+								<div id="element_content">
+					    			<br/>
+					    			<div class="row left">
+					    				<div class="row">
+					    					<h4 class="left">
+					    						Element choisi :
+					    					</h4>
+					    				</div>
+										{% if elementType == 'beneficiaires' %}
+											<div class="row">
+							    				<a class="btn btn-action-admin float-right logout-btn-admin"  href="javascript:areYouSureDeletePerson('{{ path('ma_user_person_delete', {'personId':elementAsked.id}) }}')">
+							    					Supprimer
+							    				</a>
+							    				<a class="btn btn-action-admin float-right"  href="{{ path('ma_user_person_edit', {'personId':elementAsked.id}) }}">
+							    					Modifier
+							    				</a>
+							    			</div>
+							    			<br/>
+							    			<div class="row">
+							    				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+						    						{% if elementAsked.alt|length > 0  and elementAsked.url|length > 0 %}
+														<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/besoins/photos/ademir.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/besoins/photos/ademir.png') }}')"></div>
+								                   {% else %}
+							                   			<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_besoin.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_besoin.png') }}')"></div>
+								                   {% endif %}
+
+													<script>
+									                    var cw = $('.besoin_photo').width();
+									                    $('.besoin_photo').css({'height':cw+'px'});
+								                        changeCSSsheet('.besoin_photo', 'height', cw+'px');
+													</script>
+						    					</div>
+						    					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
+						    						<h4 class="left">
+						    							{{ elementAsked.name }} <button class="no_style_button button_besoin_info" type="button" data-toggle="collapse" data-target="#showDescription_{{ elementAsked.id }}" aria-expanded="false" aria-controls="collapseExample">En savoir plus ></button>
+						    						</h4>
+						    						<div class="row">
+														<div class="collapse" id="showDescription_{{ elementAsked.id }}">
+															{{ elementAsked.description|raw }}
+														  	<br/><br/>
+														</div>
+						    						</div>
+						    						<div class="row">
+						    							{% set hasProject = 'NO' %}
+														{% if projects|length > 0 %}
+															{% for single_project in projects %}
+																{% if single_project.forPerson == elementAsked %}
+																	<div class="thumbnail">
+																  		<div class="caption">
+																	    	<strong>
+																	    		Subvention pour une année :
+																	    	</strong>
+																	    	<span class="prix_subvention"><strong>S/.</strong> {{ single_project.totalAmount }}</span>
+																  		</div>
+																  		{% set project_pourcentage = single_project.currentAmount / single_project.totalAmount %}
+																  		{% set project_pourcentage = project_pourcentage * 100 %}
+																  		{% set project_pourcentage = project_pourcentage|round %}
+																  		<div class="pourcentage">
+																  			<div class="progress">
+																  				<div class="progress-bar 
+																  					{% if project_pourcentage > 75 %}
+																  					progress-bar-success
+																  					{% elseif project_pourcentage > 50 %}
+																  					progress-bar-info
+																  					{% elseif project_pourcentage > 25 %}
+																  					progress-bar-warning
+																  					{% else %}
+																  					progress-bar-danger
+																  					{% endif %}
+																  					progress-bar-striped" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%"></div>
+																			</div>
+																			<div class="row center">
+																				Total récolté actuel : 
+																				<span class="
+																					{% if project_pourcentage > 75 %}
+																  					prix_recolte_success
+																  					{% elseif project_pourcentage > 50 %}
+																  					prix_recolte_info
+																  					{% elseif project_pourcentage > 25 %}
+																  					prix_recolte_warning
+																  					{% else %}
+																  					prix_recolte_danger
+																  					{% endif %}">
+																					<strong>S/.</strong> {{ single_project.currentAmount }} 
+																				</span>
+																			</div>
+																  		</div>
+																  	</div>
+																  	{% set hasProject = 'YES' %}
+																{% endif %}
+															{% endfor %}
+														{% endif %}
+
+														{% if hasProject == 'NO' %}
+															<div class="center">
+																Ce bénéficiaire n'a aucune projet pour le moment.
+															</div>
+														{% endif %}	
+						    						</div>
+						    					</div>
+							    			</div>
+										{% elseif elementType == 'projets' %}
+											<div class="row">
+							    				<a class="btn btn-action-admin float-right logout-btn-admin"  href="javascript:areYouSureDeleteProject('{{ path('ma_user_project_delete', {'projectId':elementAsked.id}) }}')">
+							    					Supprimer
+							    				</a>
+							    				<a class="btn btn-action-admin float-right"  href="{{ path('ma_user_project_edit', {'projectId':elementAsked.id}) }}">
+							    					Modifier
+							    				</a>
+							    			</div>
+							    			<br/>
+											<div class="thumbnail">
+												<div class="caption">
+													<h4>
+														{{ elementAsked.title }}
+													</h4>
+													<div class="row center italic">
+														projet pour <strong>{{ elementAsked.forPerson.name }}</strong>
+													</div>
+													{% if elementAsked.description|length > 0 %}
+														<hr>
+														<strong>Description :</strong> <br/>
+														{{ elementAsked.description|raw }}
+													{% endif %}
+													<hr/>
+													<div class="row">
+														<h5 class="center">
+															<strong>
+																Infos du projet
+															</strong>
+														</h5>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
+															<strong>
+																Somme totale nécessaire :
+															</strong>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
+															<strong>S/.</strong> {{ elementAsked.totalAmount }}
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
+															<strong>
+																Somme récoltée pour l'instant :
+															</strong>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
+															<strong>S/.</strong> {{ elementAsked.currentAmount }}
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
+															<strong>
+																Date d'échéance :
+															</strong>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
+															{{ elementAsked.deliveryAt|date('H:i d M Y') }}
+														</div>
+													</div>
+													<hr/>
+													<div class="row">
+														<h5 class="center">
+															<strong>
+																Rendu utilisateur
+															</strong>
+														</h5>
+														<div class="caption">
+													    	<strong>
+													    		Subvention pour une année :
+													    	</strong>
+													    	<span class="prix_subvention"><strong>S/.</strong> {{ elementAsked.totalAmount }}</span>
+												  		</div>
+												  		{% set project_pourcentage = elementAsked.currentAmount / elementAsked.totalAmount %}
+												  		{% set project_pourcentage = project_pourcentage * 100 %}
+												  		{% set project_pourcentage = project_pourcentage|round %}
+												  		<div class="pourcentage">
+												  			<div class="progress">
+												  				<div class="progress-bar 
+												  					{% if project_pourcentage > 75 %}
+												  					progress-bar-success
+												  					{% elseif project_pourcentage > 50 %}
+												  					progress-bar-info
+												  					{% elseif project_pourcentage > 25 %}
+												  					progress-bar-warning
+												  					{% else %}
+												  					progress-bar-danger
+												  					{% endif %}
+												  					progress-bar-striped" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%"></div>
+															</div>
+															<div class="row center">
+																Total récolté actuel : 
+																<span class="
+																	{% if project_pourcentage > 75 %}
+												  					prix_recolte_success
+												  					{% elseif project_pourcentage > 50 %}
+												  					prix_recolte_info
+												  					{% elseif project_pourcentage > 25 %}
+												  					prix_recolte_warning
+												  					{% else %}
+												  					prix_recolte_danger
+												  					{% endif %}">
+																	<strong>S/.</strong> {{ elementAsked.currentAmount }} 
+																</span>
+															</div>
+												  		</div>
+													</div>
+												</div>
+											</div>
+										{% else %}
+											Aucun élément n'a été sélectionné. Veuillez choisir un bénéficiaire ou un projet.
+										{% endif %}
+					    			</div>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 border_black_left left">
+								<br/>
+								<h4 class="left">
+									Projets :
+								</h4>
+								<div class="row">
+									<a class="btn btn-action-admin float-right" href="{{ path('ma_user_project_new') }}">
+				    					Nouveau
+				    				</a>
+								</div>
+								<br/>
+								{% if projects|length > 0 %}
+									<ul class="list_no_style_li list_elements_admin right">
+										{% for single_project in projects %}
+											<li class="element_link {% if single_project == elementAsked %}li_element_active{% endif %}" id="project_n_{{ single_project.id }}">
+												<a href="javascript:displaySelectedElement('{{ path('ma_user_nosBesoins_elementAjax', {'elementType':'projets', 'elementId':single_project.id}) }}', 'project_n_{{ single_project.id }}')" class="no_style_a">
+													{{ single_project.title|truncate(40, false, '...') }}
+												</a>
+												<span class="float-left arrow_element_opp">
+													<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt=""/>
+												</span>
+												<span class="float-left date_element_opp">
+													{% if single_project.updatedAt|length > 0 %}
+														{{ single_project.updatedAt|date('d M Y') }}
+													{% else %}
+														(Vide)
+													{% endif %}
+												</span>
+											</li>
+										{% endfor %}
+									</ul>
+								{% else %}
+									Aucun projet
+								{% endif %}
+							</div>
+		    			</div>
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+	        	<script>
+              		function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    $(window).resize(function() {
+                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    });
+
+                    var cw = $('.photo_default').width();
+                    $('.photo_default').css({'height':cw+'px'});
+
+              		function areYouSureDeleteArticle(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePhoto(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteVideo(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePerson(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer ce bénéficiaire ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteProject(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) {
+							window.location = path;
+						}
+					}
+              	</script>		
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

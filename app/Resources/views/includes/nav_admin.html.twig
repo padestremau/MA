@@ -50,6 +50,20 @@
 	    	</a>
 	    </li>
 	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_nosBesoins') 
+	    		or (route == 'ma_user_nosBesoins_elementAjax')
+	    		or (route == 'ma_user_project_new')
+		        or (route == 'ma_user_project_edit')
+		        or (route == 'ma_user_person_edit')
+		        or (route == 'ma_user_person_new') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_nosBesoins') }}')" class="no_style_a">
+		    	Nos besoins
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
 	    	{% if (route == 'ma_user_content') %}
 	    		active
 	    	{% endif %}

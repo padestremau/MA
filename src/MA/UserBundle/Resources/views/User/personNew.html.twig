@@ -1,0 +1,239 @@
+{# src/MA/UserBundle/Resources/User/articles.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Bénéficiaires
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_admin" id="section6">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row left">
+				  		<div class="row80">
+				  			<a class="btn btn-action-admin" href="javascript:loadContentAdmin('{{ path('ma_user_nosBesoins') }}')">
+				  				<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+		    					Retour
+		    				</a>
+				  		</div>
+				  		<br/>
+						<div class="row">
+			    			<form method="post" {{ form_enctype(formNewPerson) }}>
+				        		{% if form_errors(formNewPerson) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewPerson) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+									<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								        {{ form_label(formNewPerson.name, 'Nom :', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPerson.name) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPerson.name) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_name = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Nom du bénéficiaire (ex: John)", 'id':'_name', 
+								        		'name':'_name'}} %}
+								        	{{ form_widget(formNewPerson.name, opt_name) }}
+								        </div>
+									</div>
+
+									<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								        {{ form_label(formNewPerson.origin, 'Origine :', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPerson.origin) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPerson.origin) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_origin = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Origine du bénéficiaire (ex: Progreso)", 'id':'_origin', 
+								        		'name':'_origin'}} %}
+								        	{{ form_widget(formNewPerson.origin, opt_origin) }}
+								        </div>
+									</div>
+
+									<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+							        	{{ form_label(formNewPerson.age, 'Age :', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+										{% if form_errors(formNewPerson.age) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPerson.age) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+											{% set opt_age = {'attr': {'class': 'form-control select2',
+								        		'type':'text', 'id':'age', 'name':'_age'}} %}
+								        	{{ form_widget(formNewPerson.age, opt_age) }}
+										</div>
+									</div>
+
+									<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								        {{ form_label(formNewPerson.description, 'Description :', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPerson.description) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPerson.description) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_description = {'attr': { 'class': 'redactor',
+								        		'placeholder':"Courte description à propos du bénéficiaire en particulier", 'id':'_description', 'name':'_description'}} %}
+								        	{{ form_widget(formNewPerson.description, opt_description) }}
+								        </div>
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										{{ form_label(formNewPerson.file, "Photo de profil du bénéficiaire", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPerson.file) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPerson.file) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_file = {'attr': {'type':'file', 'id':'file', 'name':'_file'}} %}
+								        	{{ form_widget(formNewPerson.file, opt_file) }}
+								        </div>
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										{{ form_label(formNewPerson.bgColor, "Couleur d'arrière-plan du bénéficiaire :", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPerson.bgColor) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPerson.bgColor) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_bgColor = {'attr': { 'class': 'color',
+								        		'placeholder':"Couleur d'arrière-plan du bénéficiaire", 'id':'_bgColor', 'name':'_bgColor'}} %}
+								        	{{ form_widget(formNewPerson.bgColor, opt_bgColor) }}
+								        </div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewPerson) }}
+									<div class="center">
+										<input type="submit" class="btn btn-log" value="Enregistrer"/>
+									</div>
+								</div>
+							</form>
+		    			</div>
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+	        	<script>
+              		function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    $(window).resize(function() {
+                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    });
+
+                    var cw = $('.photo_default').width();
+                    $('.photo_default').css({'height':cw+'px'});
+
+              		function areYouSureDeleteArticle(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePhoto(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteVideo(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
+							window.location = path;
+						}
+					}
+              	</script>		
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

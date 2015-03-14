@@ -177,17 +177,22 @@
 					</div>
 					<div class="dropdown">
 					    <a class="dropdown-toggle no_style_a" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-					      L'association <span class="caret"></span>
+					      	L'association <span class="caret"></span>
 					    </a>
 					    <ul class="dropdown-menu dropdown-menu-spe" role="menu">
 				          	<li>
-				          		<a href="#assoc">
+				          		<a href="{{ path('ma_main_homepage') }}#assoc">
+				          			Qui sommes-nous ?
+				          		</a>
+				          	</li>
+				          	<li>
+				          		<a href="{{ path('ma_main_homepage') }}#assoc">
 				          			La charte
 				          		</a>
 				          	</li>
 				          	<li>
-				          		<a href="#assoc">
-				          			Petite histoire
+				          		<a href="{{ path('ma_main_homepage') }}#assoc">
+				          			Quelques repères
 				          		</a>
 				          	</li>
 					    </ul>
@@ -198,29 +203,34 @@
 					    </a>
 					    <ul class="dropdown-menu dropdown-menu-spe" role="menu">
 					    	<li>
-				          		<a href="#ecoliers">
+				          		<a href="{{ path('ma_main_homepage') }}#ecoliers">
 				          			Ecoliers
 				          		</a>
 				          	</li>
 				          	<li>
-				          		<a href="#etudiants">
+				          		<a href="{{ path('ma_main_homepage') }}#etudiants">
 				          			Etudiants
 				          		</a>
 				          	</li>
 				          	<li>
-				          		<a href="#jeunesPro">
+				          		<a href="{{ path('ma_main_homepage') }}#jeunesPro">
 				          			Jeunes pro
 				          		</a>
 				          	</li>
 					    </ul>
 					</div>
+					<div  class="">
+						<a href="{{ path('ma_main_homepage') }}#nosBesoins" class="no_style_a">
+							Nos besoins
+						</a>
+					</div>
 					<div class="">
-						<a href="#actu" class="no_style_a">
+						<a href="{{ path('ma_main_homepage') }}#actu" class="no_style_a">
 							L'actualité
 						</a>
 					</div>
 					<div class="">
-						<a href="#footer" class="no_style_a">
+						<a href="{{ path('ma_main_homepage') }}#footer" class="no_style_a">
 							Contact
 						</a>
 					</div>
@@ -294,7 +304,7 @@
 		
 
 				<div class="row home_quote" id="home_quote">
-					Issus des villages reculés de l’Apurimac, région pauvre de la Cordillère des Andes, les jeunes péruviens se heurtent aux décalages scolaire et social. Ils arrivent à Abancay, Cusco ou Lima pour étudier et souvent ils échouent faute de moyens et d’accompagnement. Mission Andina leur offre ces moyens pour étudier dans de bonnes conditions, se nourrir et se loger.
+					Aidez-nous à ne pas dépendre de vous. (avec encadré)
 				</div>
 			</div>
 
@@ -310,10 +320,12 @@
 				</div>
 
 				<div class="row">
-					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					    <div class="thumbnail">
 					      <div class="caption">
-					        <h3>Petite histoire</h3>
+					        <h3>
+					        	Qui sommes-nous
+					        </h3>
 					        <ul>
 								<li>
 									Après quelques années en France, <strong>Aude</strong> <span class="italic">(Présidente de l’association)</span>, Antoine et leurs deux enfants décident de s’expatrier au Pérou à Cusco. Ils se lancent dans la création d’une entreprise de photo et d’un atelier de charcuterie. Afin de donner du sens à leurs projets, ils créent l’association Mission Andina avec Bénédicte. Dans leur maison, une chambre est réservée à un jeune sans ressource venu étudier à Cusco.
@@ -334,10 +346,13 @@
 					      </div>
 					    </div>
 					</div>
-					<div class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					    <div class="thumbnail">
 					      <div class="caption">
 					        <h3>La charte</h3>
+					        	<p>
+					        		Issus des villages reculés de l’Apurimac, région pauvre de la Cordillère des Andes, les jeunes péruviens se heurtent aux décalages scolaire et social. Ils arrivent à Abancay, Cusco ou Lima pour étudier et souvent ils échouent faute de moyens et d’accompagnement. Mission Andina leur offre ces moyens pour étudier dans de bonnes conditions, se nourrir et se loger.
+					        	</p>
 								<p>
 									L’association est fondée sur la conception chrétienne de l’Homme. Son idée est de construire un monde où tout homme, sans exception de race, de religion, de nationalité, puisse vivre une vie pleinement humaine.
 								</p>
@@ -346,9 +361,6 @@
 								</p>
 								<p>
 									Vécu en commun, dans l’espoir, la souffrance, l’ambition et la joie partagée, le travail unit les volontés, rapproche les esprits et soude les cœurs. En l’accomplissant, les hommes se découvrent frères.
-								</p>
-								<p>
-									Mission Andina œuvre au quotidien afin que les jeunes puissent s’épanouir, se responsabiliser et s’assumer financièrement. Le but étant que chaque jeune parrainé puisse aider à son tour la génération suivante et coopérer à sa mesure au développement de son pays.
 								</p>
 								<p>
 									L’objet de l’association est de permettre l’épanouissement économique de la personne aidée pour que celle-ci puisse :
@@ -389,7 +401,9 @@
 					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
 					    <div class="thumbnail">
 					      <div class="caption">
-					        <h3>Point info</h3>
+					        <h3>
+					        	Quelques repères
+					        </h3>
 								<p>
 									Clenmary, John, Ademir, Marcos, Eduardo, Flor ou Alex ont tous comme point commun la volonté de réussir et d’offrir à leurs enfants une meilleure vie que celle qu’ils ont connue. 
 								</p>
@@ -605,7 +619,7 @@
 									{% for photo in photosEcoliers %}
 										<div class="col-md-2 col-xs-2">
 											<div class="article_photo_container">
-												<div class="photo_default_white" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+												<div class="photo_default_white" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}" onClick="showPhotoCarousel('{{ asset(photo.webPath) }}')">
 							                    </div>
 											</div>
 											<script type="text/javascript">
@@ -808,7 +822,7 @@
 									{% for photo in photosEtudiants %}
 										<div class="col-md-2 col-xs-2">
 											<div class="article_photo_container">
-												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}"  onClick="showPhotoCarousel('{{ asset(photo.webPath) }}')">
 							                    </div>
 											</div>
 											<script type="text/javascript">
@@ -1011,7 +1025,7 @@
 									{% for photo in photosJeunesPro %}
 										<div class="col-md-2 col-xs-2">
 											<div class="article_photo_container">
-												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}">
+												<div class="photo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}" onClick="showPhotoCarousel('{{ asset(photo.webPath) }}')">
 							                    </div>
 											</div>
 											<script type="text/javascript">
@@ -1034,6 +1048,121 @@
 						</div>
 
 					</div>
+				</div>
+
+			</div>
+
+			<!-- L'actu -->
+			<div class="section" id="nosBesoins">
+
+				<div class="row">
+					<div class="row">
+						<h2>
+							Nos besoins
+						</h2>
+						<div class="center italic">
+							Tous les projets en détails
+						</div>
+
+						<hr class="dark_hr"/>
+					</div>
+					<div class="row">
+						{% if persons|length > 0 %}
+							{% for single_person in persons %}
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				    				<div class="row">
+				    					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+				    						{% if single_person.alt|length > 0  and single_person.url|length > 0 %}
+												<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/besoins/photos/ademir.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/besoins/photos/ademir.png') }}')"></div>
+						                   {% else %}
+					                   			<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_besoin.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_besoin.png') }}')"></div>
+						                   {% endif %}
+
+											<script>
+							                    var cw = $('.besoin_photo').width();
+							                    $('.besoin_photo').css({'height':cw+'px'});
+						                        changeCSSsheet('.besoin_photo', 'height', cw+'px');
+											</script>
+				    					</div>
+				    					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
+				    						<h4 class="left">
+				    							{{ single_person.name }} <button class="no_style_button button_besoin_info" type="button" data-toggle="collapse" data-target="#showDescription_{{ single_person.id }}" aria-expanded="false" aria-controls="collapseExample">En savoir plus ></button>
+				    						</h4>
+				    						<div class="row">
+												<div class="collapse" id="showDescription_{{ single_person.id }}">
+													{{ single_person.description|raw }}
+												  	<br/><br/>
+												</div>
+				    						</div>
+				    						<div class="row">
+				    							{% set hasProject = 'NO' %}
+												{% if projects|length > 0 %}
+													{% for single_project in projects %}
+														{% if single_project.forPerson == single_person %}
+															<div class="thumbnail">
+														  		<div class="caption">
+															    	<strong>
+															    		Subvention pour une année :
+															    	</strong>
+															    	<span class="prix_subvention"><strong>S/.</strong> {{ single_project.totalAmount }}</span>
+														  		</div>
+														  		{% set project_pourcentage = single_project.currentAmount / single_project.totalAmount %}
+														  		{% set project_pourcentage = project_pourcentage * 100 %}
+														  		{% set project_pourcentage = project_pourcentage|round %}
+														  		<div class="pourcentage">
+														  			<div class="progress">
+														  				<div class="progress-bar 
+														  					{% if project_pourcentage > 75 %}
+														  					progress-bar-success
+														  					{% elseif project_pourcentage > 50 %}
+														  					progress-bar-info
+														  					{% elseif project_pourcentage > 25 %}
+														  					progress-bar-warning
+														  					{% else %}
+														  					progress-bar-danger
+														  					{% endif %}
+														  					progress-bar-striped" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%"></div>
+																	</div>
+																	<div class="row center">
+																		Total récolté actuel : 
+																		<span class="
+																			{% if project_pourcentage > 75 %}
+														  					prix_recolte_success
+														  					{% elseif project_pourcentage > 50 %}
+														  					prix_recolte_info
+														  					{% elseif project_pourcentage > 25 %}
+														  					prix_recolte_warning
+														  					{% else %}
+														  					prix_recolte_danger
+														  					{% endif %}">
+																			<strong>S/.</strong> {{ single_project.currentAmount }} 
+																		</span>
+																	</div>
+														  		</div>
+														  	</div>
+														  	{% set hasProject = 'YES' %}
+														{% endif %}
+													{% endfor %}
+												{% endif %}
+
+												{% if hasProject == 'NO' %}
+													<div class="center">
+														Ce bénéficiaire n'a aucune projet pour le moment.
+													</div>
+												{% endif %}	
+				    						</div>
+				    					</div>
+				    				</div>
+					    			<hr class="medium_hr"/>
+				    			</div>							
+							{% endfor %}
+						{% else %}
+							<div class="center">
+								Aucun bénéficiaires pour le moment. Merci de votre patience.
+							</div>
+						{% endif %}
+	    			</div>
+
 				</div>
 
 			</div>
@@ -1085,7 +1214,7 @@
 										</li>
 
 										<!-- Modal article -->
-										<div class="modal fade" id="modal_article_art_{{ single_article.id }}" tabindex="-1" role="dialog" aria-labelledby="modal_articleLabel" aria-hidden="true">
+										<div class="modal fade" id="modal_article_art_{{ single_article.id }}" tabindex="-{{ single_article.id }}" role="dialog" aria-labelledby="modal_articleLabel" aria-hidden="true">
 										  <div class="modal-dialog modal-lg">
 										    <div class="modal-content">
 										      <div class="modal-header">
@@ -1170,6 +1299,9 @@
 										<div class="row center">
 											{% if articleAsked.content|length > 0 %}
 												<!-- Button trigger modal -->
+												<!-- <button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_article_art_{{ articleAsked.id }}" data-backdrop="true" data-keyboard="true">
+												</button> -->
+
 												<button type="button" class="btn btn-perso" onClick="showFullArticle('#modal_article_art_{{ articleAsked.id }}')">
 													Lire l'article
 												</button>
@@ -1184,7 +1316,7 @@
 							<div id="article_photo_script">
 								<script type="text/javascript">
 			                        function showFullArticle(modalID) {
-										$(modalID).modal('toggle');
+										$(modalID).modal('show');
 									}
 
 									function changeCSSsheet(selector, property, value) {

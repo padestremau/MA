@@ -37,12 +37,12 @@
   //  BEGIN SMOOTH SCROLLING
 
   // Anchors
-  var myAnchors = ['#accueil', '#assoc', '#ecoliers', '#etudiants', '#jeunesPro', '#actu', '#footer'];
-  var myAnchorsLinksIds = ['#btn_section0', '#btn_section1', '#btn_section2', '#btn_section3', '#btn_section4', '#btn_section5', '#btn_section6'];
-  var myAnchorsHeaderIds = ['btn_header0', 'btn_header1', 'btn_header2', 'btn_header2', 'btn_header2', 'btn_header5', 'btn_header6'];
-  var side_buttons = ['btn_side_0', 'btn_side_1', 'btn_side_2', 'btn_side_3', 'btn_side_4', 'btn_side_5', 'btn_side_6'];
-  var slider_containers = ['', '', '#slide_container_content_ecoliers', '#slide_container_content_etudiants', '#slide_container_content_jeunesPro', '', ''];
-  var slider_pos = ['', '', 1, 1, 1, '', ''];
+  var myAnchors = ['#accueil', '#assoc', '#ecoliers', '#etudiants', '#jeunesPro', '#nosBesoins', '#actu', '#footer'];
+  var myAnchorsLinksIds = ['#btn_section0', '#btn_section1', '#btn_section2', '#btn_section3', '#btn_section4', '#btn_section5', '#btn_section6', '#btn_section7'];
+  var myAnchorsHeaderIds = ['btn_header0', 'btn_header1', 'btn_header2', 'btn_header2', 'btn_header2', 'btn_header5', 'btn_header6', 'btn_header7'];
+  var side_buttons = ['btn_side_0', 'btn_side_1', 'btn_side_2', 'btn_side_3', 'btn_side_4', 'btn_side_5', 'btn_side_6', 'btn_side_7'];
+  var slider_containers = ['', '', '#slide_container_content_ecoliers', '#slide_container_content_etudiants', '#slide_container_content_jeunesPro', '', '', ''];
+  var slider_pos = ['', '', 1, 1, 1, '', '', ''];
   var currentAnchor = 0;
   if (document.location.hash) {
     var the_hash = document.location.hash;
@@ -231,7 +231,7 @@
     };
 
     // Modal height and scroll
-    var window_height_modal = Math.round(window.innerHeight * 0.72);
+    var window_height_modal = Math.round(window.innerHeight * 0.8);
     $(".modal-body").css({'max-height':window_height_modal+'px'});
 
 
@@ -377,11 +377,11 @@
     else {
       $('#header').fadeOut('normal');
     }
-    if (top_offset > 3) {
-      $('#btn-accueil').fadeOut('fast');
+    if (top_offset < 5 || currentAnchor == 2 || currentAnchor == 3 || currentAnchor == 4) {
+      $('#btn-accueil').fadeIn('fast');
     }
     else {
-      $('#btn-accueil').fadeIn('fast');
+      $('#btn-accueil').fadeOut('fast');
     }
   }
 
@@ -411,6 +411,6 @@
   function showPhotoCarousel(photoPath) {
     $('#photo_in_carousel_toReplace').attr({'src':photoPath});
     var modal_height = $('.modal-body').height();
-    $('#photo_in_carousel_toReplace').css({'max-height':modal_height+'px'});
+    $('#photo_in_carousel_toReplace').css({'max-height':modal_height+'px !important'});
     $('#modal_photos').modal('show');
   }

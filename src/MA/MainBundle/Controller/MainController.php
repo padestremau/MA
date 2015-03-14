@@ -102,6 +102,16 @@ class MainController extends Controller
             
         }
 
+        $persons = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Person')
+                        ->findAll();
+
+        $projects = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Project')
+                        ->findAll();
+
 
         return $this->render('MAMainBundle:Main:indexMain.html.twig', array(
             'articleAsked' => $articleAsked, 
@@ -112,7 +122,9 @@ class MainController extends Controller
             'videosEcoliers' => $videosEcoliers,
             'videosEtudiants' => $videosEtudiants,
             'videosJeunesPro' => $videosJeunesPro,
-        	'videoAsked' => $videoAsked
+        	'videoAsked' => $videoAsked,
+            'persons' => $persons,
+            'projects' => $projects
         	));
         
     }

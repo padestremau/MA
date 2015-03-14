@@ -3,7 +3,9 @@
 {% set route = app.request.attributes.get( '_route' ) %}
 
 <div class="
-	{% if route == "ma_main_homepage" %}
+	{% if (route == 'ma_main_homepage') 
+        or (route == 'ma_main_homepage_elementAjax')
+        or (route == 'ma_main_helpUs') %}
 		hidden-xs
 	{% else %}
 		hidden-lg hidden-md hidden-sm hidden-xs
@@ -44,15 +46,22 @@
 			</div>
 		</button>
 	</a>
-	<a href="#actu" class="no_style_a">
+	<a href="#nosBesoins" class="no_style_a">
 		<button class="btn-side btn-side-invert" id="btn_side_5">
+			<div class="pop_hover_side">
+				{{ 'sideButtons.titles.nosBesoins'|trans }}
+			</div>
+		</button>
+	</a>
+	<a href="#actu" class="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_6">
 			<div class="pop_hover_side">
 				{{ 'sideButtons.titles.actu'|trans }}
 			</div>
 		</button>
 	</a>
 	<a href="#footer" class="no_style_a">
-		<button class="btn-side btn-side-invert" id="btn_side_6">
+		<button class="btn-side btn-side-invert" id="btn_side_7">
 			<div class="pop_hover_side">
 				{{ 'sideButtons.titles.footer'|trans }}
 			</div>

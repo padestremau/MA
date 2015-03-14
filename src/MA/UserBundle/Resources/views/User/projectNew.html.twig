@@ -1,0 +1,278 @@
+{# src/MA/UserBundle/Resources/User/articles.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Projets
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_admin" id="section6">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row left">
+				  		<div class="row80">
+				  			<a class="btn btn-action-admin" href="javascript:loadContentAdmin('{{ path('ma_user_nosBesoins') }}')">
+				  				<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+		    					Retour
+		    				</a>
+				  		</div>
+				  		<br/>
+						<div class="row">
+			    			<form method="post" {{ form_enctype(formNewProject) }}>
+				        		{% if form_errors(formNewProject) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewProject) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+									<div class="row">
+										
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        {{ form_label(formNewProject.title, 'Nom du projet :', 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formNewProject.title) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formNewProject.title) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_title = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text', 'placeholder':"Nom du bénéficiaire (ex: John)", 'id':'_title', 
+									        		'name':'_title'}} %}
+									        	{{ form_widget(formNewProject.title, opt_title) }}
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									        {{ form_label(formNewProject.totalAmount, 'Montant total :', 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formNewProject.totalAmount) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formNewProject.totalAmount) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+									        <div class="input-group">
+											  	<span class="input-group-addon" id="totalAmount_unit"><strong>S/.</strong></span>
+									        	{% set opt_totalAmount = {'attr': {'class': 'form-control',
+									        		'type':'text', 'placeholder':"Montant total (ex: 4000)", 'id':'totalAmount', 
+									        		'name':'_totalAmount', 'aria-describedby':'totalAmount_unit'}} %}
+									        	{{ form_widget(formNewProject.totalAmount, opt_totalAmount) }}
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									        {{ form_label(formNewProject.currentAmount, 'Fonds récoltés :', 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formNewProject.currentAmount) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formNewProject.currentAmount) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_currentAmount = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text', 'placeholder':"Montant récolté (ex: 300)", 'id':'_currentAmount', 
+									        		'name':'_currentAmount'}} %}
+									        	{{ form_widget(formNewProject.currentAmount, opt_currentAmount) }}
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											{{ form_label(formNewProject.deliveryAt, "Date d'échéance :", 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formNewProject.deliveryAt) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formNewProject.deliveryAt) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_deliveryAt = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'datetime', 'id':'deliveryAt', 'name':'_deliveryAt'}} %}
+								        		<div class="inline_div">
+										        	{{ form_widget(formNewProject.deliveryAt.time, opt_deliveryAt) }}
+								        		</div>
+								        		<div class="inline_div">
+										        	{{ form_widget(formNewProject.deliveryAt.date, opt_deliveryAt) }}
+								        		</div>
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									        {{ form_label(formNewProject.description, 'Description :', 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formNewProject.description) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formNewProject.description) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_description = {'attr': { 'class': 'redactor',
+									        		'placeholder':"Courte description à propos du bénéficiaire en particulier", 'id':'_description', 'name':'_description'}} %}
+									        	{{ form_widget(formNewProject.description, opt_description) }}
+									        </div>
+										</div>
+
+										<div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+											{{ form_label(formNewProject.forPerson, 'Projet lié au bénéficiaire suivant :', 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formNewProject.forPerson) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formNewProject.forPerson) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_forPerson = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'forPerson':'text', 'id':'forPerson', 
+									        		'name':'_forPerson'}} %}
+									        	{{ form_widget(formNewProject.forPerson, opt_forPerson) }}
+									        </div>
+										</div>
+
+										{% if route == 'ma_user_project_edit' %}
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											{{ form_label(formNewProject.completedAt, "Date de fin du projet (si fini):", 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formNewProject.completedAt) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formNewProject.completedAt) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_completedAt = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'datetime', 'id':'completedAt', 'name':'_completedAt'}} %}
+								        		<div class="inline_div">
+										        	{{ form_widget(formNewProject.completedAt.time, opt_completedAt) }}
+								        		</div>
+								        		<div class="inline_div">
+										        	{{ form_widget(formNewProject.completedAt.date, opt_completedAt) }}
+								        		</div>
+									        </div>
+										</div>
+										{% endif %}
+
+										<div>
+											<br/><br/>
+										</div>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewProject) }}
+									<div class="row center">
+										<input type="submit" class="btn btn-log" value="Enregistrer"/>
+									</div>
+								</div>
+							</form>
+		    			</div>
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+	        	<script>
+              		function changeCSSsheet(selector, property, value) {
+					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+					        //Try add rule
+					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+					    }
+					}
+
+					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    $(window).resize(function() {
+                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
+                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
+                    });
+
+                    var cw = $('.photo_default').width();
+                    $('.photo_default').css({'height':cw+'px'});
+
+              		function areYouSureDeleteArticle(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeletePhoto(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+							window.location = path;
+						}
+					}
+					function areYouSureDeleteVideo(path) {
+						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
+							window.location = path;
+						}
+					}
+              	</script>		
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}
