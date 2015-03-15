@@ -26,6 +26,16 @@
 
 				  	<div id="section_admin" class="row center">
 				  		Partie vide pour l'instant	
+
+
+				  		<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_misAnd.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
 				  	</div>
 				  	
 	        	{% else %}

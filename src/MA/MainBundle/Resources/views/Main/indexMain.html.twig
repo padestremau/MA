@@ -1055,17 +1055,50 @@
 			<!-- L'actu -->
 			<div class="section" id="nosBesoins">
 
-				<div class="row">
-					<div class="row">
-						<h2>
-							Nos besoins
-						</h2>
-						<div class="center italic">
-							Tous les projets en détails
-						</div>
+				<script>
+					var listOfIdsToShow = [];
+					var shown = false;
 
-						<hr class="dark_hr"/>
+					function showAllBesoins() {
+						if (shown == false) {
+							for (var i = 0; i < listOfIdsToShow.length; i++) {
+								$(listOfIdsToShow[i]).collapse('show');
+							}
+							shown = true;
+							$("#button_show_besoins").html("Annuler");
+						}
+						else {
+							for (var i = 0; i < listOfIdsToShow.length; i++) {
+								$(listOfIdsToShow[i]).collapse('hide');
+							}
+							shown = false;
+							$("#button_show_besoins").html("Tout afficher");
+						}
+					}
+				</script>
+
+				<div class="row">
+					<div class="row ">
+		        		<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+		        		</div>
+		        		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<h2>
+								Nos besoins
+							</h2>
+							<div class="center italic">
+								Tous les projets en détails
+							</div>
+		        		</div>
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+							<button class="float-right btn btn-perso" onClick="showAllBesoins()">
+								<span id="button_show_besoins">
+									Tout afficher
+								</span>
+								<img src="{{ asset('img/system/defaults/down_arrow.png') }}" alt="" class="btn_arrow"/>
+							</button>
+						</div>
 					</div>
+					<hr class="dark_hr"/>
 					<div class="row">
 						{% if persons|length > 0 %}
 							{% for single_person in persons %}
@@ -1073,7 +1106,7 @@
 				    				<div class="row">
 				    					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
 				    						{% if single_person.alt|length > 0  and single_person.url|length > 0 %}
-												<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/besoins/photos/ademir.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/besoins/photos/ademir.png') }}')"></div>
+												<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset(single_person.webPath) }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset(single_person.webPath) }}')"></div>
 						                   {% else %}
 					                   			<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_besoin.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_besoin.png') }}')"></div>
 						                   {% endif %}
@@ -1086,12 +1119,11 @@
 				    					</div>
 				    					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
 				    						<h4 class="left">
-				    							{{ single_person.name }} <button class="no_style_button button_besoin_info" type="button" data-toggle="collapse" data-target="#showDescription_{{ single_person.id }}" aria-expanded="false" aria-controls="collapseExample">En savoir plus ></button>
+				    							{{ single_person.name }} <button class="no_style_button button_besoin_info" type="button" data-toggle="collapse" data-target="#showDescription_{{ single_person.id }}" aria-expanded="false" aria-controls="showDescription_{{ single_person.id }}">En savoir plus ></button>
 				    						</h4>
 				    						<div class="row">
 												<div class="collapse" id="showDescription_{{ single_person.id }}">
 													{{ single_person.description|raw }}
-												  	<br/><br/>
 												</div>
 				    						</div>
 				    						<div class="row">
@@ -1100,19 +1132,35 @@
 													{% for single_project in projects %}
 														{% if single_project.forPerson == single_person %}
 															<div class="thumbnail">
-														  		<div class="caption">
-															    	<strong>
-															    		Subvention pour une année :
-															    	</strong>
-															    	<span class="prix_subvention"><strong>S/.</strong> {{ single_project.totalAmount }}</span>
-														  		</div>
-														  		{% set project_pourcentage = single_project.currentAmount / single_project.totalAmount %}
+																{% set project_pourcentage = single_project.currentAmount / single_project.totalAmount %}
 														  		{% set project_pourcentage = project_pourcentage * 100 %}
 														  		{% set project_pourcentage = project_pourcentage|round %}
-														  		<div class="pourcentage">
+														  		<div class="caption">
+															    	<strong>
+															    		{{ single_project.title }} :
+															    	</strong>
+															    	<button class="no_style_button prix_subvention_div" type="button" data-toggle="collapse" data-target="#showProject_{{ single_project.id }}" aria-expanded="false" aria-controls="showProject_{{ single_project.id }}">
+														    			<script>
+														    				listOfIdsToShow.push('#showProject_{{ single_project.id }}');
+														    			</script>
+																		<div class="prix_subvention
+																			{% if project_pourcentage == 100 %}
+																  					prix_check_success
+																  					{% elseif project_pourcentage > 50 %}
+																  					prix_check_info
+																  					{% elseif project_pourcentage > 25 %}
+																  					prix_check_warning
+																  					{% else %}
+																  					prix_check_danger
+																  					{% endif %}">
+														  					<strong>S/.</strong> {{ single_project.totalAmount }}
+																		</div>
+															    	</button>
+														  		</div>
+														  		<div class="pourcentage collapse" id="showProject_{{ single_project.id }}">
 														  			<div class="progress">
 														  				<div class="progress-bar 
-														  					{% if project_pourcentage > 75 %}
+														  					{% if project_pourcentage == 100 %}
 														  					progress-bar-success
 														  					{% elseif project_pourcentage > 50 %}
 														  					progress-bar-info
@@ -1121,12 +1169,14 @@
 														  					{% else %}
 														  					progress-bar-danger
 														  					{% endif %}
-														  					progress-bar-striped" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%"></div>
+														  					progress-bar-striped active" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%">
+														  					{{ project_pourcentage }} %
+														  				</div>
 																	</div>
 																	<div class="row center">
-																		Total récolté actuel : 
+																		Total récolté : 
 																		<span class="
-																			{% if project_pourcentage > 75 %}
+																			{% if project_pourcentage == 100 %}
 														  					prix_recolte_success
 														  					{% elseif project_pourcentage > 50 %}
 														  					prix_recolte_info

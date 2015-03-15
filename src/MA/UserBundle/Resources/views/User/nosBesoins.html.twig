@@ -3,7 +3,7 @@
 {% extends "MAUserBundle::user_general.html.twig" %}
 
 {% block title %}
-  {{ parent() }} - Admin - Nos besoins
+	{{ parent() }} - Admin - Nos besoins
 {% endblock %}
 
 {% block MA_User_body %}
@@ -40,9 +40,10 @@
 				  		<div class="row92">
 			    			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left">
 								<br/>
-								<h4 class="left">
+								<h3 class="left">
 									Bénéficiaires :
-								</h4>
+								</h3>
+								<hr class="medium_hr"/>
 								<div class="row">
 									<a class="btn btn-action-admin float-right" href="{{ path('ma_user_person_new') }}">
 				    					Nouveau
@@ -52,7 +53,7 @@
 								{% if persons|length > 0 %}
 									<ul class="list_no_style_li list_elements_admin">
 										{% for single_person in persons %}
-											<li class="element_link {% if single_person == elementAsked %}li_element_active{% endif %}" id="person_n_{{ single_person.id }}">
+											<li class="element_link {% if single_person == elementAsked %}li_element_active{% endif %}" id="person_n_{{ single_person.id }}" style="background-color: #{{ single_person.bgColor }}">
 												<a href="javascript:displaySelectedElement('{{ path('ma_user_nosBesoins_elementAjax', {'elementType':'beneficiaires', 'elementId':single_person.id}) }}', 'person_n_{{ single_person.id }}')" class="no_style_a">
 													{{ single_person.name|truncate(40, false, '...') }}
 												</a>
@@ -65,11 +66,6 @@
 													{% endif %}
 												</span>
 											</li>
-
-											<script>
-												var bgColor = convertHex('#{{ single_person.bgColor }}', 20);
-												$('#person_n_{{ single_person.id }}').css({'background-color':bgColor});
-											</script>
 										{% endfor %}
 									</ul>
 								{% else %}
@@ -82,9 +78,10 @@
 					    			<br/>
 					    			<div class="row left">
 					    				<div class="row">
-					    					<h4 class="left">
+					    					<h3 class="left">
 					    						Element choisi :
-					    					</h4>
+					    					</h3>
+					    					<hr class="medium_hr"/>
 					    				</div>
 										{% if elementType == 'beneficiaires' %}
 											<div class="row">
@@ -99,26 +96,17 @@
 							    			<div class="row">
 							    				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
 						    						{% if elementAsked.alt|length > 0  and elementAsked.url|length > 0 %}
-														<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/besoins/photos/ademir.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/besoins/photos/ademir.png') }}')"></div>
+														<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset(elementAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset(elementAsked.webPath) }}')"></div>
 								                   {% else %}
 							                   			<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_besoin.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_besoin.png') }}')"></div>
 								                   {% endif %}
-
-													<script>
-									                    var cw = $('.besoin_photo').width();
-									                    $('.besoin_photo').css({'height':cw+'px'});
-								                        changeCSSsheet('.besoin_photo', 'height', cw+'px');
-													</script>
 						    					</div>
 						    					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
-						    						<h4 class="left">
-						    							{{ elementAsked.name }} <button class="no_style_button button_besoin_info" type="button" data-toggle="collapse" data-target="#showDescription_{{ elementAsked.id }}" aria-expanded="false" aria-controls="collapseExample">En savoir plus ></button>
-						    						</h4>
+						    						<h5 class="left">
+						    							{{ elementAsked.name }}
+						    						</h5>
 						    						<div class="row">
-														<div class="collapse" id="showDescription_{{ elementAsked.id }}">
-															{{ elementAsked.description|raw }}
-														  	<br/><br/>
-														</div>
+														{{ elementAsked.description|raw }}
 						    						</div>
 						    						<div class="row">
 						    							{% set hasProject = 'NO' %}
@@ -126,16 +114,29 @@
 															{% for single_project in projects %}
 																{% if single_project.forPerson == elementAsked %}
 																	<div class="thumbnail">
-																  		<div class="caption">
-																	    	<strong>
-																	    		Subvention pour une année :
-																	    	</strong>
-																	    	<span class="prix_subvention"><strong>S/.</strong> {{ single_project.totalAmount }}</span>
-																  		</div>
 																  		{% set project_pourcentage = single_project.currentAmount / single_project.totalAmount %}
 																  		{% set project_pourcentage = project_pourcentage * 100 %}
 																  		{% set project_pourcentage = project_pourcentage|round %}
-																  		<div class="pourcentage">
+																  		<div class="caption">
+																	    	<strong>
+																	    		{{ single_project.title }} :
+																	    	</strong>
+																	    	<button class="no_style_button prix_subvention_div" type="button" data-toggle="collapse" data-target="#showProject_{{ single_project.id }}" aria-expanded="false" aria-controls="showProject_{{ single_project.id }}">
+																				<div class="prix_subvention
+																					{% if project_pourcentage == 100 %}
+																		  					prix_check_success
+																		  					{% elseif project_pourcentage > 50 %}
+																		  					prix_check_info
+																		  					{% elseif project_pourcentage > 25 %}
+																		  					prix_check_warning
+																		  					{% else %}
+																		  					prix_check_danger
+																		  					{% endif %}">
+																  					<strong>S/.</strong> {{ single_project.totalAmount }}
+																				</div>
+																	    	</button>
+																  		</div>
+																  		<div class="pourcentage collapse" id="showProject_{{ single_project.id }}">
 																  			<div class="progress">
 																  				<div class="progress-bar 
 																  					{% if project_pourcentage > 75 %}
@@ -147,10 +148,12 @@
 																  					{% else %}
 																  					progress-bar-danger
 																  					{% endif %}
-																  					progress-bar-striped" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%"></div>
+																  					progress-bar-striped active" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%">
+																  					{{ project_pourcentage }} %
+																  				</div>
 																			</div>
 																			<div class="row center">
-																				Total récolté actuel : 
+																				Total récolté : 
 																				<span class="
 																					{% if project_pourcentage > 75 %}
 																  					prix_recolte_success
@@ -211,7 +214,7 @@
 														</h5>
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
 															<strong>
-																Somme totale nécessaire :
+																Somme totale :
 															</strong>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
@@ -219,7 +222,7 @@
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
 															<strong>
-																Somme récoltée pour l'instant :
+																Somme récoltée :
 															</strong>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
@@ -233,6 +236,17 @@
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
 															{{ elementAsked.deliveryAt|date('H:i d M Y') }}
 														</div>
+
+														{% if elementAsked.completedAt|length > 0 %}
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
+															<strong>
+																Date de fin du projet :
+															</strong>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
+															{{ elementAsked.completedAt|date('H:i d M Y') }}
+														</div>
+														{% endif %}
 													</div>
 													<hr/>
 													<div class="row">
@@ -241,19 +255,32 @@
 																Rendu utilisateur
 															</strong>
 														</h5>
-														<div class="caption">
-													    	<strong>
-													    		Subvention pour une année :
-													    	</strong>
-													    	<span class="prix_subvention"><strong>S/.</strong> {{ elementAsked.totalAmount }}</span>
-												  		</div>
 												  		{% set project_pourcentage = elementAsked.currentAmount / elementAsked.totalAmount %}
 												  		{% set project_pourcentage = project_pourcentage * 100 %}
 												  		{% set project_pourcentage = project_pourcentage|round %}
-												  		<div class="pourcentage">
+												  		<div class="caption">
+													    	<strong>
+													    		{{ elementAsked.title }} :
+													    	</strong>
+													    	<button class="no_style_button prix_subvention_div" type="button" data-toggle="collapse" data-target="#showProject_{{ elementAsked.id }}" aria-expanded="false" aria-controls="showProject_{{ elementAsked.id }}">
+																<div class="prix_subvention
+																	{% if project_pourcentage == 100 %}
+														  					prix_check_success
+														  					{% elseif project_pourcentage > 50 %}
+														  					prix_check_info
+														  					{% elseif project_pourcentage > 25 %}
+														  					prix_check_warning
+														  					{% else %}
+														  					prix_check_danger
+														  					{% endif %}">
+												  					<strong>S/.</strong> {{ elementAsked.totalAmount }}
+																</div>
+													    	</button>
+												  		</div>
+												  		<div class="pourcentage collapse" id="showProject_{{ elementAsked.id }}">
 												  			<div class="progress">
 												  				<div class="progress-bar 
-												  					{% if project_pourcentage > 75 %}
+												  					{% if project_pourcentage == 100 %}
 												  					progress-bar-success
 												  					{% elseif project_pourcentage > 50 %}
 												  					progress-bar-info
@@ -262,12 +289,14 @@
 												  					{% else %}
 												  					progress-bar-danger
 												  					{% endif %}
-												  					progress-bar-striped" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%"></div>
+												  					progress-bar-striped active" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%">
+												  					{{ project_pourcentage }} %
+												  				</div>
 															</div>
 															<div class="row center">
-																Total récolté actuel : 
+																Total récolté : 
 																<span class="
-																	{% if project_pourcentage > 75 %}
+																	{% if project_pourcentage == 100 %}
 												  					prix_recolte_success
 												  					{% elseif project_pourcentage > 50 %}
 												  					prix_recolte_info
@@ -284,7 +313,10 @@
 												</div>
 											</div>
 										{% else %}
-											Aucun élément n'a été sélectionné. Veuillez choisir un bénéficiaire ou un projet.
+											<div class="center">
+												<br/>
+												Aucun élément n'a été sélectionné. Veuillez choisir un bénéficiaire ou un projet.
+											</div>
 										{% endif %}
 					    			</div>
 								</div>
@@ -292,9 +324,10 @@
 
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 border_black_left left">
 								<br/>
-								<h4 class="left">
+								<h3 class="left">
 									Projets :
-								</h4>
+								</h3>
+								<hr class="medium_hr"/>
 								<div class="row">
 									<a class="btn btn-action-admin float-right" href="{{ path('ma_user_project_new') }}">
 				    					Nouveau
@@ -304,7 +337,7 @@
 								{% if projects|length > 0 %}
 									<ul class="list_no_style_li list_elements_admin right">
 										{% for single_project in projects %}
-											<li class="element_link {% if single_project == elementAsked %}li_element_active{% endif %}" id="project_n_{{ single_project.id }}">
+											<li class="element_link {% if single_project == elementAsked %}li_element_active{% endif %}" id="project_n_{{ single_project.id }}" style="background-color: #{{ single_project.forPerson.bgColor }}">
 												<a href="javascript:displaySelectedElement('{{ path('ma_user_nosBesoins_elementAjax', {'elementType':'projets', 'elementId':single_project.id}) }}', 'project_n_{{ single_project.id }}')" class="no_style_a">
 													{{ single_project.title|truncate(40, false, '...') }}
 												</a>
@@ -326,60 +359,24 @@
 								{% endif %}
 							</div>
 		    			</div>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_misAnd.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
 				  	</div>
 				  	
 	        	{% else %}
-	        		<div>
+	        		<div class="center">
 	        			<br/><br/><br/><br/><br/>
 	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
 	        		</div>
 	        	{% endif %}
 
-	        	<script>
-              		function changeCSSsheet(selector, property, value) {
-					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
-					        //Try add rule
-					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
-					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
-					    }
-					}
-
-					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
-                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
-                    $(window).resize(function() {
-                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
-                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
-                    });
-
-                    var cw = $('.photo_default').width();
-                    $('.photo_default').css({'height':cw+'px'});
-
-              		function areYouSureDeleteArticle(path) {
-						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
-							window.location = path;
-						}
-					}
-					function areYouSureDeletePhoto(path) {
-						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
-							window.location = path;
-						}
-					}
-					function areYouSureDeleteVideo(path) {
-						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
-							window.location = path;
-						}
-					}
-					function areYouSureDeletePerson(path) {
-						if (confirm('Êtes-vous sûr de vouloir supprimer ce bénéficiaire ?')) {
-							window.location = path;
-						}
-					}
-					function areYouSureDeleteProject(path) {
-						if (confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) {
-							window.location = path;
-						}
-					}
-              	</script>		
+	        	
 
 			</div>
 		</div>

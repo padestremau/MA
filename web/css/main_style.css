@@ -1604,13 +1604,17 @@ hr {
 .button_besoin_info:hover {
 	border-bottom: 1px solid rgba(12,28,57,1) !important;
 }
-.prix_subvention {
+.prix_subvention_div {
 	float: right;
 	color: white !important;
-	background-color: rgba(22,54,110,0.95);
+	width: 120px !important;
+	/*background-color: rgba(22,54,110,0.95);*/
 	margin: 0;
 	margin-top: -5px !important;
 	padding: 5px 10px;
+	border-radius: 5px;
+}
+.prix_subvention {
 	border-radius: 5px;
 }
 .prix_recolte_danger {
@@ -1624,6 +1628,18 @@ hr {
 }
 .prix_recolte_success {
 	color: rgba(95,183,96,0.95) !important;
+}
+.prix_check_danger {
+	background-color: rgba(215,84,82,0.95) !important;
+}
+.prix_check_warning {
+	background-color: rgba(238,172,87,0.95) !important;
+}
+.prix_check_info {
+	background-color: rgba(96,192,220,0.95) !important;
+}
+.prix_check_success {
+	background-color: rgba(95,183,96,0.95) !important;
 }
 
 .actu {

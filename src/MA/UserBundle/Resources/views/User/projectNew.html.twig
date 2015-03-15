@@ -186,6 +186,27 @@
 
 										{% if route == 'ma_user_project_edit' %}
 										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+											Le projet est-il fini ? <br/>
+
+					        				<input type="radio" name="finished" value="yes_finished" id="yes_finished" onClick="showDateFinish()"/>
+					        				<label for="yes_finished">Oui</label>
+					        				<input type="radio" name="finished" value="no_finished" id="no_finished" onClick="showDateFinish()" checked/>
+					        				<label for="no_finished">Non</label>
+
+					        				<br/>
+
+					        				<script type="text/javascript">
+												function showDateFinish() {
+												    if (document.getElementById('yes_finished').checked) {
+												        document.getElementById('completedAt_input').style.display = 'block';
+												    }
+												    else {
+												        document.getElementById('completedAt_input').style.display = 'none';
+											    	}
+											    }
+											</script>
+										</div>
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12" id="completedAt_input" style="display:none;">
 											{{ form_label(formNewProject.completedAt, "Date de fin du projet (si fini):", 
 									        	{'label_attr': {'class': 'control-label'}}) }}
 									        {% if form_errors(formNewProject.completedAt) %}
@@ -225,6 +246,14 @@
 								</div>
 							</form>
 		    			</div>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_misAnd.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
 				  	</div>
 				  	
 	        	{% else %}
@@ -233,42 +262,6 @@
 	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
 	        		</div>
 	        	{% endif %}
-
-	        	<script>
-              		function changeCSSsheet(selector, property, value) {
-					    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
-					        //Try add rule
-					        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
-					        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
-					    }
-					}
-
-					var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
-                    changeCSSsheet('.article_photo_admin', 'height', cw+'px');
-                    $(window).resize(function() {
-                      var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
-                      changeCSSsheet('.article_photo_admin', 'height', cw+'px');
-                    });
-
-                    var cw = $('.photo_default').width();
-                    $('.photo_default').css({'height':cw+'px'});
-
-              		function areYouSureDeleteArticle(path) {
-						if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
-							window.location = path;
-						}
-					}
-					function areYouSureDeletePhoto(path) {
-						if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
-							window.location = path;
-						}
-					}
-					function areYouSureDeleteVideo(path) {
-						if (confirm('Êtes-vous sûr de vouloir supprimer cette vidéo ?')) {
-							window.location = path;
-						}
-					}
-              	</script>		
 
 			</div>
 		</div>

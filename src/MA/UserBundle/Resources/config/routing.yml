@@ -101,13 +101,13 @@ ma_user_project_new:
 
 ma_user_person_edit:
     path:     /nosBesoins/beneficiaires/modifier/{personId}
-    defaults: { _controller: MAUserBundle:User:personNew }
+    defaults: { _controller: MAUserBundle:User:personEdit }
     requirements:
         personId: \d+
 
 ma_user_project_edit:
     path:     /nosBesoins/projects/modifier/{projectId}
-    defaults: { _controller: MAUserBundle:User:projectNew }
+    defaults: { _controller: MAUserBundle:User:projectEdit }
     requirements:
         projectId: \d+
 

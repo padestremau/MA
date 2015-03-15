@@ -18,6 +18,7 @@ use MA\MainBundle\Form\PersonType;
 
 use MA\MainBundle\Entity\Project;
 use MA\MainBundle\Form\ProjectType;
+use MA\MainBundle\Form\ProjectEditType;
 
 class UserController extends Controller
 {
@@ -450,6 +451,53 @@ class UserController extends Controller
         ));
     }
 
+    public function personEditAction($personId)
+    {
+        $person = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Person')
+                            ->find($personId);
+
+        // On utiliser le OrdersType
+        $formNewPerson = $this->createForm(new PersonType(), $person);
+
+        // On récupère la requête
+        $formNewPerson->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewPerson->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($person);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_nosBesoins_elementAjax', array('elementType' => 'beneficiaires', 'elementId' => $personId)));
+        }
+
+        return $this->render('MAUserBundle:User:personNew.html.twig', array(
+            'formNewPerson' => $formNewPerson->createView()
+        ));
+    }
+
+    public function personDeleteAction($personId)
+    {
+        $person = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Person')
+                            ->find($personId);
+
+        if (!$person) {
+            throw $this->createNotFoundException("Aucun bénéficiaire à supprimer n'a été trouvé ...");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($person);
+        $em->flush();
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_user_nosBesoins'));
+    }
+
     public function projectNewAction()
     {
         $project = new Project;
@@ -473,6 +521,58 @@ class UserController extends Controller
         return $this->render('MAUserBundle:User:projectNew.html.twig', array(
             'formNewProject' => $formNewProject->createView()
         ));
+    }
+
+    public function projectEditAction($projectId)
+    {
+        $project = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Project')
+                            ->find($projectId);
+
+        // On utiliser le OrdersType
+        $formNewProject = $this->createForm(new projectEditType(), $project);
+
+        // On récupère la requête
+        $formNewProject->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewProject->isValid()) {
+
+            if ($_POST['finished'] == 'no_finished') {
+                $project->setCompletedAt(null);
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($project);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_nosBesoins_elementAjax', array('elementType' => 'projets', 'elementId' => $projectId)));
+        }
+
+        return $this->render('MAUserBundle:User:projectNew.html.twig', array(
+            'formNewProject' => $formNewProject->createView()
+        ));
+    }
+
+    public function projectDeleteAction($projectId)
+    {
+        $project = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Project')
+                            ->find($projectId);
+
+        if (!$project) {
+            throw $this->createNotFoundException("Aucun projet à supprimer n'a été trouvé ...");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($project);
+        $em->flush();
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_user_nosBesoins'));
     }
 
     public function contentAction()
