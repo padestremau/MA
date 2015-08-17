@@ -35,6 +35,12 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
+    public function init()
+    {
+        date_default_timezone_set( 'America/Lima' );
+        parent::init();
+    }
+
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
