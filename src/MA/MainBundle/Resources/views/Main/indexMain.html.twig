@@ -175,27 +175,10 @@
 							<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
 						</button>
 					</div>
-					<div class="dropdown">
-					    <a class="dropdown-toggle no_style_a" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-					      	L'association <span class="caret"></span>
-					    </a>
-					    <ul class="dropdown-menu dropdown-menu-spe" role="menu">
-				          	<li>
-				          		<a href="{{ path('ma_main_homepage') }}#assoc">
-				          			Qui sommes-nous ?
-				          		</a>
-				          	</li>
-				          	<li>
-				          		<a href="{{ path('ma_main_homepage') }}#assoc">
-				          			La charte
-				          		</a>
-				          	</li>
-				          	<li>
-				          		<a href="{{ path('ma_main_homepage') }}#assoc">
-				          			Quelques repères
-				          		</a>
-				          	</li>
-					    </ul>
+					<div class="">
+						<a href="{{ path('ma_main_homepage') }}#actu" class="no_style_a">
+							L'actualité
+						</a>
 					</div>
 					<div class="dropdown">
 					    <a class="dropdown-toggle no_style_a" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
@@ -224,10 +207,27 @@
 							Nos besoins
 						</a>
 					</div>
-					<div class="">
-						<a href="{{ path('ma_main_homepage') }}#actu" class="no_style_a">
-							L'actualité
-						</a>
+					<div class="dropdown">
+					    <a class="dropdown-toggle no_style_a" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+					      	L'association <span class="caret"></span>
+					    </a>
+					    <ul class="dropdown-menu dropdown-menu-spe" role="menu">
+				          	<li>
+				          		<a href="{{ path('ma_main_homepage') }}#assoc">
+				          			Qui sommes-nous ?
+				          		</a>
+				          	</li>
+				          	<li>
+				          		<a href="{{ path('ma_main_homepage') }}#assoc">
+				          			La charte
+				          		</a>
+				          	</li>
+				          	<li>
+				          		<a href="{{ path('ma_main_homepage') }}#assoc">
+				          			Quelques repères
+				          		</a>
+				          	</li>
+					    </ul>
 					</div>
 					<div class="">
 						<a href="{{ path('ma_main_homepage') }}#footer" class="no_style_a">
@@ -309,148 +309,180 @@
 			</div>
 
 
-			<!-- L'association -->
-			<div class="section" id="assoc">
+			<!-- L'actu -->
+			<div class="section" id="actu">
 
-				<div class="row80">
-					<h2>
-						L'association
-					</h2>
-					<!-- <hr class="dark_hr"/> -->
-				</div>
+				<script>
+					var articlesContent;
+				</script>
 
-				<div class="row">
-					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-					    <div class="thumbnail">
-					      <div class="caption">
-					        <h3>
-					        	Qui sommes-nous
-					        </h3>
-					        <ul>
-								<li>
-									Après quelques années en France, <strong>Aude</strong> <span class="italic">(Présidente de l’association)</span>, Antoine et leurs deux enfants décident de s’expatrier au Pérou à Cusco. Ils se lancent dans la création d’une entreprise de photo et d’un atelier de charcuterie. Afin de donner du sens à leurs projets, ils créent l’association Mission Andina avec Bénédicte. Dans leur maison, une chambre est réservée à un jeune sans ressource venu étudier à Cusco.
-								</li>
-								<li>
-									<strong>Bénédicte</strong> <span class="italic">(secrétaire de l’association)</span> est la sœur d’Antoine, elle travaille en France et gère les différents partenariats entre la France et le Pérou.
-								</li>
-								<li>
-									<strong>Adolfo</strong> <span class="italic">(trésorier de l’association)</span> est un jeune péruvien de Cusco. Il est orphelin depuis très jeune. Il travaille pour le circuit touristique religieux de Cusco et son expérience est un atout pour Mission Andina qui, grâce à lui, peut cibler ses aides de manière plus précise.
-								</li>
-								<li>
-									Le <strong>Père Christian</strong> est missionnaire dans l’Apurimac. Il nous aide à orienter les fonds récoltés pour les écoles et nous conseille quant aux jeunes à soutenir en priorité.
-								</li>
-								<li>
-									<strong>Pierre-Arnaud</strong> participe au développement de l’association grâce à ses talents pour la communication et en particulier pour ce qui est du site internet.
-								</li>
-					        </ul>
-					      </div>
-					    </div>
+
+				<div class="row actu">
+					<div class="row">
+						<h2>
+							Actu
+						</h2>
+						<div class="center italic">
+							Toute l'information à jour
+						</div>
+
+						<hr class="dark_hr"/>
 					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					    <div class="thumbnail">
-					      <div class="caption">
-					        <h3>La charte</h3>
-					        	<p>
-					        		Issus des villages reculés de l’Apurimac, région pauvre de la Cordillère des Andes, les jeunes péruviens se heurtent aux décalages scolaire et social. Ils arrivent à Abancay, Cusco ou Lima pour étudier et souvent ils échouent faute de moyens et d’accompagnement. Mission Andina leur offre ces moyens pour étudier dans de bonnes conditions, se nourrir et se loger.
-					        	</p>
-								<p>
-									L’association est fondée sur la conception chrétienne de l’Homme. Son idée est de construire un monde où tout homme, sans exception de race, de religion, de nationalité, puisse vivre une vie pleinement humaine.
-								</p>
-								<p>
-									Les membres de l’association ont en commun la conviction que chacun à sa manière peut aider au développement des nations. Ce développement ne se réduit pas à la simple dimension économique. Pour être authentique, il doit être intégral, c'est-à-dire promouvoir tout homme et tout l’homme.
-								</p>
-								<p>
-									Vécu en commun, dans l’espoir, la souffrance, l’ambition et la joie partagée, le travail unit les volontés, rapproche les esprits et soude les cœurs. En l’accomplissant, les hommes se découvrent frères.
-								</p>
-								<p>
-									L’objet de l’association est de permettre l’épanouissement économique de la personne aidée pour que celle-ci puisse :
-									<ul>
-										<li>
-											assumer financièrement sa famille,
+					<div class="row">
+		    			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+		    				<h3 class="left">
+								Articles :
+		    				</h3>
+
+							{% if articles|length > 0 %}
+								<ul class="list_no_style_li list_articles">
+									{% for single_article in articles %}
+										<li class="article_link {% if single_article == articleAsked %}li_article_active{% endif %}" id="article_n_{{ single_article.id }}">
+											<a href="javascript:displaySelectedArticle('{{ path('ma_main_homepage_elementAjax', {'elementType':'article', 'elementId':single_article.id}) }}', 'article_n_{{ single_article.id }}')" class="no_style_a">
+												{{ single_article.title|truncate(40, false, '...') }}
+											</a>
+											<span class="float-right arrow_article">
+												<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
+											</span>
+											<span class="float-right date_article">
+												{% if single_article.createdAt|length > 0 %}
+													{{ single_article.createdAt|date('d M Y') }}
+												{% else %}
+													(Vide)
+												{% endif %}
+											</span>
 										</li>
-										<li>
-											aider à son tour d’autres jeunes en difficulté,
-										</li>
-										<li>
-											et donc coopérer à sa manière au développement de son pays.
-										</li>
-									</ul>
-								</p>
-								<p>
-									Cet épanouissement est possible grâce à la responsabilisation et à l’autonomie financière de la personne aidée.
-								</p>
-								<p>
-									Pour cela, Mission Andina a développé 3 programmes :
-								</p>
-								<p>
-									<ul>
-										<li>
-											Aide aux écoliers des villages reculés autour de Cusco,
-										</li>
-										<li>
-											Aide aux jeunes quittant leurs villages pour venir étudier en ville,
-										</li>
-										<li>
-											Aide à l’épanouissement économique de jeunes professionnels.
-										</li>
-									</ul>
-								</p>
-					      </div>
-					    </div>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-					    <div class="thumbnail">
-					      <div class="caption">
-					        <h3>
-					        	Quelques repères
-					        </h3>
-								<p>
-									Clenmary, John, Ademir, Marcos, Eduardo, Flor ou Alex ont tous comme point commun la volonté de réussir et d’offrir à leurs enfants une meilleure vie que celle qu’ils ont connue. 
-								</p>
-								<p>
-									Ils ne sont que quelques exemples parmi une multitude. Découvrez leurs histoires et partagez leur quotidien.
-								</p>
-								<p>
-									Avant de rejoindre l’aventure voici quelques comparaisons qui vous permettront de mieux imaginer leur univers andin :
-									<ul>
-										<li>
-											Salaire minimum à Cusco = 215 euros par mois
-										</li>
-										<li>
-											Salaire moyen à Cusco = 350 euros
-										</li>
-										<li>
-											Un litre de gasoil = 0,90 euros
-										</li>
-										<li>
-											Un petit pain de 50 grammes = 0,06 euros
-										</li>
-										<li>
-											Un menu comprenant une soupe + un plat de poulet avec du riz = 2,30 euros
-										</li>
-										<li>
-											Une chambre de 15 m² avec sanitaires sur le palier = 42 euros par mois
-										</li>
-										<li>
-											Une place dans un foyer = 30 euros par mois
-										</li>
-										<li>
-											L’académie (3 mois de préparation au concours d’entrée à l’université) = 195 euros
-										</li>
-										<li>
-											Droit d’entrée à l’université = 95 euros
-										</li>
-										<li>
-											Un mois d’étude = entre 0 et 140 euros
-										</li>
-									</ul>
-								</p>
-					      </div>
-					    </div>
-					</div>
+
+										<!-- Modal article -->
+										<div class="modal fade" id="modal_article_art_{{ single_article.id }}" tabindex="-{{ single_article.id }}" role="dialog" aria-labelledby="modal_articleLabel" aria-hidden="true">
+										  <div class="modal-dialog modal-lg">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h3 class="modal-title">
+										        	{{ single_article.title }}
+										        </h3>
+										      </div>
+										      <div class="modal-body">
+										        <div class="row">
+										          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+										          <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 left top_info_modal_article">
+										          	{{ single_article.place }}
+										          </div>
+										          <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 right top_info_modal_article">
+										            Dernière modification le <span id="modal_articleDate">
+										            	{{ single_article.updatedAt|date('d M Y') }}
+										            </span> à <span id="modal_articleTime">
+										            	{{ single_article.updatedAt|date('H:i') }}
+										            </span>
+										          </div>
+										          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+										        </div>
+										        <div class="row modal_content" id="modal_articleContent">
+										          {{ single_article.content|raw }}
+										        </div>
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-modal" data-dismiss="modal">
+										          Fermer
+										        </button>
+										      </div>
+										    </div>
+										  </div>
+										</div>
+										
+									{% endfor %}
+								</ul>
+							{% else %}
+								Aucun article disponible pour l'instant
+							{% endif %}
+						</div>
+
+						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+							<div class="row" id="article_content">
+								{% if articleAsked.title|length > 0 %}
+								<div class="thumbnail">
+									<div>
+										{% if articleAsked.alt|length > 0  and articleAsked.url|length > 0 %}
+											<div class="article_photo_container">
+												<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}" onClick="showPhotoCarousel('{{ asset(articleAsked.webPath) }}')">
+							                    </div>
+											</div>
+					                   {% else %}
+											<div class="article_photo_container">
+						                   		<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_article_photo.png') }}')">
+							                    </div>
+											</div>
+					                   {% endif %}
+									</div>
+									<div class="caption">
+										<div class="row">
+											<div class="inline_div">
+												<h4>
+													{% if articleAsked.title|length > 0 %}
+														{{ articleAsked.title|raw }}
+													{% else %}
+														(Titre vide)
+													{% endif %}
+												</h4>
+											</div>
+											<div class="inline_div float-right date_article_lg">
+												{% if articleAsked.place|length > 0 %}
+													{{ articleAsked.place }},
+												{% endif %}
+												{% if articleAsked.createdAt|length > 0 %}
+													le {{ articleAsked.createdAt|date('d M Y') }} à {{ articleAsked.createdAt|date('H:i') }}
+												{% endif %}
+											</div>
+										</div>
+										
+										<div class="row center">
+											{% if articleAsked.content|length > 0 %}
+												<!-- Button trigger modal -->
+												<!-- <button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_article_art_{{ articleAsked.id }}" data-backdrop="true" data-keyboard="true">
+												</button> -->
+
+												<button type="button" class="btn btn-perso" onClick="showFullArticle('#modal_article_art_{{ articleAsked.id }}')">
+													Lire l'article
+												</button>
+											{% else %}
+												(Article vide)
+											{% endif %}
+										</div>
+									</div>
+								</div>
+								{% endif %}
+							</div>
+							<div id="article_photo_script">
+								<script type="text/javascript">
+			                        function showFullArticle(modalID) {
+										$(modalID).modal('show');
+									}
+
+									function changeCSSsheet(selector, property, value) {
+									    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+									        //Try add rule
+									        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+									        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+									    }
+									}
+
+									var cw = $('.article_photo').width() * 0.5625;  // 16:9e
+			                        changeCSSsheet('.article_photo', 'height', cw+'px');
+			                        $(window).resize(function() {
+			                          var cw = $('.article_photo').width() * 0.5625;  // 16:9e
+			                          changeCSSsheet('.article_photo', 'height', cw+'px');
+			                        });
+								</script>
+							</div>
+
+						</div>
+	    			</div>
+
 				</div>
 
 			</div>
+			
 
 			<!-- Les écoliers -->
 			<div class="section section_ecoliers white" id="ecoliers">
@@ -1100,8 +1132,8 @@
 					</div>
 					<hr class="dark_hr"/>
 					<div class="row">
-						{% if persons|length > 0 %}
-							{% for single_person in persons %}
+						{% if people|length > 0 %}
+							{% for single_person in people %}
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				    				<div class="row">
 				    					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
@@ -1219,176 +1251,145 @@
 
 			
 
-			<!-- L'actu -->
-			<div class="section" id="actu">
+			<!-- L'association -->
+			<div class="section" id="assoc">
 
-				<script>
-					var articlesContent;
-				</script>
+				<div class="row80">
+					<h2>
+						L'association
+					</h2>
+					<!-- <hr class="dark_hr"/> -->
+				</div>
 
-
-				<div class="row actu">
-					<div class="row">
-						<h2>
-							Actu
-						</h2>
-						<div class="center italic">
-							Toute l'information à jour
-						</div>
-
-						<hr class="dark_hr"/>
+				<div class="row">
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					    <div class="thumbnail">
+					      <div class="caption">
+					        <h3>
+					        	Qui sommes-nous
+					        </h3>
+					        <ul>
+								<li>
+									Après quelques années en France, <strong>Aude</strong> <span class="italic">(Présidente de l’association)</span>, Antoine et leurs deux enfants décident de s’expatrier au Pérou à Cusco. Ils se lancent dans la création d’une entreprise de photo et d’un atelier de charcuterie. Afin de donner du sens à leurs projets, ils créent l’association Mission Andina avec Bénédicte. Dans leur maison, une chambre est réservée à un jeune sans ressource venu étudier à Cusco.
+								</li>
+								<li>
+									<strong>Bénédicte</strong> <span class="italic">(secrétaire de l’association)</span> est la sœur d’Antoine, elle travaille en France et gère les différents partenariats entre la France et le Pérou.
+								</li>
+								<li>
+									<strong>Adolfo</strong> <span class="italic">(trésorier de l’association)</span> est un jeune péruvien de Cusco. Il est orphelin depuis très jeune. Il travaille pour le circuit touristique religieux de Cusco et son expérience est un atout pour Mission Andina qui, grâce à lui, peut cibler ses aides de manière plus précise.
+								</li>
+								<li>
+									Le <strong>Père Christian</strong> est missionnaire dans l’Apurimac. Il nous aide à orienter les fonds récoltés pour les écoles et nous conseille quant aux jeunes à soutenir en priorité.
+								</li>
+								<li>
+									<strong>Pierre-Arnaud</strong> participe au développement de l’association grâce à ses talents pour la communication et en particulier pour ce qui est du site internet.
+								</li>
+					        </ul>
+					      </div>
+					    </div>
 					</div>
-					<div class="row">
-		    			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-		    				<h3 class="left">
-								Articles :
-		    				</h3>
-
-							{% if articles|length > 0 %}
-								<ul class="list_no_style_li list_articles">
-									{% for single_article in articles %}
-										<li class="article_link {% if single_article == articleAsked %}li_article_active{% endif %}" id="article_n_{{ single_article.id }}">
-											<a href="javascript:displaySelectedArticle('{{ path('ma_main_homepage_elementAjax', {'elementType':'article', 'elementId':single_article.id}) }}', 'article_n_{{ single_article.id }}')" class="no_style_a">
-												{{ single_article.title|truncate(40, false, '...') }}
-											</a>
-											<span class="float-right arrow_article">
-												<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
-											</span>
-											<span class="float-right date_article">
-												{% if single_article.createdAt|length > 0 %}
-													{{ single_article.createdAt|date('d M Y') }}
-												{% else %}
-													(Vide)
-												{% endif %}
-											</span>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					    <div class="thumbnail">
+					      <div class="caption">
+					        <h3>La charte</h3>
+					        	<p>
+					        		Issus des villages reculés de l’Apurimac, région pauvre de la Cordillère des Andes, les jeunes péruviens se heurtent aux décalages scolaire et social. Ils arrivent à Abancay, Cusco ou Lima pour étudier et souvent ils échouent faute de moyens et d’accompagnement. Mission Andina leur offre ces moyens pour étudier dans de bonnes conditions, se nourrir et se loger.
+					        	</p>
+								<p>
+									L’association est fondée sur la conception chrétienne de l’Homme. Son idée est de construire un monde où tout homme, sans exception de race, de religion, de nationalité, puisse vivre une vie pleinement humaine.
+								</p>
+								<p>
+									Les membres de l’association ont en commun la conviction que chacun à sa manière peut aider au développement des nations. Ce développement ne se réduit pas à la simple dimension économique. Pour être authentique, il doit être intégral, c'est-à-dire promouvoir tout homme et tout l’homme.
+								</p>
+								<p>
+									Vécu en commun, dans l’espoir, la souffrance, l’ambition et la joie partagée, le travail unit les volontés, rapproche les esprits et soude les cœurs. En l’accomplissant, les hommes se découvrent frères.
+								</p>
+								<p>
+									L’objet de l’association est de permettre l’épanouissement économique de la personne aidée pour que celle-ci puisse :
+									<ul>
+										<li>
+											assumer financièrement sa famille,
 										</li>
-
-										<!-- Modal article -->
-										<div class="modal fade" id="modal_article_art_{{ single_article.id }}" tabindex="-{{ single_article.id }}" role="dialog" aria-labelledby="modal_articleLabel" aria-hidden="true">
-										  <div class="modal-dialog modal-lg">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										        <h3 class="modal-title">
-										        	{{ single_article.title }}
-										        </h3>
-										      </div>
-										      <div class="modal-body">
-										        <div class="row">
-										          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
-										          <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 left top_info_modal_article">
-										          	{{ single_article.place }}
-										          </div>
-										          <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 right top_info_modal_article">
-										            Dernière modification le <span id="modal_articleDate">
-										            	{{ single_article.updatedAt|date('d M Y') }}
-										            </span> à <span id="modal_articleTime">
-										            	{{ single_article.updatedAt|date('H:i') }}
-										            </span>
-										          </div>
-										          <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
-										        </div>
-										        <div class="row modal_content" id="modal_articleContent">
-										          {{ single_article.content|raw }}
-										        </div>
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-modal" data-dismiss="modal">
-										          Fermer
-										        </button>
-										      </div>
-										    </div>
-										  </div>
-										</div>
-										
-									{% endfor %}
-								</ul>
-							{% else %}
-								Aucun article disponible pour l'instant
-							{% endif %}
-						</div>
-
-						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-							<div class="row" id="article_content">
-								{% if articleAsked %}
-								<div class="thumbnail">
-									<div>
-										{% if articleAsked.alt|length > 0  and articleAsked.url|length > 0 %}
-											<div class="article_photo_container">
-												<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}" onClick="showPhotoCarousel('{{ asset(articleAsked.webPath) }}')">
-							                    </div>
-											</div>
-					                   {% else %}
-											<div class="article_photo_container">
-						                   		<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_article_photo.png') }}')">
-							                    </div>
-											</div>
-					                   {% endif %}
-									</div>
-									<div class="caption">
-										<div class="row">
-											<div class="inline_div">
-												<h4>
-													{% if articleAsked.title|length > 0 %}
-														{{ articleAsked.title|raw }}
-													{% else %}
-														(Titre vide)
-													{% endif %}
-												</h4>
-											</div>
-											<div class="inline_div float-right date_article_lg">
-												{% if articleAsked.place|length > 0 %}
-													{{ articleAsked.place }},
-												{% endif %}
-												{% if articleAsked.createdAt|length > 0 %}
-													le {{ articleAsked.createdAt|date('d M Y') }} à {{ articleAsked.createdAt|date('H:i') }}
-												{% endif %}
-											</div>
-										</div>
-										
-										<div class="row center">
-											{% if articleAsked.content|length > 0 %}
-												<!-- Button trigger modal -->
-												<!-- <button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_article_art_{{ articleAsked.id }}" data-backdrop="true" data-keyboard="true">
-												</button> -->
-
-												<button type="button" class="btn btn-perso" onClick="showFullArticle('#modal_article_art_{{ articleAsked.id }}')">
-													Lire l'article
-												</button>
-											{% else %}
-												(Article vide)
-											{% endif %}
-										</div>
-									</div>
-								</div>
-								{% endif %}
-							</div>
-							<div id="article_photo_script">
-								<script type="text/javascript">
-			                        function showFullArticle(modalID) {
-										$(modalID).modal('show');
-									}
-
-									function changeCSSsheet(selector, property, value) {
-									    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
-									        //Try add rule
-									        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
-									        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
-									    }
-									}
-
-									var cw = $('.article_photo').width() * 0.5625;  // 16:9e
-			                        changeCSSsheet('.article_photo', 'height', cw+'px');
-			                        $(window).resize(function() {
-			                          var cw = $('.article_photo').width() * 0.5625;  // 16:9e
-			                          changeCSSsheet('.article_photo', 'height', cw+'px');
-			                        });
-								</script>
-							</div>
-
-						</div>
-	    			</div>
-
+										<li>
+											aider à son tour d’autres jeunes en difficulté,
+										</li>
+										<li>
+											et donc coopérer à sa manière au développement de son pays.
+										</li>
+									</ul>
+								</p>
+								<p>
+									Cet épanouissement est possible grâce à la responsabilisation et à l’autonomie financière de la personne aidée.
+								</p>
+								<p>
+									Pour cela, Mission Andina a développé 3 programmes :
+								</p>
+								<p>
+									<ul>
+										<li>
+											Aide aux écoliers des villages reculés autour de Cusco,
+										</li>
+										<li>
+											Aide aux jeunes quittant leurs villages pour venir étudier en ville,
+										</li>
+										<li>
+											Aide à l’épanouissement économique de jeunes professionnels.
+										</li>
+									</ul>
+								</p>
+					      </div>
+					    </div>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+					    <div class="thumbnail">
+					      <div class="caption">
+					        <h3>
+					        	Quelques repères
+					        </h3>
+								<p>
+									Clenmary, John, Ademir, Marcos, Eduardo, Flor ou Alex ont tous comme point commun la volonté de réussir et d’offrir à leurs enfants une meilleure vie que celle qu’ils ont connue. 
+								</p>
+								<p>
+									Ils ne sont que quelques exemples parmi une multitude. Découvrez leurs histoires et partagez leur quotidien.
+								</p>
+								<p>
+									Avant de rejoindre l’aventure voici quelques comparaisons qui vous permettront de mieux imaginer leur univers andin :
+									<ul>
+										<li>
+											Salaire minimum à Cusco = 215 euros par mois
+										</li>
+										<li>
+											Salaire moyen à Cusco = 350 euros
+										</li>
+										<li>
+											Un litre de gasoil = 0,90 euros
+										</li>
+										<li>
+											Un petit pain de 50 grammes = 0,06 euros
+										</li>
+										<li>
+											Un menu comprenant une soupe + un plat de poulet avec du riz = 2,30 euros
+										</li>
+										<li>
+											Une chambre de 15 m² avec sanitaires sur le palier = 42 euros par mois
+										</li>
+										<li>
+											Une place dans un foyer = 30 euros par mois
+										</li>
+										<li>
+											L’académie (3 mois de préparation au concours d’entrée à l’université) = 195 euros
+										</li>
+										<li>
+											Droit d’entrée à l’université = 95 euros
+										</li>
+										<li>
+											Un mois d’étude = entre 0 et 140 euros
+										</li>
+									</ul>
+								</p>
+					      </div>
+					    </div>
+					</div>
 				</div>
 
 			</div>

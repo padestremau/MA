@@ -37,7 +37,7 @@
   //  BEGIN SMOOTH SCROLLING
 
   // Anchors
-  var myAnchors = ['#accueil', '#assoc', '#ecoliers', '#etudiants', '#jeunesPro', '#nosBesoins', '#actu', '#footer'];
+  var myAnchors = ['#accueil', '#actu', '#ecoliers', '#etudiants', '#jeunesPro', '#nosBesoins', '#assoc', '#footer'];
   var myAnchorsLinksIds = ['#btn_section0', '#btn_section1', '#btn_section2', '#btn_section3', '#btn_section4', '#btn_section5', '#btn_section6', '#btn_section7'];
   var myAnchorsHeaderIds = ['btn_header0', 'btn_header1', 'btn_header2', 'btn_header2', 'btn_header2', 'btn_header5', 'btn_header6', 'btn_header7'];
   var side_buttons = ['btn_side_0', 'btn_side_1', 'btn_side_2', 'btn_side_3', 'btn_side_4', 'btn_side_5', 'btn_side_6', 'btn_side_7'];

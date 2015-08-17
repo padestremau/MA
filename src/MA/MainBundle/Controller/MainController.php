@@ -102,7 +102,7 @@ class MainController extends Controller
             
         }
 
-        $persons = $this ->getDoctrine()
+        $people = $this ->getDoctrine()
                         ->getManager()
                         ->getRepository('MAMainBundle:Person')
                         ->findAll();
@@ -123,7 +123,7 @@ class MainController extends Controller
             'videosEtudiants' => $videosEtudiants,
             'videosJeunesPro' => $videosJeunesPro,
         	'videoAsked' => $videoAsked,
-            'persons' => $persons,
+            'people' => $people,
             'projects' => $projects
         	));
         

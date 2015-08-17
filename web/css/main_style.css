@@ -536,11 +536,12 @@ hr {
 /* ------------------------------------------------------ Header ------------------------------------------------------ */
 #header {
 	position: fixed;
-	top: 0px;
+	top: 0px !important;
 	z-index: 50;
 	background-color: rgba(22,54,110,1);
 	color: white;
 	padding: 0 !important;
+	margin-top: 0 !important;
 	margin-bottom: 5px;
 	box-shadow: 0 0 10px 5px rgba(250,250,250,.1);
 }
