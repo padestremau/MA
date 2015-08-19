@@ -962,7 +962,7 @@ hr {
 }
 
 /*For section colors*/
-.section_ecoliers {
+/*.section_ecoliers {
 	background-color: rgba(124,18,48,0.8);
 }
 .section_etudiants {
@@ -973,7 +973,7 @@ hr {
 }
 .section_helpUs {
 	background-color: rgba(255,176,60,0.9);
-}
+}*/
 
 .slide_container {
 	overflow: hidden;

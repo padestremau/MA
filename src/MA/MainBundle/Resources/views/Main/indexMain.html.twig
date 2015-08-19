@@ -485,7 +485,7 @@
 			
 
 			<!-- Les écoliers -->
-			<div class="section section_ecoliers white" id="ecoliers">
+			<div class="section section_ecoliers" id="ecoliers">
 
 				<h2 class="white">
 					Ecoliers
@@ -1134,117 +1134,128 @@
 					<div class="row">
 						{% if people|length > 0 %}
 							{% for single_person in people %}
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				    				<div class="row">
-				    					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-				    						{% if single_person.alt|length > 0  and single_person.url|length > 0 %}
-												<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset(single_person.webPath) }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset(single_person.webPath) }}')"></div>
-						                   {% else %}
-					                   			<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_besoin.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_besoin.png') }}')"></div>
-						                   {% endif %}
+								{% set show_person = false %}
+								{% if projects|length > 0 %}
+									{% for single_project in projects %}
+										{% if single_project.forPerson == single_person %}
+											{% set show_person = true %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
 
-											<script>
-							                    var cw = $('.besoin_photo').width();
-							                    $('.besoin_photo').css({'height':cw+'px'});
-						                        changeCSSsheet('.besoin_photo', 'height', cw+'px');
-											</script>
-				    					</div>
-				    					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
-				    						<h4 class="left">
-				    							{{ single_person.name }} <button class="no_style_button button_besoin_info" type="button" data-toggle="collapse" data-target="#showDescription_{{ single_person.id }}" aria-expanded="false" aria-controls="showDescription_{{ single_person.id }}">En savoir plus ></button>
-				    						</h4>
-				    						<div class="row">
-												<div class="collapse" id="showDescription_{{ single_person.id }}">
-													{{ single_person.description|raw }}
-												</div>
-				    						</div>
-				    						<div class="row">
-				    							{% set hasProject = 'NO' %}
-												{% if projects|length > 0 %}
-													{% for single_project in projects %}
-														{% if single_project.forPerson == single_person %}
-															<div class="thumbnail">
-																{% set project_pourcentage = single_project.currentAmount / single_project.totalAmount %}
-														  		{% set project_pourcentage = project_pourcentage * 100 %}
-														  		{% set project_pourcentage = project_pourcentage|round %}
-														  		<div class="caption">
-															    	<strong>
-															    		{{ single_project.title }} :
-															    	</strong>
-															    	<button class="no_style_button prix_subvention_div" type="button" data-toggle="collapse" data-target="#showProject_{{ single_project.id }}" aria-expanded="false" aria-controls="showProject_{{ single_project.id }}">
-														    			<script>
-														    				listOfIdsToShow.push('#showProject_{{ single_project.id }}');
-														    			</script>
-																		<div class="prix_subvention
-																			{% if project_pourcentage == 100 %}
-																  					prix_check_success
-																  					{% elseif project_pourcentage > 50 %}
-																  					prix_check_info
-																  					{% elseif project_pourcentage > 25 %}
-																  					prix_check_warning
-																  					{% else %}
-																  					prix_check_danger
-																  					{% endif %}">
-														  					<strong>S/.</strong> {{ single_project.totalAmount }}
-																		</div>
-															    	</button>
-														  		</div>
-														  		<div class="pourcentage collapse" id="showProject_{{ single_project.id }}">
-														  			<div class="progress">
-														  				<div class="progress-bar 
-														  					{% if project_pourcentage == 100 %}
-														  					progress-bar-success
-														  					{% elseif project_pourcentage > 50 %}
-														  					progress-bar-info
-														  					{% elseif project_pourcentage > 25 %}
-														  					progress-bar-warning
-														  					{% else %}
-														  					progress-bar-danger
-														  					{% endif %}
-														  					progress-bar-striped active" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%">
-														  					{{ project_pourcentage }} %
-														  				</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-6 col-md-6 col-sm-12 cold-xs-12 left">
-																			Total récolté : 
-																			<span class="
-																				{% if project_pourcentage == 100 %}
-															  					prix_recolte_success
-															  					{% elseif project_pourcentage > 50 %}
-															  					prix_recolte_info
-															  					{% elseif project_pourcentage > 25 %}
-															  					prix_recolte_warning
-															  					{% else %}
-															  					prix_recolte_danger
-															  					{% endif %}">
-																				<strong>S/.</strong> {{ single_project.currentAmount }} 
-																			</span>
-																		</div>
-																		<div class="col-lg-6 col-md-6 col-sm-12 cold-xs-12 right">
-																			Date de fin : 
-																			<strong>
-																				{{ single_project.deliveryAt|date('d M Y') }} 
-																			</strong>
-																		</div>
-																	</div>
-														  		</div>
-														  	</div>
-														  	{% set hasProject = 'YES' %}
-														{% endif %}
-													{% endfor %}
-												{% endif %}
+								{% if show_person == true %}
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					    				<div class="row">
+					    					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+					    						{% if single_person.alt|length > 0  and single_person.url|length > 0 %}
+													<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset(single_person.webPath) }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset(single_person.webPath) }}')"></div>
+							                   {% else %}
+						                   			<div class="besoin_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_besoin.jpg') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_besoin.png') }}')"></div>
+							                   {% endif %}
 
-												{% if hasProject == 'NO' %}
-													<div class="center">
-														Ce bénéficiaire n'a aucune projet pour le moment.
+												<script>
+								                    var cw = $('.besoin_photo').width();
+								                    $('.besoin_photo').css({'height':cw+'px'});
+							                        changeCSSsheet('.besoin_photo', 'height', cw+'px');
+												</script>
+					    					</div>
+					    					<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
+					    						<h4 class="left">
+					    							{{ single_person.name }} <button class="no_style_button button_besoin_info" type="button" data-toggle="collapse" data-target="#showDescription_{{ single_person.id }}" aria-expanded="false" aria-controls="showDescription_{{ single_person.id }}">En savoir plus ></button>
+					    						</h4>
+					    						<div class="row">
+													<div class="collapse" id="showDescription_{{ single_person.id }}">
+														{{ single_person.description|raw }}
 													</div>
-												{% endif %}	
-				    						</div>
-				    					</div>
-				    				</div>
-					    			<hr class="medium_hr"/>
-				    			</div>							
+					    						</div>
+					    						<div class="row">
+					    							{% set hasProject = 'NO' %}
+													{% if projects|length > 0 %}
+														{% for single_project in projects %}
+															{% if single_project.forPerson == single_person %}
+																<div class="thumbnail">
+																	{% set project_pourcentage = single_project.currentAmount / single_project.totalAmount %}
+															  		{% set project_pourcentage = project_pourcentage * 100 %}
+															  		{% set project_pourcentage = project_pourcentage|round %}
+															  		<div class="caption">
+																    	<strong>
+																    		{{ single_project.title }} :
+																    	</strong>
+																    	<button class="no_style_button prix_subvention_div" type="button" data-toggle="collapse" data-target="#showProject_{{ single_project.id }}" aria-expanded="false" aria-controls="showProject_{{ single_project.id }}">
+															    			<script>
+															    				listOfIdsToShow.push('#showProject_{{ single_project.id }}');
+															    			</script>
+																			<div class="prix_subvention
+																				{% if project_pourcentage == 100 %}
+																	  					prix_check_success
+																	  					{% elseif project_pourcentage > 50 %}
+																	  					prix_check_info
+																	  					{% elseif project_pourcentage > 25 %}
+																	  					prix_check_warning
+																	  					{% else %}
+																	  					prix_check_danger
+																	  					{% endif %}">
+															  					<strong>S/.</strong> {{ single_project.totalAmount }}
+																			</div>
+																    	</button>
+															  		</div>
+															  		<div class="pourcentage collapse" id="showProject_{{ single_project.id }}">
+															  			<div class="progress">
+															  				<div class="progress-bar 
+															  					{% if project_pourcentage == 100 %}
+															  					progress-bar-success
+															  					{% elseif project_pourcentage > 50 %}
+															  					progress-bar-info
+															  					{% elseif project_pourcentage > 25 %}
+															  					progress-bar-warning
+															  					{% else %}
+															  					progress-bar-danger
+															  					{% endif %}
+															  					progress-bar-striped active" role="progressbar" aria-valuenow="{{ project_pourcentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project_pourcentage }}%">
+															  					{{ project_pourcentage }} %
+															  				</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-6 col-md-6 col-sm-12 cold-xs-12 left">
+																				Total récolté : 
+																				<span class="
+																					{% if project_pourcentage == 100 %}
+																  					prix_recolte_success
+																  					{% elseif project_pourcentage > 50 %}
+																  					prix_recolte_info
+																  					{% elseif project_pourcentage > 25 %}
+																  					prix_recolte_warning
+																  					{% else %}
+																  					prix_recolte_danger
+																  					{% endif %}">
+																					<strong>S/.</strong> {{ single_project.currentAmount }} 
+																				</span>
+																			</div>
+																			<div class="col-lg-6 col-md-6 col-sm-12 cold-xs-12 right">
+																				Date de fin : 
+																				<strong>
+																					{{ single_project.deliveryAt|date('d M Y') }} 
+																				</strong>
+																			</div>
+																		</div>
+															  		</div>
+															  	</div>
+															  	{% set hasProject = 'YES' %}
+															{% endif %}
+														{% endfor %}
+													{% endif %}
+
+													{% if hasProject == 'NO' %}
+														<div class="center">
+															Ce bénéficiaire n'a aucune projet pour le moment.
+														</div>
+													{% endif %}	
+					    						</div>
+					    					</div>
+					    				</div>
+						    			<hr class="medium_hr"/>
+					    			</div>							
+					    		{% endif %}
 							{% endfor %}
 						{% else %}
 							<div class="center">
