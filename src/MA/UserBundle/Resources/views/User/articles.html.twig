@@ -28,35 +28,37 @@
 						<div class="row92">
 			    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 left">
 								<br/><br/>
-								<h3 class="left">
-									Articles :
-								</h3>
-								{% if articles|length > 0 %}
-									<ul class="list_no_style_li list_articles_admin">
-										{% for single_article in articles %}
-											<li class="article_link {% if single_article == articleAsked %}li_article_active{% endif %}" id="article_n_{{ single_article.id }}">
-												<a href="javascript:displaySelectedArticle('{{ path('ma_user_article_spe', {'articleId':single_article.id}) }}', 'article_n_{{ single_article.id }}')" class="no_style_a">
-													{{ single_article.title|truncate(40, false, '...') }}
-												</a>
-												<span class="float-right arrow_article">
-													<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
-												</span>
-												<span class="float-right date_article">
-													{% if single_article.createdAt|length > 0 %}
-														{{ single_article.createdAt|date('d M Y') }}
-													{% else %}
-														(Vide)
-													{% endif %}
-												</span>
-											</li>
-										{% endfor %}
-									</ul>
-								{% else %}
-									Aucun article
-								{% endif %}
+								<div class="thumbnail thumbnail_article">
+									<h3 class="left">
+										Articles :
+									</h3>
+									{% if articles|length > 0 %}
+										<ul class="list_no_style_li list_articles_admin">
+											{% for single_article in articles %}
+												<li class="article_link {% if single_article == articleAsked %}li_article_active{% endif %}" id="article_n_{{ single_article.id }}">
+													<a href="javascript:displaySelectedArticle('{{ path('ma_user_article_spe', {'articleId':single_article.id}) }}', 'article_n_{{ single_article.id }}')" class="no_style_a">
+														{{ single_article.title|truncate(40, false, '...') }}
+														<span class="float-right arrow_article">
+															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
+														</span>
+														<span class="float-right date_article">
+															{% if single_article.createdAt|length > 0 %}
+																{{ single_article.createdAt|date('d M Y') }}
+															{% else %}
+																(Vide)
+															{% endif %}
+														</span>
+													</a>
+												</li>
+											{% endfor %}
+										</ul>
+									{% else %}
+										Aucun article
+									{% endif %}
+								</div>
 							</div>
 
-							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 border_black_left">
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
 								<div id="article_content">
 									<div class="row">
 					    				<a class="btn btn-action-admin float-left" href="{{ path('ma_user_article_new') }}">
@@ -75,7 +77,6 @@
 					    			<div class="row left">
 					    				
 										{% if articleAsked %}
-										<div class="thumbnail">
 											<div>
 												{% if articleAsked.alt|length > 0  and articleAsked.url|length > 0 %}
 													<div class="article_photo_container">
@@ -89,18 +90,16 @@
 													</div>
 							                   {% endif %}
 											</div>
-											<div class="caption">
+											<div class="">
 												<div class="row">
-													<div class="inline_div">
-														<h4>
-															{% if articleAsked.title|length > 0 %}
-																{{ articleAsked.title|raw }}
-															{% else %}
-																(Titre vide)
-															{% endif %}
-														</h4>
-													</div>
-													<div class="inline_div float-right date_article_lg">
+													<h4>
+														{% if articleAsked.title|length > 0 %}
+															{{ articleAsked.title|raw }}
+														{% else %}
+															(Titre vide)
+														{% endif %}
+													</h4>
+													<div class="center date_article_lg">
 														{% if articleAsked.place|length > 0 %}
 															{{ articleAsked.place }},
 														{% endif %}
@@ -110,7 +109,7 @@
 													</div>
 												</div>
 												
-												<div class="row">
+												<div class="row80">
 													{% if articleAsked.content|length > 0 %}
 														{{ articleAsked.content|raw }}
 													{% else %}
@@ -118,12 +117,13 @@
 													{% endif %}
 												</div>
 											</div>
-										</div>
 										{% endif %}
 					    			</div>
 								</div>
 							</div>
 		    			</div>
+
+		    			<br/><br/><br/>
 		    			<!-- ADMIN JAVASCRIPTS -->
 					    {% javascripts 
 					      'js/admin_javascripts_misAnd.js'

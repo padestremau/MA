@@ -86,3 +86,46 @@ src: url("../font/proxima-nova/proxima_nova_semibold_italic/proxima_nova_semibol
   		url("../font/proxima-nova/proxima_nova_extrabold/proxima_nova_extrabold-webfont.woff") format("woff"), 
   		url("../font/proxima-nova/proxima_nova_extrabold/proxima_nova_extrabold-webfont.ttf") format("truetype"), 
   		url("../font/proxima-nova/proxima_nova_extrabold/proxima_nova_extrabold-webfont.svg#proxima_nova_extrabold") format("svg"); }
+
+
+/* Other fonts */
+@font-face {
+    font-family: 'chalk_writing';
+    src: url('../font/coalhandluke/coalhandluke_trial-webfont.eot');
+    src: url('../font/coalhandluke/coalhandluke_trial-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/coalhandluke/coalhandluke_trial-webfont.woff2') format('woff2'),
+         url('../font/coalhandluke/coalhandluke_trial-webfont.woff') format('woff'),
+         url('../font/coalhandluke/coalhandluke_trial-webfont.ttf') format('truetype'),
+         url('../font/coalhandluke/coalhandluke_trial-webfont.svg#coalhandlukecoalhandluketrial') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'marker_writing';
+    src: url('../font/drawingWithMarker/drawing_with_markers-webfont.eot');
+    src: url('../font/drawingWithMarker/drawing_with_markers-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/drawingWithMarker/drawing_with_markers-webfont.woff2') format('woff2'),
+         url('../font/drawingWithMarker/drawing_with_markers-webfont.woff') format('woff'),
+         url('../font/drawingWithMarker/drawing_with_markers-webfont.ttf') format('truetype'),
+         url('../font/drawingWithMarker/drawing_with_markers-webfont.svg#drawing_with_markersregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'marker';
+    src: url('../font/marker/marker_sd-webfont.eot');
+    src: url('../font/marker/marker_sd-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/marker/marker_sd-webfont.woff2') format('woff2'),
+         url('../font/marker/marker_sd-webfont.woff') format('woff'),
+         url('../font/marker/marker_sd-webfont.ttf') format('truetype'),
+         url('../font/marker/marker_sd-webfont.svg#marker_sdregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+

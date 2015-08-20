@@ -72,6 +72,15 @@
 		    	Contenu du site
 	    	</a>
 	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_content') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_content') }}')" class="no_style_a">
+		    	Photos diapo
+	    	</a>
+	    </li>
 	    <li role="user_tabs" class="btn btn-choice-admin logout-btn-admin">
 	    	<a href="{{ path('fos_user_security_logout') }}" class="no_style_a">
 	    		Déconnexion

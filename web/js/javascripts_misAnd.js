@@ -231,7 +231,7 @@
     };
 
     // Modal height and scroll
-    var window_height_modal = Math.round(window.innerHeight * 0.8);
+    var window_height_modal = Math.round(window.innerHeight * 0.72);
     $(".modal-body").css({'max-height':window_height_modal+'px'});
 
 
@@ -355,7 +355,7 @@
       }
     }
     // For white
-    if (current == (side_buttons.length - 1) || current == 0 || current == 2) {
+    if (current == (side_buttons.length - 1) || current == 0) {
       for (var i = 0; i < side_buttons.length; i++) {
         document.getElementById(side_buttons[i]).className = "btn-side-invert";
         if (i == current) {
