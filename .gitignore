@@ -19,3 +19,7 @@ composer.phar
 web/img/articles/*
 web/img/photos/*
 web/img/besoins/*
+web/img/diapos/*
+web/img/BGPhotos/*
+web/img/aides/*
+web/img/partenaires/*
