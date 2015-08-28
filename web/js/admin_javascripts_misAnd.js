@@ -25,6 +25,9 @@ changeCSSsheet('.besoin_photo', 'height', cw+'px');
 var cw = $('.photo_default').width();
 $('.photo_default').css({'height': cw+'px'});
 changeCSSsheet('.photo_default', 'height', cw+'px');
+var cw = $('.diapo_default').width();
+$('.diapo_default').css({'height': cw+'px'});
+changeCSSsheet('.diapo_default', 'height', cw+'px');
 
 $(window).resize(function() {
   	var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
@@ -73,3 +76,24 @@ function areYouSureDeleteProject(path) {
 		window.location = path;
 	}
 }
+function areYouSureDeleteDiapo(path) {
+	if (confirm('Êtes-vous sûr de vouloir supprimer cette diapo ?')) {
+		window.location = path;
+	}
+}
+function areYouSureDeleteBGPhoto(path) {
+	if (confirm('Êtes-vous sûr de vouloir supprimer ce fond de page ?')) {
+		window.location = path;
+	}
+}
+function areYouSureDeleteAide(path) {
+	if (confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')) {
+		window.location = path;
+	}
+}
+function areYouSureDeletePartner(path) {
+	if (confirm('Êtes-vous sûr de vouloir supprimer ce partenaire ?')) {
+		window.location = path;
+	}
+}
+

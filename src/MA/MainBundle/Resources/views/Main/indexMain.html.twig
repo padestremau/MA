@@ -35,12 +35,20 @@
 					// Images available
 					var listImages = [];
 				</script>
-				{% for inc in 1..72 %}
+				{# for inc in 1..72 %}
 					{% set photoLink = 'img/homePhotos/' ~ inc ~ '.jpg' %}
 					<script>
                   		var imgLink = "{{ asset(photoLink)}}";
                   		listImages['{{ inc }}'] = imgLink;
 					</script>
+				{% endfor #}
+				{% set index_diapo = 1 %}
+				{% for diapo in diapos %}
+					<script>
+                  		var imgLink = "{{ asset(diapo.webPath)}}";
+                  		listImages['{{ index_diapo }}'] = imgLink;
+					</script>
+					{% set index_diapo = index_diapo + 1 %}
 				{% endfor %}
 				
 				<script type="text/javascript">

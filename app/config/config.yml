@@ -146,3 +146,15 @@ ma_redactor:
             formattingTags:         ['p', 'blockquote', 'pre']
         role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
 
+    admin_page:
+        settings:
+            lang:                   fr
+            minHeight:              200
+            plugins:                ['fullscreen']
+            tabindex : 0
+            buttons:                ['html', 'formatting', 'bold', 'italic', 'underline', 'deleted', 'link', 'alignment', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'horizontalrule']
+            formattingTags:         ['p', 'blockquote', 'pre']
+        role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
+
+
+

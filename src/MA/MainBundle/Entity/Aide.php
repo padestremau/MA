@@ -9,13 +9,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Person
+ * Aide
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\PersonRepository")
+ * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\AideRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Person
+class Aide
 {
     /**
      * @var integer
@@ -36,37 +36,23 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="origin", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $origin;
+    private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="color", type="string", length=255, nullable=true)
+     * @ORM\Column(name="header", type="string", length=255)
      */
-    private $color;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="bgColor", type="string", length=255, nullable=true)
-     */
-    private $bgColor;
+    private $header;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="age", type="integer", nullable=true)
+     * @ORM\Column(name="orderList", type="integer")
      */
-    private $age;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
+    private $orderList;
 
     /**
      * @var \DateTime
@@ -74,6 +60,20 @@ class Person
      * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
 
     /**
      * @var string
@@ -93,16 +93,16 @@ class Person
 
     private $tempFilename;
 
-
-
-
     /*   *********      construct  *************  */
 
     public function __construct()
     {
         $this->createdAt        = new \Datetime;
+        $this->updatedAt        = new \Datetime;
+        $this->status           = 'active';
     }
 
+    /*   *********      methods  *************  */
 
     /**
      * Get id
@@ -118,7 +118,7 @@ class Person
      * Set name
      *
      * @param string $name
-     * @return Person
+     * @return Aide
      */
     public function setName($name)
     {
@@ -138,56 +138,10 @@ class Person
     }
 
     /**
-     * Set origin
-     *
-     * @param string $origin
-     * @return Person
-     */
-    public function setOrigin($origin)
-    {
-        $this->origin = $origin;
-
-        return $this;
-    }
-
-    /**
-     * Get origin
-     *
-     * @return string 
-     */
-    public function getOrigin()
-    {
-        return $this->origin;
-    }
-
-    /**
-     * Set age
-     *
-     * @param integer $age
-     * @return Person
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
-     *
-     * @return integer 
-     */
-    public function getAge()
-    {
-        return $this->age;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
-     * @return Person
+     * @return Aide
      */
     public function setDescription($description)
     {
@@ -207,26 +161,49 @@ class Person
     }
 
     /**
-     * Set createdAt
+     * Set header
      *
-     * @param \DateTime $createdAt
-     * @return Person
+     * @param string $header
+     * @return Aide
      */
-    public function setCreatedAt($createdAt)
+    public function setHeader($header)
     {
-        $this->createdAt = $createdAt;
+        $this->header = $header;
 
         return $this;
     }
 
     /**
-     * Get createdAt
+     * Get header
      *
-     * @return \DateTime 
+     * @return string 
      */
-    public function getCreatedAt()
+    public function getHeader()
     {
-        return $this->createdAt;
+        return $this->header;
+    }
+
+    /**
+     * Set orderList
+     *
+     * @param integer $orderList
+     * @return Aide
+     */
+    public function setOrderList($orderList)
+    {
+        $this->orderList = $orderList;
+
+        return $this;
+    }
+
+    /**
+     * Get orderList
+     *
+     * @return integer 
+     */
+    public function getOrderList()
+    {
+        return $this->orderList;
     }
 
     /*   *********     File  *************  */
@@ -299,7 +276,7 @@ class Person
     public function getUploadDir()
     {
         // On retourne le chemin relatif vers l'image pour un navigateur
-        return 'img/besoins';
+        return 'img/aides';
     }
 
     protected function getUploadRootDir()
@@ -371,49 +348,74 @@ class Person
 
     /*   *********   End  File  *************  */
 
+
+
     /**
-     * Set color
+     * Set createdAt
      *
-     * @param string $color
-     * @return Person
+     * @param \DateTime $createdAt
+     * @return Aide
      */
-    public function setColor($color)
+    public function setCreatedAt($createdAt)
     {
-        $this->color = $color;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get color
+     * Get createdAt
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getColor()
+    public function getCreatedAt()
     {
-        return $this->color;
+        return $this->createdAt;
     }
 
     /**
-     * Set bgColor
+     * Set updatedAt
      *
-     * @param string $bgColor
-     * @return Person
+     * @param \DateTime $updatedAt
+     * @return Aide
      */
-    public function setBgColor($bgColor)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->bgColor = $bgColor;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get bgColor
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Aide
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
      *
      * @return string 
      */
-    public function getBgColor()
+    public function getStatus()
     {
-        return $this->bgColor;
+        return $this->status;
     }
 }

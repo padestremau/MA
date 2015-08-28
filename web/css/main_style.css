@@ -1672,21 +1672,36 @@ hr {
 
 .btn_ecoliers {
 	background: #7d1230;
+	color: white !important;
 }
 .btn_ecoliers:hover, .btn_ecoliers_active {
 	background: #3d0818;
+	color: white !important;
+}
+.btn_ecoliers_active .btn_arrow {
+	opacity: 1 !important;
 }
 .btn_etudiants {
 	background: #7ec790;
+	color: white !important;
 }
 .btn_etudiants:hover, .btn_etudiants_active {
 	background: #3d9153;
+	color: white !important;
+}
+.btn_etudiants_active .btn_arrow {
+	opacity: 1 !important;
 }
 .btn_jeunesPro {
 	background: #64c8dc;
+	color: white !important;
 }
 .btn_jeunesPro:hover, .btn_jeunesPro_active {
 	background: #458f9c;
+	color: white !important;
+}
+.btn_jeunesPro_active .btn_arrow {
+	opacity: 1 !important;
 }
 
 .btn-perso{
@@ -2034,7 +2049,7 @@ body.modal-open {
 	cursor: pointer;
 }
 .article_photo_container {
-	padding: 30px;
+	padding: 10px 20px;
 }
 
 .besoin_photo {
@@ -2134,10 +2149,10 @@ body.modal-open {
 .nav_tabs_user li {
 	margin-bottom: 10px;
 	display: inline-block;
-	width: 12%;
+	width: 8%;
 }
 .btn-choice-admin {
-	border-radius: 0;
+	border-radius: 2px;
 	width: 100%;
 	background-color: transparent;
 	border: 1px solid #001234;
@@ -2154,7 +2169,7 @@ body.modal-open {
 }
 
 .btn-action-admin {
-	border-radius: 0;
+	border-radius: 3px;
 	width: 100px;
 	background-color: transparent;
 	border: 1px solid rgba(150,150,150,0.8);
@@ -2217,6 +2232,7 @@ body.modal-open {
 
 .btn-category-admin {
 	padding: 3px 6px;
+	border-radius: 5px;
 }
 .btn-category-admin:hover, .btn-category-admin:focus, .btn-category-admin:active {
 	text-decoration: none;
@@ -2267,6 +2283,99 @@ body.modal-open {
 .arrow_element_opp img {
 	width: 20px;
 	opacity: 0;
+}
+
+.list_pages {
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+}
+.list_pages li {
+	color: rgba(12,28,57,1) !important;
+	margin-top: 5px;
+	margin-bottom: 8px;
+	padding: 3px;
+}
+.list_pages li:hover {
+	border-bottom: 1px solid rgba(22,54,110,0.2);
+	/*background-color: rgba(22,54,110,0.1);*/
+}
+.list_pages li:hover .arrow_page img {
+	opacity: 0.5;
+}
+.li_page_active {
+	border-bottom: 1px solid rgba(22,54,110,0.5);
+	/*background-color: rgba(22,54,110,0.1);*/
+}
+.li_page_active a {
+	font-weight: 900 !important;
+}
+.li_page_active .arrow_page img {
+	opacity: 1;
+}
+.thumbnail_page {
+	padding: 10px;
+}
+.date_page {
+	font-size: 0.8em;
+	color: rgba(150,150,150,0.8);
+	font-style: italic;
+}
+.date_page_lg {
+	margin-top: 20px;
+	font-size: 1em;
+	color: rgba(50,50,50,0.8);
+	font-style: italic;	
+}
+.top_info_modal_page {
+	font-size: 1em;
+	color: rgba(150,150,150,0.8);
+	font-style: italic;		
+}
+.arrow_page {
+	margin-left: 5px;
+}
+.arrow_page img {
+	width: 20px;
+	opacity: 0;
+}
+
+.list_pages_admin {
+	margin: 0;
+	margin-left: 0px;
+	padding: 0;
+}
+.list_pages_admin li {
+	color: rgba(12,28,57,1) !important;
+	margin-top: 3px;
+	margin-bottom: 8px;
+	padding: 3px !important;
+	text-align: left !important;
+	border-bottom: 1px solid transparent;
+}
+.list_pages_admin li:hover {
+	border-bottom: 1px solid rgba(22,54,110,0.2) !important;
+	/*background-color: rgba(22,54,110,0.1);*/
+}
+.li_page_active {
+	border-bottom: 1px solid rgba(22,54,110,0.88) !important;
+}
+.list_pages_admin li:hover .arrow_page img {
+	opacity: 0.5;
+}
+
+.article_diapo_admin {
+	border: 3px solid rgba(22,54,110,0.88);
+	width: 100% !important;
+}
+.article_diapo_admin:hover {
+	cursor: pointer;
+}
+.diapo_admin:hover .btn-delete-admin {
+	opacity: 0.5;
+}
+.article_diapo_container {
+	padding: 2px 5px;
 }
 
 

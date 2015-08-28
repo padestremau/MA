@@ -9,13 +9,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Person
+ * BGPhoto
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\PersonRepository")
+ * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\BGPhotoRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Person
+class BGPhoto
 {
     /**
      * @var integer
@@ -29,51 +29,23 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="origin", type="string", length=255, nullable=true)
-     */
-    private $origin;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="color", type="string", length=255, nullable=true)
-     */
-    private $color;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="bgColor", type="string", length=255, nullable=true)
-     */
-    private $bgColor;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="age", type="integer", nullable=true)
-     */
-    private $age;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
+    private $title;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @ORM\Column(name="updatedAt", type="datetime")
      */
-    private $createdAt;
+    private $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sectionName", type="string", length=255)
+     */
+    private $sectionName;
 
     /**
      * @var string
@@ -93,15 +65,14 @@ class Person
 
     private $tempFilename;
 
-
-
-
     /*   *********      construct  *************  */
 
     public function __construct()
     {
-        $this->createdAt        = new \Datetime;
+        $this->updatedAt        = new \Datetime;
     }
+
+    /*   *********      methods  *************  */
 
 
     /**
@@ -115,118 +86,72 @@ class Person
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
-     * @return Person
+     * @param string $title
+     * @return BGPhoto
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string 
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * Set origin
+     * Set updatedAt
      *
-     * @param string $origin
-     * @return Person
+     * @param \DateTime $updatedAt
+     * @return BGPhoto
      */
-    public function setOrigin($origin)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->origin = $origin;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get origin
-     *
-     * @return string 
-     */
-    public function getOrigin()
-    {
-        return $this->origin;
-    }
-
-    /**
-     * Set age
-     *
-     * @param integer $age
-     * @return Person
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
-     *
-     * @return integer 
-     */
-    public function getAge()
-    {
-        return $this->age;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Person
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     * @return Person
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
+     * Get updatedAt
      *
      * @return \DateTime 
      */
-    public function getCreatedAt()
+    public function getUpdatedAt()
     {
-        return $this->createdAt;
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set sectionName
+     *
+     * @param string $sectionName
+     * @return BGPhoto
+     */
+    public function setSectionName($sectionName)
+    {
+        $this->sectionName = $sectionName;
+
+        return $this;
+    }
+
+    /**
+     * Get sectionName
+     *
+     * @return string 
+     */
+    public function getSectionName()
+    {
+        return $this->sectionName;
     }
 
     /*   *********     File  *************  */
@@ -299,7 +224,7 @@ class Person
     public function getUploadDir()
     {
         // On retourne le chemin relatif vers l'image pour un navigateur
-        return 'img/besoins';
+        return 'img/BGPhotos';
     }
 
     protected function getUploadRootDir()
@@ -370,50 +295,4 @@ class Person
     }
 
     /*   *********   End  File  *************  */
-
-    /**
-     * Set color
-     *
-     * @param string $color
-     * @return Person
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string 
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
-     * Set bgColor
-     *
-     * @param string $bgColor
-     * @return Person
-     */
-    public function setBgColor($bgColor)
-    {
-        $this->bgColor = $bgColor;
-
-        return $this;
-    }
-
-    /**
-     * Get bgColor
-     *
-     * @return string 
-     */
-    public function getBgColor()
-    {
-        return $this->bgColor;
-    }
 }

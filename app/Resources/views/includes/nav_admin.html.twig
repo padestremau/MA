@@ -64,7 +64,20 @@
 	    	</a>
 	    </li>
 	    <li role="user_tabs" class="btn btn-choice-admin
-	    	{% if (route == 'ma_user_content') %}
+	    	{% if (route == 'ma_user_diapos') 
+	    		or (route == 'ma_user_diapos_new') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_diapos') }}')" class="no_style_a">
+		    	Photos diapo
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_content')
+	    		or (route == 'ma_user_content_spe')
+		        or (route == 'ma_user_content_new')
+		        or (route == 'ma_user_content_edit') %}
 	    		active
 	    	{% endif %}
 	    	">
@@ -73,12 +86,38 @@
 	    	</a>
 	    </li>
 	    <li role="user_tabs" class="btn btn-choice-admin
-	    	{% if (route == 'ma_user_content') %}
+	    	{% if (route == 'ma_user_BG_photos') 
+	    		or (route == 'ma_user_BG_photos_new')
+		        or (route == 'ma_user_BG_photos_edit') %}
 	    		active
 	    	{% endif %}
 	    	">
-	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_content') }}')" class="no_style_a">
-		    	Photos diapo
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_BG_photos') }}')" class="no_style_a">
+		    	Fonds de page
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_aides') 
+	    		or (route == 'ma_user_aides_spe')
+		        or (route == 'ma_user_aides_new')
+		        or (route == 'ma_user_aides_edit') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_aides') }}')" class="no_style_a">
+		    	Aides
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'ma_user_partners') 
+	    		or (route == 'ma_user_partners_spe')
+		        or (route == 'ma_user_partners_new')
+		        or (route == 'ma_user_partners_edit') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="javascript:loadContentAdmin('{{ path('ma_user_partners') }}')" class="no_style_a">
+		    	Partenaires
 	    	</a>
 	    </li>
 	    <li role="user_tabs" class="btn btn-choice-admin logout-btn-admin">

@@ -20,6 +20,21 @@ use MA\MainBundle\Entity\Project;
 use MA\MainBundle\Form\ProjectType;
 use MA\MainBundle\Form\ProjectEditType;
 
+use MA\MainBundle\Entity\Diapo;
+use MA\MainBundle\Form\DiapoType;
+
+use MA\MainBundle\Entity\Page;
+use MA\MainBundle\Form\PageType;
+
+use MA\MainBundle\Entity\BGPhoto;
+use MA\MainBundle\Form\BGPhotoType;
+
+use MA\MainBundle\Entity\Aide;
+use MA\MainBundle\Form\AideType;
+
+use MA\MainBundle\Entity\Partner;
+use MA\MainBundle\Form\PartnerType;
+
 class UserController extends Controller
 {
     public function indexAction()
@@ -75,6 +90,7 @@ class UserController extends Controller
 
         // On vérifie que les valeurs entrées sont correctes
         if ($formNewArticle->isValid()) {
+            $article->setUpdatedAt(new \Datetime);
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
@@ -575,8 +591,332 @@ class UserController extends Controller
         return $this->redirect($this->generateUrl('ma_user_nosBesoins'));
     }
 
-    public function contentAction()
+    public function contentAction($pageId = null)
     {
-        return $this->render('MAUserBundle:User:content.html.twig');
+        $pages = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Page')
+                        ->findAll(['updatedAt' => 'DESC']);
+
+        if ($pageId == null) {
+            $pageAsked = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Page')
+                                ->findLatestOne();
+            if (sizeof($pageAsked) > 0) {
+                $pageAsked = $pageAsked[0];
+            }
+            else {
+                $pageAsked = new Page;
+            }
+        }
+        else {
+            $pageAsked = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Page')
+                                ->find($pageId);
+        }
+
+        return $this->render('MAUserBundle:User:content.html.twig', array(
+            'pages' => $pages,
+            'pageAsked' => $pageAsked
+            ));
+    }
+
+    public function contentNewAction($pageId = null)
+    {
+        if ($pageId == null) {
+            $page = new Page;
+        }
+        else {
+            $page = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Page')
+                                ->find($pageId);
+        }
+
+        // On utiliser le OrdersType
+        $formNewPage = $this->createForm(new pageType(), $page);
+
+        // On récupère la requête
+        $formNewPage->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewPage->isValid()) {
+            $page->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($page);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_content'));
+        }
+
+        return $this->render('MAUserBundle:User:contentNew.html.twig', array(
+            'formNewPage' => $formNewPage->createView()
+        ));
+    }
+
+    public function contentDeleteAction($pageId)
+    {
+        $page = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Page')
+                            ->find($pageId);
+
+        if (!$page) {
+            throw $this->createNotFoundException("Aucune page à supprimer n'a été trouvé ...");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($page);
+        $em->flush();
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_user_content'));
+    }
+
+    public function diaposAction()
+    {
+        $diapos = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Diapo')
+                        ->findAll();
+
+        return $this->render('MAUserBundle:User:diapos.html.twig', array(
+            'diapos' => $diapos
+            ));
+    }
+
+    public function diapoNewAction()
+    {
+        $diapo = new Diapo;
+
+        // On utiliser le OrdersType
+        $formNewDiapo = $this->createForm(new diapoType(), $diapo);
+
+        // On récupère la requête
+        $formNewDiapo->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewDiapo->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($diapo);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_diapos'));
+        }
+
+        return $this->render('MAUserBundle:User:diapoNew.html.twig', array(
+            'formNewDiapo' => $formNewDiapo->createView()
+        ));
+    }
+
+    public function diapoDeleteAction($diapoId)
+    {
+        $diapo = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Diapo')
+                            ->find($diapoId);
+
+        if (!$diapo) {
+            throw $this->createNotFoundException("Aucune diapo à supprimer n'a été trouvé ...");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($diapo);
+        $em->flush();
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_user_diapos'));
+    }
+
+    public function BGPhotosAction()
+    {
+        $BGPhotos = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:BGPhoto')
+                        ->findAll();
+
+        return $this->render('MAUserBundle:User:BGPhotos.html.twig', array(
+            'BGPhotos' => $BGPhotos
+            ));
+    }
+
+    public function BGPhotoNewAction()
+    {
+        $BGPhoto = new BGPhoto;
+
+        // On utiliser le OrdersType
+        $formNewBGPhoto = $this->createForm(new BGPhotoType(), $BGPhoto);
+
+        // On récupère la requête
+        $formNewBGPhoto->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewBGPhoto->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($BGPhoto);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_BG_photos'));
+        }
+
+        return $this->render('MAUserBundle:User:BGPhotoNew.html.twig', array(
+            'formNewBGPhoto' => $formNewBGPhoto->createView()
+        ));
+    }
+
+    public function BGPhotoDeleteAction($BGPhotoId)
+    {
+        $BGPhoto = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:BGPhoto')
+                            ->find($BGPhotoId);
+
+        if (!$BGPhoto) {
+            throw $this->createNotFoundException("Aucune photo de fond de page à supprimer n'a été trouvé ...");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($BGPhoto);
+        $em->flush();
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_user_BG_photos'));
+    }
+
+    public function aidesAction()
+    {
+        $aides = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Aide')
+                        ->findAll(['orderList' => 'ASC']);
+
+        return $this->render('MAUserBundle:User:aides.html.twig', array(
+            'aides' => $aides
+            ));
+    }
+
+    public function aideNewAction($aideId = null)
+    {
+        if ($aideId == null) {
+            $aide = new Aide;
+        }
+        else {
+            $aide = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Aide')
+                                ->find($aideId);
+        }
+
+        // On utiliser le OrdersType
+        $formNewAide = $this->createForm(new aideType(), $aide);
+
+        // On récupère la requête
+        $formNewAide->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewAide->isValid()) {
+            $aide->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($aide);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_aides'));
+        }
+
+        return $this->render('MAUserBundle:User:aideNew.html.twig', array(
+            'formNewAide' => $formNewAide->createView()
+        ));
+    }
+
+    public function aideDeleteAction($aideId)
+    {
+        $aide = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Aide')
+                            ->find($aideId);
+
+        if (!$aide) {
+            throw $this->createNotFoundException("Aucune page à supprimer n'a été trouvé ...");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($aide);
+        $em->flush();
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_user_aides'));
+    }
+
+    public function partnersAction()
+    {
+        $partners = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Partner')
+                        ->findAll(['orderList' => 'ASC']);
+
+        return $this->render('MAUserBundle:User:partners.html.twig', array(
+            'partners' => $partners
+            ));
+    }
+
+    public function partnerNewAction($partnerId = null)
+    {
+        if ($partnerId == null) {
+            $partner = new Partner;
+        }
+        else {
+            $partner = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('MAMainBundle:Partner')
+                                ->find($partnerId);
+        }
+
+        // On utiliser le OrdersType
+        $formNewPartner = $this->createForm(new partnerType(), $partner);
+
+        // On récupère la requête
+        $formNewPartner->handleRequest($this->getRequest());
+
+        // On vérifie que les valeurs entrées sont correctes
+        if ($formNewPartner->isValid()) {
+            $partner->setUpdatedAt(new \Datetime);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($partner);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de le document nouvellement créé
+            return $this->redirect($this->generateUrl('ma_user_partners'));
+        }
+
+        return $this->render('MAUserBundle:User:partnerNew.html.twig', array(
+            'formNewPartner' => $formNewPartner->createView()
+        ));
+    }
+
+    public function partnerDeleteAction($partnerId)
+    {
+        $partner = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MAMainBundle:Partner')
+                            ->find($partnerId);
+
+        if (!$partner) {
+            throw $this->createNotFoundException("Aucune page à supprimer n'a été trouvé ...");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($partner);
+        $em->flush();
+
+        // On redirige vers la page de visualisation de le document nouvellement créé
+        return $this->redirect($this->generateUrl('ma_user_partners'));
     }
 }

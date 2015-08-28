@@ -119,3 +119,85 @@ function displaySelectedElement(path_chosen, id_toSet_active)
 
 	return false;
 }
+
+
+function displaySelectedPage(path_chosen, id_toSet_active)
+{
+	$('#page_content_content').fadeOut('slow',loadContent);
+	var toLoad = path_chosen +' #page_content_content';
+
+	function loadContent() {
+		$('#page_content_content').load(toLoad,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#page_content_content').fadeIn('slow');
+
+				$('.page_link').attr('class', 'page_link');
+				document.getElementById(id_toSet_active).className = "page_link li_page_active";
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+	}
+
+	//to change the browser URL to 'path_chosen'
+    if(path_chosen!=window.location){
+        window.history.pushState({path:path_chosen},'',path_chosen);    
+    }
+
+	return false;
+}
+
+function displaySelectedAide(path_chosen, id_toSet_active)
+{
+	$('#aide_content').fadeOut('slow',loadContent);
+	var toLoad = path_chosen +' #aide_content';
+
+	function loadContent() {
+		$('#aide_content').load(toLoad,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#aide_content').fadeIn('slow');
+
+				$('.aide_link').attr('class', 'aide_link');
+				document.getElementById(id_toSet_active).className = "aide_link li_aide_active";
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+	}
+
+	//to change the browser URL to 'path_chosen'
+    if(path_chosen!=window.location){
+        window.history.pushState({path:path_chosen},'',path_chosen);    
+    }
+
+	return false;
+}
+
+function displaySelectedPartner(path_chosen, id_toSet_active)
+{
+	$('#partner_content').fadeOut('slow',loadContent);
+	var toLoad = path_chosen +' #partner_content';
+
+	function loadContent() {
+		$('#partner_content').load(toLoad,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#partner_content').fadeIn('slow');
+
+				$('.partner_link').attr('class', 'partner_link');
+				document.getElementById(id_toSet_active).className = "partner_link li_partner_active";
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+	}
+
+	//to change the browser URL to 'path_chosen'
+    if(path_chosen!=window.location){
+        window.history.pushState({path:path_chosen},'',path_chosen);    
+    }
+
+	return false;
+}

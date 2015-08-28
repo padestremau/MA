@@ -9,13 +9,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Person
+ * Partner
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\PersonRepository")
+ * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\PartnerRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Person
+class Partner
 {
     /**
      * @var integer
@@ -36,37 +36,16 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="origin", type="string", length=255, nullable=true)
+     * @ORM\Column(name="website", type="text")
      */
-    private $origin;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="color", type="string", length=255, nullable=true)
-     */
-    private $color;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="bgColor", type="string", length=255, nullable=true)
-     */
-    private $bgColor;
+    private $website;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="age", type="integer", nullable=true)
+     * @ORM\Column(name="orderList", type="integer")
      */
-    private $age;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
+    private $orderList;
 
     /**
      * @var \DateTime
@@ -74,6 +53,20 @@ class Person
      * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
 
     /**
      * @var string
@@ -93,15 +86,16 @@ class Person
 
     private $tempFilename;
 
-
-
-
     /*   *********      construct  *************  */
 
     public function __construct()
     {
         $this->createdAt        = new \Datetime;
+        $this->updatedAt        = new \Datetime;
+        $this->status           = 'active';
     }
+
+    /*   *********      methods  *************  */
 
 
     /**
@@ -118,7 +112,7 @@ class Person
      * Set name
      *
      * @param string $name
-     * @return Person
+     * @return Partner
      */
     public function setName($name)
     {
@@ -138,79 +132,56 @@ class Person
     }
 
     /**
-     * Set origin
+     * Set website
      *
-     * @param string $origin
-     * @return Person
+     * @param string $website
+     * @return Partner
      */
-    public function setOrigin($origin)
+    public function setWebsite($website)
     {
-        $this->origin = $origin;
+        $this->website = $website;
 
         return $this;
     }
 
     /**
-     * Get origin
+     * Get website
      *
      * @return string 
      */
-    public function getOrigin()
+    public function getWebsite()
     {
-        return $this->origin;
+        return $this->website;
     }
 
     /**
-     * Set age
+     * Set orderList
      *
-     * @param integer $age
-     * @return Person
+     * @param integer $orderList
+     * @return Partner
      */
-    public function setAge($age)
+    public function setOrderList($orderList)
     {
-        $this->age = $age;
+        $this->orderList = $orderList;
 
         return $this;
     }
 
     /**
-     * Get age
+     * Get orderList
      *
      * @return integer 
      */
-    public function getAge()
+    public function getOrderList()
     {
-        return $this->age;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Person
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
+        return $this->orderList;
     }
 
     /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Person
+     * @return Partner
      */
     public function setCreatedAt($createdAt)
     {
@@ -227,6 +198,29 @@ class Person
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Partner
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
     /*   *********     File  *************  */
@@ -299,7 +293,7 @@ class Person
     public function getUploadDir()
     {
         // On retourne le chemin relatif vers l'image pour un navigateur
-        return 'img/besoins';
+        return 'img/partenaires';
     }
 
     protected function getUploadRootDir()
@@ -372,48 +366,25 @@ class Person
     /*   *********   End  File  *************  */
 
     /**
-     * Set color
+     * Set status
      *
-     * @param string $color
-     * @return Person
+     * @param string $status
+     * @return Partner
      */
-    public function setColor($color)
+    public function setStatus($status)
     {
-        $this->color = $color;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get color
+     * Get status
      *
      * @return string 
      */
-    public function getColor()
+    public function getStatus()
     {
-        return $this->color;
-    }
-
-    /**
-     * Set bgColor
-     *
-     * @param string $bgColor
-     * @return Person
-     */
-    public function setBgColor($bgColor)
-    {
-        $this->bgColor = $bgColor;
-
-        return $this;
-    }
-
-    /**
-     * Get bgColor
-     *
-     * @return string 
-     */
-    public function getBgColor()
-    {
-        return $this->bgColor;
+        return $this->status;
     }
 }

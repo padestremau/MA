@@ -1,0 +1,184 @@
+{# src/MA/UserBundle/Resources/User/partenaires.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Partenaires
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_admin" id="section6">
+				
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row">
+				    		<div class="row90 left">
+				    			<a href="{{ path('ma_user_partners_new') }}" class="btn btn-admin">
+				    				Nouveau partenaire
+				    			</a>
+				    		</div>
+				    		{% if aides|length > 0 %}
+								<div class="table-responsive">
+			                      <table class="table">
+			                        <thead>
+			                          <tr>
+			                            <th class="center">
+			                              Id
+			                            </th>
+			                            <th class="center">
+			                              	Image
+			                            </th>
+			                            <th class="center">
+			                              	Nom
+			                            </th>
+			                            <th class="center">
+			                              	Site web
+			                            </th>
+			                            <th class="center">
+			                              	Créé le
+			                            </th>
+			                            <th class="center">
+			                              	Modifié le
+			                            </th>
+			                            <th class="center">
+			                              	#
+			                            </th>
+			                            <th class="center">
+			                              	Statut
+			                            </th>
+			                            <th class="center">
+			                              	Action
+			                            </th>
+			                          </tr>
+			                        </thead>
+			                        <tbody>
+			                          {% for aide in aides %}
+			                            <tr>
+			                            	<th class="center">
+				                              {{ aide.id }}
+				                            </th>
+				                            <td class="center">
+				                              	{% if aide.alt|length > 0 and aide.url|length > 0 %}
+													<div class="product_img_admin" style="background-image: url('{{ asset(aide.webPath) }}'); background-size: cover; background-position: 50%;">
+													</div>
+												{% else %}
+													<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_admin"/>
+												{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if aide.name|length > 0 %}
+				                              		{{ aide.name }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if aide.website|length > 0 %}
+				                              		<a href="{{ aide.website }}" target="_blank">
+				                              			{{ aide.website }}
+				                              		</a>
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if aide.createdAt|length > 0 %}
+				                              		{{ aide.createdAt|date("d/M/Y") }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if aide.updatedAt|length > 0 %}
+				                              		{{ aide.updatedAt|date("d/M/Y") }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if aide.orderList|length > 0 %}
+				                              		{{ aide.orderList }}
+				                              	{% else %}
+				                              		-
+				                              	{% endif %}
+				                            </td>
+				                            <th class="center hover_popup">
+				                            	{% if aide.active %}
+				                              		{% if aide.active == "active" %}
+				                              			Active
+				                              		{% elseif aide.active == "toCome" %}
+				                              			A venir
+				                              		{% elseif aide.active == "inactive" %}
+				                              			Inactive
+				                              		{% else %}
+				                              			Erreur
+				                              			<span class="italic">
+				                              				Vous devez choisir parmi les statuts proposés
+					                              		</span>
+				                              		{% endif %}
+				                              	{% else %}
+				                              		Erreur
+				                              		<span class="italic">
+														Vous devez choisir parmi les statuts proposés
+				                              		</span>
+				                              	{% endif %}
+				                            </th>
+				                            <td class="center">
+				                            	<a href="javascript:loadContentAdmin('{{ path('ma_user_partners_edit', {'aideId':aide.id}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-pencil"></span>
+				                            	</a>
+				                            	<a href="javascript:areYouSureDeletePartner('{{ path('ma_user_partners_delete', {'aideId':aide.id}) }}')" class="btn btn-action-admin">
+					                            	<span class="glyphicon glyphicon-trash"></span>
+				                            	</a>
+				                            </td>
+			                            </tr>
+			                          {% endfor %}
+			                        </tbody>
+			                      </table>
+			                    </div>
+							{% else %}
+								<div class="center col-md-9">
+									Désolé, aucun partenaire ...
+								</div>
+								<div class="col-md-3"></div>
+							{% endif %}
+				    	</div>
+
+		    			<br/><br/><br/>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_misAnd.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

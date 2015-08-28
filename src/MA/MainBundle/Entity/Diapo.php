@@ -9,13 +9,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Person
+ * Diapo
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\PersonRepository")
+ * @ORM\Entity(repositoryClass="MA\MainBundle\Entity\DiapoRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Person
+class Diapo
 {
     /**
      * @var integer
@@ -27,48 +27,6 @@ class Person
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="origin", type="string", length=255, nullable=true)
-     */
-    private $origin;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="color", type="string", length=255, nullable=true)
-     */
-    private $color;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="bgColor", type="string", length=255, nullable=true)
-     */
-    private $bgColor;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="age", type="integer", nullable=true)
-     */
-    private $age;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
@@ -78,22 +36,20 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255, nullable=true)
+     * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="alt", type="string", length=255, nullable=true)
+     * @ORM\Column(name="alt", type="string", length=255)
      */
     private $alt;
 
     private $file;
 
     private $tempFilename;
-
-
 
 
     /*   *********      construct  *************  */
@@ -103,6 +59,8 @@ class Person
         $this->createdAt        = new \Datetime;
     }
 
+
+    /*   *********      methods  *************  */
 
     /**
      * Get id
@@ -115,102 +73,10 @@ class Person
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     * @return Person
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set origin
-     *
-     * @param string $origin
-     * @return Person
-     */
-    public function setOrigin($origin)
-    {
-        $this->origin = $origin;
-
-        return $this;
-    }
-
-    /**
-     * Get origin
-     *
-     * @return string 
-     */
-    public function getOrigin()
-    {
-        return $this->origin;
-    }
-
-    /**
-     * Set age
-     *
-     * @param integer $age
-     * @return Person
-     */
-    public function setAge($age)
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    /**
-     * Get age
-     *
-     * @return integer 
-     */
-    public function getAge()
-    {
-        return $this->age;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Person
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return Person
+     * @return Diapo
      */
     public function setCreatedAt($createdAt)
     {
@@ -299,7 +165,7 @@ class Person
     public function getUploadDir()
     {
         // On retourne le chemin relatif vers l'image pour un navigateur
-        return 'img/besoins';
+        return 'img/diapos';
     }
 
     protected function getUploadRootDir()
@@ -370,50 +236,4 @@ class Person
     }
 
     /*   *********   End  File  *************  */
-
-    /**
-     * Set color
-     *
-     * @param string $color
-     * @return Person
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string 
-     */
-    public function getColor()
-    {
-        return $this->color;
-    }
-
-    /**
-     * Set bgColor
-     *
-     * @param string $bgColor
-     * @return Person
-     */
-    public function setBgColor($bgColor)
-    {
-        $this->bgColor = $bgColor;
-
-        return $this;
-    }
-
-    /**
-     * Get bgColor
-     *
-     * @return string 
-     */
-    public function getBgColor()
-    {
-        return $this->bgColor;
-    }
 }

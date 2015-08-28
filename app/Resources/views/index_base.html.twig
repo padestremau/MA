@@ -46,10 +46,12 @@
         or (route == 'ma_user_project_new')
         or (route == 'ma_user_project_edit')
         or (route == 'ma_user_person_edit')
-        or (route == 'ma_user_person_new') %}
+        or (route == 'ma_user_person_new')
+        or (route == 'ma_user_content_new')
+        or (route == 'ma_user_content_edit') %}
       {% stylesheets
       'redactor/redactor.css'
-      'bundles/stpredactor/css/sonata.css'
+      'bundles/maredactor/css/sonata.css'
       filter='cssrewrite' %}
       <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
       {% endstylesheets %}
@@ -58,10 +60,8 @@
       'redactor/fullscreen.js'
       'redactor/fr.js'
       'jscolor/jscolor.js'
-      'bundles/stpredactor/js/script.js'
+      'bundles/maredactor/js/script.js'
       %}
-      <!-- 'jquery.autoSave.js'
-      'jquery.validate.min.js' -->
       <script type="text/javascript" src="{{ asset_url }}"> </script>
       {% endjavascripts %}
     {% endif %}

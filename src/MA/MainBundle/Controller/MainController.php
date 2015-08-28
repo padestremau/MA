@@ -52,12 +52,6 @@ class MainController extends Controller
             }
         }
 
-
-        $articles = $this ->getDoctrine()
-                        ->getManager()
-                        ->getRepository('MAMainBundle:Article')
-                        ->findAllByDate();
-
         $photos = $this ->getDoctrine()
                         ->getManager()
                         ->getRepository('MAMainBundle:Photos')
@@ -112,6 +106,26 @@ class MainController extends Controller
                         ->getRepository('MAMainBundle:Project')
                         ->findAll();
 
+        $articles = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Article')
+                        ->findAllByDate();
+
+        $pages = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Page')
+                        ->findAll();
+
+        $diapos = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Diapo')
+                        ->findAll();
+
+        $BGPhotos = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:BGPhoto')
+                        ->findAll();
+
 
         return $this->render('MAMainBundle:Main:indexMain.html.twig', array(
             'articleAsked' => $articleAsked, 
@@ -124,14 +138,41 @@ class MainController extends Controller
             'videosJeunesPro' => $videosJeunesPro,
         	'videoAsked' => $videoAsked,
             'people' => $people,
-            'projects' => $projects
+            'projects' => $projects,
+            'pages' => $pages,
+            'diapos' => $diapos,
+            'BGPhotos' => $BGPhotos
         	));
         
     }
 
     public function helpUsAction()
     {
-        return $this->render('MAMainBundle:Main:helpUs.html.twig');
+        $BGPhotos = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:BGPhoto')
+                        ->findBySectionName('helpUs');
+
+        $pages = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Page')
+                        ->findAll();
+
+        $aides = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Aide')
+                        ->findAll();
+
+        $partenaires = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Partner')
+                        ->findAll();
+
+        return $this->render('MAMainBundle:Main:helpUs.html.twig', array(
+            'pages' => $pages,
+            'aides' => $aides,
+            'partenaires' => $partenaires
+            ));
     }
 
     public function footerContactAction() 
