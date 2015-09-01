@@ -26,6 +26,13 @@
 		                </div>
 		            </div>
 		        </div>
+		        <div class="hidden-lg hidden-md hidden-sm">
+			        <button type="submit" class="btn btn-footer">
+			        	{{ 'footer.contact.send' | trans }}
+			        </button>
+					<br/>
+			        <br/>
+		        </div>
 		        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 		        	<!-- 16:9 aspect ratio -->
 					<div class="embed-responsive embed-responsive-16by9">
@@ -33,10 +40,12 @@
 					</div>
 		        </div>
 			</div>
-			<br/>
-	        <button type="submit" class="btn btn-footer">
-	        	{{ 'footer.contact.send' | trans }}
-	        </button>
+			<div class="row hidden-xs">
+				<br/>
+		        <button type="submit" class="btn btn-footer">
+		        	{{ 'footer.contact.send' | trans }}
+		        </button>
+	        </div>
 	    </form>
 
 	    <br/>

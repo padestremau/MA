@@ -256,7 +256,7 @@ h3
 }
 @media (max-width: 477px) {
 	h3 {
-		font-size: 1.2em;
+		font-size: 1.5em;
 	}
 }
 
@@ -287,7 +287,7 @@ h4
 }
 @media (max-width: 477px) {
 	h4 {
-		font-size: 1em;
+		font-size: 1.3em;
 	}
 }
 
@@ -980,7 +980,7 @@ hr {
 .section_helpUs {
 	background-color: rgba(255,176,60,0.9);
 }*/
-.section_ecoliers {
+/*.section_ecoliers {
 	background-image: url('../img/system/content/bg_ecoliers.png');
 	background-size: cover;
 }
@@ -1003,7 +1003,7 @@ hr {
 .section_charte {
 	background-image: url('../img/system/content/bg_charte.png');
 	background-size: cover;
-}
+}*/
 
 .board_ecoliers {
 	font-family: 'chalk_writing' !important;
@@ -1437,6 +1437,12 @@ hr {
 	height: 30px;
 	margin: 0 6px;
 }
+.scroll-icons-spe {
+	width: 20px;
+	height: 20px;
+	margin: 0 3px;
+	text-align: right;
+}
 
 @-webkit-keyframes mov_left {
 	from {	-webkit-transform: translateX(0px);	}
@@ -1565,6 +1571,13 @@ hr {
 	-ms-animation-delay: 0.2s;
 	-o-animation-delay: 0.2s;
     animation-delay: 0.2s;
+}
+.scroll-icons-spe-right {
+	-webkit-animation: mov_right 1s ease infinite;
+	-moz-animation: mov_right 1s ease infinite;
+	-ms-animation: mov_right 1s ease infinite;
+	-o-animation: mov_right 1s ease infinite;
+    animation: mov_right 1s ease infinite;
 }
 
 @-webkit-keyframes mov_down {
@@ -1981,8 +1994,27 @@ hr {
 	border-radius: 0;
 	color: rgba(22,54,110,0.95);
 }
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+    background-color: transparent !important;
+}
 .modal-content {
 	padding: 0px !important;
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
 }
 .modal_content {
 	font-size: 1.3em;
@@ -2184,6 +2216,41 @@ body.modal-open {
 	opacity: 0.4;
 }
 .btn-action-admin:hover .btn_arrow {
+	opacity: 1 !important;
+}
+
+.btn-admin {
+	border-radius: 3px;
+	background-color: transparent;
+	border: 1px solid rgba(150,150,150,0.8);
+	color: rgba(150,150,150,0.8);
+	padding: 2px 5px ;
+	margin: 10px;
+}
+.btn-admin:hover {
+	background-color: rgba(150,150,150,0.6);
+}
+.btn-admin .btn_arrow {
+	opacity: 0.4;
+}
+.btn-admin:hover .btn_arrow {
+	opacity: 1 !important;
+}
+
+.btn-action-admin-icon {
+	background-color: transparent;
+	color: rgba(150,150,150,0.8);
+	padding: 2px 5px ;
+	margin: 6px;
+}
+.btn-action-admin-icon:hover {
+	background-color: transparent;
+	color: rgba(10,10,10,0.88);
+}
+.btn-action-admin-icon .btn_arrow {
+	opacity: 0.4;
+}
+.btn-action-admin-icon:hover .btn_arrow {
 	opacity: 1 !important;
 }
 

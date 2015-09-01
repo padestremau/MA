@@ -757,7 +757,7 @@ class UserController extends Controller
 
         // On vérifie que les valeurs entrées sont correctes
         if ($formNewBGPhoto->isValid()) {
-
+            $BGPhoto->setUpdatedAt(new \Datetime);
             $em = $this->getDoctrine()->getManager();
             $em->persist($BGPhoto);
             $em->flush();

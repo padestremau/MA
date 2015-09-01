@@ -1,0 +1,195 @@
+{# src/MA/UserBundle/Resources/User/partnerNew.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Nouveau partenaire
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_admin" id="section6">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row92">
+							<div class="row">
+			    				<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_partners') }}')">
+			    					<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+			    					Retour
+			    				</a>
+			    			</div>
+
+			    			<div class="row left">
+			    				<form method="post" {{ form_enctype(formNewPartner) }}>
+				        		{% if form_errors(formNewPartner) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewPartner) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+									<div class="form-group">
+								        {{ form_label(formNewPartner.name, 'Nom', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPartner.name) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPartner.name) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_name = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Nom du partenaire", 'id':'_name', 
+								        		'name':'_name'}} %}
+								        	{{ form_widget(formNewPartner.name, opt_name) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewPartner.file, "Logo du partenaire", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPartner.file) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPartner.file) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_file = {'attr': {'type':'file', 'id':'file', 'name':'_file'}} %}
+								        	{{ form_widget(formNewPartner.file, opt_file) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewPartner.website, 'Site web', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPartner.website) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPartner.website) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_website = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Ex: www.test.com", 'id':'_website', 
+								        		'name':'_website'}} %}
+								        	{{ form_widget(formNewPartner.website, opt_website) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewPartner.orderList, "Ordre d'apparition du partenaire", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPartner.orderList) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPartner.orderList) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_orderList = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Ex: 4", 'id':'_orderList', 
+								        		'name':'_orderList'}} %}
+								        	{{ form_widget(formNewPartner.orderList, opt_orderList) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewPartner.status, "Statut", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPartner.status) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPartner.status) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_status = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'id':'status', 'name':'_status' }} %}
+								        	{{ form_widget(formNewPartner.status, opt_status) }}
+								        </div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewPartner) }}
+									<div class="center">
+										<input type="submit" class="btn btn-log" value="Enregistrer"/>
+									</div>
+								</div>
+							</form>
+			    			</div>
+		    			</div>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_misAnd.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

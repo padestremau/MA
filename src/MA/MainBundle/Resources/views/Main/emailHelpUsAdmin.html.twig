@@ -106,13 +106,7 @@
                                     {% if senderQuantity|length > 0 and senderType|length > 0 %}
                                       <strong>Demandé : </strong> 
                                       {{ senderQuantity }}
-                                      {% if senderType == "artisanat" %}
-                                        pièce(s) d'artisanat
-                                      {% elseif senderType == "turbulette" %}
-                                        turbulette(s)
-                                      {% elseif senderType == "CDchant" %}
-                                        CD de chant Quechua
-                                      {% endif %}
+                                      {{ aide.name }}
                                       <br/><br/>
                                       {{ senderContent|nl2br }}
                                     {% else %}

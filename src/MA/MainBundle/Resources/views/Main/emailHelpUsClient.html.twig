@@ -110,13 +110,7 @@
                                     {% if senderQuantity|length > 0 and senderType|length > 0 %}
                                       <strong>{{ 'emailHelpUs.content.askedFor' | trans }}</strong>
                                       {{ senderQuantity }} 
-                                      {% if senderType == "artisanat" %}
-                                        {{ 'emailHelpUs.content.artisanat' | trans }}
-                                      {% elseif senderType == "turbulette" %}
-                                        {{ 'emailHelpUs.content.turbulette' | trans }}
-                                      {% elseif senderType == "CDchant" %}
-                                        {{ 'emailHelpUs.content.CDchant' | trans }}
-                                      {% endif %}
+                                      {{ aide.name }}
                                       <br/><br/>
                                       {{ senderContent|nl2br }}  
                                     {% else %}

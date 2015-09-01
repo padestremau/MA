@@ -50,7 +50,7 @@ class Aide
     /**
      * @var integer
      *
-     * @ORM\Column(name="orderList", type="integer")
+     * @ORM\Column(name="orderList", type="integer", nullable=true)
      */
     private $orderList;
 
@@ -74,6 +74,13 @@ class Aide
      * @ORM\Column(name="status", type="string", length=255)
      */
     private $status;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer", nullable=true)
+     */
+    private $price;
 
     /**
      * @var string
@@ -417,5 +424,28 @@ class Aide
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     * @return Aide
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer 
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

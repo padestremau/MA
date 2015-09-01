@@ -43,7 +43,7 @@ class Partner
     /**
      * @var integer
      *
-     * @ORM\Column(name="orderList", type="integer")
+     * @ORM\Column(name="orderList", type="integer", nullable=true)
      */
     private $orderList;
 

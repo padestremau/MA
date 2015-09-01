@@ -31,13 +31,13 @@
 				    				Nouveau partenaire
 				    			</a>
 				    		</div>
-				    		{% if aides|length > 0 %}
+				    		{% if partners|length > 0 %}
 								<div class="table-responsive">
 			                      <table class="table">
 			                        <thead>
 			                          <tr>
 			                            <th class="center">
-			                              Id
+			                              	Ordre
 			                            </th>
 			                            <th class="center">
 			                              	Image
@@ -55,9 +55,6 @@
 			                              	Modifié le
 			                            </th>
 			                            <th class="center">
-			                              	#
-			                            </th>
-			                            <th class="center">
 			                              	Statut
 			                            </th>
 			                            <th class="center">
@@ -66,63 +63,64 @@
 			                          </tr>
 			                        </thead>
 			                        <tbody>
-			                          {% for aide in aides %}
+			                          {% for partner in partners %}
 			                            <tr>
-			                            	<th class="center">
-				                              {{ aide.id }}
-				                            </th>
+				                            <td class="center hover_popup">
+				                              	{% if partner.orderList|length > 0 %}
+				                              		{{ partner.orderList }}
+				                              	{% else %}
+				                              		Erreur
+			                              			<span class="italic">
+			                              				Vous devez donner un ordre
+				                              		</span>
+				                              	{% endif %}
+				                            </td>
 				                            <td class="center">
-				                              	{% if aide.alt|length > 0 and aide.url|length > 0 %}
-													<div class="product_img_admin" style="background-image: url('{{ asset(aide.webPath) }}'); background-size: cover; background-position: 50%;">
+				                              	{% if partner.alt|length > 0 and partner.url|length > 0 %}
+													<div class="partner_img_admin" style="background-size: 100%; min-height:60px; background-image: url('{{ asset(partner.webPath) }}'); background-size: cover; background-position: 50%;">
 													</div>
 												{% else %}
-													<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="product_img_admin"/>
+													<div class="partner_img_admin" style="background-size: 100%; min-height:60px; background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%;">
+													</div>
 												{% endif %}
 				                            </td>
 				                            <td class="center">
-				                              	{% if aide.name|length > 0 %}
-				                              		{{ aide.name }}
+				                              	{% if partner.name|length > 0 %}
+				                              		{{ partner.name }}
 				                              	{% else %}
 				                              		---
 				                              	{% endif %}
 				                            </td>
 				                            <td class="center">
-				                              	{% if aide.website|length > 0 %}
-				                              		<a href="{{ aide.website }}" target="_blank">
-				                              			{{ aide.website }}
+				                              	{% if partner.website|length > 0 %}
+				                              		<a href="{{ partner.website }}" target="_blank">
+				                              			{{ partner.website }}
 				                              		</a>
 				                              	{% else %}
 				                              		---
 				                              	{% endif %}
 				                            </td>
 				                            <td class="center">
-				                              	{% if aide.createdAt|length > 0 %}
-				                              		{{ aide.createdAt|date("d/M/Y") }}
+				                              	{% if partner.createdAt|length > 0 %}
+				                              		{{ partner.createdAt|date("d/M/Y") }}
 				                              	{% else %}
 				                              		---
 				                              	{% endif %}
 				                            </td>
 				                            <td class="center">
-				                              	{% if aide.updatedAt|length > 0 %}
-				                              		{{ aide.updatedAt|date("d/M/Y") }}
+				                              	{% if partner.updatedAt|length > 0 %}
+				                              		{{ partner.updatedAt|date("d/M/Y") }}
 				                              	{% else %}
 				                              		---
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
-				                              	{% if aide.orderList|length > 0 %}
-				                              		{{ aide.orderList }}
-				                              	{% else %}
-				                              		-
 				                              	{% endif %}
 				                            </td>
 				                            <th class="center hover_popup">
-				                            	{% if aide.active %}
-				                              		{% if aide.active == "active" %}
+				                            	{% if partner.status %}
+				                              		{% if partner.status == "active" %}
 				                              			Active
-				                              		{% elseif aide.active == "toCome" %}
+				                              		{% elseif partner.status == "toCome" %}
 				                              			A venir
-				                              		{% elseif aide.active == "inactive" %}
+				                              		{% elseif partner.status == "inactive" %}
 				                              			Inactive
 				                              		{% else %}
 				                              			Erreur
@@ -138,10 +136,10 @@
 				                              	{% endif %}
 				                            </th>
 				                            <td class="center">
-				                            	<a href="javascript:loadContentAdmin('{{ path('ma_user_partners_edit', {'aideId':aide.id}) }}')" class="btn btn-action-admin">
+				                            	<a href="javascript:loadContentAdmin('{{ path('ma_user_partners_edit', {'partnerId':partner.id}) }}')" class="btn btn-action-admin-icon">
 					                            	<span class="glyphicon glyphicon-pencil"></span>
 				                            	</a>
-				                            	<a href="javascript:areYouSureDeletePartner('{{ path('ma_user_partners_delete', {'aideId':aide.id}) }}')" class="btn btn-action-admin">
+				                            	<a href="javascript:areYouSureDeletePartner('{{ path('ma_user_partners_delete', {'partnerId':partner.id}) }}')" class="btn btn-action-admin-icon">
 					                            	<span class="glyphicon glyphicon-trash"></span>
 				                            	</a>
 				                            </td>

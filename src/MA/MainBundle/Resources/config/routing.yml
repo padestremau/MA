@@ -3,27 +3,27 @@ ma_main_homepage:
     defaults: { _controller: MAMainBundle:Main:index }
 
 ma_main_homepage_elementAjax:
-    path:     /{elementType}/{elementId}
+    path:     /{elementType}/{elementId}/
     defaults: { _controller: MAMainBundle:Main:index }
     requirements:
         elementId: \d+
 
 ma_main_helpUs:
-    path:     /nousAider
+    path:     /nousAider/
     defaults: { _controller: MAMainBundle:Main:helpUs }
 
 ma_main_footer_contact:
-    path:     /contact
+    path:     /contact/
     defaults: { _controller: MAMainBundle:Main:footerContact }
 
 ma_main_footer_contact_thankYou:
-    path:     /contact/thankYou
+    path:     /contact/thankYou/
     defaults: { _controller: MAMainBundle:Main:footerContactThankYou }
 
 ma_main_helpUs_contact:
-    path:     /nousAider/contact
+    path:     /nousAider/contact/
     defaults: { _controller: MAMainBundle:Main:helpUsContact }
 
 ma_main_helpUs_contact_thankYou:
-    path:     /nousAider/contact/merciBeaucoup
+    path:     /nousAider/contact/merciBeaucoup/
     defaults: { _controller: MAMainBundle:Main:helpUsContactThankYou }

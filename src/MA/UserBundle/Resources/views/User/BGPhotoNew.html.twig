@@ -1,0 +1,133 @@
+{# src/MA/UserBundle/Resources/User/BGPhotoNew.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Modification d'un Fond
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_admin" id="section6">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row92">
+							<div class="row">
+			    				<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_BG_photos') }}')">
+			    					<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+			    					Retour
+			    				</a>
+			    			</div>
+
+			    			<div class="row left">
+			    				<form method="post" {{ form_enctype(formNewBGPhoto) }}>
+				        		{% if form_errors(formNewBGPhoto) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewBGPhoto) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+
+									<div class="form-group">
+										{{ form_label(formNewBGPhoto.file, "Image de fond de page", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        <p class="left">
+								        	Tâchez de ne pas charger de photos trop lourdes : 500Ko max.
+								        </p>
+								        <p class="left italic red">
+								        	<strong>ATTENTION :</strong> Pour un rendu correct, la photo doit être en PNG avec une opacité de 15% (20% max)  !
+								        </p>
+								        {% if form_errors(formNewBGPhoto.file) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewBGPhoto.file) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_file = {'attr': {'type':'file', 'id':'file', 'name':'_file'}} %}
+								        	{{ form_widget(formNewBGPhoto.file, opt_file) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewBGPhoto.sectionName, "Section correspondante", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewBGPhoto.sectionName) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewBGPhoto.sectionName) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_sectionName = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'id':'sectionName', 'name':'_sectionName' }} %}
+								        	{{ form_widget(formNewBGPhoto.sectionName, opt_sectionName) }}
+								        </div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewBGPhoto) }}
+									<div class="center">
+										<input type="submit" class="btn btn-log" value="Enregistrer"/>
+									</div>
+								</div>
+							</form>
+			    			</div>
+		    			</div>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_misAnd.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

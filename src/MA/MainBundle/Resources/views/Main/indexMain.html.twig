@@ -178,9 +178,9 @@
 					</div>
 					<div class="" id="buttonToDiapo">
 						<button class="btn btn-diapo" onClick="goToDiapo()">
-							<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+							<img src="{{ asset('img/system/defaults/right_arrow_white_spe.png') }}" alt="" class="btn_arrow"/>
 							 DIAPORAMA 
-							<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+							<img src="{{ asset('img/system/defaults/left_arrow_white_spe.png') }}" alt="" class="btn_arrow"/>
 						</button>
 					</div>
 					<div class="">
@@ -318,7 +318,15 @@
 
 
 			<!-- L'actu -->
-			<div class="section section_actu" id="actu">
+			{% set photoSectionActu = '' %}
+			{% if BGPhotos|length > 0 %}
+				{% for photo in BGPhotos %}
+					{% if photo.sectionName == 'actu' %}
+						{% set photoSectionActu = photo %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<div class="section section_actu" id="actu" style="background-image: url('{{ asset(photoSectionActu.webPath) }}'); background-size: cover; background-position: 50%;">
 
 				<script>
 					var articlesContent;
@@ -350,7 +358,7 @@
 												<a href="javascript:displaySelectedArticle('{{ path('ma_main_homepage_elementAjax', {'elementType':'article', 'elementId':single_article.id}) }}', 'article_n_{{ single_article.id }}')" class="no_style_a">
 													{{ single_article.title|truncate(40, false, '...') }}
 													<span class="float-right arrow_article">
-														<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
+														<img src="{{ asset('img/system/defaults/right_arrow_spe.png') }}" alt=""/>
 													</span>
 													<span class="float-right date_article">
 														{% if single_article.createdAt|length > 0 %}
@@ -493,8 +501,15 @@
 			
 
 			<!-- Les écoliers -->
-			<div class="section section_ecoliers" id="ecoliers">
-
+			{% set photoSectionEcoliers = '' %}
+			{% if BGPhotos|length > 0 %}
+				{% for photo in BGPhotos %}
+					{% if photo.sectionName == 'ecoliers' %}
+						{% set photoSectionEcoliers = photo %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<div class="section section_ecoliers" id="ecoliers" style="background-image: url('{{ asset(photoSectionEcoliers.webPath) }}'); background-size: cover; background-position: 50%;">
 				<h2>
 					Ecoliers
 				</h2>
@@ -614,7 +629,13 @@
 
 								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
 									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_ecoliers.png') }}'); background-size: cover; background-position: 50%;" alt="Ardoise" class="board_ecoliers italic">
-										« Il est 5h30, le jour se lève doucement sur le village de Huayllati (3.200 m d’altitude). Cristian, 9 ans part le ventre vide pour emmener ses 4 vaches paitre dans la vallée de l’Apurimac à 1h30 de marche. Cristian est l’ainé de 3 frères. Son père est parti quand il avait 4 ans. Sa mère fait de son mieux pour éduquer seule ses enfants. Après avoir laissé ses vaches le jeune garçon prend le chemin de l’école. Après 2 heures de marche il s’installe en classe pour y suivre le cours. 14h sonne. Enfin un bol de riz et quelques pommes de terre viennent calmer sa faim. Après l’école il retourne au village pour jouer avec ses amis. Cristian a le sourire en permanence. Il ne se plaint jamais. Même quand il s’agit d’aller chercher les vaches et de rentrer avant la nuit. »
+										{% if pages|length > 0 %}
+											{% for page in pages %}
+												{% if page.dataBaseName == 'Ecoliers_Message' %}
+													{{ page.content|raw }}
+												{% endif %}
+											{% endfor %}
+										{% endif %}
 									</div>
 								</div>
 
@@ -628,16 +649,18 @@
 									</div>
 									<br/><br/>
 									<div class="talkbubble">
-										<h4>
-											Aide aux écoles des villages reculés
-										</h4>
-										<p class="center">
-											Mission Andina vient en aide aux écoliers par le biais d’institutions scolaires, d’orphelinats ou d’internats. L’idée de l’association est de permettre aux enfants d’étudier dans des conditions décentes. Ainsi, ceux qui font plusieurs heures de marche pour arriver à l’école peuvent se nourrir avant d’étudier, ceux qui sont trop loin d’une école peuvent loger en internat, ceux qui ont perdu leurs parents peuvent retrouver une famille auprès des orphelinats.
-										</p>
-										<p class="center">
-											Découvrez aux travers des <a href="javascript:slideToAnchor('#slide_container_content_ecoliers','2')"><strong>photos</strong></a> et des <a href="javascript:slideToAnchor('#slide_container_content_ecoliers','0')"><strong>vidéos</strong></a>, les concrétisations de ces différents jumelages, partenariats et parrainages.
-											
-										</p>
+										{% set contenuEcoliers = '' %}
+										{% if pages|length > 0 %}
+											{% for page in pages %}
+												{% if page.dataBaseName == 'Ecoliers_Contenu' %}
+													{% set contenuEcoliers = page %}
+												{% endif %}
+											{% endfor %}
+										{% endif %}
+										<h3>
+											{{ contenuEcoliers.title }}
+										</h3>
+										{{ contenuEcoliers.content|raw }}
 									</div>
 								</div>
 								
@@ -694,7 +717,15 @@
 
 
 			<!-- Les étudiants -->
-			<div class="section section_etudiants" id="etudiants">
+			{% set photoSectionEtudiants = '' %}
+			{% if BGPhotos|length > 0 %}
+				{% for photo in BGPhotos %}
+					{% if photo.sectionName == 'etudiants' %}
+						{% set photoSectionEtudiants = photo %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<div class="section section_etudiants" id="etudiants" style="background-image: url('{{ asset(photoSectionEtudiants.webPath) }}'); background-size: cover; background-position: 50%;">
 
 				<h2>
 					Etudiants
@@ -814,7 +845,13 @@
 							<div class="slide_content">
 								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
 									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_etudiants.png') }}'); background-size: cover; background-position: 50%;" alt="Tableau" class="board_etudiants italic">
-										« Noël approche dans le petit village minier de Progreso perché à 4.100 m d’altitude et pourtant Clenmary a la tête ailleurs. Cette jeune bergère de 16 ans doit rejoindre Cusco pour étudier. C’est la peur au ventre qu’elle quitte ses moutons pour le bruit et l’agitation d’une ville qu’elle ne connait pas. La force de son rêve l’emporte et domine son appréhension. Elle rêve de devenir psychologue mais le chemin est long et compliqué. » 
+										{% if pages|length > 0 %}
+											{% for page in pages %}
+												{% if page.dataBaseName == 'Etudiants_Message' %}
+													{{ page.content|raw }}
+												{% endif %}
+											{% endfor %}
+										{% endif %}
 									</div>
 								</div>
 
@@ -828,24 +865,18 @@
 									</div>
 									<br/><br/>
 									<div class="talkbubble">
-										<h4>
-											Aide aux étudiants
-										</h4>
-										<p class="left">
-											Mission Andina œuvre pour amortir au maximum l’atterrissage de ses jeunes qui gagnent les villes pour étudier. L’aide de l’association est principalement liée :
-
-											<ul class="slide_ul">
-												<li>
-													aux frais d’étude : un cursus complet coûte environ 600 euros, 
-												</li>
-												<li>
-													au logement : une chambre décente, un lit, un bureau et une chaise à moins de 1 heure de transport de l’université coûte en moyenne 40 euros par mois,
-												</li>
-												<li>
-													aux frais quotidiens qui s’élèvent à environ 20 euros par semaine.
-												</li>
-											</ul>
-										</p>
+										{% set contenuEtudiants = '' %}
+										{% if pages|length > 0 %}
+											{% for page in pages %}
+												{% if page.dataBaseName == 'Etudiants_Contenu' %}
+													{% set contenuEtudiants = page %}
+												{% endif %}
+											{% endfor %}
+										{% endif %}
+										<h3>
+											{{ contenuEtudiants.title }}
+										</h3>
+										{{ contenuEtudiants.content|raw }}
 									</div>
 								</div>
 								
@@ -902,7 +933,15 @@
 
 
 			<!-- Les jeunes pro -->
-			<div class="section section_jeunesPros" id="jeunesPro">
+			{% set photoSectionJeunesPro = '' %}
+			{% if BGPhotos|length > 0 %}
+				{% for photo in BGPhotos %}
+					{% if photo.sectionName == 'jeunesPro' %}
+						{% set photoSectionJeunesPro = photo %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<div class="section section_jeunesPros" id="jeunesPro" style="background-image: url('{{ asset(photoSectionJeunesPro.webPath) }}'); background-size: cover; background-position: 50%;">
 
 				<h2>
 					Jeunes pro
@@ -1022,7 +1061,13 @@
 							<div class="slide_content">
 								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
 									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_jeunesPros.png') }}'); background-size: cover; background-position: 50%;" alt="Tableau" class="board_jeunesPros italic">
-										« Alex a 21 ans, il étudie le tourisme. Il lui reste à financer sa dernière année. 3 soirs par semaine, il danse dans les restaurants de la place d’Armes de Cusco pour mettre de l’argent de côté. Il lui manque également quelques économies pour passer son permis et décrocher un petit boulot, des livraisons pour la municipalité, ce qui lui permettra de payer sa dernière année d’étude. Alex habite dans les hauts de Cusco dans une maison où résonne le quechua entre les murs de terre. Il a 5 frères et sœurs, le désir d’avancer dans la vie et le rêve de devenir footballeur professionnel ! »
+										{% if pages|length > 0 %}
+											{% for page in pages %}
+												{% if page.dataBaseName == 'JeunesPro_Message' %}
+													{{ page.content|raw }}
+												{% endif %}
+											{% endfor %}
+										{% endif %}
 									</div>
 								</div>
 
@@ -1036,26 +1081,18 @@
 									</div>
 									<br/><br/>
 									<div class="talkbubble">
-										<h4>
-											Insertion professionnelle des jeunes
-										</h4>
-										<p class="left">
-											Mission Andina soutient les projets professionnels des jeunes qui ont fini ou qui sont sur le point de finir leurs études. Ces aides peuvent prendre plusieurs formes et ont pour but de responsabiliser le jeune aidé :
-											<ul class="slide_ul">
-												<li>
-													Financement du permis de conduire,
-												</li>
-												<li>
-													Aide à la création d’entreprise,l’université coûte en moyenne 40 euros par mois,
-												</li>
-												<li>
-													Soutien pour le développement d’un négoce,
-												</li>
-												<li>
-													Embauche et formation au sein d’une entreprise péruvienne membre du réseau Mission Andina.
-												</li>
-											</ul>
-										</p>
+										{% set contenuJeunesPro = '' %}
+										{% if pages|length > 0 %}
+											{% for page in pages %}
+												{% if page.dataBaseName == 'JeunesPro_Contenu' %}
+													{% set contenuJeunesPro = page %}
+												{% endif %}
+											{% endfor %}
+										{% endif %}
+										<h3>
+											{{ contenuJeunesPro.title }}
+										</h3>
+										{{ contenuJeunesPro.content|raw }}
 									</div>
 								</div>
 							</div>
@@ -1109,8 +1146,18 @@
 
 			</div>
 
+
+
 			<!-- Nos besoins -->
-			<div class="section section_besoins" id="nosBesoins">
+			{% set photoSectionBesoins = '' %}
+			{% if BGPhotos|length > 0 %}
+				{% for photo in BGPhotos %}
+					{% if photo.sectionName == 'besoins' %}
+						{% set photoSectionBesoins = photo %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<div class="section section_besoins" id="nosBesoins" style="background-image: url('{{ asset(photoSectionBesoins.webPath) }}'); background-size: cover; background-position: 50%;">
 
 				<script>
 					var listOfIdsToShow = [];
@@ -1123,6 +1170,7 @@
 							}
 							shown = true;
 							$("#button_show_besoins").html("Annuler");
+							$(".scroll-icons-spe").fadeOut();
 						}
 						else {
 							for (var i = 0; i < listOfIdsToShow.length; i++) {
@@ -1206,7 +1254,7 @@
 																    	<strong>
 																    		{{ single_project.title }} :
 																    	</strong>
-																    	<button class="no_style_button prix_subvention_div" type="button" data-toggle="collapse" data-target="#showProject_{{ single_project.id }}" aria-expanded="false" aria-controls="showProject_{{ single_project.id }}">
+																    	<button class="no_style_button prix_subvention_div" type="button" data-toggle="collapse" data-target="#showProject_{{ single_project.id }}" aria-expanded="false" aria-controls="showProject_{{ single_project.id }}" onClick="$('.scroll-icons-spe').fadeOut();">
 															    			<script>
 															    				listOfIdsToShow.push('#showProject_{{ single_project.id }}');
 															    			</script>
@@ -1223,6 +1271,7 @@
 															  					<strong>S/.</strong> {{ single_project.totalAmount }}
 																			</div>
 																    	</button>
+																    	<img src="{{ asset('img/system/scroll-icons/right-key-spe.png') }}" alt="click here" class="scroll-icons-spe scroll-icons-spe-right float-right"/>
 															  		</div>
 															  		<div class="pourcentage collapse" id="showProject_{{ single_project.id }}">
 															  			<div class="progress">
@@ -1296,7 +1345,15 @@
 			
 
 			<!-- L'association -->
-			<div class="section section_charte" id="assoc">
+			{% set photoSectionAssociation = '' %}
+			{% if BGPhotos|length > 0 %}
+				{% for photo in BGPhotos %}
+					{% if photo.sectionName == 'association' %}
+						{% set photoSectionAssociation = photo %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<div class="section section_charte" id="assoc" style="background-image: url('{{ asset(photoSectionAssociation.webPath) }}'); background-size: cover; background-position: 50%;">
 
 				<div class="row80">
 					<h2>
@@ -1308,130 +1365,56 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					    <div class="thumbnail">
-					      <div class="caption">
-					        <h3>
-					        	Qui sommes-nous
-					        </h3>
-					        <ul>
-								<li>
-									Après quelques années en France, <strong>Aude</strong> <span class="italic">(Présidente de l’association)</span>, Antoine et leurs deux enfants décident de s’expatrier au Pérou à Cusco. Ils se lancent dans la création d’une entreprise de photo et d’un atelier de charcuterie. Afin de donner du sens à leurs projets, ils créent l’association Mission Andina avec Bénédicte. Dans leur maison, une chambre est réservée à un jeune sans ressource venu étudier à Cusco.
-								</li>
-								<li>
-									<strong>Bénédicte</strong> <span class="italic">(secrétaire de l’association)</span> est la sœur d’Antoine, elle travaille en France et gère les différents partenariats entre la France et le Pérou.
-								</li>
-								<li>
-									<strong>Adolfo</strong> <span class="italic">(trésorier de l’association)</span> est un jeune péruvien de Cusco. Il est orphelin depuis très jeune. Il travaille pour le circuit touristique religieux de Cusco et son expérience est un atout pour Mission Andina qui, grâce à lui, peut cibler ses aides de manière plus précise.
-								</li>
-								<li>
-									Le <strong>Père Christian</strong> est missionnaire dans l’Apurimac. Il nous aide à orienter les fonds récoltés pour les écoles et nous conseille quant aux jeunes à soutenir en priorité.
-								</li>
-								<li>
-									<strong>Pierre-Arnaud</strong> participe au développement de l’association grâce à ses talents pour la communication et en particulier pour ce qui est du site internet.
-								</li>
-					        </ul>
-					      </div>
+					      	<div class="caption">
+						      	{% set associationQuiSommesNous = '' %}
+								{% if pages|length > 0 %}
+									{% for page in pages %}
+										{% if page.dataBaseName == 'Association_Qui' %}
+											{% set associationQuiSommesNous = page %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+						        <h3>
+						        	{{ associationQuiSommesNous.title }}
+						        </h3>
+						        {{ associationQuiSommesNous.content|raw }}
+					      	</div>
 					    </div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					    <div class="thumbnail">
-					      <div class="caption">
-					        <h3>La charte</h3>
-					        	<p>
-					        		Issus des villages reculés de l’Apurimac, région pauvre de la Cordillère des Andes, les jeunes péruviens se heurtent aux décalages scolaire et social. Ils arrivent à Abancay, Cusco ou Lima pour étudier et souvent ils échouent faute de moyens et d’accompagnement. Mission Andina leur offre ces moyens pour étudier dans de bonnes conditions, se nourrir et se loger.
-					        	</p>
-								<p>
-									L’association est fondée sur la conception chrétienne de l’Homme. Son idée est de construire un monde où tout homme, sans exception de race, de religion, de nationalité, puisse vivre une vie pleinement humaine.
-								</p>
-								<p>
-									Les membres de l’association ont en commun la conviction que chacun à sa manière peut aider au développement des nations. Ce développement ne se réduit pas à la simple dimension économique. Pour être authentique, il doit être intégral, c'est-à-dire promouvoir tout homme et tout l’homme.
-								</p>
-								<p>
-									Vécu en commun, dans l’espoir, la souffrance, l’ambition et la joie partagée, le travail unit les volontés, rapproche les esprits et soude les cœurs. En l’accomplissant, les hommes se découvrent frères.
-								</p>
-								<p>
-									L’objet de l’association est de permettre l’épanouissement économique de la personne aidée pour que celle-ci puisse :
-									<ul>
-										<li>
-											assumer financièrement sa famille,
-										</li>
-										<li>
-											aider à son tour d’autres jeunes en difficulté,
-										</li>
-										<li>
-											et donc coopérer à sa manière au développement de son pays.
-										</li>
-									</ul>
-								</p>
-								<p>
-									Cet épanouissement est possible grâce à la responsabilisation et à l’autonomie financière de la personne aidée.
-								</p>
-								<p>
-									Pour cela, Mission Andina a développé 3 programmes :
-								</p>
-								<p>
-									<ul>
-										<li>
-											Aide aux écoliers des villages reculés autour de Cusco,
-										</li>
-										<li>
-											Aide aux jeunes quittant leurs villages pour venir étudier en ville,
-										</li>
-										<li>
-											Aide à l’épanouissement économique de jeunes professionnels.
-										</li>
-									</ul>
-								</p>
-					      </div>
+					      	<div class="caption">
+					      		{% set associationCharte = '' %}
+								{% if pages|length > 0 %}
+									{% for page in pages %}
+										{% if page.dataBaseName == 'Association_Charte' %}
+											{% set associationCharte = page %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+						        <h3>
+						        	{{ associationCharte.title }}
+						        </h3>
+						        {{ associationCharte.content|raw }}
+					      	</div>
 					    </div>
 					</div>
 					<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
 					    <div class="thumbnail">
-					      <div class="caption">
-					        <h3>
-					        	Quelques repères
-					        </h3>
-								<p>
-									Clenmary, John, Ademir, Marcos, Eduardo, Flor ou Alex ont tous comme point commun la volonté de réussir et d’offrir à leurs enfants une meilleure vie que celle qu’ils ont connue. 
-								</p>
-								<p>
-									Ils ne sont que quelques exemples parmi une multitude. Découvrez leurs histoires et partagez leur quotidien.
-								</p>
-								<p>
-									Avant de rejoindre l’aventure voici quelques comparaisons qui vous permettront de mieux imaginer leur univers andin :
-									<ul>
-										<li>
-											Salaire minimum à Cusco = 215 euros par mois
-										</li>
-										<li>
-											Salaire moyen à Cusco = 350 euros
-										</li>
-										<li>
-											Un litre de gasoil = 0,90 euros
-										</li>
-										<li>
-											Un petit pain de 50 grammes = 0,06 euros
-										</li>
-										<li>
-											Un menu comprenant une soupe + un plat de poulet avec du riz = 2,30 euros
-										</li>
-										<li>
-											Une chambre de 15 m² avec sanitaires sur le palier = 42 euros par mois
-										</li>
-										<li>
-											Une place dans un foyer = 30 euros par mois
-										</li>
-										<li>
-											L’académie (3 mois de préparation au concours d’entrée à l’université) = 195 euros
-										</li>
-										<li>
-											Droit d’entrée à l’université = 95 euros
-										</li>
-										<li>
-											Un mois d’étude = entre 0 et 140 euros
-										</li>
-									</ul>
-								</p>
-					      </div>
+					    	<div class="caption">
+					      		{% set associationReperes = '' %}
+								{% if pages|length > 0 %}
+									{% for page in pages %}
+										{% if page.dataBaseName == 'Association_Reperes' %}
+											{% set associationReperes = page %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+						        <h3>
+						        	{{ associationReperes.title }}
+						        </h3>
+						        {{ associationReperes.content|raw }}
+					      	</div>
 					    </div>
 					</div>
 				</div>

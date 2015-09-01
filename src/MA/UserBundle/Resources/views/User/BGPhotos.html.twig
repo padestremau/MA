@@ -38,16 +38,10 @@
 			                              	Image
 			                            </th>
 			                            <th class="center">
-			                              	Nom
-			                            </th>
-			                            <th class="center">
 			                              	Section
 			                            </th>
 			                            <th class="center">
-			                              	Créée le
-			                            </th>
-			                            <th class="center">
-			                              	Ordre
+			                              	Modifiée le
 			                            </th>
 			                            <th class="center">
 			                              	Action
@@ -62,24 +56,38 @@
 				                            </th>
 				                            <td class="center">
 				                              	{% if photo.alt|length > 0 and photo.url|length > 0 %}
-													<div class="coverPhoto_img_admin" style="background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%;">
+													<div class="coverPhoto_img_admin" style="background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%; min-height:60px; ">
 													</div>
 												{% else %}
-													<img src="{{ asset('img/system/defaults/default_img.png') }}" alt="Default" class="coverPhoto_img_admin"/>
+													<div class="coverPhoto_img_admin" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%; min-height:60px; ">
+													</div>
 												{% endif %}
 				                            </td>
 				                            <td class="center">
-				                              	{% if photo.title|length > 0 %}
-				                              		{{ photo.title }}
-				                              	{% else %}
-				                              		-
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
 				                              	{% if photo.sectionName|length > 0 %}
-				                              		{{ photo.sectionName }}
+				                              		{% if photo.sectionName == "actu" %}
+				                              			Actualité
+				                              		{% elseif photo.sectionName == "ecoliers" %}
+				                              			Ecoliers
+				                              		{% elseif photo.sectionName == "etudiants" %}
+				                              			Etudiants
+				                              		{% elseif photo.sectionName == "jeunesPro" %}
+				                              			Jeunes pro
+				                              		{% elseif photo.sectionName == "besoins" %}
+				                              			Nos besoins
+				                              		{% elseif photo.sectionName == "association" %}
+				                              			L'association
+				                              		{% else %}
+				                              			Erreur
+				                              			<span class="italic">
+				                              				Vous devez choisir parmi les statuts proposés
+					                              		</span>
+				                              		{% endif %}
 				                              	{% else %}
-				                              		-
+				                              		Erreur
+				                              		<span class="italic">
+														Vous devez choisir parmi les statuts proposés
+				                              		</span>
 				                              	{% endif %}
 				                            </td>
 				                            <td class="center">
@@ -90,14 +98,7 @@
 				                              	{% endif %}
 				                            </td>
 				                            <td class="center">
-				                              	{% if photo.photoOrder|length > 0 %}
-				                              		{{ photo.photoOrder }}
-				                              	{% else %}
-				                              		-
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
-				                            	<a href="javascript:loadContentAdmin('{{ path('ma_user_BG_photos_edit', {'BGPhotoId':photo.id}) }}')" class="btn btn-action-admin">
+				                            	<a href="javascript:loadContentAdmin('{{ path('ma_user_BG_photos_edit', {'BGPhotoId':photo.id}) }}')" class="btn btn-action-admin-icon">
 					                            	<span class="glyphicon glyphicon-pencil"></span>
 				                            	</a>
 				                            </td>

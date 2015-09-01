@@ -234,6 +234,20 @@ class MainController extends Controller
         $senderType = $_POST['orderContentType'];
         $senderContent = $_POST['corpsMail'];
 
+        $aides = $this ->getDoctrine()
+                        ->getManager()
+                        ->getRepository('MAMainBundle:Aide')
+                        ->findAll();
+
+        $aideAsked = new Aide;
+
+        for ($i=0; $i < sizeof($aides); $i++) { 
+            if ($senderType == $aides[$i]->getOrderList()) {
+                $aideAsked = $aides[$i];
+                break;
+            }
+        }
+
         // Message for client
         $message = \Swift_Message::newInstance()
             ->setContentType('text/html')
@@ -245,7 +259,7 @@ class MainController extends Controller
                     array(  'senderName' => $senderName,
                             'senderEmail' => $senderEmail,
                             'senderQuantity' => $senderQuantity,
-                            'senderType' => $senderType,
+                            'aideAsked' => $aideAsked,
                             'senderContent' => $senderContent
                             )
                 )
@@ -263,7 +277,7 @@ class MainController extends Controller
                     array(  'senderName' => $senderName,
                             'senderEmail' => $senderEmail,
                             'senderQuantity' => $senderQuantity,
-                            'senderType' => $senderType,
+                            'aideAsked' => $aideAsked,
                             'senderContent' => $senderContent
                             )
                 )

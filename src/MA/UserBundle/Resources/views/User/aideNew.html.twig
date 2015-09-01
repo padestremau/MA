@@ -1,0 +1,240 @@
+{# src/MA/UserBundle/Resources/User/aideNew.html.twig #}
+
+{% extends "MAUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Nouvelle aide
+{% endblock %}
+
+{% block MA_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			<div class="section section_admin" id="section6">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row92">
+							<div class="row">
+			    				<a class="btn btn-action-admin float-left" href="javascript:loadContentAdmin('{{ path('ma_user_aides') }}')">
+			    					<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+			    					Retour
+			    				</a>
+			    			</div>
+
+			    			<div class="row left">
+			    				<form method="post" {{ form_enctype(formNewAide) }}>
+				        		{% if form_errors(formNewAide) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewAide) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+									<div class="form-group">
+								        {{ form_label(formNewAide.orderList, "Ordre d'apparition de l'aide", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewAide.orderList) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewAide.orderList) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_orderList = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Ex: 4 (ATTENTION, COMMENCER À 2 !!! Le 1 étant le don direct...)", 'id':'_orderList', 
+								        		'name':'_orderList'}} %}
+								        	{{ form_widget(formNewAide.orderList, opt_orderList) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewAide.header, "Phrase d'en tête suivant le numéro d'affiche", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewAide.header) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewAide.header) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_header = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Ex: Acheter un petit lama porte-clé", 'id':'_header', 
+								        		'name':'_header'}} %}
+								        	{{ form_widget(formNewAide.header, opt_header) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewAide.name, "Nom de l'aide", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewAide.name) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewAide.name) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_name = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Ex: Petite statuette de Lama en porte-clés", 'id':'_name', 
+								        		'name':'_name'}} %}
+								        	{{ form_widget(formNewAide.name, opt_name) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewAide.description, "Description de l'aide", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewAide.description) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewAide.description) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_description = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'textarea', 'placeholder':"Ex: Cousue à la main par une jeune fille de 10 ans.", 'id':'_description', 'name':'_description'}} %}
+								        	{{ form_widget(formNewAide.description, opt_description) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewAide.price, "Prix affiché (optionnel)", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewAide.price) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewAide.price) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_price = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Ex: 5 (ne pas mettre '€'. Si vous ne voulez pas afficher de prix, ne rien mettre)", 'id':'_price', 
+								        		'name':'_price'}} %}
+								        	{{ form_widget(formNewAide.price, opt_price) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewAide.file, "Image de couverture", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewAide.file) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewAide.file) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_file = {'attr': {'type':'file', 'id':'file', 'name':'_file'}} %}
+								        	{{ form_widget(formNewAide.file, opt_file) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewAide.status, "Statut", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewAide.status) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewAide.status) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_status = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'id':'status', 'name':'_status' }} %}
+								        	{{ form_widget(formNewAide.status, opt_status) }}
+								        </div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewAide) }}
+									<div class="center">
+										<input type="submit" class="btn btn-log" value="Enregistrer"/>
+									</div>
+								</div>
+							</form>
+			    			</div>
+		    			</div>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_misAnd.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div>
+	        			<br/><br/><br/><br/><br/>
+	        			Vous n'êtes pas autorisé(e) à naviguer dans cette partie du site !
+	        		</div>
+	        	{% endif %}
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock MA_User_body %}

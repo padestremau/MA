@@ -3,12 +3,12 @@
 {% set route = app.request.attributes.get( '_route' ) %}
 
 <div class="
-	{% if (route == 'ma_main_homepage') 
-        or (route == 'ma_main_homepage_elementAjax')
+	{% if (route == 'ma_main_helpUs_contact_thankYou') 
+        or (route == 'ma_main_footer_contact_thankYou')
         or (route == 'ma_main_helpUs') %}
-		hidden-xs
-	{% else %}
 		hidden-lg hidden-md hidden-sm hidden-xs
+	{% else %}
+		hidden-xs
 	{% endif %}
 	"  id="side_buttons"> 
 	<a href="#accueil" class="no_style_a">

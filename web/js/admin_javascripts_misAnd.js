@@ -28,6 +28,15 @@ changeCSSsheet('.photo_default', 'height', cw+'px');
 var cw = $('.diapo_default').width();
 $('.diapo_default').css({'height': cw+'px'});
 changeCSSsheet('.diapo_default', 'height', cw+'px');
+var cw = $('.partner_img_admin').width();
+$('.partner_img_admin').css({'height': cw+'px'});
+changeCSSsheet('.partner_img_admin', 'height', cw+'px');
+var cw = $('.aide_img_admin').width();
+$('.aide_img_admin').css({'height': cw+'px'});
+changeCSSsheet('.aide_img_admin', 'height', cw+'px');
+var cw = $('.coverPhoto_img_admin').width() * 0.5;
+$('.coverPhoto_img_admin').css({'height': cw+'px'});
+changeCSSsheet('.coverPhoto_img_admin', 'height', cw+'px');
 
 $(window).resize(function() {
   	var cw = $('.article_photo_admin').width() * 0.5625;  // 16:9e
@@ -39,6 +48,18 @@ $(window).resize(function() {
 	var cw = $('.photo_default').width();
 	$('.photo_default').css({'height': cw+'px'});
 	changeCSSsheet('.photo_default', 'height', cw+'px');
+	var cw = $('.diapo_default').width();
+	$('.diapo_default').css({'height': cw+'px'});
+	changeCSSsheet('.diapo_default', 'height', cw+'px');
+	var cw = $('.partner_img_admin').width();
+	$('.partner_img_admin').css({'height': cw+'px'});
+	changeCSSsheet('.partner_img_admin', 'height', cw+'px');
+	var cw = $('.aide_img_admin').width();
+	$('.aide_img_admin').css({'height': cw+'px'});
+	changeCSSsheet('.aide_img_admin', 'height', cw+'px');
+	var cw = $('.coverPhoto_img_admin').width() * 0.5;
+	$('.coverPhoto_img_admin').css({'height': cw+'px'});
+	changeCSSsheet('.coverPhoto_img_admin', 'height', cw+'px');
 });
 
 // For collor background

@@ -4,77 +4,77 @@ ma_user_homepage:
 
 # Pour articles
 ma_user_articles:
-    path:     /articles
+    path:     /articles/
     defaults: { _controller: MAUserBundle:User:articles }
 
 ma_user_article_spe:
-    path:     /articles/{articleId}
+    path:     /articles/{articleId}/
     defaults: { _controller: MAUserBundle:User:articles }
     requirements:
         articleId: \d+
 
 ma_user_article_edit:
-    path:     /article/modifier/{articleId}
+    path:     /article/modifier/{articleId}/
     defaults: { _controller: MAUserBundle:User:articleEdit }
     requirements:
         articleId: \d+
 
 ma_user_article_delete:
-    path:     /article/supprimer/{articleId}
+    path:     /article/supprimer/{articleId}/
     defaults: { _controller: MAUserBundle:User:articleDelete }
     requirements:
         articleId: \d+
 
 ma_user_article_new:
-    path:     /article/nouveau
+    path:     /article/nouveau/
     defaults: { _controller: MAUserBundle:User:articleNew }
 
 # Pour photos
 ma_user_photos:
-    path:     /photos
+    path:     /photos/
     defaults: { _controller: MAUserBundle:User:photos }
 
 ma_user_photos_spe:
-    path:     /photos/{type}
+    path:     /photos/{type}/
     defaults: { _controller: MAUserBundle:User:photos }
 
 ma_user_photo_new:
-    path:     /photos/nouveau/{type}
+    path:     /photos/nouveau/{type}/
     defaults: { _controller: MAUserBundle:User:photoNew }
 
 ma_user_photo_delete:
-    path:     /photos/supprimer/{type}/{photoId}
+    path:     /photos/supprimer/{type}/{photoId}/
     defaults: { _controller: MAUserBundle:User:photoDelete }
     requirements:
         photoId: \d+
 
 # Pour videos
 ma_user_videos:
-    path:     /videos
+    path:     /videos/
     defaults: { _controller: MAUserBundle:User:videos }
 
 ma_user_videos_spe:
-    path:     /videos/{type}
+    path:     /videos/{type}/
     defaults: { _controller: MAUserBundle:User:videos }
 
 ma_user_videos_spe_video:
-    path:     /videos/{type}/{videoId}
+    path:     /videos/{type}/{videoId}/
     defaults: { _controller: MAUserBundle:User:videos }
     requirements:
         videoId: \d+
 
 ma_user_video_new:
-    path:     /videos/nouveau/{type}
+    path:     /videos/nouveau/{type}/
     defaults: { _controller: MAUserBundle:User:videoNew }
 
 ma_user_video_edit:
-    path:     /videos/modifier/{type}/{videoId}
+    path:     /videos/modifier/{type}/{videoId}/
     defaults: { _controller: MAUserBundle:User:videoEdit }
     requirements:
         videoId: \d+
 
 ma_user_video_delete:
-    path:     /videos/supprimer/{type}/{videoId}
+    path:     /videos/supprimer/{type}/{videoId}/
     defaults: { _controller: MAUserBundle:User:videoDelete }
     requirements:
         videoId: \d+
@@ -82,106 +82,106 @@ ma_user_video_delete:
 
 # Pour les projets "nos besoins"
 ma_user_nosBesoins:
-    path:     /nosBesoins
+    path:     /nosBesoins/
     defaults: { _controller: MAUserBundle:User:nosBesoins }
 
 ma_user_nosBesoins_elementAjax:
-    path:     /nosBesoins/{elementType}/{elementId}
+    path:     /nosBesoins/{elementType}/{elementId}/
     defaults: { _controller: MAUserBundle:User:nosBesoins }
     requirements:
         elementId: \d+
 
 ma_user_person_new:
-    path:     /nosBesoins/beneficiaires/nouveau
+    path:     /nosBesoins/beneficiaires/nouveau/
     defaults: { _controller: MAUserBundle:User:personNew }
 
 ma_user_project_new:
-    path:     /nosBesoins/projects/nouveau
+    path:     /nosBesoins/projects/nouveau/
     defaults: { _controller: MAUserBundle:User:projectNew }
 
 ma_user_person_edit:
-    path:     /nosBesoins/beneficiaires/modifier/{personId}
+    path:     /nosBesoins/beneficiaires/modifier/{personId}/
     defaults: { _controller: MAUserBundle:User:personEdit }
     requirements:
         personId: \d+
 
 ma_user_project_edit:
-    path:     /nosBesoins/projects/modifier/{projectId}
+    path:     /nosBesoins/projects/modifier/{projectId}/
     defaults: { _controller: MAUserBundle:User:projectEdit }
     requirements:
         projectId: \d+
 
 ma_user_person_delete:
-    path:     /nosBesoins/beneficiaires/supprimer/{personId}
+    path:     /nosBesoins/beneficiaires/supprimer/{personId}/
     defaults: { _controller: MAUserBundle:User:personDelete }
     requirements:
         personId: \d+
 
 ma_user_project_delete:
-    path:     /nosBesoins/projets/supprimer/{projectId}
+    path:     /nosBesoins/projets/supprimer/{projectId}/
     defaults: { _controller: MAUserBundle:User:projectDelete }
     requirements:
         projectId: \d+
 
 # Pour contenu du site
 ma_user_content:
-    path:     /content/
+    path:     /content//
     defaults: { _controller: MAUserBundle:User:content }
 
 ma_user_content_spe:
-    path:     /content/{pageId}
+    path:     /content/{pageId}/
     defaults: { _controller: MAUserBundle:User:content }
     requirements:
         pageId: \d+
 
 ma_user_content_new:
-    path:     /content/page/nouveau/
+    path:     /content/page/nouveau//
     defaults: { _controller: MAUserBundle:User:contentNew }
 
 ma_user_content_edit:
-    path:     /content/page/modifier/{pageId}
+    path:     /content/page/modifier/{pageId}/
     defaults: { _controller: MAUserBundle:User:contentNew }
     requirements:
         pageId: \d*
 
 ma_user_content_delete:
-    path:     /content/supprimer/{pageId}
+    path:     /content/supprimer/{pageId}/
     defaults: { _controller: MAUserBundle:User:contentDelete }
     requirements:
         pageId: \d+
 
 # Pour contenu du site
 ma_user_diapos:
-    path:     /diapos/
+    path:     /diapos//
     defaults: { _controller: MAUserBundle:User:diapos }
 
 ma_user_diapos_new:
-    path:     /diapos/nouveau/
+    path:     /diapos/nouveau//
     defaults: { _controller: MAUserBundle:User:diapoNew }
 
 ma_user_diapos_delete:
-    path:     /diapos/supprimer/{diapoId}
+    path:     /diapos/supprimer/{diapoId}/
     defaults: { _controller: MAUserBundle:User:diapoDelete }
     requirements:
         diapoId: \d+
 
 # Pour photos de fond de page
 ma_user_BG_photos:
-    path:     /BG_photos/
+    path:     /BG_photos//
     defaults: { _controller: MAUserBundle:User:BGPhotos }
 
 ma_user_BG_photos_new:
-    path:     /BG_photos/page/nouveau/
+    path:     /BG_photos/nouveau//
     defaults: { _controller: MAUserBundle:User:BGPhotoNew }
 
 ma_user_BG_photos_edit:
-    path:     /BG_photos/page/modifier/{BGPhotoId}
+    path:     /BG_photos/modifier/{BGPhotoId}/
     defaults: { _controller: MAUserBundle:User:BGPhotoNew }
     requirements:
         BGPhotoId: \d*
 
 ma_user_BG_photos_delete:
-    path:     /BG_photos/supprimer/{BGPhotoId}
+    path:     /BG_photos/supprimer/{BGPhotoId}/
     defaults: { _controller: MAUserBundle:User:BGPhotoDelete }
     requirements:
         BGPhotoId: \d+
@@ -189,42 +189,42 @@ ma_user_BG_photos_delete:
 
 # Pour les éléments d'aide du site
 ma_user_aides:
-    path:     /aides/
+    path:     /aides//
     defaults: { _controller: MAUserBundle:User:aides }
 
 ma_user_aides_new:
-    path:     /aides/nouveau/
+    path:     /aides/nouveau//
     defaults: { _controller: MAUserBundle:User:aideNew }
 
 ma_user_aides_edit:
-    path:     /aides/modifier/{aideId}
+    path:     /aides/modifier/{aideId}/
     defaults: { _controller: MAUserBundle:User:aideNew }
     requirements:
         aideId: \d*
 
 ma_user_aides_delete:
-    path:     /aides/supprimer/{aideId}
+    path:     /aides/supprimer/{aideId}/
     defaults: { _controller: MAUserBundle:User:aideDelete }
     requirements:
         aideId: \d+
 
 # Pour les partenaires d'aide du site
 ma_user_partners:
-    path:     /partners/
+    path:     /partners//
     defaults: { _controller: MAUserBundle:User:partners }
 
 ma_user_partners_new:
-    path:     /partners/nouveau/
+    path:     /partners/nouveau//
     defaults: { _controller: MAUserBundle:User:partnerNew }
 
 ma_user_partners_edit:
-    path:     /partners/modifier/{partnerId}
+    path:     /partners/modifier/{partnerId}/
     defaults: { _controller: MAUserBundle:User:partnerNew }
     requirements:
         partnerId: \d*
 
 ma_user_partners_delete:
-    path:     /partners/supprimer/{partnerId}
+    path:     /partners/supprimer/{partnerId}/
     defaults: { _controller: MAUserBundle:User:partnerDelete }
     requirements:
         partnerId: \d+
