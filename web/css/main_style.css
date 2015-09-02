@@ -1005,12 +1005,16 @@ hr {
 	background-size: cover;
 }*/
 
+.board_parent {
+	padding: 34px;
+}
+
 .board_ecoliers {
-	font-family: 'chalk_writing' !important;
-	padding: 12% 24%;
+	/*font-family: 'chalk_writing' !important;*/
+	font-family: 'marker' !important;
+	padding: 12% 20%;
 	color: white !important;
 	margin: -20px;
-	z-index: 1000;
 
 	-webkit-transform: rotateZ(-7deg);
 	-ms-transform: rotateZ(-7deg);
@@ -1018,10 +1022,10 @@ hr {
 	transform: rotateZ(-7deg);
 }
 .board_etudiants {
-	font-family: 'marker_writing';
-	padding: 12% 24%;
+	/*font-family: 'marker_writing' !important;*/
+	font-family: 'marker' !important;
+	padding: 12% 20%;
 	margin: -20px;
-	z-index: 1000;
 
 	-webkit-transform: rotateZ(-7deg);
 	-ms-transform: rotateZ(-7deg);
@@ -1029,10 +1033,9 @@ hr {
 	transform: rotateZ(-7deg);
 }
 .board_jeunesPros {
-	font-family: 'marker';
-	padding: 12% 24%;
+	font-family: 'marker' !important;
+	padding: 12% 20%;
 	margin: -20px;
-	z-index: 1000;
 
 	-webkit-transform: rotateZ(-7deg);
 	-ms-transform: rotateZ(-7deg);
@@ -1043,6 +1046,7 @@ hr {
 .photo_content {
 	width: 70%;
 	margin-left: 15%;
+	z-index: 99;
 }
 .photo_content:hover {
 	cursor: pointer;
@@ -1050,6 +1054,11 @@ hr {
 .curve
 {
 	box-shadow: 0px 5px 5px 2px rgba(0,0,0,0.2);
+}
+
+.pin_pics, .pin_article {
+	margin-left: 45%;
+	width: 40px;	
 }
 
 /*.content_ecoliers {
@@ -1212,6 +1221,7 @@ hr {
 .li_mobile a {
 	color: white !important;
 	text-decoration: none;	
+	background-color: transparent !important;
 }
 .li_mobile:hover {
 	color: white !important;
@@ -1230,7 +1240,7 @@ hr {
 .li_mobile_help:hover {
 	background-color: rgba(245,144,20,1) !important;
 }
-.li_mobile.open a {
+.li_mobile.open, .li_mobile.open a {
 	background-color: transparent !important;
 }
 .dropdown-menu li {
@@ -1956,10 +1966,10 @@ hr {
 	margin-top: 4px;
 	margin-bottom: 4px;
 	padding: 5px;
+	border-bottom: 1px solid transparent;
 }
 .li_video_active {
-	border: 1px solid rgba(22,54,110,0.5);
-	background-color: rgba(22,54,110,0.1);
+	border-bottom: 1px solid rgba(22,54,110,0.5) !important;
 }
 .li_video_active a {
 	font-weight: 900 !important;

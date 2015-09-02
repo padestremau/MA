@@ -186,6 +186,27 @@
     $('.slide_container_content').css({'height':window_height_slide+'px', 'width':window_width_slide_container+'px'});
     $('.slide_content').css({'min-height':window_height_slide+'px'});
 
+    function changeCSSsheet(selector, property, value) {
+      for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
+          //Try add rule
+          try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
+          } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
+      }
+    }
+
+    var cw = $('.article_photo').width() * 0.5625;  // 16:9e
+    changeCSSsheet('.article_photo', 'height', cw+'px');
+    $(window).resize(function() {
+      var cw = $('.article_photo').width() * 0.5625;  // 16:9e
+      changeCSSsheet('.article_photo', 'height', cw+'px');
+    });
+    var cw = $('.photo_content').width() * 0.5625;  // 16:9e
+    changeCSSsheet('.photo_content', 'height', cw+'px');
+    $(window).resize(function() {
+      var cw = $('.photo_content').width() * 0.5625;  // 16:9e
+      changeCSSsheet('.photo_content', 'height', cw+'px');
+    });
+
     // Initiate section size -- Full page customized
     var window_height = window.innerHeight;
     var window_width = window.innerWidth;

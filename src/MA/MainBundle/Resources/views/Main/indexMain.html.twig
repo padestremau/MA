@@ -356,11 +356,16 @@
 										{% for single_article in articles %}
 											<li class="article_link {% if single_article == articleAsked %}li_article_active{% endif %}" id="article_n_{{ single_article.id }}">
 												<a href="javascript:displaySelectedArticle('{{ path('ma_main_homepage_elementAjax', {'elementType':'article', 'elementId':single_article.id}) }}', 'article_n_{{ single_article.id }}')" class="no_style_a">
-													{{ single_article.title|truncate(40, false, '...') }}
+													<span class="hidden-lg">
+														{{ single_article.title|truncate(20, false, '...') }}
+													</span>
+													<span class="hidden-xs hidden-sm hidden-md">
+														{{ single_article.title }}
+													</span>
 													<span class="float-right arrow_article">
 														<img src="{{ asset('img/system/defaults/right_arrow_spe.png') }}" alt=""/>
 													</span>
-													<span class="float-right date_article">
+													<span class="float-right date_article hidden-xs">
 														{% if single_article.createdAt|length > 0 %}
 															{{ single_article.createdAt|date('d M Y') }}
 														{% else %}
@@ -425,11 +430,12 @@
 										{% if articleAsked.alt|length > 0  and articleAsked.url|length > 0 %}
 											<div class="article_photo_container">
 												<div class="article_photo curve" style="width: 100%; min-height:100px; background-image: url('{{ asset( articleAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ articleAsked.alt }}" onClick="showPhotoCarousel('{{ asset(articleAsked.webPath) }}')">
+													<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_article"/>
 							                    </div>
 											</div>
 					                   {% else %}
 											<div class="article_photo_container">
-						                   		<div class="article_photo curve" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_article_photo.png') }}')">
+						                   		<div class="article_photo" style="width: 100%; min-height:100px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
 							                    </div>
 											</div>
 					                   {% endif %}
@@ -474,21 +480,6 @@
 			                        function showFullArticle(modalID) {
 										$(modalID).modal('show');
 									}
-
-									function changeCSSsheet(selector, property, value) {
-									    for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
-									        //Try add rule
-									        try { document.styleSheets[i].insertRule(selector+ ' {'+property+':'+value+'}', document.styleSheets[i].cssRules.length);
-									        } catch(err) {try { document.styleSheets[i].addRule(selector, property+':'+value);} catch(err) {}}//IE
-									    }
-									}
-
-									var cw = $('.article_photo').width() * 0.5625;  // 16:9e
-			                        changeCSSsheet('.article_photo', 'height', cw+'px');
-			                        $(window).resize(function() {
-			                          var cw = $('.article_photo').width() * 0.5625;  // 16:9e
-			                          changeCSSsheet('.article_photo', 'height', cw+'px');
-			                        });
 								</script>
 							</div>
 
@@ -542,10 +533,10 @@
 											Vidéos :
 										</strong>
 										{% if videosEcoliers|length > 0 %}
-											<ul class="list_no_style_li list_videos list_videos_white">
+											<ul class="list_no_style_li list_videos">
 												{% for video in videosEcoliers %}
 													<li class="video_link {% if video == videoAsked %}li_video_active{% endif %}" id="video_eco_{{ video.id }}">
-														<a href="javascript:displaySelectedVideo('{{ path('ma_main_homepage_elementAjax', {'elementType':'video', 'elementId':video.id}) }}', 'video_content_ecoliers', 'video_eco_{{ video.id }}')" class="no_style_a white">
+														<a href="javascript:displaySelectedVideo('{{ path('ma_main_homepage_elementAjax', {'elementType':'video', 'elementId':video.id}) }}', 'video_content_ecoliers', 'video_eco_{{ video.id }}')" class="no_style_a">
 															{{ video.title|truncate(40, false, '...') }}
 														</a>
 														<span class="float-right arrow_video">
@@ -627,8 +618,8 @@
 
 							<div class="slide_content row">
 
-								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
-									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_ecoliers.png') }}'); background-size: cover; background-position: 50%;" alt="Ardoise" class="board_ecoliers italic">
+								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 board_parent">
+									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_ecoliers.png') }}'); background-size: 100% 100%; background-position: 50%;" alt="Ardoise" class="board_ecoliers italic">
 										{% if pages|length > 0 %}
 											{% for page in pages %}
 												{% if page.dataBaseName == 'Ecoliers_Message' %}
@@ -644,9 +635,9 @@
 								</div>
 
 								<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
-									<div class="">
-										<img src="{{ asset('img/system/content/photo_ecoliers.jpg') }}" alt="Photo ecoliers" class="photo_content curve" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_ecoliers.jpg') }}')"/>
-									</div>
+									<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/content/photo_ecoliers.jpg') }}'); background-size: cover; background-position: 50%;" alt="Photo ecoliers" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_ecoliers.jpg') }}')">
+										<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+				                    </div>
 									<br/><br/>
 									<div class="talkbubble">
 										{% set contenuEcoliers = '' %}
@@ -688,8 +679,14 @@
 									{% for photo in photosEcoliers %}
 										<div class="col-md-2 col-xs-2">
 											<div class="article_photo_container">
-												<div class="photo_default_white" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}" onClick="showPhotoCarousel('{{ asset(photo.webPath) }}')">
-							                    </div>
+												{% if photo.alt|length > 0  and photo.url|length > 0 %}
+													<div class="photo_default_white" style="width: 100%; min-height:100px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}" onClick="showPhotoCarousel('{{ asset(photo.webPath) }}')">
+								                    </div>
+							                   {% else %}
+							                   		<div class="photo_default_white" style="width: 100%; min-height:100px; background-image: url('{{ asset( 'img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}">
+								                    </div>
+							                   {% endif %}
+							                   
 											</div>
 											<script type="text/javascript">
 												var cw = $('.photo_default_white').width();
@@ -765,7 +762,7 @@
 														<a href="javascript:displaySelectedVideo('{{ path('ma_main_homepage_elementAjax', {'elementType':'video', 'elementId':video.id}) }}', 'video_content_etudiants', 'video_etu_{{ video.id }}')" class="no_style_a">
 															{{ video.title|truncate(40, false, '...') }}
 														</a>
-														<span class="float-right arrow_article">
+														<span class="float-right arrow_video">
 															<img src="{{ asset('img/system/defaults/right_arrow_spe.png') }}" alt=""/>
 														</span>
 														<span class="float-right date_article">
@@ -843,8 +840,8 @@
 							</div>
 
 							<div class="slide_content">
-								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
-									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_etudiants.png') }}'); background-size: cover; background-position: 50%;" alt="Tableau" class="board_etudiants italic">
+								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 board_parent">
+									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_etudiants.png') }}'); background-size: 100% 100%; background-position: 50%;" alt="Tableau" class="board_etudiants italic">
 										{% if pages|length > 0 %}
 											{% for page in pages %}
 												{% if page.dataBaseName == 'Etudiants_Message' %}
@@ -860,9 +857,9 @@
 								</div>
 
 								<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
-									<div class="">
-										<img src="{{ asset('img/system/content/photo_etudiants.jpg') }}" alt="Photo etudiants" class="photo_content curve" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_etudiants.jpg') }}')"/>
-									</div>
+									<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/content/photo_etudiants.jpg') }}'); background-size: cover; background-position: 50%;" alt="Photo etudiants" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_etudiants.jpg') }}')">
+										<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+				                    </div>
 									<br/><br/>
 									<div class="talkbubble">
 										{% set contenuEtudiants = '' %}
@@ -913,7 +910,7 @@
 											</script>
 											<div class="center">
 												<strong>
-													{{ photo.title }}
+													{{ photo.title|truncate(20, false, '...') }}
 												</strong>
 											</div>
 										</div>
@@ -981,7 +978,7 @@
 														<a href="javascript:displaySelectedVideo('{{ path('ma_main_homepage_elementAjax', {'elementType':'video', 'elementId':video.id}) }}', 'video_content_jeunesPro', 'video_jep_{{ video.id }}')" class="no_style_a">
 															{{ video.title|truncate(40, false, '...') }}
 														</a>
-														<span class="float-right arrow_article">
+														<span class="float-right arrow_video">
 															<img src="{{ asset('img/system/defaults/right_arrow_spe.png') }}" alt=""/>
 														</span>
 														<span class="float-right date_article">
@@ -1059,8 +1056,8 @@
 							</div>
 
 							<div class="slide_content">
-								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
-									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_jeunesPros.png') }}'); background-size: cover; background-position: 50%;" alt="Tableau" class="board_jeunesPros italic">
+								<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 board_parent">
+									<div style="width: 100%; background-image: url('{{ asset('img/system/content/board_jeunesPros.png') }}'); background-size: 100% 100%; background-position: 50%;" alt="Tableau" class="board_jeunesPros italic">
 										{% if pages|length > 0 %}
 											{% for page in pages %}
 												{% if page.dataBaseName == 'JeunesPro_Message' %}
@@ -1076,9 +1073,9 @@
 								</div>
 
 								<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
-									<div class="">
-										<img src="{{ asset('img/system/content/photo_jeunesPros.jpg') }}" alt="Photo jeunesPros" class="photo_content curve" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_jeunesPros.jpg') }}')"/>
-									</div>
+									<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/content/photo_jeunesPros.jpg') }}'); background-size: cover; background-position: 50%;" alt="Photo jeunesPros" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_jeunesPros.jpg') }}')">
+										<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+				                    </div>
 									<br/><br/>
 									<div class="talkbubble">
 										{% set contenuJeunesPro = '' %}
