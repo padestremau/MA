@@ -181,10 +181,28 @@
     var window_height_slide = window.innerHeight * 0.8;
     var window_width_slide = window.innerWidth;
     var window_width_slide_container = window_width_slide * 3.1;
-    $('.slide').css({'height':window_height_slide+'px', 'width':window_width_slide+'px'});
-    $('.slide_container').css({'height':window_height_slide+'px', 'width':window_width_slide+'px'});
-    $('.slide_container_content').css({'height':window_height_slide+'px', 'width':window_width_slide_container+'px'});
+    $('.slide').css({'height':window_height_slide+'px', 'width':window_width_slide+'px', 'min-height':window_height_slide+'px'});
+    $('.slide_container').css({'height':window_height_slide+'px', 'width':window_width_slide+'px', 'min-height':window_height_slide+'px'});
+    $('.slide_container_content').css({'height':window_height_slide+'px', 'width':window_width_slide_container+'px', 'min-height':window_height_slide+'px'});
+    
     $('.slide_content').css({'min-height':window_height_slide+'px'});
+
+    // var height_content_ecoliers = $('#slide_content_Ecoliers').innerHeight; 
+    // $('#infosEcoliers').css({'height':height_content_ecoliers+'px', 'min-height':height_content_ecoliers+'px'});
+    // $('#slide_container_content_ecoliers').css({'height':height_content_ecoliers+'px', 'min-height':height_content_ecoliers+'px'});
+    // $('#slide_container_content_ecoliers.slide_container_content').css({'height':height_content_ecoliers+'px', 'min-height':height_content_ecoliers+'px'});
+    // var height_content_etudiants = $('#slide_content_Etudiants').innerHeight; 
+    // $('#infosEtudiants').css({'height':height_content_etudiants+'px', 'min-height':height_content_etudiants+'px'});
+    // $('#slide_container_content_etudiants').css({'height':height_content_etudiants+'px', 'min-height':height_content_etudiants+'px'});
+    // $('#slide_container_content_etudiants.slide_container_content').css({'height':height_content_etudiants+'px', 'min-height':height_content_etudiants+'px'});
+    // var height_content_jeunesPro = $('#slide_content_JeunesPro').innerHeight; 
+    // $('#infosJeunesPro').css({'height':height_content_jeunesPro+'px', 'min-height':height_content_jeunesPro+'px'});
+    // $('#slide_container_content_jeunesPro').css({'height':height_content_jeunesPro+'px', 'min-height':height_content_jeunesPro+'px'});
+    // $('#slide_container_content_jeunesPro.slide_container_content').css({'height':height_content_jeunesPro+'px', 'min-height':height_content_jeunesPro+'px'});
+
+    // alert(height_content_ecoliers);
+    // alert(height_content_etudiants);
+    // alert(height_content_jeunesPro);
 
     function changeCSSsheet(selector, property, value) {
       for (var i=0; i < document.styleSheets.length;i++) { //Loop through all styles
@@ -196,15 +214,21 @@
 
     var cw = $('.article_photo').width() * 0.5625;  // 16:9e
     changeCSSsheet('.article_photo', 'height', cw+'px');
+    var cw = $('.photo_content').width() * 0.5625;  // 16:9e
+    changeCSSsheet('.photo_content', 'height', cw+'px');
+    var cw = $('.photo_action').width();
+    changeCSSsheet('.photo_action', 'height', cw+'px');
+    var cw = $('.besoin_photo').width();
+    changeCSSsheet('.besoin_photo', 'height', cw+'px');
     $(window).resize(function() {
       var cw = $('.article_photo').width() * 0.5625;  // 16:9e
       changeCSSsheet('.article_photo', 'height', cw+'px');
-    });
-    var cw = $('.photo_content').width() * 0.5625;  // 16:9e
-    changeCSSsheet('.photo_content', 'height', cw+'px');
-    $(window).resize(function() {
       var cw = $('.photo_content').width() * 0.5625;  // 16:9e
       changeCSSsheet('.photo_content', 'height', cw+'px');
+      var cw = $('.photo_action').width();
+      changeCSSsheet('.photo_action', 'height', cw+'px');
+      var cw = $('.besoin_photo').width();
+      changeCSSsheet('.besoin_photo', 'height', cw+'px');
     });
 
     // Initiate section size -- Full page customized

@@ -1097,7 +1097,7 @@ hr {
 }
 
 .slide_container {
-	overflow: hidden;
+	overflow-x: hidden;
 	position:absolute;
     left:0px;
 }
@@ -1113,8 +1113,8 @@ hr {
 .slide_content {
 	height: 100%;
 	padding-top: 0 !important;
-	overflow-x: hidden;
-	overflow-y: scroll;
+	/*overflow-x: hidden;
+	overflow-y: scroll;*/
 	vertical-align: top;
 }
 @media (min-width: 1400px) {
@@ -1844,15 +1844,23 @@ hr {
 .button_besoin_info:hover {
 	border-bottom: 1px solid rgba(12,28,57,1) !important;
 }
+.button_besoin_info:active, .button_besoin_info:focus {
+	outline: none;
+}
 .prix_subvention_div {
 	float: right;
 	color: white !important;
-	width: 120px !important;
+	min-width: 50px !important;
 	/*background-color: rgba(22,54,110,0.95);*/
 	margin: 0;
-	margin-top: -5px !important;
-	padding: 5px 10px;
+	margin-top: -1.5px !important;
 	border-radius: 5px;
+}
+.prix_subvention_div:active, .prix_subvention_div:focus {
+	outline: none;
+}
+.inner_subvention {
+	margin: 5px 10px !important;
 }
 .prix_subvention {
 	border-radius: 5px;
@@ -1916,6 +1924,9 @@ hr {
 	opacity: 1;
 }
 .thumbnail_article {
+	padding: 10px;
+}
+.thumbnail_video {
 	padding: 10px;
 }
 .date_article {
@@ -2091,6 +2102,9 @@ body.modal-open {
 	cursor: pointer;
 }
 .article_photo_container {
+	padding: 10px 20px;
+}
+.photo_container {
 	padding: 10px 20px;
 }
 
