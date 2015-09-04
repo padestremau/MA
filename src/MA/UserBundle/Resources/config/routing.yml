@@ -125,7 +125,7 @@ ma_user_project_delete:
 
 # Pour contenu du site
 ma_user_content:
-    path:     /content//
+    path:     /content/
     defaults: { _controller: MAUserBundle:User:content }
 
 ma_user_content_spe:
@@ -135,7 +135,7 @@ ma_user_content_spe:
         pageId: \d+
 
 ma_user_content_new:
-    path:     /content/page/nouveau//
+    path:     /content/page/nouveau/
     defaults: { _controller: MAUserBundle:User:contentNew }
 
 ma_user_content_edit:
@@ -152,11 +152,11 @@ ma_user_content_delete:
 
 # Pour contenu du site
 ma_user_diapos:
-    path:     /diapos//
+    path:     /diapos/
     defaults: { _controller: MAUserBundle:User:diapos }
 
 ma_user_diapos_new:
-    path:     /diapos/nouveau//
+    path:     /diapos/nouveau/
     defaults: { _controller: MAUserBundle:User:diapoNew }
 
 ma_user_diapos_delete:
@@ -167,11 +167,11 @@ ma_user_diapos_delete:
 
 # Pour photos de fond de page
 ma_user_BG_photos:
-    path:     /BG_photos//
+    path:     /BG_photos/
     defaults: { _controller: MAUserBundle:User:BGPhotos }
 
 ma_user_BG_photos_new:
-    path:     /BG_photos/nouveau//
+    path:     /BG_photos/nouveau/
     defaults: { _controller: MAUserBundle:User:BGPhotoNew }
 
 ma_user_BG_photos_edit:
@@ -189,11 +189,11 @@ ma_user_BG_photos_delete:
 
 # Pour les éléments d'aide du site
 ma_user_aides:
-    path:     /aides//
+    path:     /aides/
     defaults: { _controller: MAUserBundle:User:aides }
 
 ma_user_aides_new:
-    path:     /aides/nouveau//
+    path:     /aides/nouveau/
     defaults: { _controller: MAUserBundle:User:aideNew }
 
 ma_user_aides_edit:
@@ -210,11 +210,11 @@ ma_user_aides_delete:
 
 # Pour les partenaires d'aide du site
 ma_user_partners:
-    path:     /partners//
+    path:     /partners/
     defaults: { _controller: MAUserBundle:User:partners }
 
 ma_user_partners_new:
-    path:     /partners/nouveau//
+    path:     /partners/nouveau/
     defaults: { _controller: MAUserBundle:User:partnerNew }
 
 ma_user_partners_edit:
