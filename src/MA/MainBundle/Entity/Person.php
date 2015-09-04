@@ -76,6 +76,13 @@ class Person
     private $createdAt;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="orderList", type="integer", nullable=true)
+     */
+    private $orderList;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
@@ -415,5 +422,28 @@ class Person
     public function getBgColor()
     {
         return $this->bgColor;
+    }
+
+    /**
+     * Set orderList
+     *
+     * @param integer $orderList
+     * @return Person
+     */
+    public function setOrderList($orderList)
+    {
+        $this->orderList = $orderList;
+
+        return $this;
+    }
+
+    /**
+     * Get orderList
+     *
+     * @return integer 
+     */
+    public function getOrderList()
+    {
+        return $this->orderList;
     }
 }

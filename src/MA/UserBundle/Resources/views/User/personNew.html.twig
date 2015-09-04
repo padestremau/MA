@@ -132,6 +132,30 @@
 								        </div>
 									</div>
 
+									<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								        {{ form_label(formNewPerson.orderList, "Ordre d'affiche (croissant):", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPerson.orderList) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPerson.orderList) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_orderList = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Ex: 4", 'id':'_orderList', 
+								        		'name':'_orderList'}} %}
+								        	{{ form_widget(formNewPerson.orderList, opt_orderList) }}
+								        </div>
+									</div>
+
+									<div class="row"></div>
+
 									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
 										{{ form_label(formNewPerson.file, "Photo de profil du bénéficiaire", 
 								        	{'label_attr': {'class': 'control-label'}}) }}

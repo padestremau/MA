@@ -99,12 +99,12 @@ class MainController extends Controller
         $people = $this ->getDoctrine()
                         ->getManager()
                         ->getRepository('MAMainBundle:Person')
-                        ->findAll();
+                        ->findBy([], ['orderList' => 'ASC']);
 
         $projects = $this ->getDoctrine()
                         ->getManager()
                         ->getRepository('MAMainBundle:Project')
-                        ->findAll();
+                        ->findBy([], ['orderList' => 'ASC']);
 
         $articles = $this ->getDoctrine()
                         ->getManager()

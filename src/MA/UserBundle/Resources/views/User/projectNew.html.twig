@@ -107,10 +107,11 @@
 							                    </div>
 							                    <br/>
 							                {% endif %}
-											<div class="input-icon">
-									        	{% set opt_currentAmount = {'attr': {'class': 'form-control placeholder-no-fix',
-									        		'type':'text', 'placeholder':"Montant récolté (ex: 300)", 'id':'_currentAmount', 
-									        		'name':'_currentAmount'}} %}
+							                <div class="input-group">
+											  	<span class="input-group-addon" id="currentAmount_unit"><strong>S/.</strong></span>
+									        	{% set opt_currentAmount = {'attr': {'class': 'form-control',
+									        		'type':'text', 'placeholder':"Montant récolté (ex: 300)", 'id':'currentAmount', 
+									        		'name':'_currentAmount', 'aria-describedby':'currentAmount_unit'}} %}
 									        	{{ form_widget(formNewProject.currentAmount, opt_currentAmount) }}
 									        </div>
 										</div>
@@ -183,6 +184,30 @@
 									        	{{ form_widget(formNewProject.forPerson, opt_forPerson) }}
 									        </div>
 										</div>
+
+										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									        {{ form_label(formNewProject.orderList, "Ordre d'affiche (croissant):", 
+									        	{'label_attr': {'class': 'control-label'}}) }}
+									        {% if form_errors(formNewProject.orderList) %}
+							                    <div class="error_message">
+							                      	<span class="warning_word">
+							                        	{{ 'user.warning.warning'|trans }}
+							                      	</span>
+							                      	<span class="warning_message">
+							                        	{{ form_errors(formNewProject.orderList) }}
+							                      	</span>
+							                    </div>
+							                    <br/>
+							                {% endif %}
+											<div class="input-icon">
+									        	{% set opt_orderList = {'attr': {'class': 'form-control placeholder-no-fix',
+									        		'type':'text', 'placeholder':"Ex: 4", 'id':'_orderList', 
+									        		'name':'_orderList'}} %}
+									        	{{ form_widget(formNewProject.orderList, opt_orderList) }}
+									        </div>
+										</div>
+
+										<div class="row"></div>
 
 										{% if route == 'ma_user_project_edit' %}
 										<div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">

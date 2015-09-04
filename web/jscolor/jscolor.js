@@ -1003,11 +1003,11 @@ var jscolor = {
 
 		// require images
 		switch(modeID) {
-			case 0: jscolor.requireImage("{{asset('jscolor/hs.png')}}"); break;
-			case 1: jscolor.requireImage("{{asset('jscolor/hv.png')}}"); break;
+			case 0: jscolor.requireImage("{{ asset('jscolor/hs.png')}}"); break;
+			case 1: jscolor.requireImage("{{ asset('jscolor/hv.png')}}"); break;
 		}
-		jscolor.requireImage("{{asset('jscolor/cross.gif')}}");
-		jscolor.requireImage("{{asset('jscolor/arrow.gif')}}");
+		jscolor.requireImage("{{ asset('jscolor/cross.gif')}}");
+		jscolor.requireImage("{{ asset('jscolor/arrow.gif')}}");
 
 		this.importColor();
 	}

@@ -86,6 +86,13 @@ class Project
      */
     private $forPerson;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="orderList", type="integer", nullable=true)
+     */
+    private $orderList;
+
 
     /*   *********      construct  *************  */
 
@@ -311,5 +318,28 @@ class Project
     public function getForPerson()
     {
         return $this->forPerson;
+    }
+
+    /**
+     * Set orderList
+     *
+     * @param integer $orderList
+     * @return Project
+     */
+    public function setOrderList($orderList)
+    {
+        $this->orderList = $orderList;
+
+        return $this;
+    }
+
+    /**
+     * Get orderList
+     *
+     * @return integer 
+     */
+    public function getOrderList()
+    {
+        return $this->orderList;
     }
 }

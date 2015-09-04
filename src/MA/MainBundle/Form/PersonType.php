@@ -28,6 +28,7 @@ class PersonType extends AbstractType
                                             "redactor"=>"admin_person",
                                             'label' => 'Description'
                                             ))
+            ->add('orderList', 'text', array('label' => 'Ordre affiché'))
             ->add('bgColor', 'text', array('label' => 'Couleur'))
             ->add('file', 'file')
         ;

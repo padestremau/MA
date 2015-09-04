@@ -132,7 +132,9 @@
 																		  					{% else %}
 																		  					prix_check_danger
 																		  					{% endif %}">
-																  					<strong>S/.</strong> {{ single_project.totalAmount }}
+																  					<span class="inner_subvention">
+																  						<strong>S/.</strong> {{ single_project.totalAmount }}
+																		  			</span>
 																				</div>
 																	    	</button>
 																  		</div>
@@ -153,19 +155,37 @@
 																  				</div>
 																			</div>
 																			<div class="row center">
-																				Total récolté : 
-																				<span class="
-																					{% if project_pourcentage > 75 %}
-																  					prix_recolte_success
-																  					{% elseif project_pourcentage > 50 %}
-																  					prix_recolte_info
-																  					{% elseif project_pourcentage > 25 %}
-																  					prix_recolte_warning
-																  					{% else %}
-																  					prix_recolte_danger
-																  					{% endif %}">
-																					<strong>S/.</strong> {{ single_project.currentAmount }} 
-																				</span>
+																				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left">
+																					<span class="hidden-lg hidden-md">
+																						Récolté : 
+																					</span>
+																					<span class="hidden-sm hidden-xs">
+																						Total récolté : 
+																					</span>
+																					<span class="
+																						{% if project_pourcentage == 100 %}
+																	  					prix_recolte_success
+																	  					{% elseif project_pourcentage > 50 %}
+																	  					prix_recolte_info
+																	  					{% elseif project_pourcentage > 25 %}
+																	  					prix_recolte_warning
+																	  					{% else %}
+																	  					prix_recolte_danger
+																	  					{% endif %}">
+																						<strong>S/.</strong> {{ single_project.currentAmount }} 
+																					</span>
+																				</div>
+																				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+																					<span class="hidden-lg hidden-md">
+																						Fin : 
+																					</span>
+																					<span class="hidden-sm hidden-xs">
+																						Date de fin : 
+																					</span>
+																					<strong>
+																						{{ single_project.deliveryAt|date('d M Y') }} 
+																					</strong>
+																				</div>
 																			</div>
 																  		</div>
 																  	</div>
@@ -230,7 +250,7 @@
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
 															<strong>
-																Date d'échéance :
+																Date d'échéance prévue :
 															</strong>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
@@ -240,7 +260,7 @@
 														{% if elementAsked.completedAt|length > 0 %}
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right">
 															<strong>
-																Date de fin du projet :
+																Date réelle de fin du projet :
 															</strong>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
@@ -273,7 +293,9 @@
 														  					{% else %}
 														  					prix_check_danger
 														  					{% endif %}">
-												  					<strong>S/.</strong> {{ elementAsked.totalAmount }}
+														  			<span class="inner_subvention">
+													  					<strong>S/.</strong> {{ elementAsked.totalAmount }}
+														  			</span>
 																</div>
 													    	</button>
 												  		</div>
@@ -294,19 +316,37 @@
 												  				</div>
 															</div>
 															<div class="row center">
-																Total récolté : 
-																<span class="
-																	{% if project_pourcentage == 100 %}
-												  					prix_recolte_success
-												  					{% elseif project_pourcentage > 50 %}
-												  					prix_recolte_info
-												  					{% elseif project_pourcentage > 25 %}
-												  					prix_recolte_warning
-												  					{% else %}
-												  					prix_recolte_danger
-												  					{% endif %}">
-																	<strong>S/.</strong> {{ elementAsked.currentAmount }} 
-																</span>
+																<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left">
+																	<span class="hidden-lg hidden-md">
+																		Récolté : 
+																	</span>
+																	<span class="hidden-sm hidden-xs">
+																		Total récolté : 
+																	</span>
+																	<span class="
+																		{% if project_pourcentage == 100 %}
+													  					prix_recolte_success
+													  					{% elseif project_pourcentage > 50 %}
+													  					prix_recolte_info
+													  					{% elseif project_pourcentage > 25 %}
+													  					prix_recolte_warning
+													  					{% else %}
+													  					prix_recolte_danger
+													  					{% endif %}">
+																		<strong>S/.</strong> {{ elementAsked.currentAmount }} 
+																	</span>
+																</div>
+																<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right">
+																	<span class="hidden-lg hidden-md">
+																		Fin prévue : 
+																	</span>
+																	<span class="hidden-sm hidden-xs">
+																		Date de fin prévue: 
+																	</span>
+																	<strong>
+																		{{ elementAsked.deliveryAt|date('d M Y') }} 
+																	</strong>
+																</div>
 															</div>
 												  		</div>
 													</div>

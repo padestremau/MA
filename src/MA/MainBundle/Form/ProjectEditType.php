@@ -28,6 +28,7 @@ class ProjectEditType extends AbstractType
                                             'years' => range(2014,2050,1),
                                             'data' => new \Datetime
                                         ))
+            ->add('orderList', 'text', array('label' => 'Ordre affiché'))
             ->add('forPerson', 'entity', array(   'class' => 'MAMainBundle:Person',
                                                 'property' => 'Name'
                                             ))

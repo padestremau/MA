@@ -22,6 +22,7 @@ class ProjectType extends AbstractType
                                             ))
             ->add('totalAmount', 'integer')
             ->add('currentAmount', 'integer')
+            ->add('orderList', 'text', array('label' => 'Ordre affiché'))
             ->add('deliveryAt', 'datetime', array(
                                             'input'  => 'datetime',
                                             'widget' => 'choice',
