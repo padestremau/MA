@@ -74,6 +74,16 @@
 										{% if pageAsked %}
 											<div class="">
 												<div class="row">
+													{% if pageAsked.type == "ltc" %}
+														{% if pageAsked.alt|length > 0  and pageAsked.url|length > 0 %}
+															<div class="article_photo_admin" style="width: 100%; min-height:50px; background-image: url('{{ asset( pageAsked.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ pageAsked.alt }}" onClick="showPhotoCarousel('{{ asset(pageAsked.webPath) }}')">
+										                    </div>
+									                   	{% else %}
+									                   		<div class="article_photo_admin" style="width: 100%; min-height:50px; background-image: url('{{ asset( 'img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
+										                    </div>
+									                   	{% endif %}
+														<br/>
+													{% endif %}
 													<h4>
 														{% if pageAsked.title|length > 0 %}
 															{{ pageAsked.title|raw }}
@@ -88,9 +98,23 @@
 															(date vide)
 														{% endif %}
 													</div>
-													{% if pageAsked.updatedAt|length > 0 %}
+													{% if pageAsked.dataBaseName|length > 0 %}
 													<div class="center">
 														<strong>Nom DB: </strong>{{ pageAsked.dataBaseName }}
+													</div>
+													{% endif %}
+													{% if pageAsked.type|length > 0 %}
+													<div class="center">
+														<strong>Type: </strong>
+														{% if pageAsked.type == "ltc" %}
+															Logo, Titre, Contenu
+														{% elseif pageAsked.type == "tc" %}
+															Titre, Contenu
+														{% elseif pageAsked.type == "c" %}
+															Contenu
+														{% else %}
+															... erreur
+														{% endif %}	
 													</div>
 													{% endif %}
 												</div>
@@ -104,6 +128,8 @@
 														(page vide)
 													{% endif %}
 												</div>
+
+												<br/><br/>
 											</div>
 										{% endif %}
 					    			</div>

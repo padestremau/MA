@@ -69,6 +69,75 @@
 								        </div>
 									</div>
 									<div class="form-group">
+										{{ form_label(formNewPage.type, "Type de page", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPage.type) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPage.type) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_type = {'attr': {'type':'type', 'id':'type', 'name':'_type', 'onchange':'displayPageOptions()'}} %}
+								        	{{ form_widget(formNewPage.type, opt_type) }}
+								        </div>
+									</div>
+							        <script type="text/javascript">
+					                  	function displayPageOptions() {
+					                  		var e = document.getElementById("ma_mainbundle_page_type");
+					                  		var optionSelected = e.options[e.selectedIndex].value;
+					                      	if (optionSelected == "ltc") { 
+					                      		document.getElementById('photoInput').style.display = 'block';
+					                      		document.getElementById('titleInput').style.display = 'block';
+					                      		document.getElementById('contentInput').style.display = 'block';
+					                      	}
+					                      	else if (optionSelected == "tc") { 
+					                      		document.getElementById('photoInput').style.display = 'none';
+					                      		document.getElementById('titleInput').style.display = 'block';
+					                      		document.getElementById('contentInput').style.display = 'block';
+
+					                      	}
+					                      	else if (optionSelected == "c") { 
+					                      		document.getElementById('photoInput').style.display = 'none';
+					                      		document.getElementById('titleInput').style.display = 'none';
+					                      		document.getElementById('contentInput').style.display = 'block';
+					                      	}
+					                      	else {
+					                        	document.getElementById('photoInput').style.display = 'none';
+					                      		document.getElementById('titleInput').style.display = 'none';
+					                      		document.getElementById('contentInput').style.display = 'none';
+					                        }
+					                    }
+					                </script>
+
+					                <div class="form-group" id="photoInput">
+										{{ form_label(formNewPage.file, "Photo", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPage.file) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPage.file) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_file = {'attr': {'type':'file', 'id':'file', 'name':'_file'}} %}
+								        	{{ form_widget(formNewPage.file, opt_file) }}
+								        </div>
+									</div>
+
+									<div class="form-group" id="titleInput">
 								        {{ form_label(formNewPage.title, 'Titre apparent', 
 								        	{'label_attr': {'class': 'control-label'}}) }}
 								        {% if form_errors(formNewPage.title) %}
@@ -90,7 +159,7 @@
 								        	{{ form_widget(formNewPage.title, opt_title) }}
 								        </div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" id="contentInput">
 								        {{ form_label(formNewPage.content, 'Contenu apparent', 
 								        	{'label_attr': {'class': 'control-label'}}) }}
 								        {% if form_errors(formNewPage.content) %}

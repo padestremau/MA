@@ -24,6 +24,16 @@ class PageType extends AbstractType
                                             'required' => false
                                             ))
             ->add('dataBaseName', 'text', array('label' => 'Nom de la base de données'))
+            ->add('type', 'choice', array(
+                'label' => 'type',
+                'choices' => array(
+                                    'ltc' => 'Logo, Titre, Contenu',
+                                    'tc' => 'Titre, Contenu',
+                                    'c' => 'Contenu'
+                    )
+                ))
+            ->add('file','file', array('label' => 'File',
+                                    'required' => false))
         ;
     }
     

@@ -650,19 +650,26 @@
 								</div>
 
 								<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
-									<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/content/photo_ecoliers.jpg') }}'); background-size: cover; background-position: 50%;" alt="Photo ecoliers" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_ecoliers.jpg') }}')">
-										<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
-				                    </div>
+									{% set contenuEcoliers = '' %}
+									{% if pages|length > 0 %}
+										{% for page in pages %}
+											{% if page.dataBaseName == 'Ecoliers_Contenu' %}
+												{% set contenuEcoliers = page %}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+									
+									{% if contenuEcoliers.alt|length > 0  and contenuEcoliers.url|length > 0 %}
+										<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset(contenuEcoliers.webPath) }}'); background-size: cover; background-position: 50%;" alt="Photo ecoliers" onClick="showPhotoCarousel('{{ asset(contenuEcoliers.webPath) }}')">
+											<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+					                    </div>
+				                   	{% else %}
+				                   		<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Photo ecoliers" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_article_photo.png') }}')">
+											<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+					                    </div>
+				                   	{% endif %}
 									<br/><br/>
 									<div class="talkbubble">
-										{% set contenuEcoliers = '' %}
-										{% if pages|length > 0 %}
-											{% for page in pages %}
-												{% if page.dataBaseName == 'Ecoliers_Contenu' %}
-													{% set contenuEcoliers = page %}
-												{% endif %}
-											{% endfor %}
-										{% endif %}
 										<h3>
 											{{ contenuEcoliers.title }}
 										</h3>
@@ -701,7 +708,7 @@
 													<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}" onClick="showPhotoCarousel('{{ asset(photo.webPath) }}')">
 								                    </div>
 							                   	{% else %}
-							                   		<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( 'img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}">
+							                   		<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( 'img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
 								                    </div>
 							                   	{% endif %}
 											</div>
@@ -886,19 +893,27 @@
 								</div>
 
 								<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
-									<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/content/photo_etudiants.jpg') }}'); background-size: cover; background-position: 50%;" alt="Photo etudiants" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_etudiants.jpg') }}')">
-										<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
-				                    </div>
+									{% set contenuEtudiants = '' %}
+									{% if pages|length > 0 %}
+										{% for page in pages %}
+											{% if page.dataBaseName == 'Etudiants_Contenu' %}
+												{% set contenuEtudiants = page %}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+
+									{% if contenuEtudiants.alt|length > 0  and contenuEtudiants.url|length > 0 %}
+										<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset(contenuEtudiants.webPath) }}'); background-size: cover; background-position: 50%;" alt="Photo etudiants" onClick="showPhotoCarousel('{{ asset(contenuEtudiants.webPath) }}')">
+											<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+					                    </div>
+				                   	{% else %}
+				                   		<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Photo ecoliers" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_article_photo.png') }}')">
+											<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+					                    </div>
+				                   	{% endif %}
+
 									<br/><br/>
 									<div class="talkbubble">
-										{% set contenuEtudiants = '' %}
-										{% if pages|length > 0 %}
-											{% for page in pages %}
-												{% if page.dataBaseName == 'Etudiants_Contenu' %}
-													{% set contenuEtudiants = page %}
-												{% endif %}
-											{% endfor %}
-										{% endif %}
 										<h3>
 											{{ contenuEtudiants.title }}
 										</h3>
@@ -937,7 +952,7 @@
 													<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}" onClick="showPhotoCarousel('{{ asset(photo.webPath) }}')">
 								                    </div>
 							                   	{% else %}
-							                   		<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( 'img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}">
+							                   		<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( 'img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
 								                    </div>
 							                   	{% endif %}
 											</div>
@@ -1122,19 +1137,26 @@
 								</div>
 
 								<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
-									<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/content/photo_jeunesPros.jpg') }}'); background-size: cover; background-position: 50%;" alt="Photo jeunesPros" onClick="showPhotoCarousel('{{ asset('img/system/content/photo_jeunesPros.jpg') }}')">
-										<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
-				                    </div>
+									{% set contenuJeunesPro = '' %}
+									{% if pages|length > 0 %}
+										{% for page in pages %}
+											{% if page.dataBaseName == 'JeunesPro_Contenu' %}
+												{% set contenuJeunesPro = page %}
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+									{% if contenuJeunesPro.alt|length > 0  and contenuJeunesPro.url|length > 0 %}
+										<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset(contenuJeunesPro.webPath) }}'); background-size: cover; background-position: 50%;" alt="Photo jeunes pro" onClick="showPhotoCarousel('{{ asset(contenuJeunesPro.webPath) }}')">
+											<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+					                    </div>
+				                   	{% else %}
+				                   		<div class="photo_content curve" style="width: 70%; min-height:50px; background-image: url('{{ asset('img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Photo ecoliers" onClick="showPhotoCarousel('{{ asset('img/system/defaults/default_article_photo.png') }}')">
+											<img src="{{ asset('img/system/content/pin_pics.png') }}" alt="Pin" class="pin_pics"/>
+					                    </div>
+				                   	{% endif %}
+									
 									<br/><br/>
 									<div class="talkbubble">
-										{% set contenuJeunesPro = '' %}
-										{% if pages|length > 0 %}
-											{% for page in pages %}
-												{% if page.dataBaseName == 'JeunesPro_Contenu' %}
-													{% set contenuJeunesPro = page %}
-												{% endif %}
-											{% endfor %}
-										{% endif %}
 										<h3>
 											{{ contenuJeunesPro.title }}
 										</h3>
@@ -1172,7 +1194,7 @@
 													<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( photo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}" onClick="showPhotoCarousel('{{ asset(photo.webPath) }}')">
 								                    </div>
 							                   	{% else %}
-							                   		<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( 'img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="{{ photo.alt }}">
+							                   		<div class="photo_default_white photo_action" style="width: 100%; min-height:50px; background-image: url('{{ asset( 'img/system/defaults/default_article_photo.png') }}'); background-size: cover; background-position: 50%;" alt="Default">
 								                    </div>
 							                   	{% endif %}
 											</div>
