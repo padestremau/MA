@@ -29,23 +29,23 @@
 				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'ecoliers'}) }}')" class="btn-accueil btn-category-admin btn_ecoliers
 				  				{% if type == 'ecoliers' %} btn_ecoliers_active {% endif %}
 				  				">
-				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white_spe.png') }}" alt="" class="btn_arrow"/>
 				  				Ecoliers
-				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white_spe.png') }}" alt="" class="btn_arrow"/>
 				  			</a>
 				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'etudiants'}) }}')" class="btn-accueil btn-category-admin btn_etudiants
 				  				{% if type == 'etudiants' %} btn_etudiants_active {% endif %}
 				  				">
-				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white_spe.png') }}" alt="" class="btn_arrow"/>
 				  				Etudiants
-				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white_spe.png') }}" alt="" class="btn_arrow"/>
 				  			</a>
 				  			<a href="javascript:loadContentAdmin('{{ path('ma_user_videos_spe', {'type':'jeunesPro'}) }}')" class="btn-accueil btn-category-admin btn_jeunesPro
 				  				{% if type == 'jeunesPro' %} btn_jeunesPro_active {% endif %}
 				  				">
-				  				<img src="{{ asset('img/system/defaults/right_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				<img src="{{ asset('img/system/defaults/right_arrow_white_spe.png') }}" alt="" class="btn_arrow"/>
 				  				Jeunes pro
-				  				<img src="{{ asset('img/system/defaults/left_arrow_white.png') }}" alt="" class="btn_arrow"/>
+				  				<img src="{{ asset('img/system/defaults/left_arrow_white_spe.png') }}" alt="" class="btn_arrow"/>
 				  			</a>
 				  		</div>
 						<div class="row92">
@@ -79,8 +79,8 @@
 														<a href="javascript:displaySelectedVideo('{{ path('ma_user_videos_spe_video', {'type':type, 'videoId':video.id}) }}', '#video_content', 'video_n_{{ video.id }}')" class="no_style_a">
 															{{ video.title|truncate(40, false, '...') }}
 														</a>
-														<span class="float-right arrow_article">
-															<img src="{{ asset('img/system/defaults/right_arrow.png') }}" alt=""/>
+														<span class="float-right arrow_video">
+															<img src="{{ asset('img/system/defaults/right_arrow_spe.png') }}" alt=""/>
 														</span>
 														<span class="float-right date_article">
 															{% if video.createdAt|length > 0 %}
