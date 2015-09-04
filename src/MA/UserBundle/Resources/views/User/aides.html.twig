@@ -90,10 +90,10 @@
 				                            </td>
 				                            <td class="center">
 				                              	{% if aide.alt|length > 0 and aide.url|length > 0 %}
-													<div class="aide_img_admin" style="background-image: url('{{ asset(aide.webPath) }}'); background-size: cover; background-position: 50%;">
+													<div class="aide_img_admin" style="background-image: url('{{ asset(aide.webPath) }}'); background-size: cover; background-position: 50%; min-height:20px;">
 													</div>
 												{% else %}
-													<div class="aide_img_admin" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%;" alt="Default" >
+													<div class="aide_img_admin" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%; min-height:20px;" alt="Default" >
 													</div>
 												{% endif %}
 				                            </td>

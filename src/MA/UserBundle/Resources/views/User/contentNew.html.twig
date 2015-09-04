@@ -68,8 +68,8 @@
 								        	{{ form_widget(formNewPage.name, opt_name) }}
 								        </div>
 									</div>
-									<div class="form-group">
-										{{ form_label(formNewPage.type, "Type de page", 
+									<!-- <div class="form-group">
+										{# form_label(formNewPage.type, "Type de page", 
 								        	{'label_attr': {'class': 'control-label'}}) }}
 								        {% if form_errors(formNewPage.type) %}
 						                    <div class="error_message">
@@ -85,35 +85,35 @@
 										<div class="input-icon">
 								        	<i class="fa fa-user"></i>
 								        	{% set opt_type = {'attr': {'type':'type', 'id':'type', 'name':'_type', 'onchange':'displayPageOptions()'}} %}
-								        	{{ form_widget(formNewPage.type, opt_type) }}
+								        	{{ form_widget(formNewPage.type, opt_type) #}
 								        </div>
-									</div>
+									</div> -->
 							        <script type="text/javascript">
-					                  	function displayPageOptions() {
-					                  		var e = document.getElementById("ma_mainbundle_page_type");
-					                  		var optionSelected = e.options[e.selectedIndex].value;
-					                      	if (optionSelected == "ltc") { 
-					                      		document.getElementById('photoInput').style.display = 'block';
-					                      		document.getElementById('titleInput').style.display = 'block';
-					                      		document.getElementById('contentInput').style.display = 'block';
-					                      	}
-					                      	else if (optionSelected == "tc") { 
-					                      		document.getElementById('photoInput').style.display = 'none';
-					                      		document.getElementById('titleInput').style.display = 'block';
-					                      		document.getElementById('contentInput').style.display = 'block';
+					                	// function displayPageOptions() {
+					                	// 	var e = document.getElementById("ma_mainbundle_page_type");
+					                	// 	var optionSelected = e.options[e.selectedIndex].value;
+					                 //      	if (optionSelected == "ltc") { 
+					                 //      		document.getElementById('photoInput').style.display = 'block';
+					                 //      		document.getElementById('titleInput').style.display = 'block';
+					                 //      		document.getElementById('contentInput').style.display = 'block';
+					                 //      	}
+					                 //      	else if (optionSelected == "tc") { 
+					                 //      		document.getElementById('photoInput').style.display = 'none';
+					                 //      		document.getElementById('titleInput').style.display = 'block';
+					                 //      		document.getElementById('contentInput').style.display = 'block';
 
-					                      	}
-					                      	else if (optionSelected == "c") { 
-					                      		document.getElementById('photoInput').style.display = 'none';
-					                      		document.getElementById('titleInput').style.display = 'none';
-					                      		document.getElementById('contentInput').style.display = 'block';
-					                      	}
-					                      	else {
-					                        	document.getElementById('photoInput').style.display = 'none';
-					                      		document.getElementById('titleInput').style.display = 'none';
-					                      		document.getElementById('contentInput').style.display = 'none';
-					                        }
-					                    }
+					                 //      	}
+					                 //      	else if (optionSelected == "c") { 
+					                 //      		document.getElementById('photoInput').style.display = 'none';
+					                 //      		document.getElementById('titleInput').style.display = 'none';
+					                 //      		document.getElementById('contentInput').style.display = 'block';
+					                 //      	}
+					                 //      	else {
+					                 //        	document.getElementById('photoInput').style.display = 'none';
+					                 //      		document.getElementById('titleInput').style.display = 'none';
+					                 //      		document.getElementById('contentInput').style.display = 'none';
+					                 //        }
+					                 //    }
 					                </script>
 
 					                <div class="form-group" id="photoInput">
@@ -183,8 +183,8 @@
 
 									</div>
 
-									<div class="form-group">
-								        {{ form_label(formNewPage.dataBaseName, 'Nom dans la base de données', 
+									<!-- <div class="form-group">
+								        {# form_label(formNewPage.dataBaseName, 'Nom dans la base de données', 
 								        	{'label_attr': {'class': 'control-label'}}) }}
 								        {% if form_errors(formNewPage.dataBaseName) %}
 						                    <div class="error_message">
@@ -202,9 +202,9 @@
 								        	{% set opt_dataBaseName = {'attr': {'class': 'form-control placeholder-no-fix',
 								        		'type':'text', 'placeholder':"Nom dans la base de données (ex: Page_Principale)", 'id':'_dataBaseName', 
 								        		'name':'_dataBaseName'}} %}
-								        	{{ form_widget(formNewPage.dataBaseName, opt_dataBaseName) }}
+								        	{{ form_widget(formNewPage.dataBaseName, opt_dataBaseName) #}
 								        </div>
-									</div>
+									</div> -->
 
 									<div>
 										<br/><br/>

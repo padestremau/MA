@@ -84,13 +84,11 @@
 									                   	{% endif %}
 														<br/>
 													{% endif %}
-													<h4>
-														{% if pageAsked.title|length > 0 %}
+													{% if pageAsked.title|length > 0 %}
+														<h4>
 															{{ pageAsked.title|raw }}
-														{% else %}
-															(Titre vide)
-														{% endif %}
-													</h4>
+														</h4>
+													{% endif %}
 													<div class="center date_page_lg">
 														{% if pageAsked.updatedAt|length > 0 %}
 															le {{ pageAsked.updatedAt|date('d M Y') }} à {{ pageAsked.updatedAt|date('H:i') }}
@@ -98,12 +96,12 @@
 															(date vide)
 														{% endif %}
 													</div>
-													{% if pageAsked.dataBaseName|length > 0 %}
+													{# if pageAsked.dataBaseName|length > 0 %}
 													<div class="center">
 														<strong>Nom DB: </strong>{{ pageAsked.dataBaseName }}
 													</div>
-													{% endif %}
-													{% if pageAsked.type|length > 0 %}
+													{% endif #}
+													{# if pageAsked.type|length > 0 %}
 													<div class="center">
 														<strong>Type: </strong>
 														{% if pageAsked.type == "ltc" %}
@@ -116,7 +114,7 @@
 															... erreur
 														{% endif %}	
 													</div>
-													{% endif %}
+													{% endif #}
 												</div>
 
 												<br/>
