@@ -653,7 +653,8 @@ class UserController extends Controller
         }
 
         return $this->render('MAUserBundle:User:contentNew.html.twig', array(
-            'formNewPage' => $formNewPage->createView()
+            'formNewPage' => $formNewPage->createView(),
+            'pageAsked' => $page
         ));
     }
 

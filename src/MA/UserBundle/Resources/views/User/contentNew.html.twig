@@ -116,7 +116,7 @@
 					                 //    }
 					                </script>
 
-					                <div class="form-group" id="photoInput">
+					                <div class="form-group" id="photoInput" {% if 'l' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
 										{{ form_label(formNewPage.file, "Photo", 
 								        	{'label_attr': {'class': 'control-label'}}) }}
 								        {% if form_errors(formNewPage.file) %}
@@ -137,7 +137,7 @@
 								        </div>
 									</div>
 
-									<div class="form-group" id="titleInput">
+									<div class="form-group" id="titleInput" {% if 't' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
 								        {{ form_label(formNewPage.title, 'Titre apparent', 
 								        	{'label_attr': {'class': 'control-label'}}) }}
 								        {% if form_errors(formNewPage.title) %}
@@ -159,7 +159,7 @@
 								        	{{ form_widget(formNewPage.title, opt_title) }}
 								        </div>
 									</div>
-									<div class="form-group" id="contentInput">
+									<div class="form-group" id="contentInput" {% if 'c' in pageAsked.type %}style="display:block;"{% else %}style="display:none;"{% endif %}>
 								        {{ form_label(formNewPage.content, 'Contenu apparent', 
 								        	{'label_attr': {'class': 'control-label'}}) }}
 								        {% if form_errors(formNewPage.content) %}
