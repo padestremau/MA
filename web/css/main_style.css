@@ -2167,6 +2167,10 @@ body.modal-open {
 	text-decoration: underline;
 }
 
+.diapo_default:hover {
+	cursor: pointer;
+}
+
 
 
 /* ------------------------------------------------------ Admin ------------------------------------------------------ */

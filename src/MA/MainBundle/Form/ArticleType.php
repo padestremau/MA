@@ -24,6 +24,7 @@ class ArticleType extends AbstractType
             ->add('createdAt', 'datetime', array(
                                             'input'  => 'datetime',
                                             'widget' => 'choice',
+                                            'minutes' => range(0,50,10),
                                             'years' => range(2010,2050,1),
                                             'data' => new \Datetime
                                         ))

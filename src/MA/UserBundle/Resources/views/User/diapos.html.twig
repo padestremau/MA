@@ -43,10 +43,10 @@
 										<div class="col-md-2 col-xs-2 diapo_admin">
 											<div class="article_diapo_container">
 												{% if diapo.alt|length > 0 and diapo.url|length > 0 %}
-													<div class="diapo_default" style="width: 100%; min-height:100px; background-image: url('{{ asset( diapo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ diapo.alt }}">
+													<div class="diapo_default curve" style="width: 100%; min-height:100px; background-image: url('{{ asset( diapo.webPath) }}'); background-size: cover; background-position: 50%;" alt="{{ diapo.alt }}" onClick="showPhotoCarousel('{{ asset(diapo.webPath) }}')">
 								                    </div>
 												{% else %}
-													<div class="diapo_default" style="background-size: 100%; background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%;">
+													<div class="diapo_default curve" style="background-size: 100%; background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%;">
 													</div>
 												{% endif %}
 											</div>

@@ -26,6 +26,7 @@ class ProjectType extends AbstractType
             ->add('deliveryAt', 'datetime', array(
                                             'input'  => 'datetime',
                                             'widget' => 'choice',
+                                            'minutes' => range(0,55,5),
                                             'years' => range(2014,2050,1),
                                             'data' => new \Datetime
                                         ))
