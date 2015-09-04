@@ -167,7 +167,7 @@ class UserController extends Controller
             else if ($photo->getCategory() == 'etudiants') {
                 $photosEtudiants[] = $photo;
             }
-            else if ($photo->getCategory() == 'etudiants') {
+            else if ($photo->getCategory() == 'jeunesPro') {
                 $photosJeunesPro[] = $photo;
             }
             
