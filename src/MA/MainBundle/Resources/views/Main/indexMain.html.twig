@@ -1317,7 +1317,7 @@
 																	{% set project_pourcentage = single_project.currentAmount / single_project.totalAmount %}
 															  		{% set project_pourcentage = project_pourcentage * 100 %}
 															  		{% set project_pourcentage = project_pourcentage|round %}
-															  		<div class="caption">
+															  		<div class="row caption">
 																    	<strong>
 																    		{{ single_project.title }} :
 																    	</strong>
@@ -1342,7 +1342,7 @@
 																    	</button>
 																    	<img src="{{ asset('img/system/scroll-icons/right-key-spe.png') }}" alt="click here" class="scroll-icons-spe scroll-icons-spe-right float-right"/>
 															  		</div>
-															  		<div class="pourcentage collapse" id="showProject_{{ single_project.id }}">
+															  		<div class="row pourcentage collapse" id="showProject_{{ single_project.id }}">
 															  			<div class="progress">
 															  				<div class="progress-bar 
 															  					{% if project_pourcentage == 100 %}
