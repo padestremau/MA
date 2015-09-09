@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
+<channel>
+  <title>ROR Sitemap for http://www.missionandina.org/</title>
+  <link>http://www.missionandina.org/</link>
+
+<item>
+     <link>http://www.missionandina.org/</link>
+     <title>
+                  Mission Andina
+      
+
+    </title>
+     <description>
+                  Mission Andina
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.missionandina.org/nousAider/</link>
+     <title>
+                  Mission Andina
+      
+
+    </title>
+     <description>
+                  Mission Andina
+      
+
+    </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.missionandina.org/doc/Statuts.pdf</link>
+     <title></title>
+     
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.missionandina.org/login</link>
+     <title>
+              Mission Andina
+          </title>
+     <description>
+              Mission Andina
+          </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>http://www.missionandina.org/resetting/request</link>
+     <title>
+              Mission Andina
+          </title>
+     <description>
+              Mission Andina
+          </description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+</channel>
+</rss>
+  
