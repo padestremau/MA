@@ -178,7 +178,7 @@
   $(document).ready(function(){ 
 
     // Initiate slide size
-    var window_height_slide = window.innerHeight * 0.8;
+    var window_height_slide = window.innerHeight * 0.75;
     var window_width_slide = window.innerWidth;
     var window_width_slide_container = window_width_slide * 3.1;
     $('.slide').css({'height':window_height_slide+'px', 'width':window_width_slide+'px', 'min-height':window_height_slide+'px'});

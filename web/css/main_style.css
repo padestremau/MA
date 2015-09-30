@@ -1162,6 +1162,9 @@ hr {
 		margin: 0 1% ;
 	}
 }
+.slide_content_text {
+	border: 1px solid rgba(12,28,57,1);
+}
 
 #sessionFlash {
 	position: absolute;
