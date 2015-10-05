@@ -197,7 +197,7 @@ h1 span {
 h2
 {	
 	text-align: center;
-	margin: 8px 0 0 0;
+	margin: 2px 0 0 0;
 	font-weight: 600;
 	color: rgba(12,28,57,0.88);
 }
@@ -230,7 +230,7 @@ h2
 h3
 {
 	font-weight: 500 !important;
-	margin-top: 10px !important;
+	margin-top: 5px !important;
 	text-align: center;	
 	color: rgba(12,28,57,1);
 }
@@ -945,25 +945,25 @@ hr {
 }
 .section_home {
 	background-color: rgba(22,54,110,0.5) !important;
-	padding-top: 50px !important;
+	padding-top: 42px !important;
 	color: white !important;
 }
 .section {
 	margin: 0;
 	background-color: #f1f1f1;
-	padding: 50px !important;
+	padding: 44px !important;
 	z-index: 0 !important;
 	border-bottom: 1.5px solid rgba(22,54,110,0.5);
 }
 @media (min-width: 478px) and (max-width: 991px) {
 	.section {
-		padding: 30px !important;
+		padding: 20px !important;
 	}
 }
 @media (max-width: 477px) {
 	.section {
 		padding: 5px !important;
-		padding-top: 55px !important;
+		padding-top: 44px !important;
 	}
 }
 
@@ -1119,7 +1119,7 @@ hr {
 }
 @media (min-width: 1400px) {
 	.slide {
-		padding: 50px !important;
+		padding: 30px !important;
 	}
 	.slide_content {
 		width: 84%;
@@ -1128,7 +1128,7 @@ hr {
 }
 @media (min-width: 992px) and (max-width: 1399px) {
 	.slide {
-		padding: 40px !important;
+		padding: 20px !important;
 	}
 	.slide_content {
 		width: 86%;
@@ -1137,7 +1137,7 @@ hr {
 }
 @media (min-width: 768px) and (max-width: 991px) {
 	.slide {
-		padding: 30px !important;
+		padding: 10px !important;
 	}
 	.slide_content {
 		width: 88%;
@@ -1146,7 +1146,7 @@ hr {
 }
 @media (min-width: 478px) and (max-width: 767px) {
 	.slide {
-		padding: 20px !important;
+		padding: 5px !important;
 	}
 	.slide_content {
 		width: 92%;
